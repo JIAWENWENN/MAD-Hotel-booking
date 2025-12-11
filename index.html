@@ -1,288 +1,145 @@
 <!DOCTYPE html>
-
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Hotel Details Screen - Dark Blue Theme</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">tailwind.config = {theme: {extend: {colors: {primary: "#0d0d87", "primary-content": "#ffffff", accent: "#3b82f6", background: "#020510", surface: "#0A1124", "surface-highlight": "#131C36", "text-main": "#ffffff", "text-muted": "#94a3b8", star: "#fbbf24", "background-light": "#f6f6f8", "background-dark": "#111121"}, fontFamily: {display: "Spline Sans"}, borderRadius: {DEFAULT: "1rem", lg: "2rem", xl: "3rem", full: "9999px"}}}};</script>
-<style>
-        body {
-            min-height: max(884px, 100dvh);
-        }.scrollbar-hide::-webkit-scrollbar {
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Hotel Photo Gallery - Light Mode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0d0d87", 
+                        background: "#ffffff",         // Changed to White
+                        surface: "#f1f5f9",            // Changed to Slate-100
+                        "surface-hover": "#e2e8f0",    // Changed to Slate-200
+                        "background-light": "#ffffff", 
+                        "background-dark": "#0f172a"
+                    },
+                    fontFamily: {
+                        display: "Spline Sans", 
+                        sans: ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem", 
+                        lg: "2rem", 
+                        xl: "3rem", 
+                        full: "9999px"
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
-        .scrollbar-hide {
+        .no-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+        body {
+            min-height: max(884px, 100dvh);
+        }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="bg-background font-display text-text-main antialiased selection:bg-primary selection:text-white">
-<div class="relative flex h-auto min-h-screen w-full max-w-md mx-auto flex-col overflow-x-hidden bg-background shadow-2xl rounded-none sm:rounded-3xl pb-24">
-<div class="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-4 pt-12">
-<button class="flex h-12 w-12 items-center justify-center rounded-full bg-surface/40 backdrop-blur-md shadow-sm transition hover:scale-105 active:scale-95 border border-white/5">
-<span class="material-symbols-outlined text-white">arrow_back</span>
-</button>
-<div class="flex gap-3">
-<button class="flex h-12 w-12 items-center justify-center rounded-full bg-surface/40 backdrop-blur-md shadow-sm transition hover:scale-105 active:scale-95 border border-white/5">
-<span class="material-symbols-outlined text-white">ios_share</span>
-</button>
-<button class="flex h-12 w-12 items-center justify-center rounded-full bg-surface/40 backdrop-blur-md shadow-sm transition hover:scale-105 active:scale-95 border border-white/5">
-<span class="material-symbols-outlined text-white">favorite</span>
-</button>
-</div>
-</div>
-<div class="relative h-[45vh] w-full shrink-0 overflow-hidden rounded-b-[2.5rem] bg-surface">
-<div class="absolute inset-0 bg-cover bg-center" data-alt="Luxurious hotel bedroom with large window overlooking city skyline" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAPY3A11znUoEsPy-CJiKfMCZg7afxtU1S_RbfJSgPs4HHG_GixJYvajLFdW9LO6_Sj1hMe61swpMDoAdgEdugtyZASjmtWyh9bfeyKoHbjg_S1pDnYCk_Asqadlr4mDI-xcNPw3TREV-pvvcYU0lisQGUy-sN8RquS9kpWAplgOVhZ8HcCbOxqsrCbwx0wLDkF-2i_Xtluq5wptc6vH6GusW77xohCDot5dAwBPly_ORNjlRseE6n6GCCjDWtQhIQ-zRIDWgYVWgWW');">
-<div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/30"></div>
-</div>
-<div class="absolute bottom-6 right-6 rounded-full bg-black/60 px-4 py-1.5 backdrop-blur-md border border-white/10">
-<p class="text-xs font-bold tracking-wider text-white">1 / 12</p>
-</div>
-</div>
-<div class="flex flex-col px-5 pt-6">
-<div class="mb-2 flex items-start justify-between">
-<div>
-<h1 class="text-3xl font-bold leading-tight text-white">Grand Hyatt New York</h1>
-</div>
-</div>
-<div class="mb-6 flex flex-wrap items-center gap-4 text-sm font-medium">
-<div class="flex items-center gap-1 text-text-muted">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-<span class="underline underline-offset-2 decoration-text-muted/50">New York, NY 10017</span>
-</div>
-<div class="h-1 w-1 rounded-full bg-text-muted/50"></div>
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-star fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="font-bold text-white">4.8</span>
-<span class="text-text-muted">(1,240 reviews)</span>
-</div>
-</div>
-<div class="mb-8 rounded-xl bg-surface border border-white/5 p-5 shadow-lg shadow-black/20">
-<div class="flex items-center justify-between">
-<div class="flex flex-col gap-1">
-<span class="text-xs font-semibold uppercase tracking-wider text-text-muted">Dates</span>
-<div class="flex items-center gap-2">
-<span class="font-bold text-white">Oct 12</span>
-<span class="material-symbols-outlined text-sm text-text-muted">arrow_forward</span>
-<span class="font-bold text-white">Oct 16</span>
-</div>
-</div>
-<div class="h-8 w-[1px] bg-white/10"></div>
-<div class="flex flex-col gap-1">
-<span class="text-xs font-semibold uppercase tracking-wider text-text-muted">Guests</span>
-<span class="font-bold text-white">2 Adults, 1 Room</span>
-</div>
-<button class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface-highlight border border-white/10 shadow-sm transition active:scale-95">
-<span class="material-symbols-outlined text-white group-hover:text-accent">edit</span>
-</button>
-</div>
-</div>
-<div class="mb-8">
-<h2 class="mb-3 text-lg font-bold text-white">Overview</h2>
-<p class="text-[15px] leading-relaxed text-text-muted">
-                    Experience luxury in the heart of Manhattan. Steps away from Grand Central Terminal, this iconic hotel offers sophisticated rooms, world-class dining, and breathtaking city views.
-                    <span class="font-bold text-accent underline decoration-accent decoration-2 underline-offset-2 ml-1 cursor-pointer">Read more</span>
-</p>
-</div>
-<div class="mb-8">
-<h2 class="mb-4 text-lg font-bold text-white">Amenities</h2>
-<div class="flex gap-4 overflow-x-auto pb-4 scrollbar-hide -mx-5 px-5">
-<div class="flex min-w-[80px] flex-col items-center gap-3">
-<div class="flex h-16 w-16 items-center justify-center rounded-full bg-surface border border-white/5 text-white shadow-md">
-<span class="material-symbols-outlined text-[28px]">wifi</span>
-</div>
-<span class="text-xs font-medium text-text-muted">Free Wifi</span>
-</div>
-<div class="flex min-w-[80px] flex-col items-center gap-3">
-<div class="flex h-16 w-16 items-center justify-center rounded-full bg-surface border border-white/5 text-white shadow-md">
-<span class="material-symbols-outlined text-[28px]">pool</span>
-</div>
-<span class="text-xs font-medium text-text-muted">Pool</span>
-</div>
-<div class="flex min-w-[80px] flex-col items-center gap-3">
-<div class="flex h-16 w-16 items-center justify-center rounded-full bg-surface border border-white/5 text-white shadow-md">
-<span class="material-symbols-outlined text-[28px]">restaurant</span>
-</div>
-<span class="text-xs font-medium text-text-muted">Restaurant</span>
-</div>
-<div class="flex min-w-[80px] flex-col items-center gap-3">
-<div class="flex h-16 w-16 items-center justify-center rounded-full bg-surface border border-white/5 text-white shadow-md">
-<span class="material-symbols-outlined text-[28px]">fitness_center</span>
-</div>
-<span class="text-xs font-medium text-text-muted">Gym</span>
-</div>
-<div class="flex min-w-[80px] flex-col items-center gap-3">
-<div class="flex h-16 w-16 items-center justify-center rounded-full bg-surface border border-white/5 text-white shadow-md">
-<span class="material-symbols-outlined text-[28px]">spa</span>
-</div>
-<span class="text-xs font-medium text-text-muted">Spa</span>
-</div>
-</div>
-</div>
-<div class="mb-8">
-<div class="flex items-center justify-between mb-4">
-<h2 class="text-lg font-bold text-white">Room Types</h2>
-<button class="text-sm font-bold text-accent underline decoration-accent decoration-2 underline-offset-4">See All</button>
-</div>
-<div class="flex flex-col gap-4">
-<div class="flex overflow-hidden rounded-xl border border-white/10 bg-surface shadow-lg shadow-black/20">
-<div class="w-1/3 bg-gray-800 bg-cover bg-center" data-alt="Modern hotel room with king size bed" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAHkvbg24JHV9KTYPUIjgNr21jz1xTz_U-BIh0OL3E-t3n1_A9o94Ddr8Lh354Wx0m1bUXruJhvaHX7VhBCZ6mfV3hS22czxGj_IOzAomDf9JRslrrs2DfIR_s97LuV7w3JdM1M2T1PHzYf1pZ_G0KLXrvTgNmf5pGBSjfc0y5cPRZpRtaj84MdH0rq0JxWUTK0FDZE9z9gD2sFzymeR8Kw64P4IcwERcbBhLhoiju2TGp3e87OB7gou4OPgv9Z1PT1HHGiC7UFIxDU');">
-</div>
-<div class="flex flex-1 flex-col justify-between p-4">
-<div>
-<h3 class="font-bold text-white">Deluxe King Room</h3>
-<p class="text-xs text-text-muted mt-1">1 King Bed • 350 sqft • City View</p>
-</div>
-<div class="flex items-end justify-between mt-3">
-<div class="flex flex-col">
-<span class="text-[10px] line-through text-text-muted">$320</span>
-<span class="text-lg font-bold text-white">$240<span class="text-xs font-normal text-text-muted">/night</span></span>
-</div>
-<button class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white shadow-[0_0_10px_rgba(14,14,134,0.5)]">
-<span class="material-symbols-outlined text-sm">add</span>
-</button>
-</div>
-</div>
-</div>
-<div class="flex overflow-hidden rounded-xl border border-white/10 bg-surface shadow-lg shadow-black/20">
-<div class="w-1/3 bg-gray-800 bg-cover bg-center" data-alt="Two queen beds in a cozy hotel room" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCP2k3CdQo4PRkaEe0-aUx23lc3xNnbL6oxvYPFq35bR5BDeIvIrNZljx23upktk1AtG9p6YdmmDfFaTysbbEGfLjxaV4697KXcxbKUETzm4JotYaqK8SskbaQmU1FvAcWve8PpR5bOMrqSUhEr7EaGX-NPb4dKT7vwz5y1tv607Y9_xi588B5COXqbzfCF7RX6UWxb_lv0QwuuscSglSkgs3HVVfSlIAAPykmCr49O2zzvnmxXTB0F76CYWLIkbLj4iZ96vWELvlLE');">
-</div>
-<div class="flex flex-1 flex-col justify-between p-4">
-<div>
-<h3 class="font-bold text-white">Double Queen</h3>
-<p class="text-xs text-text-muted mt-1">2 Queen Beds • 400 sqft</p>
-</div>
-<div class="flex items-end justify-between mt-3">
-<div class="flex flex-col">
-<span class="text-[10px] line-through text-text-muted">$350</span>
-<span class="text-lg font-bold text-white">$280<span class="text-xs font-normal text-text-muted">/night</span></span>
-</div>
-<button class="h-8 w-8 rounded-full bg-surface-highlight border border-white/10 flex items-center justify-center text-white">
-<span class="material-symbols-outlined text-sm">add</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="mb-8">
-<h2 class="mb-4 text-lg font-bold text-white">Location</h2>
-<div class="relative h-48 w-full overflow-hidden rounded-xl bg-surface border border-white/5">
-<div class="absolute inset-0 bg-cover bg-center" data-alt="Map view of New York City showing hotel location" data-location="New York City" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDTCTSh6fZIBoK17ehn7PaeydeHfvQijnlQLOl20Yi0llOTIP6nWgB5alkY4AoXLO3B2Mo0E28GwSkqqTxqJgYmjbfOK8qcgGPgzMtLB9QQpvU5A6uiKk1ALov5sWgyZ__bA8Y4r4UNrLz4yYNvNEb412oCBP1gRLJaV3QbiOLvWIv0jaW3sJwGqYonBJfLh7yKQmfTYu6eemqL74KQcYZqhJVRzLwkRD1SrMr98Hrm9IsjA3gpp0S5LX8EP2mHjWsBRckkW7xYkylc'); filter: grayscale(100%) invert(100%) hue-rotate(180deg) contrast(1.2);">
-<div class="absolute inset-0 bg-blue-900/40 mix-blend-multiply"></div>
-</div>
-<div class="absolute inset-0 flex items-center justify-center">
-<div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary shadow-[0_0_15px_rgba(14,14,134,0.6)] ring-4 ring-white/20">
-<span class="material-symbols-outlined text-white">location_on</span>
-</div>
-</div>
-<div class="absolute bottom-3 left-3 right-3 rounded-lg bg-surface/90 p-3 backdrop-blur-md border border-white/10">
-<p class="text-xs font-semibold text-white">109 E 42nd St, New York, NY</p>
-<p class="text-[10px] text-text-muted">0.2 miles from center</p>
-</div>
-</div>
-</div>
-<div class="mb-8">
-<h2 class="mb-4 text-lg font-bold text-white">Reviews</h2>
-<div class="rounded-xl bg-surface border border-white/5 p-5 shadow-lg shadow-black/20">
-<div class="flex items-center gap-6">
-<div class="flex flex-col items-center gap-1">
-<span class="text-4xl font-black tracking-tighter text-white">4.8</span>
-<div class="flex gap-0.5 text-star">
-<span class="material-symbols-outlined text-[14px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-[14px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-[14px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-[14px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-[14px] fill-current" style="font-variation-settings: 'FILL' 1;">star_half</span>
-</div>
-<span class="text-[10px] font-medium text-text-muted">1,240 reviews</span>
-</div>
-<div class="flex flex-1 flex-col gap-1.5">
-<div class="flex items-center gap-2">
-<span class="w-2 text-[10px] font-bold text-white">5</span>
-<div class="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
-<div class="h-full w-[85%] rounded-full bg-white"></div>
-</div>
-</div>
-<div class="flex items-center gap-2">
-<span class="w-2 text-[10px] font-bold text-white">4</span>
-<div class="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
-<div class="h-full w-[10%] rounded-full bg-white opacity-60"></div>
-</div>
-</div>
-<div class="flex items-center gap-2">
-<span class="w-2 text-[10px] font-bold text-white">3</span>
-<div class="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
-<div class="h-full w-[3%] rounded-full bg-white opacity-40"></div>
-</div>
-</div>
-<div class="flex items-center gap-2">
-<span class="w-2 text-[10px] font-bold text-white">2</span>
-<div class="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
-<div class="h-full w-[1%] rounded-full bg-white opacity-20"></div>
-</div>
-</div>
-<div class="flex items-center gap-2">
-<span class="w-2 text-[10px] font-bold text-white">1</span>
-<div class="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
-<div class="h-full w-[1%] rounded-full bg-white opacity-20"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="mb-4">
-<div class="border-b border-white/10 py-4">
-<div class="flex items-center justify-between cursor-pointer group">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-text-muted">gavel</span>
-<span class="font-bold text-white">House Rules</span>
-</div>
-<span class="material-symbols-outlined text-text-muted transition-transform group-hover:rotate-180">expand_more</span>
-</div>
-</div>
-<div class="border-b border-white/10 py-4">
-<div class="flex items-center justify-between cursor-pointer group">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-text-muted">event_busy</span>
-<span class="font-bold text-white">Cancellation Policy</span>
-</div>
-<span class="material-symbols-outlined text-text-muted transition-transform group-hover:rotate-180">expand_more</span>
-</div>
-</div>
-</div>
-<div class="h-24"></div>
-</div>
-<div class="fixed bottom-0 left-0 right-0 z-50 flex justify-center pb-6 pt-4 bg-gradient-to-t from-background via-background to-transparent px-5 max-w-md mx-auto pointer-events-none">
-<div class="pointer-events-auto flex w-full items-center justify-between rounded-full bg-surface-highlight border border-white/5 p-2 pr-2 pl-6 shadow-2xl">
-<div class="flex flex-col">
-<span class="text-[10px] font-medium text-text-muted">Total Price</span>
-<div class="flex items-baseline gap-1">
-<span class="text-xl font-bold text-white">$1,240</span>
-<span class="text-xs text-text-muted">/ 4 nights</span>
-</div>
-</div>
-<button class="h-12 rounded-full bg-primary px-8 text-sm font-bold tracking-wide text-white transition-transform active:scale-95 shadow-[0_0_20px_rgba(14,14,134,0.4)]">
-                    VIEW ROOMS
-                </button>
-</div>
-</div>
-</div>
-</body></html>
+</head>
+<body class="bg-background text-slate-900 font-display antialiased selection:bg-primary selection:text-white">
+    <div class="relative flex h-screen w-full flex-col overflow-hidden">
+        
+        <header class="flex items-center justify-between p-4 z-20 bg-background/90 backdrop-blur-md sticky top-0">
+            <button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 transition-colors">
+                <span class="material-symbols-outlined" style="font-size: 24px;">close</span>
+            </button>
+            <h2 class="text-lg font-bold tracking-tight">Photo Gallery</h2>
+            <button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 transition-colors">
+                <span class="material-symbols-outlined" style="font-size: 24px;">ios_share</span>
+            </button>
+        </header>
+
+        <main class="flex-1 flex flex-col justify-between overflow-hidden relative w-full max-w-md mx-auto h-full">
+            
+            <div class="relative flex-1 w-full flex items-center justify-center px-4 py-2 group">
+                <div class="relative w-full h-full max-h-[65vh] rounded-xl overflow-hidden shadow-md bg-surface border border-black/5">
+                    <div class="w-full h-full bg-cover bg-center transition-transform duration-500 hover:scale-105" 
+                         data-alt="Modern luxury hotel bedroom with large window and city view" 
+                         style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCxyTC3LDyBLBoCqlyrSWZXJryWQKCQuaFq6HTJd5GInL_ricVgKkaMgLldqRkdsThzZuDuUQ1v5sNjl-fJp_iwGNDYmpJLjY9_9N7DUFJLBH-XPdYf0I9cLqAeKDQSbwlJPc4znLGS4TEGurkRsX2RtV9kzOHI595nIbBOpOWDjQVFpZdwulBwjNYc75no_Dd2wfsca2is4Tv646lEFjhAHJfd6pyobreGdPNvcHgYR6ZsnmR7Cf7ozPB46nvOr1Ywa35bBRcLQ0ge");'>
+                    </div>
+                    
+                    <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-transparent to-black/20 pointer-events-none"></div>
+                    
+                    <div class="absolute top-4 right-4 bg-black/40 backdrop-blur-md text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/10">
+                        1 / 24
+                    </div>
+                    
+                    <button class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white size-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-0">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <button class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white size-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-4 pb-8 pt-2 bg-background z-10">
+                
+                <div class="w-full overflow-x-auto no-scrollbar px-4">
+                    <div class="flex gap-3 min-w-max">
+                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-primary text-white transition-transform active:scale-95 shadow-lg shadow-primary/20">
+                            <span class="text-sm font-semibold">All</span>
+                        </button>
+                        
+                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-surface hover:bg-surface-hover border border-black/5 text-slate-600 transition-colors active:scale-95">
+                            <span class="text-sm font-medium">Rooms</span>
+                        </button>
+                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-surface hover:bg-surface-hover border border-black/5 text-slate-600 transition-colors active:scale-95">
+                            <span class="text-sm font-medium">Restaurant</span>
+                        </button>
+                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-surface hover:bg-surface-hover border border-black/5 text-slate-600 transition-colors active:scale-95">
+                            <span class="text-sm font-medium">Pool</span>
+                        </button>
+                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-surface hover:bg-surface-hover border border-black/5 text-slate-600 transition-colors active:scale-95">
+                            <span class="text-sm font-medium">Lobby</span>
+                        </button>
+                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-surface hover:bg-surface-hover border border-black/5 text-slate-600 transition-colors active:scale-95">
+                            <span class="text-sm font-medium">Exterior</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="w-full overflow-x-auto no-scrollbar px-4">
+                    <div class="flex gap-3 min-w-max">
+                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden ring-2 ring-primary ring-offset-2 ring-offset-background cursor-pointer shadow-sm">
+                            <div class="w-full h-full bg-cover bg-center" data-alt="Detail of luxury hotel bed linen and pillows" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDE85CzNMtWRePFcZt4RCJywyPsD2-xCk8bf_xwG14Qs_M4MqjmV83NA7p0EHrCeVTjC0W1VvUWcjmoJ85NjKtWBZd97-6w7EvD-dkBMASLskKj0p3XMRHMGt4Ti3TjuF2pQxTvkBPXaUrIihtNENsegyhy99BCXkowMyiFApnEsCSQbeG5XcRH4uwgR0lBQrweudB54dEWMBhQDqUvQho-TeLHRPixpqHuiu-be6DpGbF082YgHqhGGr0v2cR3cQ5up-aDfmOqke_n");'>
+                            </div>
+                        </div>
+                        
+                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden opacity-70 hover:opacity-100 transition-opacity cursor-pointer border border-black/5">
+                            <div class="w-full h-full bg-cover bg-center" data-alt="Elegant bathroom with marble sink and mirror" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAGiZtoHRaDDiEt8FIVFLwsZnV_q-sgnKvh-myAF6avvVyOF_u5LZqq9OOJrMcu82XSK7CXx4lkpjofEfIPLSm1V6EVN1fEDDZTW8ZNjVoxLySPWXydG1cjXia_VdbDeRkogKYfr1rup6ns7CR7m9uGsYrcxkhBMjWOiq9alfzu8WzUvHR3n9avQU7enMuB9aGj0jX9EF3I_SCdZSLuuVdQZ24nqkO0fvKGRdhmZQKhHWt2bEOqhVukZny5VBjlLi82xNSVhtQ5ahjj");'>
+                            </div>
+                        </div>
+                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden opacity-70 hover:opacity-100 transition-opacity cursor-pointer border border-black/5">
+                            <div class="w-full h-full bg-cover bg-center" data-alt="Wide shot of hotel exterior with palm trees" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDaz6pmV8WClh56BPNfpyaLNsP8VVFcj8JdMAUsKGb4VcGWuNHBlx3lVEFOd6ih4CLiMfrcoB_fwfAOVt6PQFWpZg0o9DPDtf6TxSRAvx6PeSxa9rn-f6XltV8Jy3gJYmEoitrswWZPddi55fHQ_RhY6CaPXJhCxlcgT8S_PaIZ3fqie6gqiMPPphd8j8zngAro5GPKeOCPPkb91o3sIW38t3JUt5hnLzbZpKuJTJlVXLYEJPZ_LY268rWMbguVoXFLqmtS53levCsS");'>
+                            </div>
+                        </div>
+                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden opacity-70 hover:opacity-100 transition-opacity cursor-pointer border border-black/5">
+                            <div class="w-full h-full bg-cover bg-center" data-alt="Cozy hotel lounge area with armchairs" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD33Nfyl-5yQm8a-L8nkr5inCgV6HlMHeNMEDFzFtVFhbtU_rX7Y5CMTVJCfCr1S5yEecA6ay0WO-_fqDqiZP_tgOlHU8Gr8gO0l-9L7TO10lfL989hQp9d2VtxBjdi3pSTeH6G_7KJ8qAHVIpC44tf2hDPqC2dSjpZCr1ZfxQgXlXOzero_XPeZXxH0ZNKRN3lUHbv3mAPcvwElea-j3r6HMfGhPUB7gM7g9lT-tVgu09iBCUz3aIk67yp6PtVHFx8u9lRkOrARi3b");'>
+                            </div>
+                        </div>
+                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden opacity-70 hover:opacity-100 transition-opacity cursor-pointer border border-black/5">
+                            <div class="w-full h-full bg-cover bg-center" data-alt="Refreshing outdoor swimming pool with lounge chairs" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCJNZqSZ8TVkHgvAoyZXTC4utUBgvmtZo2QRx_NizQfLiJTP0oTRt_euhrUxuwyOZqWqa9bXYah143Do24rBV5MkWESwQ9mmRY4O2dw8z9dBDF0g4c6KOvrsJgV1nh3TYOxm4Cq2cZlu7ca9PdREO56Z6k5jTZvlyLCvbJFKTmlXereRlHZ8-FfUZU8a0FNHfTX1hPGwgVOrLlfa5iWzV0r-veuJLnhiBEDh4bDSoykz7MDKu_dCYPkBaVnNkFvLF1v-NpU-mIiSE4v");'>
+                            </div>
+                        </div>
+                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden opacity-70 hover:opacity-100 transition-opacity cursor-pointer border border-black/5">
+                            <div class="w-full h-full bg-cover bg-center" data-alt="Hotel balcony view overlooking the ocean" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCEUC2IyZcGxvh-1B7aC05-B-QRFJ7BBn_pZoex0Lm8MoQD2mOZ6z9Z6pDMxNwJoX5jZnIQDBKl-1W0XvkQE2kH79NM_lnEkZjfg2xkVgnoR_hiyo8fyGzTxndhhrlwu-EiZD7NDxx6OH0ohQGR-jXSP2RRLPSnNi8JZdqlrUJkg568Vrg_d-LA-7YKJhvLZ070WPc6-7F1bcWu6N0oiZhD1KjYojm0_Aj4Mg206S5VIng0WKIo216gt-g4L5ExQRLWm-V82v7epGzz");'>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
