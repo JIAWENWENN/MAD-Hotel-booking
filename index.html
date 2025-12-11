@@ -3,51 +3,56 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Hotel Admin Dashboard</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <title>All Bookings - Admin Panel</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    
     <script id="tailwind-config">
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#0E3286", 
-                        "primary-light": "#5454ff",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#0b0b15",
-                        "surface-dark": "#161622",
-                        "surface-highlight": "#1e1e2d",
-                        "success": "#0bda68",
-                        "danger": "#ff4d4d",
+                        "primary": "#0E3286", /* UPDATED BLUE */
+                        "bg-main": "#ffffff",
+                        "bg-subtle": "#f8fafc",
+                        "surface": "#f1f5f9",
+                        "surface-highlight": "#e2e8f0",
+                        "text-main": "#0f172a",
+                        "text-secondary": "#64748b",
+                        "border-light": "#e2e8f0",
                     },
                     fontFamily: {
                         "display": ["Spline Sans", "sans-serif"]
                     },
-                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
                 },
             },
         }
     </script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <style>
-        /* Custom scrollbar for better aesthetic */
-        ::-webkit-scrollbar {
-            width: 6px;
+        /* Custom scrollbar for horizontal scrolling areas */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
         }
-        ::-webkit-scrollbar-track {
-            background: #f6f6f8;
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 3px;
+        
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #0E3286;
+
+        /* Checkbox custom style override to match theme */
+        input[type="checkbox"] {
+            border-radius: 4px;
         }
     </style>
     <style>
@@ -56,230 +61,235 @@
         }
     </style>
 </head>
-<body class="bg-background-light text-slate-900 font-display antialiased selection:bg-primary selection:text-white">
-    <div class="relative flex flex-col w-full min-h-screen max-w-md mx-auto overflow-x-hidden bg-background-light pb-24">
-        
-        <header class="sticky top-0 z-50 flex items-center justify-between px-4 py-3 bg-background-light/90 backdrop-blur-md border-b border-gray-200">
-            <button class="flex items-center justify-center w-10 h-10 text-slate-700 rounded-full hover:bg-black/5 active:scale-95 transition-transform">
-                <span class="material-symbols-outlined text-2xl">menu</span>
+<body class="bg-slate-100 font-display text-text-main overflow-hidden">
+<div class="relative mx-auto h-screen w-full max-w-md bg-bg-main flex flex-col shadow-2xl overflow-hidden border-x border-slate-200">
+    <header class="flex items-center bg-bg-main p-4 pb-2 justify-between z-10 shrink-0">
+        <button class="text-text-main flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-surface transition-colors">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <h2 class="text-text-main text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-2">All Bookings</h2>
+        <div class="flex items-center justify-end">
+            <button class="flex items-center justify-center rounded-lg h-10 w-10 bg-surface text-text-main hover:bg-primary hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-[20px]">ios_share</span>
             </button>
-            <h1 class="text-lg font-bold tracking-tight text-center flex-1">Dashboard</h1>
-            <div class="flex items-center gap-2">
-                <button class="relative flex items-center justify-center w-10 h-10 text-slate-700 rounded-full hover:bg-black/5 active:scale-95 transition-transform">
-                    <span class="material-symbols-outlined text-2xl">notifications</span>
-                    <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-background-light"></span>
-                </button>
-                <div class="w-9 h-9 rounded-full bg-slate-200 overflow-hidden border border-white/10" data-alt="Admin User Profile Picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCq80Kpqc2HGSKuhGcjXyusJ2axcM4aVYd2QBtdmP2WtMHPLeiF45eSYVdD4w0PAThR5geUYaYrH2vdaAwL_V0pk6M1uNnn4f5thb-Xph4IuELaAJyJCOGyIfS5EhyyQSEs6r7SCZkoHQ8MCljAk7vOg47C5wZRkmfCQVwuNM8OaAQVmW3AqNSnTHngMjTf6DM1tdwiN1zOsHLktuBPh68wz482fRTHnpvWrQHbvb2ZviJtJj8Hzme5MhbOhrc6F1NiB-FMoO9CWHrE"); background-size: cover; background-position: center;'></div>
-            </div>
-        </header>
-
-        <section class="p-4 grid grid-cols-2 gap-3">
-            <div class="flex flex-col p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
-                <div class="flex items-start justify-between mb-2">
-                    <div class="p-2 rounded-lg bg-primary/10 text-primary">
-                        <span class="material-symbols-outlined text-xl">book_online</span>
-                    </div>
-                    <span class="text-xs font-medium text-success bg-success/10 px-1.5 py-0.5 rounded flex items-center gap-0.5">
-                        <span class="material-symbols-outlined text-[10px]">arrow_upward</span> 12%
-                    </span>
+        </div>
+    </header>
+    <div class="px-4 py-2 shrink-0">
+        <label class="flex flex-col w-full h-12">
+            <div class="flex w-full flex-1 items-stretch rounded-xl h-full shadow-sm ring-1 ring-slate-200">
+                <div class="text-text-secondary flex border-none bg-bg-subtle items-center justify-center pl-4 rounded-l-xl border-r-0">
+                    <span class="material-symbols-outlined">search</span>
                 </div>
-                <p class="text-slate-500 text-xs font-medium">Total Bookings</p>
-                <p class="text-xl font-bold mt-0.5">1,245</p>
+                <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-text-main focus:outline-0 focus:ring-1 focus:ring-primary border-none bg-bg-subtle focus:border-none h-full placeholder:text-text-secondary px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search booking ID or name..." value=""/>
             </div>
-            <div class="flex flex-col p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
-                <div class="flex items-start justify-between mb-2">
-                    <div class="p-2 rounded-lg bg-primary/10 text-primary">
-                        <span class="material-symbols-outlined text-xl">today</span>
-                    </div>
-                    <span class="text-xs font-medium text-success bg-success/10 px-1.5 py-0.5 rounded flex items-center gap-0.5">
-                        <span class="material-symbols-outlined text-[10px]">arrow_upward</span> 5%
-                    </span>
-                </div>
-                <p class="text-slate-500 text-xs font-medium">Today's Bookings</p>
-                <p class="text-xl font-bold mt-0.5">42</p>
-            </div>
-            <div class="flex flex-col p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
-                <div class="flex items-start justify-between mb-2">
-                    <div class="p-2 rounded-lg bg-primary/10 text-primary">
-                        <span class="material-symbols-outlined text-xl">group</span>
-                    </div>
-                    <span class="text-xs font-medium text-success bg-success/10 px-1.5 py-0.5 rounded flex items-center gap-0.5">
-                        <span class="material-symbols-outlined text-[10px]">arrow_upward</span> 8%
-                    </span>
-                </div>
-                <p class="text-slate-500 text-xs font-medium">Active Users</p>
-                <p class="text-xl font-bold mt-0.5">3,500</p>
-            </div>
-            <div class="flex flex-col p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
-                <div class="flex items-start justify-between mb-2">
-                    <div class="p-2 rounded-lg bg-primary/10 text-primary">
-                        <span class="material-symbols-outlined text-xl">payments</span>
-                    </div>
-                    <span class="text-xs font-medium text-success bg-success/10 px-1.5 py-0.5 rounded flex items-center gap-0.5">
-                        <span class="material-symbols-outlined text-[10px]">arrow_upward</span> 15%
-                    </span>
-                </div>
-                <p class="text-slate-500 text-xs font-medium">Revenue (Month)</p>
-                <p class="text-xl font-bold mt-0.5">$42.5k</p>
-            </div>
-        </section>
-
-        <section class="px-4 py-2">
-            <div class="flex flex-col p-5 bg-white rounded-xl border border-gray-100 shadow-sm">
-                <div class="flex justify-between items-end mb-6">
-                    <div>
-                        <h2 class="text-sm font-medium text-slate-500 mb-1">Revenue Overview</h2>
-                        <div class="flex items-baseline gap-2">
-                            <span class="text-2xl font-bold tracking-tight">$42,500</span>
-                            <span class="text-xs font-medium text-success">+5% vs last month</span>
-                        </div>
-                    </div>
-                    <button class="p-2 rounded-lg bg-slate-100 text-slate-600 hover:text-primary transition-colors">
-                        <span class="material-symbols-outlined text-xl">more_horiz</span>
-                    </button>
-                </div>
-                
-                <div class="relative w-full h-40">
-                    <svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 300 100">
-                        <line class="text-gray-200" stroke="currentColor" stroke-dasharray="4 4" x1="0" x2="300" y1="0" y2="0"></line>
-                        <line class="text-gray-200" stroke="currentColor" stroke-dasharray="4 4" x1="0" x2="300" y1="33" y2="33"></line>
-                        <line class="text-gray-200" stroke="currentColor" stroke-dasharray="4 4" x1="0" x2="300" y1="66" y2="66"></line>
-                        <line class="text-gray-200" stroke="currentColor" stroke-dasharray="4 4" x1="0" x2="300" y1="100" y2="100"></line>
-                        
-                        <defs>
-                            <lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
-                                <stop offset="0%" stop-color="#0E3286" stop-opacity="0.3"></stop>
-                                <stop offset="100%" stop-color="#0E3286" stop-opacity="0"></stop>
-                            </lineargradient>
-                        </defs>
-                        
-                        <path d="M0 80 C40 80, 50 40, 100 50 S 150 90, 200 60 S 250 20, 300 10 V 100 H 0 Z" fill="url(#chartGradient)"></path>
-                        <path d="M0 80 C40 80, 50 40, 100 50 S 150 90, 200 60 S 250 20, 300 10" fill="none" stroke="#0E3286" stroke-linecap="round" stroke-width="3" vector-effect="non-scaling-stroke"></path>
-                    </svg>
-                </div>
-                
-                <div class="flex justify-between mt-4 text-xs font-medium text-slate-400 uppercase tracking-wider">
-                    <span>Jan</span>
-                    <span>Feb</span>
-                    <span>Mar</span>
-                    <span>Apr</span>
-                    <span>May</span>
-                    <span>Jun</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="mt-2">
-            <div class="flex items-center justify-between px-5 py-3">
-                <h3 class="text-base font-bold text-slate-900">Recent Bookings</h3>
-                <button class="text-xs font-bold text-primary hover:text-primary-light">View All</button>
-            </div>
-            <div class="flex flex-col gap-1 px-4">
-                <div class="flex items-center justify-between p-3 bg-white rounded-xl border border-gray-100 shadow-sm active:scale-[0.99] transition-transform">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-full bg-cover bg-center bg-no-repeat shadow-inner" data-alt="Portrait of John Doe" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBX6YihMRgjbuaAlwGMjMbSE9fnv_7tQ9wEyVnyM6tLmd1n7jrH238_ETKITEYtQ4kS19pkqdgY-ygzqXWUIMqLcZGHF54x5kDGXD5ObvDg7hkpfI84GDRxvrVh_5IrvGgJFWSQQLrTDDLRPd_dlwx-J9v-QB2OLBiZD5pjfbNM3drtuhGnLLfi9N56VuT11ao5x83G_SNv6tE4cA7Vw36ndhgRVBml-oWOFn02pR24XthZQhs7YGnSBsPVp6yB098gJ4psBql-r-Jh");'></div>
-                        <div class="flex flex-col">
-                            <p class="text-sm font-semibold text-slate-900 line-clamp-1">John Doe</p>
-                            <div class="flex items-center gap-2 text-xs text-slate-500">
-                                <span>Deluxe Suite</span>
-                                <span class="w-1 h-1 rounded-full bg-slate-600"></span>
-                                <span class="text-success font-medium">Confirmed</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col items-end">
-                        <p class="text-sm font-bold text-slate-900">$450</p>
-                        <p class="text-[10px] text-slate-400">2 min ago</p>
-                    </div>
-                </div>
-
-                <div class="flex items-center justify-between p-3 bg-white rounded-xl border border-gray-100 shadow-sm active:scale-[0.99] transition-transform">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-full bg-cover bg-center bg-no-repeat shadow-inner" data-alt="Portrait of Jane Smith" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCLjnCsP3X7rEzJ-UXkQkvpuq8sYEzFNdorrixaK3YZkO4KxmjU-r5CyYehebXrdB1d5yG5I9gnJi_OvVDO5MZtnTA3HoMNOd8fHgrYTYsXoia5_Sbt1_jV14rRtAEp-aXC6Xl2ER8WdbSZkVjIscE0VchDf_fHmUySkIBrYXX5qVyBi00b_UiTKJVO9PxpUb6uEcFtMKyEugcnVGZMJjEv2UNh2bvwTg0n7aBhno1Ue-pA3J1g5hVoYyoSElP992FK9ZEGTzepKUnz");'></div>
-                        <div class="flex flex-col">
-                            <p class="text-sm font-semibold text-slate-900 line-clamp-1">Jane Smith</p>
-                            <div class="flex items-center gap-2 text-xs text-slate-500">
-                                <span>Standard Room</span>
-                                <span class="w-1 h-1 rounded-full bg-slate-600"></span>
-                                <span class="text-yellow-500 font-medium">Pending</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col items-end">
-                        <p class="text-sm font-bold text-slate-900">$210</p>
-                        <p class="text-[10px] text-slate-400">15 min ago</p>
-                    </div>
-                </div>
-
-                <div class="flex items-center justify-between p-3 bg-white rounded-xl border border-gray-100 shadow-sm active:scale-[0.99] transition-transform">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-full bg-cover bg-center bg-no-repeat shadow-inner" data-alt="Portrait of Michael Chen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDq-zvJRbrz81VUqjmbi643UPmkR7LdM15Q9LAGyz_iymzyxgpl8czhzRNjZKob06CV2WLMy-SwLECuERkrfkUhD7hpxGe0sJC_i6zwzTeI2SpNRuu0GOth2NuU_NP2aNdRZb6liLls4B_6AQxAJUWhwGM0QaXWn_SN8QN_Awbqeg8-tnup5fsCsQo-qIQ7_4rj0N_qLEPgn-_-56VXnofbT-ut3NbBf1TyVRvFrhwuvrDpWnwcThgwkdm2pLXxBlzHzEAoA6qH1ofH");'></div>
-                        <div class="flex flex-col">
-                            <p class="text-sm font-semibold text-slate-900 line-clamp-1">Michael Chen</p>
-                            <div class="flex items-center gap-2 text-xs text-slate-500">
-                                <span>Ocean View</span>
-                                <span class="w-1 h-1 rounded-full bg-slate-600"></span>
-                                <span class="text-success font-medium">Confirmed</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col items-end">
-                        <p class="text-sm font-bold text-slate-900">$850</p>
-                        <p class="text-[10px] text-slate-400">1 hr ago</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="mt-4 px-4 pb-4">
-            <div class="flex items-center justify-between mb-3">
-                <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
-                    Pending Refunds
-                    <span class="bg-red-500/10 text-red-500 text-[10px] font-bold px-2 py-0.5 rounded-full border border-red-500/20">3 Priority</span>
-                </h3>
-            </div>
-            <div class="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm">
-                <div class="p-4 border-b border-gray-100 flex gap-3 items-start">
-                    <div class="w-10 h-10 rounded-full bg-cover bg-center bg-no-repeat shrink-0" data-alt="Portrait of Sarah Connor" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCeWyTse8P4EqJkPoi5XBF4Gp7zR1OYBgIPsnTEFrVlVsbj-BQ_Sbix4znVA6yck0gCOzM4KpZhsrvcoSZ7Bhr5xJjAgCDSBlCHwBgRcJ3v0JlPlH53uf0pcVZzWcPhUHytFgIeWeMkmhviVNjhRCuNlVcg-AM7yo4OFtg5WTm6YUaruOb9aN3mmmYiJHyUteZ9iPR2L3UZLa7dlEL6hYLSwa9AkxLaP22okiRWl-jvHotG2AFuKg7R6dsbzRvKgJm0NCeMETHYrflv");'></div>
-                    <div class="flex-1">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <p class="text-sm font-semibold text-slate-900">Sarah Connor</p>
-                                <p class="text-xs text-slate-500 mt-0.5">Cancellation • ID #REF-9021</p>
-                            </div>
-                            <p class="text-sm font-bold text-red-400">-$320.00</p>
-                        </div>
-                        <div class="flex gap-2 mt-3">
-                            <button class="flex-1 bg-primary hover:bg-primary-light text-white text-xs font-semibold py-2 px-3 rounded-lg transition-colors">Approve</button>
-                            <button class="flex-1 bg-transparent border border-gray-200 hover:bg-gray-50 text-slate-500 text-xs font-semibold py-2 px-3 rounded-lg transition-colors">Deny</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <nav class="fixed bottom-0 z-50 w-full max-w-md bg-white border-t border-gray-200 pb-safe">
-            <div class="flex justify-around items-center h-16">
-                <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-primary">
-                    <span class="material-symbols-outlined filled">dashboard</span>
-                    <span class="text-[10px] font-medium">Home</span>
-                </button>
-                <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-slate-400 hover:text-slate-600 transition-colors">
-                    <span class="material-symbols-outlined">calendar_month</span>
-                    <span class="text-[10px] font-medium">Bookings</span>
-                </button>
-                <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-slate-400 hover:text-slate-600 transition-colors">
-                    <span class="material-symbols-outlined">meeting_room</span>
-                    <span class="text-[10px] font-medium">Rooms</span>
-                </button>
-                <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-slate-400 hover:text-slate-600 transition-colors">
-                    <span class="material-symbols-outlined">settings</span>
-                    <span class="text-[10px] font-medium">Settings</span>
-                </button>
-            </div>
-        </nav>
-        
-        <div class="h-10 w-full"></div>
+        </label>
     </div>
+    <div class="flex gap-3 px-4 py-2 overflow-x-auto no-scrollbar shrink-0">
+        <button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-bg-main border border-border-light pl-3 pr-3 active:scale-95 transition-transform hover:bg-surface">
+            <span class="material-symbols-outlined text-text-secondary text-[18px]">calendar_today</span>
+            <p class="text-text-secondary text-sm font-medium leading-normal">Date</p>
+            <span class="material-symbols-outlined text-text-secondary text-[18px]">expand_more</span>
+        </button>
+        <button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-bg-main border border-border-light pl-3 pr-3 active:scale-95 transition-transform hover:bg-surface">
+            <span class="material-symbols-outlined text-text-secondary text-[18px]">tune</span>
+            <p class="text-text-secondary text-sm font-medium leading-normal">Status</p>
+            <span class="material-symbols-outlined text-text-secondary text-[18px]">expand_more</span>
+        </button>
+        <button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-bg-main border border-border-light pl-3 pr-3 active:scale-95 transition-transform hover:bg-surface">
+            <span class="material-symbols-outlined text-text-secondary text-[18px]">filter_list</span>
+            <p class="text-text-secondary text-sm font-medium leading-normal">More</p>
+        </button>
+    </div>
+    <div class="pb-0 shrink-0 bg-bg-main z-10">
+        <div class="flex border-b border-border-light px-4 gap-6 overflow-x-auto no-scrollbar">
+            <button class="flex flex-col items-center justify-center border-b-[3px] border-b-primary text-primary pb-[10px] pt-3 shrink-0">
+                <p class="text-primary text-sm font-bold leading-normal tracking-[0.015em]">ALL (124)</p>
+            </button>
+            <button class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-text-secondary hover:text-primary pb-[10px] pt-3 shrink-0 transition-colors">
+                <p class="text-current text-sm font-bold leading-normal tracking-[0.015em]">CONFIRMED (45)</p>
+            </button>
+            <button class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-text-secondary hover:text-primary pb-[10px] pt-3 shrink-0 transition-colors">
+                <p class="text-current text-sm font-bold leading-normal tracking-[0.015em]">PENDING (12)</p>
+            </button>
+            <button class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-text-secondary hover:text-primary pb-[10px] pt-3 shrink-0 transition-colors">
+                <p class="text-current text-sm font-bold leading-normal tracking-[0.015em]">COMPLETED (30)</p>
+            </button>
+            <button class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-text-secondary hover:text-primary pb-[10px] pt-3 shrink-0 transition-colors">
+                <p class="text-current text-sm font-bold leading-normal tracking-[0.015em]">CANCELLED (10)</p>
+            </button>
+        </div>
+    </div>
+    <div class="bg-primary/5 border-b border-primary/10 px-4 py-2 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2">
+            <input class="h-4 w-4 rounded border-slate-300 bg-transparent text-primary focus:ring-0 focus:ring-offset-0 focus:border-primary" type="checkbox"/>
+            <span class="text-xs font-semibold text-primary uppercase tracking-wider">Select All</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <span class="text-xs text-text-secondary">Sort by: <span class="text-text-main font-medium">Newest</span></span>
+            <span class="material-symbols-outlined text-text-main text-[16px]">swap_vert</span>
+        </div>
+    </div>
+    <div class="flex-1 overflow-y-auto p-4 pt-2 space-y-3 pb-24 custom-scrollbar bg-slate-50">
+        <div class="group relative flex gap-4 bg-white rounded-xl p-4 transition-all hover:bg-slate-50 border border-slate-200 shadow-sm hover:border-primary/30">
+            <div class="flex items-start pt-1">
+                <input class="h-5 w-5 rounded border-slate-300 border-2 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-primary focus:outline-none transition-all cursor-pointer" type="checkbox"/>
+            </div>
+            <div class="flex flex-1 flex-col justify-center gap-1">
+                <div class="flex justify-between items-start">
+                    <div class="flex flex-col">
+                        <p class="text-text-main text-base font-semibold leading-tight">Jane Doe</p>
+                        <p class="text-primary text-xs font-medium mt-0.5">#BK-4923</p>
+                    </div>
+                    <div class="flex flex-col items-end">
+                        <span class="px-2.5 py-1 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-700 text-[10px] font-bold uppercase tracking-wide">
+                                                    Confirmed
+                                                </span>
+                    </div>
+                </div>
+                <div class="mt-2 flex items-center gap-2 text-text-secondary text-sm">
+                    <span class="material-symbols-outlined text-[16px]">apartment</span>
+                    <span class="truncate max-w-[150px]">Grand Hotel Plaza</span>
+                </div>
+                <div class="flex justify-between items-end mt-1">
+                    <div class="flex items-center gap-2 text-text-secondary text-xs">
+                        <span class="material-symbols-outlined text-[14px]">calendar_month</span>
+                        <span>Oct 12 - Oct 15</span>
+                    </div>
+                    <p class="text-text-main text-base font-bold">$420.00</p>
+                </div>
+            </div>
+        </div>
+        <div class="group relative flex gap-4 bg-white rounded-xl p-4 transition-all border border-primary shadow-[0_4px_20px_rgba(14,50,134,0.1)] ring-1 ring-primary/10">
+            <div class="flex items-start pt-1">
+                <input checked="" class="h-5 w-5 rounded border-primary border-2 bg-primary text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-primary focus:outline-none transition-all cursor-pointer" type="checkbox"/>
+            </div>
+            <div class="flex flex-1 flex-col justify-center gap-1">
+                <div class="flex justify-between items-start">
+                    <div class="flex flex-col">
+                        <p class="text-text-main text-base font-semibold leading-tight">Michael Chen</p>
+                        <p class="text-primary text-xs font-medium mt-0.5">#BK-4924</p>
+                    </div>
+                    <div class="flex flex-col items-end">
+                        <span class="px-2.5 py-1 rounded-full bg-amber-100 border border-amber-200 text-amber-700 text-[10px] font-bold uppercase tracking-wide">
+                                                    Pending
+                                                </span>
+                    </div>
+                </div>
+                <div class="mt-2 flex items-center gap-2 text-text-secondary text-sm">
+                    <span class="material-symbols-outlined text-[16px]">apartment</span>
+                    <span class="truncate max-w-[150px]">Sunset Resort</span>
+                </div>
+                <div class="flex justify-between items-end mt-1">
+                    <div class="flex items-center gap-2 text-text-secondary text-xs">
+                        <span class="material-symbols-outlined text-[14px]">calendar_month</span>
+                        <span>Nov 01 - Nov 05</span>
+                    </div>
+                    <p class="text-text-main text-base font-bold">$850.00</p>
+                </div>
+            </div>
+        </div>
+        <div class="group relative flex gap-4 bg-white rounded-xl p-4 transition-all hover:bg-slate-50 border border-slate-200 shadow-sm hover:border-primary/30 opacity-75 hover:opacity-100">
+            <div class="flex items-start pt-1">
+                <input class="h-5 w-5 rounded border-slate-300 border-2 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-primary focus:outline-none transition-all cursor-pointer" type="checkbox"/>
+            </div>
+            <div class="flex flex-1 flex-col justify-center gap-1">
+                <div class="flex justify-between items-start">
+                    <div class="flex flex-col">
+                        <p class="text-text-main text-base font-semibold leading-tight">Sarah Smith</p>
+                        <p class="text-primary text-xs font-medium mt-0.5">#BK-4921</p>
+                    </div>
+                    <div class="flex flex-col items-end">
+                        <span class="px-2.5 py-1 rounded-full bg-red-100 border border-red-200 text-red-700 text-[10px] font-bold uppercase tracking-wide">
+                                                    Cancelled
+                                                </span>
+                    </div>
+                </div>
+                <div class="mt-2 flex items-center gap-2 text-text-secondary text-sm">
+                    <span class="material-symbols-outlined text-[16px]">apartment</span>
+                    <span class="truncate max-w-[150px]">Urban Loft Hotel</span>
+                </div>
+                <div class="flex justify-between items-end mt-1">
+                    <div class="flex items-center gap-2 text-text-secondary text-xs">
+                        <span class="material-symbols-outlined text-[14px]">calendar_month</span>
+                        <span>Sep 20 - Sep 22</span>
+                    </div>
+                    <p class="text-text-main text-base font-bold line-through text-text-secondary">$210.00</p>
+                </div>
+            </div>
+        </div>
+        <div class="group relative flex gap-4 bg-white rounded-xl p-4 transition-all hover:bg-slate-50 border border-slate-200 shadow-sm hover:border-primary/30">
+            <div class="flex items-start pt-1">
+                <input class="h-5 w-5 rounded border-slate-300 border-2 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-primary focus:outline-none transition-all cursor-pointer" type="checkbox"/>
+            </div>
+            <div class="flex flex-1 flex-col justify-center gap-1">
+                <div class="flex justify-between items-start">
+                    <div class="flex flex-col">
+                        <p class="text-text-main text-base font-semibold leading-tight">Robert Fox</p>
+                        <p class="text-primary text-xs font-medium mt-0.5">#BK-4890</p>
+                    </div>
+                    <div class="flex flex-col items-end">
+                        <span class="px-2.5 py-1 rounded-full bg-blue-100 border border-blue-200 text-blue-700 text-[10px] font-bold uppercase tracking-wide">
+                                                    Completed
+                                                </span>
+                    </div>
+                </div>
+                <div class="mt-2 flex items-center gap-2 text-text-secondary text-sm">
+                    <span class="material-symbols-outlined text-[16px]">apartment</span>
+                    <span class="truncate max-w-[150px]">Seaside Villa</span>
+                </div>
+                <div class="flex justify-between items-end mt-1">
+                    <div class="flex items-center gap-2 text-text-secondary text-xs">
+                        <span class="material-symbols-outlined text-[14px]">calendar_month</span>
+                        <span>Aug 10 - Aug 17</span>
+                    </div>
+                    <p class="text-text-main text-base font-bold">$1,250.00</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center justify-between pt-4 pb-2 px-2">
+            <button class="flex items-center justify-center p-2 rounded-lg text-text-secondary hover:text-text-main hover:bg-surface-highlight disabled:opacity-50">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <span class="text-sm font-medium text-text-secondary">Page 1 of 12</span>
+            <button class="flex items-center justify-center p-2 rounded-lg text-white bg-text-main hover:bg-primary transition-colors">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </div>
+        <div class="h-8"></div>
+    </div>
+    <div class="absolute bottom-[90px] left-4 right-4 bg-primary text-white rounded-xl shadow-lg shadow-primary/30 p-3 flex items-center justify-between z-20 animate-in slide-in-from-bottom-5 fade-in duration-300">
+        <div class="flex items-center gap-3">
+            <div class="bg-white/20 rounded-full h-6 w-6 flex items-center justify-center text-xs font-bold">1</div>
+            <span class="text-sm font-semibold">Selected</span>
+        </div>
+        <button class="flex items-center gap-1 text-sm font-bold bg-white text-primary px-3 py-1.5 rounded-lg hover:bg-gray-100">
+            Actions
+            <span class="material-symbols-outlined text-[18px]">arrow_drop_down</span>
+        </button>
+    </div>
+    <div class="absolute bottom-0 w-full bg-white border-t border-slate-200 flex justify-around items-center h-[84px] pb-5 z-30">
+        <button class="flex flex-col items-center gap-1 p-2 w-16 group">
+            <span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">dashboard</span>
+            <span class="text-[10px] font-medium text-text-secondary group-hover:text-primary transition-colors">Home</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 p-2 w-16 group">
+            <div class="relative">
+                <span class="material-symbols-outlined text-primary">book_online</span>
+                <span class="absolute -top-1 -right-1 h-2.5 w-2.5 bg-red-500 rounded-full border border-white"></span>
+            </div>
+            <span class="text-[10px] font-bold text-primary">Bookings</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 p-2 w-16 group">
+            <span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">apartment</span>
+            <span class="text-[10px] font-medium text-text-secondary group-hover:text-primary transition-colors">Hotels</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 p-2 w-16 group">
+            <div aria-label="Profile Avatar" class="h-6 w-6 rounded-full bg-gradient-to-tr from-primary to-purple-500 overflow-hidden">
+                <img alt="Profile" class="h-full w-full object-cover opacity-90" data-alt="User profile avatar gradient" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuVRZRTslVz97ipFnu-qw3YkAOIZ87MlMY0Jr5jVEBDyRfSrYNZaLYquWQj855yVpO7Xr8ALfb20m7ZpFlR1zcTsmdNtfJfNlUzEQKKUfOckNq65PTrCYVpO91x3hGyEJw6M4_O7JirqvzbOb3C-64VtX_jAfqQ8LNgmTNIDUoYr5Uf-lLEFfVRAJVxMELomk2wgT1vGIALYQMJce28yUcUGjnvWJ8AkNjCTEZtMdFq8gUR3NitSGNb28jydsEbbL2JwgEUqYbyLGU"/>
+            </div>
+            <span class="text-[10px] font-medium text-text-secondary group-hover:text-primary transition-colors">Profile</span>
+        </button>
+    </div>
+</div>
 </body>
 </html>
