@@ -3,168 +3,317 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Add Promo Code Popup - Light Mode</title>
+    <title>Hotel Details Screen - Light Mode</title>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#0E3286", /* UPDATED: Royal Blue */
-                        "background-base": "#F3F4F6", /* Light Gray for body */
-                        "surface-card": "#FFFFFF", /* White for modal */
-                        "input-bg": "#F9FAFB", /* Very light gray for inputs */
-                        "text-main": "#111827", /* Dark Gray (almost black) */
-                        "text-muted": "#6B7280" /* Medium Gray */
+                        primary: "#0E3286",        /* Updated Blue */
+                        "primary-content": "#ffffff",
+                        accent: "#0E3286",         /* Updated Blue */
+                        background: "#ffffff",     /* Light Background */
+                        surface: "#f8fafc",        /* Very Light Gray Surface */
+                        "surface-highlight": "#f1f5f9", /* Slate 100 */
+                        "text-main": "#0f172a",    /* Dark Slate Text */
+                        "text-muted": "#64748b",   /* Muted Slate Text */
+                        star: "#fbbf24",
+                        "background-light": "#ffffff",
+                        "background-dark": "#f1f5f9"
                     },
                     fontFamily: {
-                        "display": ["Spline Sans", "sans-serif"]
+                        display: "Spline Sans"
                     },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
-                },
-            },
-        }
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        lg: "2rem",
+                        xl: "3rem",
+                        full: "9999px"
+                    }
+                }
+            }
+        };
     </script>
     <style>
-        /* Custom scrollbar hide for cleaner UI */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        /* UPDATED: Removed invert filter so icon is dark for light mode */
-        ::-webkit-calendar-picker-indicator {
-            opacity: 0.5;
-            cursor: pointer;
-        }
         body {
             min-height: max(884px, 100dvh);
         }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
-<body class="bg-background-base font-display antialiased overflow-hidden text-text-main">
-    <div class="relative flex h-screen w-full flex-col bg-background-base overflow-hidden">
-        
-        <div class="absolute inset-0 z-0 flex flex-col items-center justify-center pointer-events-none">
-            <div class="w-full h-full bg-[url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&amp;w=2940&amp;auto=format&amp;fit=crop')] bg-cover bg-center" data-alt="Blurred abstract background"></div>
-            <div class="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
-        </div>
-
-        <div class="absolute inset-0 bg-black/20 z-10"></div>
-
-        <div class="absolute bottom-0 left-0 w-full z-20 flex flex-col max-h-[92vh] bg-surface-card rounded-t-3xl shadow-2xl animate-slide-up">
-            
-            <div class="flex w-full items-center justify-center pt-4 pb-2 cursor-grab active:cursor-grabbing">
-                <div class="h-1.5 w-12 rounded-full bg-gray-300"></div>
-            </div>
-
-            <div class="flex items-center justify-between px-6 py-2 shrink-0">
-                <h2 class="text-text-main text-2xl font-bold tracking-tight">New Promotion</h2>
-                <button class="text-text-muted hover:text-text-main transition-colors p-2 rounded-full hover:bg-gray-100">
-                    <span class="material-symbols-outlined text-2xl">close</span>
-                </button>
-            </div>
-
-            <div class="flex-1 overflow-y-auto no-scrollbar px-6 py-4 space-y-6">
-                
-                <div class="flex flex-col gap-2">
-                    <label class="text-text-muted text-sm font-medium">Promo Code</label>
-                    <div class="relative group">
-                        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted group-focus-within:text-primary transition-colors">
-                            <span class="material-symbols-outlined text-[20px]">sell</span>
-                        </div>
-                        <input class="w-full bg-input-bg border-none rounded-2xl py-4 pl-12 pr-4 text-text-main placeholder-gray-400 focus:ring-2 focus:ring-primary focus:bg-white transition-all uppercase tracking-wider font-semibold" placeholder="SUMMER2024" type="text"/>
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-2">
-                    <label class="text-text-muted text-sm font-medium">Discount Type</label>
-                    <div class="flex bg-input-bg p-1.5 rounded-2xl h-14 relative">
-                        <label class="flex-1 relative cursor-pointer z-10">
-                            <input checked="" class="peer sr-only" name="discount_type" type="radio"/>
-                            <div class="w-full h-full flex items-center justify-center rounded-xl text-text-muted transition-all duration-200 peer-checked:bg-primary peer-checked:text-white peer-checked:shadow-md font-medium">
-                                <span class="material-symbols-outlined text-[18px] mr-2">percent</span>
-                                Percentage
-                            </div>
-                        </label>
-                        <label class="flex-1 relative cursor-pointer z-10">
-                            <input class="peer sr-only" name="discount_type" type="radio"/>
-                            <div class="w-full h-full flex items-center justify-center rounded-xl text-text-muted transition-all duration-200 peer-checked:bg-primary peer-checked:text-white peer-checked:shadow-md font-medium">
-                                <span class="material-symbols-outlined text-[18px] mr-2">attach_money</span>
-                                Fixed Amount
-                            </div>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="flex gap-4">
-                    <div class="flex-1 flex flex-col gap-2">
-                        <label class="text-text-muted text-sm font-medium">Value</label>
-                        <input class="w-full bg-input-bg border-none rounded-2xl py-4 px-4 text-text-main placeholder-gray-400 focus:ring-2 focus:ring-primary focus:bg-white transition-all" placeholder="20" type="number"/>
-                    </div>
-                    <div class="flex-1 flex flex-col gap-2">
-                        <label class="text-text-muted text-sm font-medium">Max Discount ($)</label>
-                        <input class="w-full bg-input-bg border-none rounded-2xl py-4 px-4 text-text-main placeholder-gray-400 focus:ring-2 focus:ring-primary focus:bg-white transition-all" placeholder="50" type="number"/>
-                    </div>
-                </div>
-
-                <div class="flex gap-4">
-                    <div class="flex-1 flex flex-col gap-2">
-                        <label class="text-text-muted text-sm font-medium">Valid From</label>
-                        <div class="relative">
-                            <input class="w-full bg-input-bg border-none rounded-2xl py-4 px-4 text-text-main placeholder-gray-400 focus:ring-2 focus:ring-primary focus:bg-white transition-all min-h-[56px]" type="date"/>
-                        </div>
-                    </div>
-                    <div class="flex-1 flex flex-col gap-2">
-                        <label class="text-text-muted text-sm font-medium">Valid To</label>
-                        <div class="relative">
-                            <input class="w-full bg-input-bg border-none rounded-2xl py-4 px-4 text-text-main placeholder-gray-400 focus:ring-2 focus:ring-primary focus:bg-white transition-all min-h-[56px]" type="date"/>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-2 border-t border-gray-100">
-                    <p class="text-text-main text-sm font-semibold mb-4">Usage Restrictions</p>
-                    <div class="flex gap-4">
-                        <div class="flex-1 flex flex-col gap-2">
-                            <label class="text-text-muted text-xs font-medium">Usage Limit</label>
-                            <div class="relative">
-                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted">
-                                    <span class="material-symbols-outlined text-[18px]">group</span>
-                                </span>
-                                <input class="w-full bg-input-bg border-none rounded-2xl py-3.5 pl-11 pr-4 text-text-main placeholder-gray-400 focus:ring-2 focus:ring-primary focus:bg-white transition-all text-sm" placeholder="∞" type="number"/>
-                            </div>
-                        </div>
-                        <div class="flex-1 flex flex-col gap-2">
-                            <label class="text-text-muted text-xs font-medium">Min Spend</label>
-                            <div class="relative">
-                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted">
-                                    <span class="material-symbols-outlined text-[18px]">payments</span>
-                                </span>
-                                <input class="w-full bg-input-bg border-none rounded-2xl py-3.5 pl-11 pr-4 text-text-main placeholder-gray-400 focus:ring-2 focus:ring-primary focus:bg-white transition-all text-sm" placeholder="0.00" type="number"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="h-4"></div>
-            </div>
-
-            <div class="p-6 pt-2 bg-surface-card border-t border-gray-100">
-                <button class="w-full bg-primary hover:bg-primary/90 text-white font-bold text-lg py-4 rounded-2xl shadow-lg shadow-primary/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group">
-                    <span class="material-symbols-outlined group-hover:animate-pulse">add_circle</span>
-                    CREATE CODE
-                </button>
-            </div>
-
-            <div class="h-6 w-full bg-surface-card"></div>
+<body class="bg-background font-display text-text-main antialiased selection:bg-primary selection:text-white">
+<div class="relative flex h-auto min-h-screen w-full max-w-md mx-auto flex-col overflow-x-hidden bg-background shadow-2xl rounded-none sm:rounded-3xl pb-24">
+    <div class="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-4 pt-12">
+        <button class="flex h-12 w-12 items-center justify-center rounded-full bg-black/20 backdrop-blur-md shadow-sm transition hover:scale-105 active:scale-95 border border-white/20">
+            <span class="material-symbols-outlined text-white">arrow_back</span>
+        </button>
+        <div class="flex gap-3">
+            <button class="flex h-12 w-12 items-center justify-center rounded-full bg-black/20 backdrop-blur-md shadow-sm transition hover:scale-105 active:scale-95 border border-white/20">
+                <span class="material-symbols-outlined text-white">ios_share</span>
+            </button>
+            <button class="flex h-12 w-12 items-center justify-center rounded-full bg-black/20 backdrop-blur-md shadow-sm transition hover:scale-105 active:scale-95 border border-white/20">
+                <span class="material-symbols-outlined text-white">favorite</span>
+            </button>
         </div>
     </div>
+    
+    <div class="relative h-[45vh] w-full shrink-0 overflow-hidden rounded-b-[2.5rem] bg-surface">
+        <div class="absolute inset-0 bg-cover bg-center" data-alt="Luxurious hotel bedroom with large window overlooking city skyline" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAPY3A11znUoEsPy-CJiKfMCZg7afxtU1S_RbfJSgPs4HHG_GixJYvajLFdW9LO6_Sj1hMe61swpMDoAdgEdugtyZASjmtWyh9bfeyKoHbjg_S1pDnYCk_Asqadlr4mDI-xcNPw3TREV-pvvcYU0lisQGUy-sN8RquS9kpWAplgOVhZ8HcCbOxqsrCbwx0wLDkF-2i_Xtluq5wptc6vH6GusW77xohCDot5dAwBPly_ORNjlRseE6n6GCCjDWtQhIQ-zRIDWgYVWgWW');">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/30"></div>
+        </div>
+        <div class="absolute bottom-6 right-6 rounded-full bg-black/60 px-4 py-1.5 backdrop-blur-md border border-white/10">
+            <p class="text-xs font-bold tracking-wider text-white">1 / 12</p>
+        </div>
+    </div>
+
+    <div class="flex flex-col px-5 pt-6">
+        <div class="mb-2 flex items-start justify-between">
+            <div>
+                <h1 class="text-3xl font-bold leading-tight text-text-main">Grand Hyatt New York</h1>
+            </div>
+        </div>
+        <div class="mb-6 flex flex-wrap items-center gap-4 text-sm font-medium">
+            <div class="flex items-center gap-1 text-text-muted">
+                <span class="material-symbols-outlined text-[18px]">location_on</span>
+                <span class="underline underline-offset-2 decoration-text-muted/50">New York, NY 10017</span>
+            </div>
+            <div class="h-1 w-1 rounded-full bg-gray-300"></div>
+            <div class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-star fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="font-bold text-text-main">4.8</span>
+                <span class="text-text-muted">(1,240 reviews)</span>
+            </div>
+        </div>
+
+        <div class="mb-8 rounded-xl bg-surface border border-gray-200 p-5 shadow-lg shadow-gray-200/50">
+            <div class="flex items-center justify-between">
+                <div class="flex flex-col gap-1">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-text-muted">Dates</span>
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-text-main">Oct 12</span>
+                        <span class="material-symbols-outlined text-sm text-text-muted">arrow_forward</span>
+                        <span class="font-bold text-text-main">Oct 16</span>
+                    </div>
+                </div>
+                <div class="h-8 w-[1px] bg-gray-200"></div>
+                <div class="flex flex-col gap-1">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-text-muted">Guests</span>
+                    <span class="font-bold text-text-main">2 Adults, 1 Room</span>
+                </div>
+                <button class="group flex h-10 w-10 items-center justify-center rounded-full bg-surface-highlight border border-gray-200 shadow-sm transition active:scale-95">
+                    <span class="material-symbols-outlined text-primary group-hover:text-primary">edit</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <h2 class="mb-3 text-lg font-bold text-text-main">Overview</h2>
+            <p class="text-[15px] leading-relaxed text-text-muted">
+                Experience luxury in the heart of Manhattan. Steps away from Grand Central Terminal, this iconic hotel offers sophisticated rooms, world-class dining, and breathtaking city views.
+                <span class="font-bold text-accent underline decoration-accent decoration-2 underline-offset-2 ml-1 cursor-pointer">Read more</span>
+            </p>
+        </div>
+
+        <div class="mb-8">
+            <h2 class="mb-4 text-lg font-bold text-text-main">Amenities</h2>
+            <div class="flex gap-4 overflow-x-auto pb-4 scrollbar-hide -mx-5 px-5">
+                <div class="flex min-w-[80px] flex-col items-center gap-3">
+                    <div class="flex h-16 w-16 items-center justify-center rounded-full bg-surface border border-gray-200 text-primary shadow-md shadow-gray-200/50">
+                        <span class="material-symbols-outlined text-[28px]">wifi</span>
+                    </div>
+                    <span class="text-xs font-medium text-text-muted">Free Wifi</span>
+                </div>
+                <div class="flex min-w-[80px] flex-col items-center gap-3">
+                    <div class="flex h-16 w-16 items-center justify-center rounded-full bg-surface border border-gray-200 text-primary shadow-md shadow-gray-200/50">
+                        <span class="material-symbols-outlined text-[28px]">pool</span>
+                    </div>
+                    <span class="text-xs font-medium text-text-muted">Pool</span>
+                </div>
+                <div class="flex min-w-[80px] flex-col items-center gap-3">
+                    <div class="flex h-16 w-16 items-center justify-center rounded-full bg-surface border border-gray-200 text-primary shadow-md shadow-gray-200/50">
+                        <span class="material-symbols-outlined text-[28px]">restaurant</span>
+                    </div>
+                    <span class="text-xs font-medium text-text-muted">Restaurant</span>
+                </div>
+                <div class="flex min-w-[80px] flex-col items-center gap-3">
+                    <div class="flex h-16 w-16 items-center justify-center rounded-full bg-surface border border-gray-200 text-primary shadow-md shadow-gray-200/50">
+                        <span class="material-symbols-outlined text-[28px]">fitness_center</span>
+                    </div>
+                    <span class="text-xs font-medium text-text-muted">Gym</span>
+                </div>
+                <div class="flex min-w-[80px] flex-col items-center gap-3">
+                    <div class="flex h-16 w-16 items-center justify-center rounded-full bg-surface border border-gray-200 text-primary shadow-md shadow-gray-200/50">
+                        <span class="material-symbols-outlined text-[28px]">spa</span>
+                    </div>
+                    <span class="text-xs font-medium text-text-muted">Spa</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-bold text-text-main">Room Types</h2>
+                <button class="text-sm font-bold text-accent underline decoration-accent decoration-2 underline-offset-4">See All</button>
+            </div>
+            <div class="flex flex-col gap-4">
+                <div class="flex overflow-hidden rounded-xl border border-gray-200 bg-surface shadow-lg shadow-gray-200/50">
+                    <div class="w-1/3 bg-gray-200 bg-cover bg-center" data-alt="Modern hotel room with king size bed" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAHkvbg24JHV9KTYPUIjgNr21jz1xTz_U-BIh0OL3E-t3n1_A9o94Ddr8Lh354Wx0m1bUXruJhvaHX7VhBCZ6mfV3hS22czxGj_IOzAomDf9JRslrrs2DfIR_s97LuV7w3JdM1M2T1PHzYf1pZ_G0KLXrvTgNmf5pGBSjfc0y5cPRZpRtaj84MdH0rq0JxWUTK0FDZE9z9gD2sFzymeR8Kw64P4IcwERcbBhLhoiju2TGp3e87OB7gou4OPgv9Z1PT1HHGiC7UFIxDU');">
+                    </div>
+                    <div class="flex flex-1 flex-col justify-between p-4">
+                        <div>
+                            <h3 class="font-bold text-text-main">Deluxe King Room</h3>
+                            <p class="text-xs text-text-muted mt-1">1 King Bed • 350 sqft • City View</p>
+                        </div>
+                        <div class="flex items-end justify-between mt-3">
+                            <div class="flex flex-col">
+                                <span class="text-[10px] line-through text-text-muted">$320</span>
+                                <span class="text-lg font-bold text-text-main">$240<span class="text-xs font-normal text-text-muted">/night</span></span>
+                            </div>
+                            <button class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white shadow-[0_0_10px_rgba(14,50,134,0.3)]">
+                                <span class="material-symbols-outlined text-sm">add</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex overflow-hidden rounded-xl border border-gray-200 bg-surface shadow-lg shadow-gray-200/50">
+                    <div class="w-1/3 bg-gray-200 bg-cover bg-center" data-alt="Two queen beds in a cozy hotel room" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCP2k3CdQo4PRkaEe0-aUx23lc3xNnbL6oxvYPFq35bR5BDeIvIrNZljx23upktk1AtG9p6YdmmDfFaTysbbEGfLjxaV4697KXcxbKUETzm4JotYaqK8SskbaQmU1FvAcWve8PpR5bOMrqSUhEr7EaGX-NPb4dKT7vwz5y1tv607Y9_xi588B5COXqbzfCF7RX6UWxb_lv0QwuuscSglSkgs3HVVfSlIAAPykmCr49O2zzvnmxXTB0F76CYWLIkbLj4iZ96vWELvlLE');">
+                    </div>
+                    <div class="flex flex-1 flex-col justify-between p-4">
+                        <div>
+                            <h3 class="font-bold text-text-main">Double Queen</h3>
+                            <p class="text-xs text-text-muted mt-1">2 Queen Beds • 400 sqft</p>
+                        </div>
+                        <div class="flex items-end justify-between mt-3">
+                            <div class="flex flex-col">
+                                <span class="text-[10px] line-through text-text-muted">$350</span>
+                                <span class="text-lg font-bold text-text-main">$280<span class="text-xs font-normal text-text-muted">/night</span></span>
+                            </div>
+                            <button class="h-8 w-8 rounded-full bg-surface-highlight border border-gray-200 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-sm">add</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <h2 class="mb-4 text-lg font-bold text-text-main">Location</h2>
+            <div class="relative h-48 w-full overflow-hidden rounded-xl bg-surface border border-gray-200">
+                <div class="absolute inset-0 bg-cover bg-center" data-alt="Map view of New York City showing hotel location" data-location="New York City" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDTCTSh6fZIBoK17ehn7PaeydeHfvQijnlQLOl20Yi0llOTIP6nWgB5alkY4AoXLO3B2Mo0E28GwSkqqTxqJgYmjbfOK8qcgGPgzMtLB9QQpvU5A6uiKk1ALov5sWgyZ__bA8Y4r4UNrLz4yYNvNEb412oCBP1gRLJaV3QbiOLvWIv0jaW3sJwGqYonBJfLh7yKQmfTYu6eemqL74KQcYZqhJVRzLwkRD1SrMr98Hrm9IsjA3gpp0S5LX8EP2mHjWsBRckkW7xYkylc'); filter: grayscale(100%);">
+                    <div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary shadow-[0_0_15px_rgba(14,50,134,0.4)] ring-4 ring-white">
+                        <span class="material-symbols-outlined text-white">location_on</span>
+                    </div>
+                </div>
+                <div class="absolute bottom-3 left-3 right-3 rounded-lg bg-white/90 p-3 backdrop-blur-md border border-gray-200 shadow-sm">
+                    <p class="text-xs font-semibold text-text-main">109 E 42nd St, New York, NY</p>
+                    <p class="text-[10px] text-text-muted">0.2 miles from center</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <h2 class="mb-4 text-lg font-bold text-text-main">Reviews</h2>
+            <div class="rounded-xl bg-surface border border-gray-200 p-5 shadow-lg shadow-gray-200/50">
+                <div class="flex items-center gap-6">
+                    <div class="flex flex-col items-center gap-1">
+                        <span class="text-4xl font-black tracking-tighter text-text-main">4.8</span>
+                        <div class="flex gap-0.5 text-star">
+                            <span class="material-symbols-outlined text-[14px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-[14px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-[14px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-[14px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-[14px] fill-current" style="font-variation-settings: 'FILL' 1;">star_half</span>
+                        </div>
+                        <span class="text-[10px] font-medium text-text-muted">1,240 reviews</span>
+                    </div>
+                    <div class="flex flex-1 flex-col gap-1.5">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 text-[10px] font-bold text-text-main">5</span>
+                            <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-gray-200">
+                                <div class="h-full w-[85%] rounded-full bg-primary"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 text-[10px] font-bold text-text-main">4</span>
+                            <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-gray-200">
+                                <div class="h-full w-[10%] rounded-full bg-primary opacity-60"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 text-[10px] font-bold text-text-main">3</span>
+                            <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-gray-200">
+                                <div class="h-full w-[3%] rounded-full bg-primary opacity-40"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 text-[10px] font-bold text-text-main">2</span>
+                            <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-gray-200">
+                                <div class="h-full w-[1%] rounded-full bg-primary opacity-20"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 text-[10px] font-bold text-text-main">1</span>
+                            <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-gray-200">
+                                <div class="h-full w-[1%] rounded-full bg-primary opacity-20"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <div class="border-b border-gray-200 py-4">
+                <div class="flex items-center justify-between cursor-pointer group">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-text-muted">gavel</span>
+                        <span class="font-bold text-text-main">House Rules</span>
+                    </div>
+                    <span class="material-symbols-outlined text-text-muted transition-transform group-hover:rotate-180">expand_more</span>
+                </div>
+            </div>
+            <div class="border-b border-gray-200 py-4">
+                <div class="flex items-center justify-between cursor-pointer group">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-text-muted">event_busy</span>
+                        <span class="font-bold text-text-main">Cancellation Policy</span>
+                    </div>
+                    <span class="material-symbols-outlined text-text-muted transition-transform group-hover:rotate-180">expand_more</span>
+                </div>
+            </div>
+        </div>
+        <div class="h-24"></div>
+    </div>
+
+    <div class="fixed bottom-0 left-0 right-0 z-50 flex justify-center pb-6 pt-4 bg-gradient-to-t from-white via-white to-transparent px-5 max-w-md mx-auto pointer-events-none">
+        <div class="pointer-events-auto flex w-full items-center justify-between rounded-full bg-surface border border-gray-200 p-2 pr-2 pl-6 shadow-2xl">
+            <div class="flex flex-col">
+                <span class="text-[10px] font-medium text-text-muted">Total Price</span>
+                <div class="flex items-baseline gap-1">
+                    <span class="text-xl font-bold text-text-main">$1,240</span>
+                    <span class="text-xs text-text-muted">/ 4 nights</span>
+                </div>
+            </div>
+            <button class="h-12 rounded-full bg-primary px-8 text-sm font-bold tracking-wide text-white transition-transform active:scale-95 shadow-[0_0_20px_rgba(14,50,134,0.4)]">
+                VIEW ROOMS
+            </button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
