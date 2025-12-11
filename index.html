@@ -1,220 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>My Bookings</title>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class", // Keeps the dark mode logic available, but we removed the class from HTML to force light mode
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#0E3286", // CHANGED: Updated to specific deep blue
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#0B0F19", 
-                        "surface-dark": "#151b28", 
-                        "secondary-text": "#94a3b8",
-                    },
-                    fontFamily: {
-                        "display": ["Manrope", "sans-serif"]
-                    },
-                    borderRadius: { "DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "full": "9999px" },
-                },
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Manage Booking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0E3286", // Changed to requested Dark Blue
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "surface-dark": "#1A2633",
             },
-        }
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
     </script>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        /* Custom scrollbar hide for cleaner mobile look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased selection:bg-primary selection:text-white">
-<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-2xl">
-<header class="sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 px-5 pt-12 pb-4">
-<div class="flex items-center justify-between mb-4">
-<div class="flex items-center gap-4">
-<button class="flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-surface-dark shadow-sm text-slate-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-<span class="material-symbols-outlined text-[20px]">arrow_back</span>
-</button>
-<h1 class="text-2xl font-bold tracking-tight">My Bookings</h1>
-</div>
-<button class="relative flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-surface-dark shadow-sm text-slate-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-<span class="material-symbols-outlined text-[20px]">notifications</span>
-<span class="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-surface-dark"></span>
-</button>
-</div>
-<div class="flex p-1 bg-gray-200 dark:bg-surface-dark rounded-full relative">
-<button class="flex-1 flex items-center justify-center py-2.5 text-sm font-bold rounded-full bg-primary text-white shadow-md transition-all">
-                    Upcoming
+<body class="bg-background-light text-slate-900 antialiased">
+    <div class="relative flex h-full min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-hidden max-w-md mx-auto shadow-2xl">
+        <div class="pt-4 pb-2 px-6 flex flex-col items-center sticky top-0 bg-background-light dark:bg-background-dark z-10">
+            <div class="h-1.5 w-12 rounded-full bg-slate-300 dark:bg-slate-700 mb-6"></div>
+            <div class="flex items-center justify-between w-full mb-2">
+                <h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Manage Booking</h1>
+                <button class="flex items-center justify-center p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                    <span class="material-symbols-outlined text-slate-500 dark:text-slate-400">close</span>
                 </button>
-<button class="flex-1 flex items-center justify-center py-2.5 text-sm font-medium text-slate-600 dark:text-secondary-text rounded-full hover:bg-gray-300 dark:hover:bg-white/5 transition-all">
-                    Completed
+            </div>
+        </div>
+        <div class="flex-1 overflow-y-auto no-scrollbar px-4 pb-8">
+            <div class="mb-6">
+                <div class="flex items-stretch justify-between gap-4 rounded-xl bg-white dark:bg-surface-dark p-4 shadow-sm border border-slate-100 dark:border-slate-800">
+                    <div class="flex flex-col justify-between flex-[2_2_0px] py-1">
+                        <div>
+                            <span class="inline-block px-2.5 py-1 rounded-md bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-bold mb-2">Confirmed</span>
+                            <h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight mb-1">Grand Hyatt Tokyo</h2>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Booking #839201</p>
+                        </div>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs font-medium mt-3">Oct 12 - Oct 15 • 3 Nights</p>
+                    </div>
+                    <div class="w-28 bg-center bg-no-repeat bg-cover rounded-lg shrink-0 relative overflow-hidden" data-alt="Modern hotel exterior with warm lighting at night" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCpGwyuE5M6iJ-pNWCB4PAen7NOqVrZm7hZI8L9hXSnIE_EztrD3-07OGrA1WhjYmvtpaGKF8zOT-QyMx81ooQsQIw7UXw8J_ETnuIHwhu2-uO5lIXsDNsMxf2pgW8h5mYBlMu1hVA0pTbM5XGyfXZtlhFJraO4hxq2fKrJ_Vxjd2mBmrkYzIr2_QrhoIN09nbQ_Fcg6WbpWrjEWZOuQskPYj0ecWVrHBFKfbSZK922Tp8VevfOHJWv2tnlkuSApdGyvxPfBH-r37gF");'>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-2">
+                <button class="group flex items-center gap-4 bg-white dark:bg-surface-dark px-4 py-4 rounded-xl active:scale-[0.99] transition-all duration-200 border border-transparent dark:border-slate-800/50 hover:border-slate-200 dark:hover:border-slate-700">
+                    <div class="flex items-center justify-center rounded-full bg-primary/10 shrink-0 h-12 w-12 group-hover:bg-primary/20 transition-colors">
+                        <span class="material-symbols-outlined text-primary" style="font-size: 24px;">calendar_month</span>
+                    </div>
+                    <div class="flex-1 text-left">
+                        <p class="text-slate-900 dark:text-white text-base font-semibold leading-normal">Modify Dates</p>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs font-medium">Change your check-in or checkout</p>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-400" style="font-size: 20px;">arrow_forward_ios</span>
                 </button>
-<button class="flex-1 flex items-center justify-center py-2.5 text-sm font-medium text-slate-600 dark:text-secondary-text rounded-full hover:bg-gray-300 dark:hover:bg-white/5 transition-all">
-                    Cancelled
+                <button class="group flex items-center gap-4 bg-white dark:bg-surface-dark px-4 py-4 rounded-xl active:scale-[0.99] transition-all duration-200 border border-transparent dark:border-slate-800/50 hover:border-slate-200 dark:hover:border-slate-700">
+                    <div class="flex items-center justify-center rounded-full bg-primary/10 shrink-0 h-12 w-12 group-hover:bg-primary/20 transition-colors">
+                        <span class="material-symbols-outlined text-primary" style="font-size: 24px;">person</span>
+                    </div>
+                    <div class="flex-1 text-left">
+                        <p class="text-slate-900 dark:text-white text-base font-semibold leading-normal">Guest Details</p>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs font-medium">Update names and contact info</p>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-400" style="font-size: 20px;">arrow_forward_ios</span>
                 </button>
-</div>
-</header>
-<main class="flex-1 flex flex-col gap-5 p-5 pb-28">
-<article class="group relative flex flex-col gap-4 rounded-2xl bg-white dark:bg-surface-dark p-4 shadow-sm border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-all">
-<div class="flex items-center justify-between">
-<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-bold uppercase tracking-wider">
-<span class="material-symbols-outlined text-[14px]">check_circle</span>
-                        Confirmed
+                <button class="group flex items-center gap-4 bg-white dark:bg-surface-dark px-4 py-4 rounded-xl active:scale-[0.99] transition-all duration-200 border border-transparent dark:border-slate-800/50 hover:border-slate-200 dark:hover:border-slate-700">
+                    <div class="flex items-center justify-center rounded-full bg-primary/10 shrink-0 h-12 w-12 group-hover:bg-primary/20 transition-colors">
+                        <span class="material-symbols-outlined text-primary" style="font-size: 24px;">edit_note</span>
                     </div>
-<span class="text-xs font-medium text-secondary-text tracking-wider">#GB-8821</span>
-</div>
-<div class="flex gap-4">
-<div class="w-24 h-24 shrink-0 overflow-hidden rounded-xl bg-gray-200 dark:bg-gray-800">
-<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Modern luxury hotel exterior with pool at sunset" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuATTmLRuVIy24PmCIZCAdSQMyn0odHJgvrFgdH3VVunbB2zzdIfn7MQdekPPCx1tMzYRXAxyz40oXUMkrjH11C3jSarGlo86vjUZzrAoM9_a79jQro5iuwANZQFyQ5VDhQ-a_EeXySDxRnbMLrR_01rjCcEdBnA9xFA0ZutdF0SxIceNq4g1K65oZO4VhsXbBU25W3WLYsshXWwbEYN3ujhPz-4-lC9lbwuogLPScIia6XK97TglHH08m3c8Uhn40Fi_C0ezh-hPXnS');">
-</div>
-</div>
-<div class="flex flex-col flex-1 min-w-0 justify-center">
-<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight truncate">Grand Blue Hotel & Spa</h3>
-<div class="flex items-center gap-1 mt-1 text-yellow-500 text-sm font-semibold">
-<span class="material-symbols-outlined text-[16px] fill-current">star</span>
-<span>4.8</span>
-<span class="text-secondary-text font-normal text-xs ml-1">(124 Reviews)</span>
-</div>
-<p class="text-sm text-secondary-text mt-1 truncate">Deluxe Ocean Suite • 2 Guests</p>
-</div>
-</div>
-<div class="flex items-center gap-3 p-3 rounded-xl bg-background-light dark:bg-background-dark/50 border border-transparent dark:border-white/5">
-<div class="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary">
-<span class="material-symbols-outlined">calendar_month</span>
-</div>
-<div class="flex flex-col">
-<span class="text-xs text-secondary-text font-medium">Check-in — Check-out</span>
-<span class="text-sm font-bold text-slate-900 dark:text-white">Dec 24 - Dec 28, 2024</span>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-3 pt-1">
-<button class="flex items-center justify-center gap-2 h-10 rounded-full border border-gray-200 dark:border-gray-700 text-slate-700 dark:text-white text-sm font-bold hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-                        Manage
-                    </button>
-<button class="flex items-center justify-center gap-2 h-10 rounded-full bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
-<span class="material-symbols-outlined text-[18px]">confirmation_number</span>
-                        View Ticket
-                    </button>
-</div>
-</article>
-<article class="group relative flex flex-col gap-4 rounded-2xl bg-white dark:bg-surface-dark p-4 shadow-sm border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-all">
-<div class="flex items-center justify-between">
-<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
-<span class="material-symbols-outlined text-[14px]">schedule</span>
-                        Upcoming
+                    <div class="flex-1 text-left">
+                        <p class="text-slate-900 dark:text-white text-base font-semibold leading-normal">Special Requests</p>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs font-medium">Early check-in, extra pillows, etc.</p>
                     </div>
-<span class="text-xs font-medium text-secondary-text tracking-wider">#SP-9932</span>
-</div>
-<div class="flex gap-4">
-<div class="w-24 h-24 shrink-0 overflow-hidden rounded-xl bg-gray-200 dark:bg-gray-800">
-<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Tropical resort bungalow over water" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDdorIcopfVesGYaAdidxVn0_U-TR5qa4FDG4PyoGxXvMJKHKUw9Skb4kuXPMu4oX29PfVtUaO5vdxuhnIdsYs-d3irN_UyJEIaPD4WdUCbVs-WPAV_Xd93_NC-qAUcuFmHcn2D3PGVnkh77mCgshtRGGJa690RFnTw5ZzxESvcPQsPEksyGVTPOW21Yc5WHgqEXOEISozw6Ar1RcoZAJEV_otyxnkltDaIOxvHdmhMXlSkKwbscg7W8QszsHrWb25L82NO-ddAMQiv');">
-</div>
-</div>
-<div class="flex flex-col flex-1 min-w-0 justify-center">
-<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight truncate">Sunset Paradise Resort</h3>
-<div class="flex items-center gap-1 mt-1 text-yellow-500 text-sm font-semibold">
-<span class="material-symbols-outlined text-[16px] fill-current">star</span>
-<span>4.9</span>
-<span class="text-secondary-text font-normal text-xs ml-1">(89 Reviews)</span>
-</div>
-<p class="text-sm text-secondary-text mt-1 truncate">Standard Garden View • 1 Guest</p>
-</div>
-</div>
-<div class="flex items-center gap-3 p-3 rounded-xl bg-background-light dark:bg-background-dark/50 border border-transparent dark:border-white/5">
-<div class="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary">
-<span class="material-symbols-outlined">calendar_month</span>
-</div>
-<div class="flex flex-col">
-<span class="text-xs text-secondary-text font-medium">Check-in — Check-out</span>
-<span class="text-sm font-bold text-slate-900 dark:text-white">Jan 10 - Jan 15, 2025</span>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-3 pt-1">
-<button class="flex items-center justify-center gap-2 h-10 rounded-full border border-gray-200 dark:border-gray-700 text-slate-700 dark:text-white text-sm font-bold hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-                        Manage
-                    </button>
-<button class="flex items-center justify-center gap-2 h-10 rounded-full bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
-<span class="material-symbols-outlined text-[18px]">confirmation_number</span>
-                        View Ticket
-                    </button>
-</div>
-</article>
-<article class="group relative flex flex-col gap-4 rounded-2xl bg-white dark:bg-surface-dark p-4 shadow-sm border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-all opacity-90">
-<div class="flex items-center justify-between">
-<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/10 text-orange-500 text-xs font-bold uppercase tracking-wider">
-<span class="material-symbols-outlined text-[14px]">hourglass_top</span>
-                        Payment Pending
+                    <span class="material-symbols-outlined text-slate-400" style="font-size: 20px;">arrow_forward_ios</span>
+                </button>
+                <button class="group flex items-center gap-4 bg-white dark:bg-surface-dark px-4 py-4 rounded-xl active:scale-[0.99] transition-all duration-200 border border-transparent dark:border-slate-800/50 hover:border-slate-200 dark:hover:border-slate-700">
+                    <div class="flex items-center justify-center rounded-full bg-primary/10 shrink-0 h-12 w-12 group-hover:bg-primary/20 transition-colors">
+                        <span class="material-symbols-outlined text-primary" style="font-size: 24px;">receipt_long</span>
                     </div>
-<span class="text-xs font-medium text-secondary-text tracking-wider">#NY-4002</span>
-</div>
-<div class="flex gap-4">
-<div class="w-24 h-24 shrink-0 overflow-hidden rounded-xl bg-gray-200 dark:bg-gray-800">
-<div class="w-full h-full bg-cover bg-center grayscale-[50%] transition-transform duration-500 group-hover:scale-110" data-alt="Modern city hotel skyscraper view" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCNQ8WnkEQdTzoRH9UG6FaDOKprxW9c_SuSko776UvQsnavSDbEIOcsXMoRvPyCY8l7rsfPW7uxWK9UEVCn-P_Rotp3kcVoFKeIoBHc35SqDWvKXomRGQ89rkhznKQGqGqIhFfTXda34AwVkmYhH4FzGx2KVruGFZVwCDwgQZFCA9ojBrl6STQJ5jrWD1air8cvc2-lctbqVNWG2C9r5HAX0hXuhneIn6b06F8SNdPmh8FlxLTGG7DTlSmvLxbAzgQON_qfTE8aBomL');">
-</div>
-</div>
-<div class="flex flex-col flex-1 min-w-0 justify-center">
-<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight truncate">The Gotham City Suites</h3>
-<div class="flex items-center gap-1 mt-1 text-yellow-500 text-sm font-semibold">
-<span class="material-symbols-outlined text-[16px] fill-current">star</span>
-<span>4.5</span>
-<span class="text-secondary-text font-normal text-xs ml-1">(210 Reviews)</span>
-</div>
-<p class="text-sm text-secondary-text mt-1 truncate">Executive King • 2 Guests</p>
-</div>
-</div>
-<div class="flex items-center gap-3 p-3 rounded-xl bg-background-light dark:bg-background-dark/50 border border-transparent dark:border-white/5">
-<div class="flex items-center justify-center w-10 h-10 rounded-full bg-orange-500/10 text-orange-500">
-<span class="material-symbols-outlined">event_busy</span>
-</div>
-<div class="flex flex-col">
-<span class="text-xs text-secondary-text font-medium">Expires in 24h</span>
-<span class="text-sm font-bold text-slate-900 dark:text-white">Feb 02 - Feb 04, 2025</span>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-3 pt-1">
-<button class="flex items-center justify-center gap-2 h-10 rounded-full border border-gray-200 dark:border-gray-700 text-slate-700 dark:text-white text-sm font-bold hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-                        Cancel
-                    </button>
-<button class="flex items-center justify-center gap-2 h-10 rounded-full bg-orange-500 text-white text-sm font-bold shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition-all">
-<span class="material-symbols-outlined text-[18px]">credit_card</span>
-                        Complete Payment
-                    </button>
-</div>
-</article>
-</main>
-<nav class="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-surface-dark/95 backdrop-blur-lg border-t border-gray-200 dark:border-gray-800 pb-safe pt-2">
-<div class="max-w-md mx-auto grid grid-cols-4 px-2 pb-4">
-<a class="flex flex-col items-center gap-1 p-2 group" href="#">
-<div class="text-secondary-text group-hover:text-primary transition-colors">
-<span class="material-symbols-outlined text-[26px]">home</span>
-</div>
-<span class="text-[10px] font-semibold text-secondary-text group-hover:text-primary">Home</span>
-</a>
-<a class="flex flex-col items-center gap-1 p-2 group" href="#">
-<div class="text-secondary-text group-hover:text-primary transition-colors">
-<span class="material-symbols-outlined text-[26px]">search</span>
-</div>
-<span class="text-[10px] font-semibold text-secondary-text group-hover:text-primary">Search</span>
-</a>
-<a class="flex flex-col items-center gap-1 p-2 group" href="#">
-<div class="relative flex items-center justify-center w-12 h-8 rounded-full bg-primary/10 dark:bg-primary/20 text-primary">
-<span class="material-symbols-outlined text-[24px] font-bold">confirmation_number</span>
-</div>
-<span class="text-[10px] font-bold text-primary">Bookings</span>
-</a>
-<a class="flex flex-col items-center gap-1 p-2 group" href="#">
-<div class="text-secondary-text group-hover:text-primary transition-colors">
-<span class="material-symbols-outlined text-[26px]">person</span>
-</div>
-<span class="text-[10px] font-semibold text-secondary-text group-hover:text-primary">Profile</span>
-</a>
-</div>
-</nav>
-</div>
-</body></html>
+                    <div class="flex-1 text-left">
+                        <p class="text-slate-900 dark:text-white text-base font-semibold leading-normal">Download Voucher</p>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs font-medium">Get your booking confirmation PDF</p>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-400" style="font-size: 20px;">arrow_forward_ios</span>
+                </button>
+                <button class="group flex items-center gap-4 bg-white dark:bg-surface-dark px-4 py-4 rounded-xl active:scale-[0.99] transition-all duration-200 border border-transparent dark:border-slate-800/50 hover:border-slate-200 dark:hover:border-slate-700">
+                    <div class="flex items-center justify-center rounded-full bg-primary/10 shrink-0 h-12 w-12 group-hover:bg-primary/20 transition-colors">
+                        <span class="material-symbols-outlined text-primary" style="font-size: 24px;">call</span>
+                    </div>
+                    <div class="flex-1 text-left">
+                        <p class="text-slate-900 dark:text-white text-base font-semibold leading-normal">Contact Hotel</p>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs font-medium">Call the front desk directly</p>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-400" style="font-size: 20px;">arrow_forward_ios</span>
+                </button>
+                <button class="group flex items-center gap-4 bg-white dark:bg-surface-dark px-4 py-4 rounded-xl active:scale-[0.99] transition-all duration-200 border border-transparent dark:border-slate-800/50 hover:border-slate-200 dark:hover:border-slate-700">
+                    <div class="flex items-center justify-center rounded-full bg-primary/10 shrink-0 h-12 w-12 group-hover:bg-primary/20 transition-colors">
+                        <span class="material-symbols-outlined text-primary" style="font-size: 24px;">headset_mic</span>
+                    </div>
+                    <div class="flex-1 text-left">
+                        <p class="text-slate-900 dark:text-white text-base font-semibold leading-normal">Customer Support</p>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs font-medium">We're here to help 24/7</p>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-400" style="font-size: 20px;">arrow_forward_ios</span>
+                </button>
+            </div>
+            <div class="mt-8 mb-4 px-4">
+                <button class="w-full py-4 text-center rounded-xl bg-red-500/10 active:bg-red-500/20 transition-colors">
+                    <span class="text-red-500 dark:text-red-400 font-bold text-base">Cancel Booking</span>
+                </button>
+            </div>
+            <div class="h-6"></div>
+        </div>
+    </div>
+</body>
+</html>
