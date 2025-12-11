@@ -3,243 +3,75 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Profile Screen</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <title>Logout Confirmation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#1010a2",
+                        "primary": "#0E3286", /* Updated to requested blue */
                         "background-light": "#f6f6f8",
-                        "background-dark": "#111121",
-                        "surface-dark": "#1a1a2e",
                         "surface-light": "#ffffff",
                     },
                     fontFamily: {
                         "display": ["Spline Sans", "sans-serif"]
                     },
-                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    borderRadius: {
+                        "DEFAULT": "1rem", 
+                        "lg": "2rem", 
+                        "xl": "3rem", 
+                        "full": "9999px"
+                    },
                 },
             },
         }
     </script>
-    <style>
-        .material-symbols-outlined {
-            font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 24
-        }
-    </style>
     <style>
         body {
             min-height: max(884px, 100dvh);
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display antialiased text-slate-900 dark:text-white pb-24">
-<header class="sticky top-0 z-10 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-gray-200 dark:border-white/5">
-    <div class="flex items-center p-4 justify-between max-w-md mx-auto w-full">
-        <button class="text-slate-900 dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
-            <span class="material-symbols-outlined">arrow_back</span>
-        </button>
-        <h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Profile</h2>
+<body class="bg-background-light font-display antialiased overflow-hidden">
+    <div class="relative flex h-screen w-full flex-col overflow-hidden bg-[url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&amp;w=2070&amp;auto=format&amp;fit=crop')] bg-cover bg-center" data-alt="Abstract dark luxury hotel lobby background">
+        
+        <div class="absolute inset-0 z-10 bg-black/40 backdrop-blur-sm transition-opacity"></div>
+        
+        <div class="absolute inset-0 z-20 flex items-center justify-center p-4">
+            
+            <div class="w-full max-w-[340px] animate-in zoom-in-95 duration-200 fade-in-0">
+                <div class="relative flex flex-col items-center justify-center gap-6 rounded-[32px] border border-gray-100 bg-white p-8 shadow-2xl">
+                    
+                    <div class="relative flex h-20 w-20 items-center justify-center rounded-full bg-gray-50">
+                        <div class="absolute inset-0 rounded-full bg-primary/10 blur-xl"></div>
+                        <span class="material-symbols-outlined text-4xl text-primary font-light">
+                            logout
+                        </span>
+                    </div>
+                    
+                    <div class="flex flex-col items-center gap-2 text-center">
+                        <h2 class="text-2xl font-bold leading-tight text-gray-900">Log Out?</h2>
+                        <p class="text-base font-normal leading-relaxed text-gray-500">
+                            Are you sure you want to log out? You will need to sign back in to access your bookings.
+                        </p>
+                    </div>
+                    
+                    <div class="flex w-full flex-col gap-3 pt-2">
+                        <button class="flex w-full cursor-pointer items-center justify-center rounded-full bg-primary h-12 px-6 text-white text-[15px] font-semibold leading-normal transition-transform active:scale-95 shadow-lg shadow-primary/25 hover:bg-primary/90">
+                            Yes, Log Out
+                        </button>
+                        
+                        <button class="flex w-full cursor-pointer items-center justify-center rounded-full h-12 px-6 bg-transparent text-gray-500 text-[15px] font-medium leading-normal hover:bg-gray-100 hover:text-gray-900 transition-colors">
+                            Cancel
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
-</header>
-<main class="max-w-md mx-auto w-full flex flex-col gap-6 px-4 pt-4">
-    <section class="flex flex-col items-center pt-2 pb-4">
-        <div class="relative mb-4 group cursor-pointer">
-            <div class="bg-center bg-no-repeat bg-cover rounded-full size-28 shadow-xl ring-4 ring-surface-light dark:ring-[#23234a]" data-alt="Portrait of a user smiling nicely" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFP6Ca87Ae14A8P92XA-5MeH1-11QGbv01eGUI0hIFKyP349OvIdtmYnk4fV3EDAfotwXLUV2GF1jEhbMAmslg242oNuc1_RGan-Kyupp5HL8xQCzuEiqnFH1Zl1mkng6Q_97hReLvLk0hJ7nPxNpeRJ0Lvm-BvAu52ZqLmck01oj3veV4UiHEdyYOQFD2GZ-XKsvqMKEEIQBM1h-qcZt7_LYGGsVlITlHwuIYX3Lr44TAwjN1hTC1kGOgpnD-ACyEyDjcs5ri9NL9");'>
-            </div>
-            <div class="absolute bottom-0 right-0 bg-primary text-white rounded-full p-1.5 border-4 border-background-light dark:border-background-dark flex items-center justify-center shadow-lg">
-                <span class="material-symbols-outlined text-[18px]">edit</span>
-            </div>
-        </div>
-        <div class="flex flex-col items-center justify-center gap-1">
-            <h1 class="text-2xl font-bold leading-tight tracking-tight text-center">Alex Doe</h1>
-            <p class="text-slate-500 dark:text-slate-400 text-sm font-medium text-center">alex@example.com</p>
-            <div class="mt-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
-                <p class="text-primary dark:text-[#6e6eff] text-xs font-semibold tracking-wide uppercase">Member since 2023</p>
-            </div>
-        </div>
-    </section>
-    <section class="flex flex-col gap-2">
-        <h3 class="text-slate-400 text-xs font-bold uppercase tracking-wider px-2">Account</h3>
-        <div class="bg-surface-light dark:bg-[#1a1a2e] rounded-2xl overflow-hidden shadow-sm">
-            <button class="w-full flex items-center gap-4 p-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors group">
-                <div class="flex items-center justify-center rounded-xl bg-blue-50 dark:bg-[#242447] text-primary dark:text-blue-200 shrink-0 size-10 group-hover:scale-105 transition-transform">
-                    <span class="material-symbols-outlined">person</span>
-                </div>
-                <div class="flex flex-1 items-center justify-between">
-                    <p class="text-sm font-medium">Personal Information</p>
-                    <span class="material-symbols-outlined text-slate-400 text-[20px]">chevron_right</span>
-                </div>
-            </button>
-            <div class="h-px bg-slate-100 dark:bg-white/5 mx-4"></div>
-            <button class="w-full flex items-center gap-4 p-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors group">
-                <div class="flex items-center justify-center rounded-xl bg-blue-50 dark:bg-[#242447] text-primary dark:text-blue-200 shrink-0 size-10 group-hover:scale-105 transition-transform">
-                    <span class="material-symbols-outlined">lock</span>
-                </div>
-                <div class="flex flex-1 items-center justify-between">
-                    <p class="text-sm font-medium">Login & Security</p>
-                    <span class="material-symbols-outlined text-slate-400 text-[20px]">chevron_right</span>
-                </div>
-            </button>
-            <div class="h-px bg-slate-100 dark:bg-white/5 mx-4"></div>
-            <button class="w-full flex items-center gap-4 p-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors group">
-                <div class="flex items-center justify-center rounded-xl bg-blue-50 dark:bg-[#242447] text-primary dark:text-blue-200 shrink-0 size-10 group-hover:scale-105 transition-transform">
-                    <span class="material-symbols-outlined">credit_card</span>
-                </div>
-                <div class="flex flex-1 items-center justify-between">
-                    <p class="text-sm font-medium">Payment Methods</p>
-                    <span class="material-symbols-outlined text-slate-400 text-[20px]">chevron_right</span>
-                </div>
-            </button>
-        </div>
-    </section>
-    <section class="flex flex-col gap-2">
-        <h3 class="text-slate-400 text-xs font-bold uppercase tracking-wider px-2">Preferences</h3>
-        <div class="bg-surface-light dark:bg-[#1a1a2e] rounded-2xl overflow-hidden shadow-sm">
-            <div class="w-full flex items-center gap-4 p-4">
-                <div class="flex items-center justify-center rounded-xl bg-purple-50 dark:bg-[#2d2447] text-purple-600 dark:text-purple-300 shrink-0 size-10">
-                    <span class="material-symbols-outlined">notifications</span>
-                </div>
-                <div class="flex flex-1 items-center justify-between">
-                    <p class="text-sm font-medium">Notifications</p>
-                    <div class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 bg-primary">
-                        <span class="pointer-events-none inline-block size-5 translate-x-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="h-px bg-slate-100 dark:bg-white/5 mx-4"></div>
-            <button class="w-full flex items-center gap-4 p-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors group">
-                <div class="flex items-center justify-center rounded-xl bg-pink-50 dark:bg-[#472439] text-pink-600 dark:text-pink-300 shrink-0 size-10 group-hover:scale-105 transition-transform">
-                    <span class="material-symbols-outlined">language</span>
-                </div>
-                <div class="flex flex-1 items-center justify-between">
-                    <p class="text-sm font-medium">Language</p>
-                    <div class="flex items-center gap-2">
-                        <span class="text-sm text-slate-500 dark:text-slate-400">English</span>
-                        <span class="material-symbols-outlined text-slate-400 text-[20px]">chevron_right</span>
-                    </div>
-                </div>
-            </button>
-            <div class="h-px bg-slate-100 dark:bg-white/5 mx-4"></div>
-            <button class="w-full flex items-center gap-4 p-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors group">
-                <div class="flex items-center justify-center rounded-xl bg-green-50 dark:bg-[#244732] text-green-600 dark:text-green-300 shrink-0 size-10 group-hover:scale-105 transition-transform">
-                    <span class="material-symbols-outlined">currency_exchange</span>
-                </div>
-                <div class="flex flex-1 items-center justify-between">
-                    <p class="text-sm font-medium">Currency</p>
-                    <div class="flex items-center gap-2">
-                        <span class="text-sm text-slate-500 dark:text-slate-400">USD</span>
-                        <span class="material-symbols-outlined text-slate-400 text-[20px]">chevron_right</span>
-                    </div>
-                </div>
-            </button>
-        </div>
-    </section>
-    <section class="flex flex-col gap-2">
-        <h3 class="text-slate-400 text-xs font-bold uppercase tracking-wider px-2">Support</h3>
-        <div class="bg-surface-light dark:bg-[#1a1a2e] rounded-2xl overflow-hidden shadow-sm">
-            <button class="w-full flex items-center gap-4 p-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors group">
-                <div class="flex items-center justify-center rounded-xl bg-orange-50 dark:bg-[#473624] text-orange-600 dark:text-orange-300 shrink-0 size-10 group-hover:scale-105 transition-transform">
-                    <span class="material-symbols-outlined">help</span>
-                </div>
-                <div class="flex flex-1 items-center justify-between">
-                    <p class="text-sm font-medium">Help Center</p>
-                    <span class="material-symbols-outlined text-slate-400 text-[20px]">chevron_right</span>
-                </div>
-            </button>
-            <div class="h-px bg-slate-100 dark:bg-white/5 mx-4"></div>
-            <button class="w-full flex items-center gap-4 p-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors group">
-                <div class="flex items-center justify-center rounded-xl bg-teal-50 dark:bg-[#244745] text-teal-600 dark:text-teal-300 shrink-0 size-10 group-hover:scale-105 transition-transform">
-                    <span class="material-symbols-outlined">mail</span>
-                </div>
-                <div class="flex flex-1 items-center justify-between">
-                    <p class="text-sm font-medium">Contact Us</p>
-                    <span class="material-symbols-outlined text-slate-400 text-[20px]">chevron_right</span>
-                </div>
-            </button>
-            <div class="h-px bg-slate-100 dark:bg-white/5 mx-4"></div>
-            <button class="w-full flex items-center gap-4 p-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors group">
-                <div class="flex items-center justify-center rounded-xl bg-yellow-50 dark:bg-[#474324] text-yellow-600 dark:text-yellow-300 shrink-0 size-10 group-hover:scale-105 transition-transform">
-                    <span class="material-symbols-outlined">star</span>
-                </div>
-                <div class="flex flex-1 items-center justify-between">
-                    <p class="text-sm font-medium">Rate Our App</p>
-                    <span class="material-symbols-outlined text-slate-400 text-[20px]">chevron_right</span>
-                </div>
-            </button>
-        </div>
-    </section>
-    <section class="flex flex-col gap-2">
-        <h3 class="text-slate-400 text-xs font-bold uppercase tracking-wider px-2">Legal</h3>
-        <div class="bg-surface-light dark:bg-[#1a1a2e] rounded-2xl overflow-hidden shadow-sm">
-            <button class="w-full flex items-center gap-4 p-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors group">
-                <div class="flex items-center justify-center rounded-xl bg-slate-100 dark:bg-[#2e2e42] text-slate-600 dark:text-slate-300 shrink-0 size-10 group-hover:scale-105 transition-transform">
-                    <span class="material-symbols-outlined">description</span>
-                </div>
-                <div class="flex flex-1 items-center justify-between">
-                    <p class="text-sm font-medium">Terms of Service</p>
-                    <span class="material-symbols-outlined text-slate-400 text-[20px]">chevron_right</span>
-                </div>
-            </button>
-            <div class="h-px bg-slate-100 dark:bg-white/5 mx-4"></div>
-            <button class="w-full flex items-center gap-4 p-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors group">
-                <div class="flex items-center justify-center rounded-xl bg-slate-100 dark:bg-[#2e2e42] text-slate-600 dark:text-slate-300 shrink-0 size-10 group-hover:scale-105 transition-transform">
-                    <span class="material-symbols-outlined">policy</span>
-                </div>
-                <div class="flex flex-1 items-center justify-between">
-                    <p class="text-sm font-medium">Privacy Policy</p>
-                    <span class="material-symbols-outlined text-slate-400 text-[20px]">chevron_right</span>
-                </div>
-            </button>
-        </div>
-    </section>
-    <section class="pt-4 flex flex-col items-center gap-4 pb-8">
-        <button class="w-full bg-primary hover:bg-blue-800 text-white font-bold py-4 rounded-full shadow-lg hover:shadow-primary/25 transition-all transform active:scale-[0.98]">
-            Log Out
-        </button>
-        <p class="text-slate-500 dark:text-slate-500 text-xs font-medium">App Version 2.4.0</p>
-    </section>
-</main>
-<nav class="fixed bottom-0 left-0 w-full bg-background-light/95 dark:bg-[#15152a]/95 backdrop-blur-lg border-t border-gray-200 dark:border-white/5 pb-safe pt-2 px-6">
-    <div class="flex justify-between items-center max-w-md mx-auto h-16">
-        <button class="flex flex-col items-center gap-1 w-16 text-slate-400 hover:text-primary dark:hover:text-white transition-colors">
-            <span class="material-symbols-outlined">home</span>
-            <span class="text-[10px] font-medium">Home</span>
-        </button>
-        <button class="flex flex-col items-center gap-1 w-16 text-slate-400 hover:text-primary dark:hover:text-white transition-colors">
-            <span class="material-symbols-outlined">search</span>
-            <span class="text-[10px] font-medium">Search</span>
-        </button>
-        <button class="flex flex-col items-center gap-1 w-16 text-slate-400 hover:text-primary dark:hover:text-white transition-colors">
-            <span class="material-symbols-outlined">luggage</span>
-            <span class="text-[10px] font-medium">Bookings</span>
-        </button>
-        <button class="flex flex-col items-center gap-1 w-16 text-primary dark:text-[#6e6eff]">
-            <span class="material-symbols-outlined filled">person</span>
-            <span class="text-[10px] font-bold">Profile</span>
-        </button>
-    </div>
-</nav>
-<style>
-    /* iOS Safe Area Support */
-    .pb-safe {
-        padding-bottom: env(safe-area-inset-bottom, 20px);
-    }
-    /* Filled icon variant */
-    .material-symbols-outlined.filled {
-        font-variation-settings: 'FILL' 1;
-    }
-</style>
 </body>
 </html>
