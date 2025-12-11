@@ -1,166 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Edit Profile</title>
-<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Wishlist Screen</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#0d0d87",
+                        "primary": "#2b2bee",
                         "background-light": "#f6f6f8",
-                        "background-dark": "#111121",
+                        "background-dark": "#101022",
+                        "surface-dark": "#161826",
                     },
                     fontFamily: {
-                        "display": ["Spline Sans", "sans-serif"]
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
                     },
-                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "2.5rem", "full": "9999px"},
                 },
             },
         }
     </script>
-<style>
-        /* Hide scrollbar for Chrome, Safari and Opera */
+    <style>
+        /* Custom scrollbar hiding for horizontal scroll */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
-        /* Hide scrollbar for IE, Edge and Firefox */
         .no-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen flex justify-center selection:bg-primary selection:text-white">
-<div class="relative w-full max-w-md bg-background-light dark:bg-background-dark min-h-screen flex flex-col shadow-2xl overflow-hidden ring-1 ring-white/5">
-<div class="sticky top-0 z-20 flex items-center justify-between px-4 py-3 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-gray-200 dark:border-white/5">
-<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors group">
-<span class="material-symbols-outlined text-slate-700 dark:text-white transition-transform group-hover:-translate-x-0.5" style="font-size: 24px;">arrow_back_ios_new</span>
-</button>
-<h1 class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">Edit Profile</h1>
-<button class="text-primary dark:text-[#7d7dff] font-bold text-base px-2 py-1 rounded-lg hover:bg-primary/5 dark:hover:bg-[#7d7dff]/10 transition-colors">
-                Save
-            </button>
-</div>
-<div class="flex-1 overflow-y-auto no-scrollbar pb-10">
-<div class="flex flex-col items-center pt-8 pb-6">
-<div class="relative group cursor-pointer">
-<div class="w-32 h-32 rounded-full bg-[#242447] overflow-hidden ring-4 ring-white dark:ring-[#242447] shadow-xl bg-center bg-cover" data-alt="Portrait of a young woman with a confident expression and long hair" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBO3o_yK3qQJEQbmKwUniD6OyaLe4KB6gSL-GjjqoOURtShwk5X0pc2mvdOlKjtD38Sku4QuhVzqf84braTpcOX4nO9FXc4oqDwf6SCaukNLW0BOI8F0Rwil2u2oNWIm8s7qVlWDKz235kZlfjrlxTcFGllHzT3uMMHMxwmCZbe8h8uoZL04uE3Y-SYpNrPXGCtl1rORPYgZPUQhdNaC0LmC8oFU3G4U5NGFUv3V58uRcYt3hWIOLsGxkOALfqsI8kzmJpknRbPPnMC');">
-</div>
-<div class="absolute bottom-1 right-1 bg-primary text-white rounded-full p-2.5 shadow-lg border-4 border-background-light dark:border-background-dark flex items-center justify-center transition-transform group-hover:scale-110">
-<span class="material-symbols-outlined" style="font-size: 20px;">photo_camera</span>
-</div>
-</div>
-<button class="mt-4 text-primary dark:text-[#7d7dff] font-semibold text-sm hover:underline">
-                    Change Photo
+    <style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased selection:bg-primary selection:text-white">
+    <div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden pb-24">
+        <header class="sticky top-0 z-20 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md transition-colors duration-200">
+            <div class="flex items-center justify-between px-5 pt-12 pb-4">
+                <div class="flex flex-col">
+                    <h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">My Wishlist</h1>
+                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400 mt-0.5">4 places saved</p>
+                </div>
+                <button class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-200 dark:bg-surface-dark transition active:scale-95">
+                    <span class="material-symbols-outlined text-slate-900 dark:text-white" style="font-size: 20px;">edit</span>
                 </button>
-</div>
-<div class="flex flex-col gap-8 px-5">
-<div class="space-y-5">
-<div class="flex items-center gap-3">
-<h3 class="text-xs font-bold text-gray-500 dark:text-[#9292c8] uppercase tracking-wider">Personal Info</h3>
-<div class="h-px bg-gray-200 dark:bg-[#242447] flex-1"></div>
-</div>
-<div class="flex gap-4">
-<div class="flex-1 flex flex-col gap-2">
-<label class="text-sm font-medium text-slate-700 dark:text-gray-300 ml-1">First Name</label>
-<input class="w-full bg-white dark:bg-[#242447] border-0 focus:ring-2 focus:ring-primary rounded-full px-5 h-14 text-slate-900 dark:text-white placeholder-gray-400 font-normal shadow-sm transition-all" type="text" value="Jessica"/>
-</div>
-<div class="flex-1 flex flex-col gap-2">
-<label class="text-sm font-medium text-slate-700 dark:text-gray-300 ml-1">Last Name</label>
-<input class="w-full bg-white dark:bg-[#242447] border-0 focus:ring-2 focus:ring-primary rounded-full px-5 h-14 text-slate-900 dark:text-white placeholder-gray-400 font-normal shadow-sm transition-all" type="text" value="Doe"/>
-</div>
-</div>
-<div class="flex flex-col gap-2">
-<label class="text-sm font-medium text-slate-700 dark:text-gray-300 ml-1">Date of Birth</label>
-<div class="relative group">
-<input class="w-full bg-white dark:bg-[#242447] border-0 focus:ring-2 focus:ring-primary rounded-full pl-5 pr-12 h-14 text-slate-900 dark:text-white placeholder-gray-400 font-normal shadow-sm transition-all cursor-pointer" readonly="" type="text" value="24/08/1995"/>
-<span class="material-symbols-outlined absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-primary transition-colors pointer-events-none">calendar_month</span>
-</div>
-</div>
-<div class="flex flex-col gap-2">
-<label class="text-sm font-medium text-slate-700 dark:text-gray-300 ml-1">Gender</label>
-<div class="flex bg-gray-100 dark:bg-[#242447] p-1.5 rounded-full shadow-inner">
-<label class="flex-1 cursor-pointer">
-<input checked="" class="sr-only peer" name="gender" type="radio"/>
-<div class="w-full py-3 rounded-full text-center text-sm font-semibold text-gray-500 dark:text-gray-400 peer-checked:bg-white dark:peer-checked:bg-primary peer-checked:text-primary dark:peer-checked:text-white peer-checked:shadow-md transition-all">
-                                    Female
-                                </div>
-</label>
-<label class="flex-1 cursor-pointer">
-<input class="sr-only peer" name="gender" type="radio"/>
-<div class="w-full py-3 rounded-full text-center text-sm font-semibold text-gray-500 dark:text-gray-400 peer-checked:bg-white dark:peer-checked:bg-primary peer-checked:text-primary dark:peer-checked:text-white peer-checked:shadow-md transition-all">
-                                    Male
-                                </div>
-</label>
-<label class="flex-1 cursor-pointer">
-<input class="sr-only peer" name="gender" type="radio"/>
-<div class="w-full py-3 rounded-full text-center text-sm font-semibold text-gray-500 dark:text-gray-400 peer-checked:bg-white dark:peer-checked:bg-primary peer-checked:text-primary dark:peer-checked:text-white peer-checked:shadow-md transition-all">
-                                    Other
-                                </div>
-</label>
-</div>
-</div>
-<div class="flex flex-col gap-2">
-<label class="text-sm font-medium text-slate-700 dark:text-gray-300 ml-1">Nationality</label>
-<div class="relative group">
-<select class="w-full bg-white dark:bg-[#242447] border-0 focus:ring-2 focus:ring-primary rounded-full pl-5 pr-10 h-14 text-slate-900 dark:text-white font-normal shadow-sm appearance-none cursor-pointer">
-<option>United States</option>
-<option>United Kingdom</option>
-<option>Canada</option>
-<option>Australia</option>
-</select>
-<span class="material-symbols-outlined absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-primary transition-colors pointer-events-none">expand_more</span>
-</div>
-</div>
-</div>
-<div class="space-y-5">
-<div class="flex items-center gap-3">
-<h3 class="text-xs font-bold text-gray-500 dark:text-[#9292c8] uppercase tracking-wider">Contact Info</h3>
-<div class="h-px bg-gray-200 dark:bg-[#242447] flex-1"></div>
-</div>
-<div class="flex flex-col gap-2">
-<div class="flex justify-between items-end px-1">
-<label class="text-sm font-medium text-slate-700 dark:text-gray-300">Email</label>
-<button class="text-xs text-primary dark:text-[#7d7dff] font-bold hover:text-opacity-80 transition-colors">Change</button>
-</div>
-<div class="relative">
-<input class="w-full bg-gray-100 dark:bg-[#1a1a35] border-0 border-gray-200 dark:border-[#242447] border rounded-full pl-5 pr-12 h-14 text-gray-500 dark:text-gray-400 font-normal cursor-not-allowed opacity-80" readonly="" type="email" value="jessica.doe@example.com"/>
-<span class="material-symbols-outlined absolute right-5 top-1/2 -translate-y-1/2 text-gray-400" style="font-size: 20px;">lock</span>
-</div>
-</div>
-<div class="flex flex-col gap-2">
-<label class="text-sm font-medium text-slate-700 dark:text-gray-300 ml-1">Phone Number</label>
-<div class="flex gap-3">
-<div class="relative w-[5.5rem] shrink-0 group">
-<div class="absolute inset-y-0 left-3 flex items-center pointer-events-none z-10">
-<span class="text-lg">🇺🇸</span>
-</div>
-<select class="w-full bg-white dark:bg-[#242447] border-0 focus:ring-2 focus:ring-primary rounded-full pl-9 pr-6 h-14 text-slate-900 dark:text-white font-normal shadow-sm appearance-none cursor-pointer">
-<option>+1</option>
-<option>+44</option>
-<option>+33</option>
-</select>
-<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-primary transition-colors pointer-events-none" style="font-size: 16px;">expand_more</span>
-</div>
-<input class="flex-1 bg-white dark:bg-[#242447] border-0 focus:ring-2 focus:ring-primary rounded-full px-5 h-14 text-slate-900 dark:text-white placeholder-gray-400 font-normal shadow-sm transition-all" type="tel" value="(555) 012-3456"/>
-</div>
-</div>
-</div>
-<div class="h-8"></div> </div>
-</div>
-</div>
+            </div>
+            <div class="flex w-full overflow-x-auto no-scrollbar gap-3 px-5 pb-4 pt-1">
+                <button class="group flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary pl-3 pr-4 transition-transform active:scale-95">
+                    <span class="material-symbols-outlined text-white" style="font-size: 18px;">schedule</span>
+                    <span class="text-white text-sm font-semibold leading-normal">Recently Added</span>
+                </button>
+                <button class="group flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-800 pl-3 pr-4 transition-transform active:scale-95">
+                    <span class="material-symbols-outlined text-slate-600 dark:text-slate-300" style="font-size: 18px;">swap_vert</span>
+                    <span class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal">Price</span>
+                </button>
+                <button class="group flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-800 pl-3 pr-4 transition-transform active:scale-95">
+                    <span class="material-symbols-outlined filled text-yellow-500" style="font-size: 18px;">star</span>
+                    <span class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal">Top Rated</span>
+                </button>
+                <button class="group flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-800 pl-3 pr-4 transition-transform active:scale-95">
+                    <span class="material-symbols-outlined text-slate-600 dark:text-slate-300" style="font-size: 18px;">calendar_month</span>
+                    <span class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal">Dates</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="flex flex-col gap-6 px-5 pt-2">
+            <div class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-surface-dark shadow-sm dark:shadow-none transition-all active:scale-[0.99]">
+                <div class="relative h-48 w-full bg-slate-200 dark:bg-slate-800">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Modern hotel room with ocean view and balcony" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDxgJ0Qr0EZZw8I3ZEzFs9S4x_2odsd9opYtd14t3ZlJrPl7L3MFqhdLxb9mG8RZWuiVZNW8-eUXTfipyVPLuRpajKZPhwYXNxkDe7r9ToeB448E8EwUGoAuTQ05kjq-Xg_5WBweTyuhqdDqXzjJcUrvuxvM4QgLKUhDL-JsQN7Mw9yys58oTgF0YtQlkjqykElEGwJWx1odH3wHIZDXz6RcirHda4JqTDbTFevtILsAZPj9e9Uqd-7K_R0b8B6Ys-wkt2YNnJoc4C7");'>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
+                    <button class="absolute top-3 right-3 flex h-10 w-10 items-center justify-center rounded-full bg-black/40 backdrop-blur-md text-primary transition active:scale-90 hover:bg-black/60">
+                        <span class="material-symbols-outlined filled" style="font-size: 22px;">favorite</span>
+                    </button>
+                    <div class="absolute bottom-3 left-3 flex items-center gap-1 rounded-full bg-white/90 dark:bg-black/60 backdrop-blur-md px-2 py-1">
+                        <span class="material-symbols-outlined filled text-yellow-500" style="font-size: 14px;">star</span>
+                        <span class="text-xs font-bold text-slate-900 dark:text-white">5.0</span>
+                        <span class="text-[10px] font-medium text-slate-500 dark:text-slate-300">(128)</span>
+                    </div>
+                </div>
+                <div class="flex flex-col p-4">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight">Oceanview Resort</h3>
+                            <div class="mt-1 flex items-center gap-1 text-slate-500 dark:text-slate-400">
+                                <span class="material-symbols-outlined" style="font-size: 16px;">location_on</span>
+                                <span class="text-xs font-medium">Miami Beach, FL</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Starts from</p>
+                            <p class="text-lg font-bold text-primary">$250</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center justify-between border-t border-slate-100 dark:border-white/5 pt-3">
+                        <p class="text-xs font-medium text-slate-400 dark:text-slate-500">Saved on Oct 12</p>
+                        <button class="text-sm font-bold text-primary hover:text-primary/80 transition-colors">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-surface-dark shadow-sm dark:shadow-none transition-all active:scale-[0.99]">
+                <div class="relative h-48 w-full bg-slate-200 dark:bg-slate-800">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Luxury hotel lobby with dark interior and warm lighting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBeWtvFVjm5fmTcVTKHKWP_bvRJBCl0h1rDVkESbz1sRfRiGiIRed2ApDl0jx4QEeC2uyCLL2YYqEMiZY9lSB6zPtrKb0ai9w7D-orNkptZysvuQ1aUO0sDIgJO1WlSsjlzKmkcZbbzXranzdheVtYeasTwtA4Qju-1GrRkRKNUlnpDkWi5h9ht0lomnMDCIPEpkIF2870Im4IpwQwAkZPGnldwXzpxghuuy5HgZKEGDKYM2nWsftn9LptPEE1CurTRX_SYOCY1MVqD");'>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
+                    <button class="absolute top-3 right-3 flex h-10 w-10 items-center justify-center rounded-full bg-black/40 backdrop-blur-md text-primary transition active:scale-90 hover:bg-black/60">
+                        <span class="material-symbols-outlined filled" style="font-size: 22px;">favorite</span>
+                    </button>
+                    <div class="absolute bottom-3 left-3 flex items-center gap-1 rounded-full bg-white/90 dark:bg-black/60 backdrop-blur-md px-2 py-1">
+                        <span class="material-symbols-outlined filled text-yellow-500" style="font-size: 14px;">star</span>
+                        <span class="text-xs font-bold text-slate-900 dark:text-white">4.5</span>
+                        <span class="text-[10px] font-medium text-slate-500 dark:text-slate-300">(84)</span>
+                    </div>
+                </div>
+                <div class="flex flex-col p-4">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight">Grand City Hotel</h3>
+                            <div class="mt-1 flex items-center gap-1 text-slate-500 dark:text-slate-400">
+                                <span class="material-symbols-outlined" style="font-size: 16px;">location_on</span>
+                                <span class="text-xs font-medium">New York, NY</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Starts from</p>
+                            <p class="text-lg font-bold text-primary">$420</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center justify-between border-t border-slate-100 dark:border-white/5 pt-3">
+                        <p class="text-xs font-medium text-slate-400 dark:text-slate-500">Saved on Sep 28</p>
+                        <button class="text-sm font-bold text-primary hover:text-primary/80 transition-colors">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-surface-dark shadow-sm dark:shadow-none transition-all active:scale-[0.99]">
+                <div class="relative h-48 w-full bg-slate-200 dark:bg-slate-800">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Cozy mountain wooden cabin with nature view" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCHRydM4IGxBfmWB4TFQG049H0e_3de8gdrNTxr-44v1HB9cDJL-95MFAZVu_SFbjRATVJ7fNXNVr6lvF-tQI04CjmT15oPmxFFSOBWF9qc-6bgV3EdV1vkMznz8sw51lEVCkqU5_v5yd5_QGZNm_rDE2FbKUGG_pIJopG-6OjeaHf6ViMWh1jHgsR-nwhgwl4qi5oVtQ7JM_Xe6q-gyTg5b0VvQpVfPNo3Oe2EHIv41K4cMdcZR0F8BsXNkT9k0LLjwoV-vYfjF8vv");'>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
+                    <button class="absolute top-3 right-3 flex h-10 w-10 items-center justify-center rounded-full bg-black/40 backdrop-blur-md text-primary transition active:scale-90 hover:bg-black/60">
+                        <span class="material-symbols-outlined filled" style="font-size: 22px;">favorite</span>
+                    </button>
+                    <div class="absolute bottom-3 left-3 flex items-center gap-1 rounded-full bg-white/90 dark:bg-black/60 backdrop-blur-md px-2 py-1">
+                        <span class="material-symbols-outlined filled text-yellow-500" style="font-size: 14px;">star</span>
+                        <span class="text-xs font-bold text-slate-900 dark:text-white">4.8</span>
+                        <span class="text-[10px] font-medium text-slate-500 dark:text-slate-300">(210)</span>
+                    </div>
+                </div>
+                <div class="flex flex-col p-4">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight">Mountain Escape</h3>
+                            <div class="mt-1 flex items-center gap-1 text-slate-500 dark:text-slate-400">
+                                <span class="material-symbols-outlined" style="font-size: 16px;">location_on</span>
+                                <span class="text-xs font-medium">Denver, CO</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Starts from</p>
+                            <p class="text-lg font-bold text-primary">$180</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center justify-between border-t border-slate-100 dark:border-white/5 pt-3">
+                        <p class="text-xs font-medium text-slate-400 dark:text-slate-500">Saved on Aug 15</p>
+                        <button class="text-sm font-bold text-primary hover:text-primary/80 transition-colors">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-surface-dark shadow-sm dark:shadow-none transition-all active:scale-[0.99] opacity-75 grayscale-[0.5]">
+                <div class="relative h-48 w-full bg-slate-200 dark:bg-slate-800">
+                    <div class="absolute inset-0 bg-cover bg-center" data-alt="Urban hotel exterior at sunset" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA8nvmSuwETlz4dylhnkgCWBP-PxMN-PjX40ysIkWY6UFeMEZ8OG_HDt6jDXF-NVgO7dQCeIWHLjQ1LqTPT__sVHsXlutdoMfHiEPQ9D_aNLsNiP5LWEuIT49aiR-da0bNDLZq-FOskyMCAnHV1a68E6Hdlt23oidGTC7wsA8VehWOO8LovKIYlP7pFUjZrXVhEPDWSzCgP3Lu3X__H3K_RuNwS63SH0PF_GQSk2f-IMiqEXKG7xmLLKEGOu2_B3c3dltkFjbpMye6Q");'>
+                    </div>
+                    <div class="absolute inset-0 bg-black/40"></div>
+                    <button class="absolute top-3 right-3 flex h-10 w-10 items-center justify-center rounded-full bg-black/40 backdrop-blur-md text-white transition active:scale-90 hover:bg-black/60">
+                        <span class="material-symbols-outlined" style="font-size: 22px;">favorite</span>
+                    </button>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="rounded-full bg-black/60 backdrop-blur-md px-4 py-2 border border-white/10">
+                            <span class="text-sm font-bold text-white">Sold Out for your dates</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col p-4">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight">Urban Central</h3>
+                            <div class="mt-1 flex items-center gap-1 text-slate-500 dark:text-slate-400">
+                                <span class="material-symbols-outlined" style="font-size: 16px;">location_on</span>
+                                <span class="text-xs font-medium">Chicago, IL</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Starts from</p>
+                            <p class="text-lg font-bold text-slate-500 dark:text-slate-400">$300</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center justify-between border-t border-slate-100 dark:border-white/5 pt-3">
+                        <p class="text-xs font-medium text-slate-400 dark:text-slate-500">Saved on Jul 10</p>
+                        <button class="text-sm font-bold text-slate-500 cursor-not-allowed">
+                            Unavailable
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <nav class="fixed bottom-0 left-0 right-0 z-50 bg-white/80 dark:bg-background-dark/90 backdrop-blur-lg border-t border-slate-200 dark:border-white/5 pb-6 pt-3 px-6">
+            <div class="flex items-center justify-between">
+                <a class="flex flex-col items-center gap-1 opacity-60 hover:opacity-100 transition-opacity" href="#">
+                    <span class="material-symbols-outlined text-slate-900 dark:text-white" style="font-size: 26px;">home</span>
+                    <span class="text-[10px] font-medium text-slate-900 dark:text-white">Home</span>
+                </a>
+                <a class="flex flex-col items-center gap-1 opacity-60 hover:opacity-100 transition-opacity" href="#">
+                    <span class="material-symbols-outlined text-slate-900 dark:text-white" style="font-size: 26px;">search</span>
+                    <span class="text-[10px] font-medium text-slate-900 dark:text-white">Explore</span>
+                </a>
+                <a class="flex flex-col items-center gap-1 relative" href="#">
+                    <div class="absolute -top-6 h-1 w-8 rounded-full bg-primary shadow-[0_0_10px_2px_rgba(43,43,238,0.5)]"></div>
+                    <span class="material-symbols-outlined filled text-primary" style="font-size: 26px;">favorite</span>
+                    <span class="text-[10px] font-bold text-primary">Saved</span>
+                </a>
+                <a class="flex flex-col items-center gap-1 opacity-60 hover:opacity-100 transition-opacity" href="#">
+                    <span class="material-symbols-outlined text-slate-900 dark:text-white" style="font-size: 26px;">person</span>
+                    <span class="text-[10px] font-medium text-slate-900 dark:text-white">Profile</span>
+                </a>
+            </div>
+        </nav>
+    </div>
 </body>
 </html>
