@@ -1,259 +1,336 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>All Bookings - Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class", 
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0E3286", /* Updated to new Navy Blue */
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111122",
+                        "surface-dark": "#1e1e2e",
+                        "border-dark": "#323267",
+                        "text-secondary": "#9292c9"
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    screens: {
+                        'xs': '375px',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Hide scrollbar for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Glassmorphism utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.8); /* Adjusted for light mode glass effect */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        /* Dark mode glass override if class is added back later */
+        .dark .glass {
+            background: rgba(17, 17, 34, 0.8);
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-white font-display min-h-screen flex flex-col antialiased selection:bg-primary selection:text-white pb-24">
+    <header class="sticky top-0 z-40 glass border-b border-gray-200 dark:border-border-dark px-4 py-3 flex items-center justify-between transition-colors">
+        <h1 class="text-xl font-bold tracking-tight">All Bookings</h1>
+        <button class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-surface-dark border border-gray-200 dark:border-border-dark text-gray-600 dark:text-text-secondary hover:text-primary dark:hover:text-white transition-colors active:scale-95">
+            <span class="material-symbols-outlined text-[20px]">ios_share</span>
+            <span class="text-sm font-bold">Export</span>
+        </button>
+    </header>
 
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Hotel Admin Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#0E3286",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#101022",
-                    },
-                    fontFamily: {
-                        "display": ["Inter"]
-                    },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-                },
-            },
-        }
-    </script>
-<style>
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-    </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-x-hidden min-h-screen pb-24 selection:bg-primary selection:text-white">
-<header class="sticky top-0 z-40 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-xl px-5 py-4 flex items-center justify-between border-b border-gray-200 dark:border-white/5 transition-colors duration-300">
-<div class="flex items-center gap-4">
-<button class="flex items-center justify-center p-1 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
-<span class="material-symbols-outlined text-[28px]">menu</span>
-</button>
-<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Dashboard</h1>
-</div>
-<div class="flex items-center gap-4">
-<button class="relative flex items-center justify-center p-1 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
-<span class="material-symbols-outlined text-[26px]">notifications</span>
-<span class="absolute top-1.5 right-1.5 flex h-2.5 w-2.5">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500 border-2 border-background-light dark:border-background-dark"></span>
-</span>
-</button>
-<div class="h-10 w-10 rounded-full p-[2px] bg-gradient-to-tr from-primary to-purple-500">
-<img alt="Admin Profile" class="h-full w-full rounded-full object-cover border-2 border-background-light dark:border-background-dark" data-alt="Professional headshot of a man in a suit smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwxbKgHKhdwEcwRgFS_wYreXQ7THFFHmW7x2pw2p1ak1DfVTFIYwDR5XVNsS94vK5tavZEwEzRJHg3PbBh4zyq7ZJbYngFOGHK6GILswB-ny8p8eMnACucuxqGO0lzx44A0pWgME9nAFLDFkabnj04oZxAn4ye2upuPyrzu-5ycPw1iyqQVgm-oPEwNycc-xzrTMqcczIcYpDIotPQeSOGTq7-GyNnEnSbEgBMgEOHad6X-iBVTLM-QADPCGuJvze0HFqLLeVxfuoZ"/>
-</div>
-</div>
-</header>
-<main class="p-5 flex flex-col gap-6 animate-fade-in">
-<div class="flex flex-col">
-<span class="text-[#9292c9] text-sm font-semibold tracking-wide uppercase">Overview</span>
-<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Hotel Performance</h2>
-</div>
-<div class="grid grid-cols-2 gap-4">
-<div class="bg-white dark:bg-[#1c1c2e] p-5 rounded-xl shadow-sm border border-gray-100 dark:border-white/5 flex flex-col justify-between gap-4 group hover:border-primary/30 transition-all duration-300">
-<div class="flex items-start justify-between">
-<div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-<span class="material-symbols-outlined text-[22px]">book_online</span>
-</div>
-<span class="flex items-center gap-0.5 text-xs font-bold text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded-lg">
-                        +12% <span class="material-symbols-outlined text-[14px]">trending_up</span>
-</span>
-</div>
-<div>
-<p class="text-[#9292c9] text-sm font-medium mb-1">Total Bookings</p>
-<p class="text-2xl font-bold tracking-tight">1,245</p>
-</div>
-</div>
-<div class="bg-white dark:bg-[#1c1c2e] p-5 rounded-xl shadow-sm border border-gray-100 dark:border-white/5 flex flex-col justify-between gap-4 group hover:border-primary/30 transition-all duration-300">
-<div class="flex items-start justify-between">
-<div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-<span class="material-symbols-outlined text-[22px]">today</span>
-</div>
-<span class="flex items-center gap-0.5 text-xs font-bold text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded-lg">
-                        +5% <span class="material-symbols-outlined text-[14px]">trending_up</span>
-</span>
-</div>
-<div>
-<p class="text-[#9292c9] text-sm font-medium mb-1">Today's Bookings</p>
-<p class="text-2xl font-bold tracking-tight">42</p>
-</div>
-</div>
-<div class="bg-white dark:bg-[#1c1c2e] p-5 rounded-xl shadow-sm border border-gray-100 dark:border-white/5 flex flex-col justify-between gap-4 group hover:border-primary/30 transition-all duration-300">
-<div class="flex items-start justify-between">
-<div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-<span class="material-symbols-outlined text-[22px]">payments</span>
-</div>
-<span class="flex items-center gap-0.5 text-xs font-bold text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded-lg">
-                        +8% <span class="material-symbols-outlined text-[14px]">trending_up</span>
-</span>
-</div>
-<div>
-<p class="text-[#9292c9] text-sm font-medium mb-1">Revenue (Mo)</p>
-<p class="text-2xl font-bold tracking-tight">$42.5k</p>
-</div>
-</div>
-<div class="bg-white dark:bg-[#1c1c2e] p-5 rounded-xl shadow-sm border border-gray-100 dark:border-white/5 flex flex-col justify-between gap-4 group hover:border-primary/30 transition-all duration-300">
-<div class="flex items-start justify-between">
-<div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-<span class="material-symbols-outlined text-[22px]">group</span>
-</div>
-<span class="flex items-center gap-0.5 text-xs font-bold text-rose-500 bg-rose-500/10 px-2 py-1 rounded-lg">
-                        -2% <span class="material-symbols-outlined text-[14px]">trending_down</span>
-</span>
-</div>
-<div>
-<p class="text-[#9292c9] text-sm font-medium mb-1">Active Users</p>
-<p class="text-2xl font-bold tracking-tight">892</p>
-</div>
-</div>
-</div>
-<div class="bg-white dark:bg-[#1c1c2e] p-5 rounded-xl shadow-sm border border-gray-100 dark:border-white/5">
-<div class="flex items-center justify-between mb-6">
-<div>
-<h3 class="font-bold text-lg text-slate-900 dark:text-white">Revenue Overview</h3>
-<p class="text-[#9292c9] text-xs font-medium">Jan - Jun 2023</p>
-</div>
-<button class="bg-background-light dark:bg-background-dark hover:bg-gray-200 dark:hover:bg-gray-800 text-[#9292c9] dark:text-gray-300 text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
-                    Export
-                </button>
-</div>
-<div class="relative h-48 w-full">
-<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 360 150">
-<defs>
-<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
-<stop offset="0%" stop-color="#0E3286" stop-opacity="0.25"></stop>
-<stop offset="100%" stop-color="#0E3286" stop-opacity="0"></stop>
-</lineargradient>
-</defs>
-<line class="text-gray-200 dark:text-gray-700 opacity-20" stroke="currentColor" stroke-width="1" x1="0" x2="360" y1="150" y2="150"></line>
-<line class="text-gray-200 dark:text-gray-700 opacity-20" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="360" y1="100" y2="100"></line>
-<line class="text-gray-200 dark:text-gray-700 opacity-20" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="360" y1="50" y2="50"></line>
-<line class="text-gray-200 dark:text-gray-700 opacity-20" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="360" y1="0" y2="0"></line>
-<path d="M0 110 C 50 110, 60 40, 100 40 S 140 90, 180 90 S 220 50, 260 50 S 310 120, 360 20" fill="none" stroke="#0E3286" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
-<path d="M0 110 C 50 110, 60 40, 100 40 S 140 90, 180 90 S 220 50, 260 50 S 310 120, 360 20 V 150 H 0 Z" fill="url(#chartGradient)"></path>
-<circle class="fill-white dark:fill-[#1c1c2e] stroke-primary stroke-[3px]" cx="260" cy="50" r="4"></circle>
-<g transform="translate(245, 15)">
-<rect class="fill-primary" height="20" rx="4" width="30"></rect>
-<text fill="white" font-size="10" font-weight="bold" text-anchor="middle" x="15" y="14">$24k</text>
-</g>
-</svg>
-</div>
-<div class="flex justify-between mt-4 text-xs text-[#9292c9] font-medium px-1">
-<span>Jan</span>
-<span>Feb</span>
-<span>Mar</span>
-<span>Apr</span>
-<span class="text-primary font-bold">May</span>
-<span>Jun</span>
-</div>
-</div>
-<div class="flex flex-col gap-3">
-<div class="flex items-center justify-between px-1">
-<h3 class="font-bold text-lg text-slate-900 dark:text-white">Recent Bookings</h3>
-<button class="text-xs text-primary font-bold hover:text-blue-400 transition-colors uppercase tracking-wider">View All</button>
-</div>
-<div class="bg-white dark:bg-[#1c1c2e] rounded-xl shadow-sm border border-gray-100 dark:border-white/5 overflow-hidden">
-<div class="flex items-center gap-3 p-4 border-b border-gray-100 dark:border-white/5 hover:bg-black/5 dark:hover:bg-white/5 transition cursor-pointer">
-<img alt="Guest Profile" class="w-11 h-11 rounded-full object-cover ring-2 ring-background-light dark:ring-background-dark" data-alt="Portrait of John Doe smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASN_hC7gv0uLzMdp50ie-VjsnlAHlxIPLGTKsbAq0b0mse5HKgUUAIn9t4xbYDfwZRQYGTecJgT1-akkGzuOdO1VCUthMCpqUu5Ljoq29OaFq-O86SY15Ozj4AzKy9MS0kTtvDPiktwADzsMnMEB2BzHS1WL7IdsUf0cjEBuP_GJxM2oCEtu_IoPan_8F1PL4DJwMmWu1MAI6RZ0Twj_FQyW-bP66U-jgn3bq4q8EhoiBfBIdSPf75QQyTCemBdbax6_AecMbtEGrF"/>
-<div class="flex-1 min-w-0">
-<p class="text-sm font-bold truncate text-slate-900 dark:text-white">John Doe</p>
-<p class="text-xs text-[#9292c9] truncate">Deluxe Suite • Oct 24, 2023</p>
-</div>
-<span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 uppercase tracking-wide">Confirmed</span>
-</div>
-<div class="flex items-center gap-3 p-4 border-b border-gray-100 dark:border-white/5 hover:bg-black/5 dark:hover:bg-white/5 transition cursor-pointer">
-<img alt="Guest Profile" class="w-11 h-11 rounded-full object-cover ring-2 ring-background-light dark:ring-background-dark" data-alt="Portrait of Alice Smith smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDojJwPSK1X56ce7zvt-iiuaOnq6DLptq_THeIyazLB7fAcsOSkQTjR__3x5UwrprWc0jZcp-ATbkHgTTN_uL5-g75CjQ4Iw24NAs2HtUTNyxHjOyji2txDKbX9RLNA-j0goxdeI8nSIf8ryq-bq9ZdR4u6pBbagqYQZsFod3Glm-lmJQS399-wOcNqHCTpxo0gnGh2m-Hb75t2SgVT-8Ki0TyUxUYmfk2yo024rm-WI3zj1NXji81EHx2TCt0vmMd3tcCuCt_Wcaiv"/>
-<div class="flex-1 min-w-0">
-<p class="text-sm font-bold truncate text-slate-900 dark:text-white">Alice Smith</p>
-<p class="text-xs text-[#9292c9] truncate">Single Room • Oct 23, 2023</p>
-</div>
-<span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20 uppercase tracking-wide">Pending</span>
-</div>
-<div class="flex items-center gap-3 p-4 hover:bg-black/5 dark:hover:bg-white/5 transition cursor-pointer">
-<div class="w-11 h-11 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm ring-2 ring-background-light dark:ring-background-dark">RK</div>
-<div class="flex-1 min-w-0">
-<p class="text-sm font-bold truncate text-slate-900 dark:text-white">Robert King</p>
-<p class="text-xs text-[#9292c9] truncate">Presidential Suite • Oct 22, 2023</p>
-</div>
-<span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 uppercase tracking-wide">Confirmed</span>
-</div>
-</div>
-</div>
-<div class="flex flex-col gap-3">
-<div class="flex items-center justify-between px-1">
-<h3 class="font-bold text-lg text-slate-900 dark:text-white">Pending Refunds</h3>
-</div>
-<div class="bg-white dark:bg-[#1c1c2e] rounded-xl shadow-sm border border-gray-100 dark:border-white/5 overflow-hidden">
-<div class="flex items-center gap-4 p-4">
-<div class="w-11 h-11 rounded-xl bg-rose-500/10 flex items-center justify-center text-rose-500 shrink-0">
-<span class="material-symbols-outlined text-[24px]">credit_card_off</span>
-</div>
-<div class="flex-1 min-w-0">
-<p class="text-sm font-bold truncate text-slate-900 dark:text-white">Mark Twist</p>
-<p class="text-xs text-[#9292c9] truncate">Refund Request • $120.00</p>
-</div>
-<button class="bg-primary hover:bg-blue-700 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-all shadow-lg shadow-primary/20 shrink-0">
-                        Resolve
-                    </button>
-</div>
-</div>
-</div>
-</main>
-<nav class="fixed bottom-0 left-0 w-full bg-white/90 dark:bg-[#0f0f1a]/95 backdrop-blur-xl border-t border-gray-200 dark:border-white/5 pb-6 pt-3 px-2 z-50 shadow-[0_-5px_20px_rgba(0,0,0,0.2)]">
-<ul class="flex justify-around items-end">
-<li class="w-1/5 flex justify-center">
-<a class="flex flex-col items-center gap-1.5 text-primary group" href="#">
-<div class="relative p-1">
-<span class="material-symbols-outlined text-[26px] group-hover:scale-110 transition-transform">dashboard</span>
-<span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary"></span>
-</div>
-<span class="text-[10px] font-bold tracking-wide">Home</span>
-</a>
-</li>
-<li class="w-1/5 flex justify-center">
-<a class="flex flex-col items-center gap-1.5 text-gray-400 hover:text-primary transition-colors dark:text-gray-500 dark:hover:text-primary group" href="#">
-<span class="material-symbols-outlined text-[26px] group-hover:scale-110 transition-transform">calendar_month</span>
-<span class="text-[10px] font-medium tracking-wide">Bookings</span>
-</a>
-</li>
-<li class="w-1/5 flex justify-center">
-<a class="flex flex-col items-center gap-1.5 text-gray-400 hover:text-primary transition-colors dark:text-gray-500 dark:hover:text-primary group" href="#">
-<span class="material-symbols-outlined text-[26px] group-hover:scale-110 transition-transform">bed</span>
-<span class="text-[10px] font-medium tracking-wide">Rooms</span>
-</a>
-</li>
-<li class="w-1/5 flex justify-center">
-<a class="flex flex-col items-center gap-1.5 text-gray-400 hover:text-primary transition-colors dark:text-gray-500 dark:hover:text-primary group" href="#">
-<span class="material-symbols-outlined text-[26px] group-hover:scale-110 transition-transform">group</span>
-<span class="text-[10px] font-medium tracking-wide">Users</span>
-</a>
-</li>
-<li class="w-1/5 flex justify-center">
-<a class="flex flex-col items-center gap-1.5 text-gray-400 hover:text-primary transition-colors dark:text-gray-500 dark:hover:text-primary group" href="#">
-<span class="material-symbols-outlined text-[26px] group-hover:scale-110 transition-transform">settings</span>
-<span class="text-[10px] font-medium tracking-wide">Settings</span>
-</a>
-</li>
-</ul>
-</nav>
-</body></html>
+    <div class="px-4 py-4 space-y-3">
+        <div class="relative group">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-gray-400 dark:text-text-secondary group-focus-within:text-primary transition-colors">search</span>
+            </div>
+            <input class="block w-full pl-10 pr-4 py-3 rounded-xl border-none bg-white dark:bg-[#232348] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-text-secondary focus:ring-2 focus:ring-primary shadow-sm transition-all text-base" placeholder="Search by name, ID, or hotel..." type="text"/>
+        </div>
+        <div class="flex gap-2.5 overflow-x-auto no-scrollbar pb-1">
+            <button class="flex shrink-0 items-center gap-2 px-3.5 py-2 rounded-lg bg-white dark:bg-[#232348] text-gray-700 dark:text-white border border-transparent active:bg-gray-100 dark:active:bg-border-dark transition-colors">
+                <span class="text-sm font-medium">Date Range</span>
+                <span class="material-symbols-outlined text-[20px]">keyboard_arrow_down</span>
+            </button>
+            <button class="flex shrink-0 items-center gap-2 px-3.5 py-2 rounded-lg bg-white dark:bg-[#232348] text-gray-700 dark:text-white border border-transparent active:bg-gray-100 dark:active:bg-border-dark transition-colors">
+                <span class="text-sm font-medium">Status</span>
+                <span class="material-symbols-outlined text-[20px]">keyboard_arrow_down</span>
+            </button>
+            <button class="flex shrink-0 items-center gap-2 px-3.5 py-2 rounded-lg bg-white dark:bg-[#232348] text-gray-700 dark:text-white border border-transparent active:bg-gray-100 dark:active:bg-border-dark transition-colors">
+                <span class="text-sm font-medium">Hotel</span>
+                <span class="material-symbols-outlined text-[20px]">keyboard_arrow_down</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="border-b border-gray-200 dark:border-border-dark mb-2">
+        <div class="flex overflow-x-auto no-scrollbar px-4 gap-6">
+            <button class="group flex flex-col items-center pb-3 border-b-[3px] border-primary text-primary dark:text-white min-w-max">
+                <span class="text-xs font-bold tracking-wider uppercase">ALL (124)</span>
+            </button>
+            <button class="group flex flex-col items-center pb-3 border-b-[3px] border-transparent text-gray-500 dark:text-text-secondary hover:text-gray-800 dark:hover:text-white min-w-max transition-colors">
+                <span class="text-xs font-bold tracking-wider uppercase">CONFIRMED (45)</span>
+            </button>
+            <button class="group flex flex-col items-center pb-3 border-b-[3px] border-transparent text-gray-500 dark:text-text-secondary hover:text-gray-800 dark:hover:text-white min-w-max transition-colors">
+                <span class="text-xs font-bold tracking-wider uppercase">PENDING (12)</span>
+            </button>
+            <button class="group flex flex-col items-center pb-3 border-b-[3px] border-transparent text-gray-500 dark:text-text-secondary hover:text-gray-800 dark:hover:text-white min-w-max transition-colors">
+                <span class="text-xs font-bold tracking-wider uppercase">COMPLETED (60)</span>
+            </button>
+            <button class="group flex flex-col items-center pb-3 border-b-[3px] border-transparent text-gray-500 dark:text-text-secondary hover:text-gray-800 dark:hover:text-white min-w-max transition-colors">
+                <span class="text-xs font-bold tracking-wider uppercase">CANCELLED (7)</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="px-4 py-2 flex items-center justify-between">
+        <label class="flex items-center gap-3 cursor-pointer group select-none">
+            <div class="relative flex items-center justify-center">
+                <input class="peer appearance-none w-5 h-5 border-2 border-gray-500 dark:border-text-secondary rounded bg-transparent checked:bg-primary checked:border-primary transition-all" type="checkbox"/>
+                <span class="material-symbols-outlined absolute text-white opacity-0 peer-checked:opacity-100 text-[16px] pointer-events-none">check</span>
+            </div>
+            <span class="text-sm text-gray-600 dark:text-text-secondary font-medium group-hover:text-gray-900 dark:group-hover:text-white">Select All</span>
+        </label>
+        <button class="flex items-center gap-1 text-sm text-primary font-semibold hover:underline">
+            Sort by: Newest
+            <span class="material-symbols-outlined text-[18px]">sort</span>
+        </button>
+    </div>
+
+    <main class="flex-1 px-4 space-y-3 pb-8">
+        <div class="group relative overflow-hidden rounded-xl bg-white dark:bg-surface-dark border-2 border-primary shadow-lg dark:shadow-none transition-all">
+            <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            <div class="p-4 flex gap-3">
+                <div class="pt-1 pl-1">
+                    <div class="relative flex items-center justify-center">
+                        <input checked="" class="peer appearance-none w-5 h-5 border-2 border-gray-300 dark:border-border-dark rounded bg-transparent checked:bg-primary checked:border-primary transition-all" type="checkbox"/>
+                        <span class="material-symbols-outlined absolute text-white opacity-0 peer-checked:opacity-100 text-[16px] pointer-events-none">check</span>
+                    </div>
+                </div>
+                <div class="flex-1 min-w-0 flex flex-col gap-3">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-[11px] font-mono text-gray-500 dark:text-text-secondary uppercase tracking-wider mb-0.5">#BK-8821</p>
+                            <h3 class="font-bold text-gray-900 dark:text-white text-base truncate pr-2">Grand Plaza Resort</h3>
+                        </div>
+                        <span class="inline-flex items-center px-2 py-1 rounded bg-green-100 dark:bg-green-500/10 text-green-700 dark:text-green-400 text-[10px] font-bold uppercase tracking-wide border border-green-200 dark:border-green-500/20">
+                            Confirmed
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <img class="w-9 h-9 rounded-full object-cover border border-gray-200 dark:border-gray-700" data-alt="Profile picture of Alex Johnson" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyANGgc8_75AVexmEmlWcnYnHJnVH5cYNfzowV0Yl4iMtjCoV0mBHxUMngZnOyl_ICxywrVZlm32YDahgoqD-kIkDT8djrmyYnxl3AA9f74X6FhMqTypvDLY9P9lT4ajMzvbXXs9iV8neFEUVoZndwYdn9v8oQbyKsCI3GxzLrPX1Cw-HJlt35HhfbDf6lJ4we2xiD740Z57WPFfAH_kvOeLQuazxkK-dzLQElFe1ocaRXHEzHUUMAzI7WhzSGrF2dmXZbKHG-82nX"/>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-semibold text-gray-900 dark:text-white">Alex Johnson</span>
+                            <span class="text-xs text-gray-500 dark:text-text-secondary">Oct 12 - Oct 15 • 3 Nights</span>
+                        </div>
+                    </div>
+                    <div class="pt-3 mt-1 border-t border-dashed border-gray-200 dark:border-border-dark flex items-end justify-between">
+                        <div>
+                            <span class="block text-[10px] text-gray-500 dark:text-text-secondary font-semibold uppercase">Total Amount</span>
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$450.00</span>
+                        </div>
+                        <button class="p-1.5 rounded-lg text-gray-400 hover:text-primary hover:bg-primary/10 transition-colors">
+                            <span class="material-symbols-outlined">more_vert</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="group relative overflow-hidden rounded-xl bg-white dark:bg-surface-dark border border-gray-200 dark:border-border-dark shadow-sm hover:shadow-md transition-all">
+            <div class="p-4 flex gap-3">
+                <div class="pt-1 pl-1">
+                    <div class="relative flex items-center justify-center">
+                        <input class="peer appearance-none w-5 h-5 border-2 border-gray-300 dark:border-gray-600 rounded bg-transparent checked:bg-primary checked:border-primary transition-all" type="checkbox"/>
+                        <span class="material-symbols-outlined absolute text-white opacity-0 peer-checked:opacity-100 text-[16px] pointer-events-none">check</span>
+                    </div>
+                </div>
+                <div class="flex-1 min-w-0 flex flex-col gap-3">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-[11px] font-mono text-gray-500 dark:text-text-secondary uppercase tracking-wider mb-0.5">#BK-8822</p>
+                            <h3 class="font-bold text-gray-900 dark:text-white text-base truncate pr-2">Ocean View Hotel</h3>
+                        </div>
+                        <span class="inline-flex items-center px-2 py-1 rounded bg-yellow-100 dark:bg-yellow-500/10 text-yellow-700 dark:text-yellow-400 text-[10px] font-bold uppercase tracking-wide border border-yellow-200 dark:border-yellow-500/20">
+                            Pending
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/30 flex items-center justify-center text-xs font-bold">JD</div>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-semibold text-gray-900 dark:text-white">Jane Doe</span>
+                            <span class="text-xs text-gray-500 dark:text-text-secondary">Nov 01 - Nov 05 • 4 Nights</span>
+                        </div>
+                    </div>
+                    <div class="pt-3 mt-1 border-t border-dashed border-gray-200 dark:border-border-dark flex items-end justify-between">
+                        <div>
+                            <span class="block text-[10px] text-gray-500 dark:text-text-secondary font-semibold uppercase">Total Amount</span>
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$620.00</span>
+                        </div>
+                        <button class="p-1.5 rounded-lg text-gray-400 hover:text-primary hover:bg-primary/10 transition-colors">
+                            <span class="material-symbols-outlined">more_vert</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="group relative overflow-hidden rounded-xl bg-white dark:bg-surface-dark border-2 border-primary shadow-lg dark:shadow-none transition-all">
+            <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            <div class="p-4 flex gap-3">
+                <div class="pt-1 pl-1">
+                    <div class="relative flex items-center justify-center">
+                        <input checked="" class="peer appearance-none w-5 h-5 border-2 border-gray-300 dark:border-border-dark rounded bg-transparent checked:bg-primary checked:border-primary transition-all" type="checkbox"/>
+                        <span class="material-symbols-outlined absolute text-white opacity-0 peer-checked:opacity-100 text-[16px] pointer-events-none">check</span>
+                    </div>
+                </div>
+                <div class="flex-1 min-w-0 flex flex-col gap-3">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-[11px] font-mono text-gray-500 dark:text-text-secondary uppercase tracking-wider mb-0.5">#BK-8790</p>
+                            <h3 class="font-bold text-gray-900 dark:text-white text-base truncate pr-2">Mountain Retreat</h3>
+                        </div>
+                        <span class="inline-flex items-center px-2 py-1 rounded bg-red-100 dark:bg-red-500/10 text-red-700 dark:text-red-400 text-[10px] font-bold uppercase tracking-wide border border-red-200 dark:border-red-500/20">
+                            Cancelled
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <img class="w-9 h-9 rounded-full object-cover border border-gray-200 dark:border-gray-700" data-alt="Profile picture of Michael Smith" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6faJqZoZGfzd1paaXVRvFZNyq3Tem9Q0UEkSOjafbsw3s-q_9GD_jh-Bk4jYJ5dmpghyc9fjLx1icMZvMOKFYUWco_DJGaLxNUH_spt-RIlxPH7E47KubROkdit3n91K56pJmA-QYDjmPI0F1ED1uXNtYFGC9hSk6iPYrCLBd82ykN3a36OPswLEqDUwDky68Z0ptEp0WX-9-zU16LWtzsuKwrEGJL0SethWbSUsxB8vd7qsdK-HBNk2GcUM5dXkrG15rLQAGcOQk"/>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-semibold text-gray-900 dark:text-white">Michael Smith</span>
+                            <span class="text-xs text-gray-500 dark:text-text-secondary">Sep 10 - Sep 12 • 2 Nights</span>
+                        </div>
+                    </div>
+                    <div class="pt-3 mt-1 border-t border-dashed border-gray-200 dark:border-border-dark flex items-end justify-between">
+                        <div>
+                            <span class="block text-[10px] text-gray-500 dark:text-text-secondary font-semibold uppercase">Total Amount</span>
+                            <span class="text-lg font-bold text-gray-400 dark:text-gray-500 line-through decoration-red-500/50 decoration-2">$300.00</span>
+                        </div>
+                        <button class="p-1.5 rounded-lg text-gray-400 hover:text-primary hover:bg-primary/10 transition-colors">
+                            <span class="material-symbols-outlined">more_vert</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="group relative overflow-hidden rounded-xl bg-white dark:bg-surface-dark border-2 border-primary shadow-lg dark:shadow-none transition-all">
+            <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary z-10"></div>
+            <div class="p-4 flex gap-3">
+                <div class="pt-1 pl-1">
+                    <div class="relative flex items-center justify-center">
+                        <input checked="" class="peer appearance-none w-5 h-5 border-2 border-gray-300 dark:border-border-dark rounded bg-transparent checked:bg-primary checked:border-primary transition-all" type="checkbox"/>
+                        <span class="material-symbols-outlined absolute text-white opacity-0 peer-checked:opacity-100 text-[16px] pointer-events-none">check</span>
+                    </div>
+                </div>
+                <div class="flex-1 min-w-0 flex flex-col gap-3">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-[11px] font-mono text-gray-500 dark:text-text-secondary uppercase tracking-wider mb-0.5">#BK-8600</p>
+                            <h3 class="font-bold text-gray-900 dark:text-white text-base truncate pr-2">City Central Inn</h3>
+                        </div>
+                        <span class="inline-flex items-center px-2 py-1 rounded bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400 text-[10px] font-bold uppercase tracking-wide border border-blue-200 dark:border-blue-500/20">
+                            Completed
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-pink-100 dark:bg-pink-500/20 text-pink-700 dark:text-pink-400 border border-pink-200 dark:border-pink-500/30 flex items-center justify-center text-xs font-bold">SL</div>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-semibold text-gray-900 dark:text-white">Sarah Lee</span>
+                            <span class="text-xs text-gray-500 dark:text-text-secondary">Aug 05 - Aug 10 • 5 Nights</span>
+                        </div>
+                    </div>
+                    <div class="pt-3 mt-1 border-t border-dashed border-gray-200 dark:border-border-dark flex items-end justify-between">
+                        <div>
+                            <span class="block text-[10px] text-gray-500 dark:text-text-secondary font-semibold uppercase">Total Amount</span>
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$850.00</span>
+                        </div>
+                        <button class="p-1.5 rounded-lg text-gray-400 hover:text-primary hover:bg-primary/10 transition-colors">
+                            <span class="material-symbols-outlined">more_vert</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-center gap-6 py-6 opacity-80">
+            <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-border-dark text-gray-500 dark:text-text-secondary hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <span class="text-sm font-semibold text-gray-600 dark:text-text-secondary">Page <span class="text-gray-900 dark:text-white">1</span> of 10</span>
+            <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-900 dark:bg-white/5 border border-transparent dark:border-white/10 text-white hover:bg-gray-800 dark:hover:bg-white/10 transition-colors">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </div>
+    </main>
+
+    <div class="fixed bottom-[88px] left-3 right-3 z-30 animate-[slide-in-from-bottom_0.3s_ease-out]">
+        <div class="bg-[#1a1a2e] dark:bg-surface-dark border border-primary/50 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] p-3 pl-4 flex items-center justify-between gap-4 ring-1 ring-white/10">
+            <div class="flex items-center gap-3">
+                <span class="flex items-center justify-center w-6 h-6 rounded bg-primary text-white text-xs font-bold">3</span>
+                <span class="text-white font-semibold text-sm">Selected</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button class="h-9 px-4 rounded-lg text-gray-400 hover:text-white text-sm font-medium transition-colors">Cancel</button>
+                <button class="h-9 pl-4 pr-3 rounded-lg bg-primary hover:bg-primary/90 text-white text-sm font-semibold shadow-lg shadow-[#0E3286]/50 flex items-center gap-1 transition-all">
+                    Actions
+                    <span class="material-symbols-outlined text-[18px]">expand_less</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="fixed bottom-0 w-full bg-white dark:bg-[#111122]/95 backdrop-blur-md border-t border-gray-200 dark:border-border-dark z-50 pb-safe">
+        <div class="flex items-center justify-around h-16">
+            <a class="flex flex-col items-center justify-center w-16 h-full gap-1 text-gray-400 dark:text-text-secondary hover:text-primary dark:hover:text-white group transition-colors" href="#">
+                <span class="material-symbols-outlined group-hover:scale-110 transition-transform text-[24px]">dashboard</span>
+                <span class="text-[10px] font-bold">Home</span>
+            </a>
+            <a class="relative flex flex-col items-center justify-center w-16 h-full gap-1 text-primary group" href="#">
+                <div class="absolute top-0 w-10 h-0.5 bg-primary rounded-b-full shadow-[0_2px_8px_rgba(14,50,134,0.6)]"></div>
+                <span class="material-symbols-outlined text-[24px] fill-current">calendar_month</span>
+                <span class="text-[10px] font-bold">Bookings</span>
+            </a>
+            <a class="flex flex-col items-center justify-center w-16 h-full gap-1 text-gray-400 dark:text-text-secondary hover:text-primary dark:hover:text-white group transition-colors" href="#">
+                <span class="material-symbols-outlined group-hover:scale-110 transition-transform text-[24px]">meeting_room</span>
+                <span class="text-[10px] font-bold">Rooms</span>
+            </a>
+            <a class="flex flex-col items-center justify-center w-16 h-full gap-1 text-gray-400 dark:text-text-secondary hover:text-primary dark:hover:text-white group transition-colors" href="#">
+                <span class="material-symbols-outlined group-hover:scale-110 transition-transform text-[24px]">group</span>
+                <span class="text-[10px] font-bold">Guests</span>
+            </a>
+            <a class="flex flex-col items-center justify-center w-16 h-full gap-1 text-gray-400 dark:text-text-secondary hover:text-primary dark:hover:text-white group transition-colors" href="#">
+                <span class="material-symbols-outlined group-hover:scale-110 transition-transform text-[24px]">settings</span>
+                <span class="text-[10px] font-bold">Settings</span>
+            </a>
+        </div>
+        <div class="h-[env(safe-area-inset-bottom)]"></div>
+    </nav>
+</body>
+</html>
