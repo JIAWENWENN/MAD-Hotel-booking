@@ -3,27 +3,24 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>All Users - Hotel Admin</title>
+    <title>User Details - Admin Panel</title>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#0E3286", 
-                        "primary-dark": "#0a2461",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#111122", 
-                        "surface-dark": "#1d1d35",
-                        "surface-light": "#ffffff",
+                        "primary": "#0E3286", /* UPDATED: Specific Deep Blue */
+                        "background-light": "#f8fafc",
+                        "surface-white": "#ffffff",
+                        "surface-offset": "#f1f5f9",
                     },
                     fontFamily: {
-                        "display": ["Spline Sans", "sans-serif"]
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
                     },
                     borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
                 },
@@ -31,310 +28,221 @@
         }
     </script>
     <style>
-        .hide-scrollbar::-webkit-scrollbar {
+        /* Custom scrollbar hiding for cleaner mobile look */
+        .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
-        .hide-scrollbar {
+        .no-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-    </style>
-    <style>
         body {
             min-height: max(884px, 100dvh);
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen flex flex-col overflow-hidden">
-<div class="h-12 w-full bg-background-light dark:bg-background-dark shrink-0"></div>
-<main class="flex-1 flex flex-col overflow-hidden w-full relative">
-    <header class="bg-background-light dark:bg-background-dark px-4 pb-4 shrink-0">
-        <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center gap-3">
-                <button class="p-2 -ml-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
-                    <span class="material-symbols-outlined text-slate-900 dark:text-white">arrow_back</span>
-                </button>
-                <h1 class="text-xl font-bold tracking-tight">User Management</h1>
-            </div>
-            <button class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors relative">
-                <span class="material-symbols-outlined text-slate-900 dark:text-white">notifications</span>
-                <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-background-dark"></span>
+<body class="bg-background-light text-slate-900 font-display">
+    <div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden pb-20">
+        
+        <header class="sticky top-0 z-50 flex items-center justify-between bg-white/95 backdrop-blur-md px-4 py-4 border-b border-slate-200 shadow-sm">
+            <button class="flex size-10 items-center justify-center rounded-full text-slate-700 hover:bg-slate-100 active:bg-slate-200 transition-colors">
+                <span class="material-symbols-outlined text-2xl">arrow_back</span>
             </button>
-        </div>
-        <div class="flex flex-col gap-1 mb-5">
-            <h2 class="text-3xl font-bold text-slate-900 dark:text-white">All Users</h2>
-            <p class="text-slate-500 dark:text-slate-400 font-medium">Total Users: <span class="text-primary font-bold">1,245</span></p>
-        </div>
-        <div class="flex gap-2 mb-4">
-            <div class="relative flex-1 group">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <span class="material-symbols-outlined text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+            <h1 class="text-slate-900 text-lg font-bold leading-tight flex-1 text-center">User Details</h1>
+            <div class="flex items-center gap-2">
+                <button class="flex size-10 items-center justify-center rounded-full text-slate-700 hover:bg-slate-100 transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">edit</span>
+                </button>
+                <button class="flex size-10 items-center justify-center rounded-full text-red-500 hover:bg-red-50 transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">block</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="flex flex-col items-center pt-8 pb-6 px-4 bg-white border-b border-slate-200">
+            <div class="relative mb-4">
+                <div class="size-24 rounded-full bg-slate-200 bg-center bg-cover border-4 border-white shadow-xl" data-alt="Portrait of a young woman smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBcMsT8j7kaBO02BeY5xCv1smAmdyG0LMBIyGQkBsg9pKy5e9UcSyi0_t5JHNobEkWMTnh3aqmiGCzMg0i8wekwC7hOw7HYIwf9FB6xLSxAhrHJ1ZVkjadwV9V64pAaJWgr62lQU05782omVJ_xhLcHpx_TSlCv3sXqg1RjXTAg8epY4PAGq6QsMLDNeDKdvlj1H-cPMc3PqFRTAP_wVsyu9rkkIHsTouwZ28tI_CcWEkX8d7V__TW37-IdhWMEieuCGzXFr3WFX-oE");'></div>
+                <div class="absolute bottom-0 right-0 size-6 bg-emerald-500 rounded-full border-4 border-white" title="Active"></div>
+            </div>
+            
+            <h2 class="text-slate-900 text-2xl font-bold mb-1">Sophia Williams</h2>
+            
+            <div class="flex items-center gap-2 mb-4">
+                <span class="text-slate-500 text-sm">Customer since Jan 2023</span>
+                <span class="size-1 bg-slate-400 rounded-full"></span>
+                <span class="text-emerald-600 text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-100 border border-emerald-200">Active</span>
+            </div>
+
+            <div class="grid grid-cols-4 gap-3 w-full max-w-md mt-2">
+                <div class="bg-slate-50 p-3 rounded-xl flex flex-col items-center border border-slate-200 shadow-sm">
+                    <p class="text-xs text-slate-500 font-medium mb-1">Total</p>
+                    <p class="text-lg font-bold text-slate-900">12</p>
                 </div>
-                <input class="block w-full pl-10 pr-3 py-3 border-none rounded-xl bg-white dark:bg-surface-dark text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm shadow-sm" placeholder="Search by name or email..." type="text"/>
-            </div>
-            <button class="flex items-center justify-center w-12 rounded-xl bg-surface-light dark:bg-surface-dark text-primary hover:bg-primary/10 transition-colors shadow-sm">
-                <span class="material-symbols-outlined">tune</span>
-            </button>
-        </div>
-        <div class="flex gap-2 overflow-x-auto hide-scrollbar pb-2">
-            <button class="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-white text-xs font-semibold whitespace-nowrap shadow-md shadow-primary/20">
-                <span class="material-symbols-outlined text-[16px]">add</span>
-                Add New User
-            </button>
-            <button class="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-surface-dark text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/50 text-xs font-medium whitespace-nowrap">
-                Status: All
-                <span class="material-symbols-outlined text-[16px]">expand_more</span>
-            </button>
-            <button class="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-surface-dark text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/50 text-xs font-medium whitespace-nowrap">
-                Joined: Last 30 Days
-                <span class="material-symbols-outlined text-[16px]">expand_more</span>
-            </button>
-            <button class="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-surface-dark text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/50 text-xs font-medium whitespace-nowrap">
-                <span class="material-symbols-outlined text-[16px]">download</span>
-                Export CSV
-            </button>
-        </div>
-    </header>
-    <div class="flex-1 overflow-hidden relative w-full bg-background-light dark:bg-background-dark">
-        <div class="overflow-x-auto h-full hide-scrollbar pb-20 px-4">
-            <table class="w-full min-w-[800px] border-separate border-spacing-y-3">
-                <thead class="bg-background-light dark:bg-background-dark sticky top-0 z-10">
-                <tr>
-                    <th class="text-left py-3 px-4 font-semibold text-xs text-slate-500 uppercase tracking-wider rounded-l-lg w-12">
-                        <input class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary bg-transparent" type="checkbox"/>
-                    </th>
-                    <th class="text-left py-3 px-4 font-semibold text-xs text-slate-500 uppercase tracking-wider">User Profile</th>
-                    <th class="text-left py-3 px-4 font-semibold text-xs text-slate-500 uppercase tracking-wider">Contact Info</th>
-                    <th class="text-left py-3 px-4 font-semibold text-xs text-slate-500 uppercase tracking-wider">Bookings</th>
-                    <th class="text-left py-3 px-4 font-semibold text-xs text-slate-500 uppercase tracking-wider">Status</th>
-                    <th class="text-right py-3 px-4 font-semibold text-xs text-slate-500 uppercase tracking-wider rounded-r-lg">Actions</th>
-                </tr>
-                </thead>
-                <tbody class="space-y-4">
-                <tr class="group bg-white dark:bg-surface-dark shadow-sm rounded-xl hover:shadow-md transition-shadow">
-                    <td class="py-4 px-4 rounded-l-xl border-y border-l border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <input class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary bg-transparent" type="checkbox"/>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <div class="flex items-center gap-3">
-                            <img alt="Profile picture of Sarah Jenkins" class="w-10 h-10 rounded-full object-cover border-2 border-white dark:border-slate-700" data-alt="Woman smiling profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB84iW3j1n1orRHYvPEVgYqu0ozukvwtcHR0QsMAgLS0EdJEAOuNaeh5KqA39uc8r1GRr8pXqWWDMIv-sw6pEIGgP8obFbF6hKkVt5MecMyz4Du97dB2JkOlYiiaqUKEWdCVwfcpvB3I_Fczz5K_P1Q08UxAd05n3-iV_xxe0VsUh169GPcdKPJPPV_TkUCXUVPo1RNSvkE3n-c9c1e5lCiaSUONBakgmSS5IXEmoJPOGdBBGfXlJ6hYw7IwzXWymgspbr-njRtl0F4"/>
-                            <div>
-                                <p class="font-bold text-slate-900 dark:text-white text-sm">Sarah Jenkins</p>
-                                <p class="text-xs text-slate-500">Joined Oct 22, 2023</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <p class="text-sm text-slate-700 dark:text-slate-300">sarah.j@example.com</p>
-                        <p class="text-xs text-slate-500">+1 (555) 123-4567</p>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary text-lg">calendar_month</span>
-                            <span class="font-bold text-slate-900 dark:text-white">12</span>
-                        </div>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-400">
-<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-Active
-</span>
-                    </td>
-                    <td class="py-4 px-4 rounded-r-xl border-y border-r border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20 text-right">
-                        <button class="text-slate-400 hover:text-primary transition-colors">
-                            <span class="material-symbols-outlined">more_vert</span>
-                        </button>
-                    </td>
-                </tr>
-                <tr class="group bg-white dark:bg-surface-dark shadow-sm rounded-xl hover:shadow-md transition-shadow">
-                    <td class="py-4 px-4 rounded-l-xl border-y border-l border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <input class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary bg-transparent" type="checkbox"/>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <div class="flex items-center gap-3">
-                            <img alt="Profile picture of Mike Ross" class="w-10 h-10 rounded-full object-cover border-2 border-white dark:border-slate-700" data-alt="Man with short hair profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYWwQhKuJ9N7R102kxK6pbQe5XfySVDDSfhrqRH8XKTxnWKsKQwtFG9_jZicxtk5UJpzbuSkJKQHr2Ybk2q8hiDtUdR7YlDBTyQ1kTRJqx70vA2_LvW8qHRA4NK4OSvgRuCabaFC5M0Z60QbDyiXoaT-_R7CxIZVCaGyIsltWjRRexCZT2vHeJkngADOTEw4_1jEUqymdyQuy_cHpdsNb4F9UqIsTuPdr2O1S4jgwC6hed0RDN7acysULU1jqviq9CIod28uARr7b8"/>
-                            <div>
-                                <p class="font-bold text-slate-900 dark:text-white text-sm">Mike Ross</p>
-                                <p class="text-xs text-slate-500">Joined Oct 21, 2023</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <p class="text-sm text-slate-700 dark:text-slate-300">m.ross@example.com</p>
-                        <p class="text-xs text-slate-500">+1 (555) 987-6543</p>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-lg">calendar_month</span>
-                            <span class="font-bold text-slate-900 dark:text-white">0</span>
-                        </div>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-400">
-<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-Pending
-</span>
-                    </td>
-                    <td class="py-4 px-4 rounded-r-xl border-y border-r border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20 text-right">
-                        <button class="text-slate-400 hover:text-primary transition-colors">
-                            <span class="material-symbols-outlined">more_vert</span>
-                        </button>
-                    </td>
-                </tr>
-                <tr class="group bg-white dark:bg-surface-dark shadow-sm rounded-xl hover:shadow-md transition-shadow">
-                    <td class="py-4 px-4 rounded-l-xl border-y border-l border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <input class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary bg-transparent" type="checkbox"/>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm border-2 border-white dark:border-slate-700">
-                                JD
-                            </div>
-                            <div>
-                                <p class="font-bold text-slate-900 dark:text-white text-sm">Jane Doe</p>
-                                <p class="text-xs text-slate-500">Joined Oct 20, 2023</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <p class="text-sm text-slate-700 dark:text-slate-300">jane.doe@example.com</p>
-                        <p class="text-xs text-slate-500">+44 20 7123 4567</p>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary text-lg">calendar_month</span>
-                            <span class="font-bold text-slate-900 dark:text-white">4</span>
-                        </div>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-500/20 dark:text-red-400">
-<span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
-Inactive
-</span>
-                    </td>
-                    <td class="py-4 px-4 rounded-r-xl border-y border-r border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20 text-right">
-                        <button class="text-slate-400 hover:text-primary transition-colors">
-                            <span class="material-symbols-outlined">more_vert</span>
-                        </button>
-                    </td>
-                </tr>
-                <tr class="group bg-white dark:bg-surface-dark shadow-sm rounded-xl hover:shadow-md transition-shadow">
-                    <td class="py-4 px-4 rounded-l-xl border-y border-l border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <input class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary bg-transparent" type="checkbox"/>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <div class="flex items-center gap-3">
-                            <img alt="Profile picture of Kevin Smith" class="w-10 h-10 rounded-full object-cover border-2 border-white dark:border-slate-700" data-alt="Man smiling with beard profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWagj4S5oWV7Brr_kDu65R0XAyRB4qdNZ0tuV3uusUHyEubzmnwhBOE6ANYkx7riMPuJGzAQ1MBOUnxm7IUQOtsiqWyy4WBlL0MlMK-Uu2HxZEX23yANctT0im_DNYhexSlxmXNjTW-wFW-tkIl7a2CvmLPrEgiX4eJR_4fmQ9bH3ZBbRKRb3wifSUsBPVynfymmM4rTsokORXzxCQUaHDM6Dre8P8LNkV3SrWBv2PKRVrrP9WGt2yYyJ2E4h_u8SW4b03xFI0Grpf"/>
-                            <div>
-                                <p class="font-bold text-slate-900 dark:text-white text-sm">Kevin Smith</p>
-                                <p class="text-xs text-slate-500">Joined Oct 18, 2023</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <p class="text-sm text-slate-700 dark:text-slate-300">k.smith@example.com</p>
-                        <p class="text-xs text-slate-500">+1 (555) 222-3333</p>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary text-lg">calendar_month</span>
-                            <span class="font-bold text-slate-900 dark:text-white">8</span>
-                        </div>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-400">
-<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-Active
-</span>
-                    </td>
-                    <td class="py-4 px-4 rounded-r-xl border-y border-r border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20 text-right">
-                        <button class="text-slate-400 hover:text-primary transition-colors">
-                            <span class="material-symbols-outlined">more_vert</span>
-                        </button>
-                    </td>
-                </tr>
-                <tr class="group bg-white dark:bg-surface-dark shadow-sm rounded-xl hover:shadow-md transition-shadow">
-                    <td class="py-4 px-4 rounded-l-xl border-y border-l border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <input class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary bg-transparent" type="checkbox"/>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-500 font-bold text-sm border-2 border-white dark:border-slate-700">
-                                EL
-                            </div>
-                            <div>
-                                <p class="font-bold text-slate-900 dark:text-white text-sm">Eva Long</p>
-                                <p class="text-xs text-slate-500">Joined Oct 15, 2023</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <p class="text-sm text-slate-700 dark:text-slate-300">eva.l@example.com</p>
-                        <p class="text-xs text-slate-500">+1 (555) 777-8888</p>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary text-lg">calendar_month</span>
-                            <span class="font-bold text-slate-900 dark:text-white">1</span>
-                        </div>
-                    </td>
-                    <td class="py-4 px-4 border-y border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-400">
-<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-Active
-</span>
-                    </td>
-                    <td class="py-4 px-4 rounded-r-xl border-y border-r border-slate-100 dark:border-slate-800/50 group-hover:border-primary/20 text-right">
-                        <button class="text-slate-400 hover:text-primary transition-colors">
-                            <span class="material-symbols-outlined">more_vert</span>
-                        </button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark dark:to-transparent z-20">
-            <div class="flex items-center justify-between bg-white dark:bg-surface-dark p-3 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800/50 mx-2">
-                <button class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 text-slate-400 hover:text-primary disabled:opacity-50">
-                    <span class="material-symbols-outlined">chevron_left</span>
-                </button>
-                <div class="text-sm font-medium text-slate-600 dark:text-slate-300">
-                    Page <span class="text-primary font-bold">1</span> of 124
+                <div class="bg-slate-50 p-3 rounded-xl flex flex-col items-center border border-slate-200 shadow-sm">
+                    <p class="text-xs text-slate-500 font-medium mb-1">Done</p>
+                    <p class="text-lg font-bold text-emerald-600">10</p>
                 </div>
-                <button class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 text-slate-900 dark:text-white hover:text-primary">
-                    <span class="material-symbols-outlined">chevron_right</span>
+                <div class="bg-slate-50 p-3 rounded-xl flex flex-col items-center border border-slate-200 shadow-sm">
+                    <p class="text-xs text-slate-500 font-medium mb-1">Cancel</p>
+                    <p class="text-lg font-bold text-red-500">2</p>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl flex flex-col items-center border border-slate-200 shadow-sm">
+                    <p class="text-xs text-slate-500 font-medium mb-1">Spent</p>
+                    <p class="text-lg font-bold text-primary">$4.2k</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sticky top-[73px] z-40 bg-background-light/95 backdrop-blur-sm pt-2">
+            <div class="flex border-b border-slate-200 px-4 justify-between">
+                <button class="relative flex-1 pb-3 pt-2 text-center text-sm font-bold text-primary">
+                    Profile
+                    <span class="absolute bottom-0 left-0 h-0.5 w-full bg-primary rounded-t-full"></span>
+                </button>
+                <button class="relative flex-1 pb-3 pt-2 text-center text-sm font-medium text-slate-500 hover:text-slate-800">
+                    Bookings
+                </button>
+                <button class="relative flex-1 pb-3 pt-2 text-center text-sm font-medium text-slate-500 hover:text-slate-800">
+                    Activity
                 </button>
             </div>
         </div>
+
+        <div class="px-4 py-6 space-y-6">
+            
+            <section>
+                <h3 class="text-slate-900 text-base font-bold mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-[20px]">person</span>
+                    Personal Information
+                </h3>
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="grid grid-cols-1 divide-y divide-slate-100">
+                        <div class="p-4 flex items-center justify-between">
+                            <span class="text-slate-500 text-sm">User ID</span>
+                            <span class="text-slate-900 text-sm font-medium font-mono">#849201</span>
+                        </div>
+                        <div class="p-4 flex items-center justify-between">
+                            <span class="text-slate-500 text-sm">Full Name</span>
+                            <span class="text-slate-900 text-sm font-medium">Sophia Williams</span>
+                        </div>
+                        <div class="p-4 flex items-center justify-between">
+                            <span class="text-slate-500 text-sm">Email</span>
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-slate-900 text-sm font-medium">sophia.w@example.com</span>
+                                <span class="material-symbols-outlined text-[16px] text-emerald-500 fill-1" title="Verified">verified</span>
+                            </div>
+                        </div>
+                        <div class="p-4 flex items-center justify-between">
+                            <span class="text-slate-500 text-sm">Phone</span>
+                            <span class="text-slate-900 text-sm font-medium">+1 555 019 2834</span>
+                        </div>
+                        <div class="p-4 flex items-center justify-between">
+                            <span class="text-slate-500 text-sm">Date of Birth</span>
+                            <span class="text-slate-900 text-sm font-medium">12 Oct 1992</span>
+                        </div>
+                        <div class="p-4 flex items-center justify-between">
+                            <span class="text-slate-500 text-sm">Nationality</span>
+                            <div class="flex items-center gap-2">
+                                <span class="text-lg">🇨🇦</span>
+                                <span class="text-slate-900 text-sm font-medium">Canadian</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3 class="text-slate-900 text-base font-bold mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-[20px]">security</span>
+                    Account Status
+                </h3>
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden p-4 grid grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-slate-500 text-xs mb-1">Registration Date</p>
+                        <p class="text-slate-900 text-sm font-medium">Jan 14, 2023</p>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 text-xs mb-1">Last Login</p>
+                        <p class="text-slate-900 text-sm font-medium">2 hours ago</p>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 text-xs mb-1">Verification</p>
+                        <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-emerald-100 text-emerald-600 border border-emerald-200">
+                            Email Verified
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-slate-900 text-base font-bold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-[20px]">hotel</span>
+                        Recent Bookings
+                    </h3>
+                    <a class="text-primary text-sm font-semibold hover:opacity-80" href="#">View All</a>
+                </div>
+                <div class="space-y-3">
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex gap-4 items-center">
+                        <div class="size-12 rounded-lg bg-slate-200 bg-cover bg-center shrink-0" data-alt="Luxurious hotel lobby with warm lighting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAOgVHw3dajezZxw-_KJBIUdQPHdvLCXUbzBeuiqk6muLGeY_I2wRt2AoJh_EfvFLCkSnmVVH8pJpagwu9ZCbVxDSk-3Bg3UJAg5Qd8idT-xoCmZor6DC5K6d0rUnsfgktljbMMLO-VIZ4xrPTv0Dqfj0Tj-_auGAjlYjPDxOxH1ngmZuFnYffGxjr_9h4ERd9NrzjB-5nlzXS_x7OBzeklrOqunhqTrNkRoQJppRHcHoqWAgGH4NO3pKfU99y03HmS3nHVxGZwAElW");'></div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-slate-900 font-semibold text-sm truncate">Grand Luxe Hotel</h4>
+                            <p class="text-slate-500 text-xs mt-0.5">Oct 24 - Oct 28 • 4 Nights</p>
+                        </div>
+                        <div class="flex flex-col items-end gap-1">
+                            <span class="text-slate-900 font-bold text-sm">$450</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary/10 text-primary uppercase tracking-wide">Confirmed</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex gap-4 items-center">
+                        <div class="size-12 rounded-lg bg-slate-200 bg-cover bg-center shrink-0" data-alt="Tropical resort pool with palm trees" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC2ghiovJ7G_A_C4fLLK5c9kWFAxxxQjEDejcjkUwl054jBPfGrpNBfKvvm24nz8MsbhCI5VFFEYpgUpO4layt5iQzwvl6iEZdMAZJhXkbh_9C6L6v5BM7AQKAydajPlj5JjfbwyIj9_kM5H7LvahUC2ewSIrjBKhYDcpyqHTh_ZxKscKlLDLsJHXWRiqWFtWW1UCOwVEFP3f3qkJvkg-mpsn19cR0DcM-t-cli04zfgWeHZfnWCGK2mNzljjBzZBnN3FIsTgo7ncVn");'></div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-slate-900 font-semibold text-sm truncate">Seaside Resort & Spa</h4>
+                            <p class="text-slate-500 text-xs mt-0.5">Aug 10 - Aug 15 • 5 Nights</p>
+                        </div>
+                        <div class="flex flex-col items-end gap-1">
+                            <span class="text-slate-900 font-bold text-sm">$1,200</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-600 uppercase tracking-wide">Completed</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="pt-2 pb-6 grid grid-cols-2 gap-4">
+                <button class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-900 py-3 rounded-lg font-semibold text-sm transition-colors flex items-center justify-center gap-2 shadow-sm">
+                    <span class="material-symbols-outlined text-[18px]">lock_person</span>
+                    Reset Pass
+                </button>
+                <button class="bg-red-50 border border-red-200 hover:bg-red-100 text-red-500 py-3 rounded-lg font-semibold text-sm transition-colors flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">delete</span>
+                    Delete User
+                </button>
+            </div>
+        </div>
+
+        <nav class="fixed bottom-0 left-0 z-50 w-full bg-white/95 backdrop-blur-lg border-t border-slate-200 pb-safe">
+            <div class="flex items-center justify-around h-16 max-w-lg mx-auto px-2">
+                <a class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-slate-600" href="#">
+                    <span class="material-symbols-outlined text-2xl mb-1">dashboard</span>
+                    <span class="text-[10px] font-medium">Dashboard</span>
+                </a>
+                <a class="flex flex-col items-center justify-center w-full h-full text-primary" href="#">
+                    <span class="material-symbols-outlined text-2xl mb-1 fill-1">group</span>
+                    <span class="text-[10px] font-medium">Users</span>
+                </a>
+                <a class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-slate-600" href="#">
+                    <span class="material-symbols-outlined text-2xl mb-1">calendar_month</span>
+                    <span class="text-[10px] font-medium">Bookings</span>
+                </a>
+                <a class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-slate-600" href="#">
+                    <span class="material-symbols-outlined text-2xl mb-1">settings</span>
+                    <span class="text-[10px] font-medium">Settings</span>
+                </a>
+            </div>
+            <div class="h-6 w-full bg-white/95"></div>
+        </nav>
+
     </div>
-    <nav class="bg-surface-light dark:bg-surface-dark border-t border-slate-200 dark:border-slate-800 pb-5 pt-2 px-6 shrink-0 z-30">
-        <div class="flex justify-between items-center">
-            <button class="flex flex-col items-center gap-1 group">
-                <span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors text-[26px]">dashboard</span>
-                <span class="text-[10px] font-medium text-slate-400 group-hover:text-primary">Home</span>
-            </button>
-            <button class="flex flex-col items-center gap-1 group">
-                <div class="relative">
-                    <span class="material-symbols-outlined text-primary text-[26px] fill-current">group</span>
-                    <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-primary rounded-full border-2 border-surface-light dark:border-surface-dark"></span>
-                </div>
-                <span class="text-[10px] font-bold text-primary">Users</span>
-            </button>
-            <div class="-mt-8">
-                <button class="w-14 h-14 rounded-full bg-primary text-white shadow-lg shadow-primary/40 flex items-center justify-center transform transition-transform hover:scale-105 active:scale-95">
-                    <span class="material-symbols-outlined text-[28px]">add</span>
-                </button>
-            </div>
-            <button class="flex flex-col items-center gap-1 group">
-                <span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors text-[26px]">calendar_month</span>
-                <span class="text-[10px] font-medium text-slate-400 group-hover:text-primary">Bookings</span>
-            </button>
-            <button class="flex flex-col items-center gap-1 group">
-                <span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors text-[26px]">settings</span>
-                <span class="text-[10px] font-medium text-slate-400 group-hover:text-primary">Settings</span>
-            </button>
-        </div>
-    </nav>
-</main>
 </body>
 </html>
