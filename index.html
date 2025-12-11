@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en"> <head>
+<html lang="en">
+<head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>3D Secure Verification</title>
+    <title>Booking Confirmation</title>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
@@ -14,9 +15,11 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#137fec",
+                        "primary": "#0E3286",
                         "background-light": "#f6f7f8",
                         "background-dark": "#101922",
+                        "surface-dark": "#1c2630",
+                        "surface-light": "#ffffff",
                     },
                     fontFamily: {
                         "display": ["Manrope", "sans-serif"]
@@ -32,80 +35,132 @@
         }
     </style>
 </head>
-<body class="font-display antialiased">
-<div class="relative flex h-full min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden">
-    <div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
-        <div class="flex-1"></div> <h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] text-center flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary" style="font-size: 20px;">lock</span>
-            Secure Verification
-        </h2>
-        <div class="flex-1 flex items-center justify-end">
-            <button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-transparent text-[#111418] dark:text-white gap-2 text-base font-bold leading-normal min-w-0 p-0 hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
-                <span class="material-symbols-outlined">close</span>
-            </button>
+<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white font-display overflow-x-hidden antialiased selection:bg-primary selection:text-white">
+<div class="relative flex h-full min-h-screen w-full flex-col pb-6">
+    <div class="flex items-center px-4 py-4 justify-between sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+        <div class="flex size-10 shrink-0 items-center justify-center rounded-full text-[#111418] dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-colors cursor-pointer">
+            <span class="material-symbols-outlined">close</span>
         </div>
+        <h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center">Confirmation</h2>
+        <div class="flex w-10 items-center justify-end">
+            </div>
     </div>
-    <div class="flex flex-col flex-1 px-4 py-2 max-w-md mx-auto w-full">
-        <div class="flex flex-col gap-0 rounded-2xl bg-white dark:bg-[#1C2630] shadow-sm mb-6 border border-[#e5e7eb] dark:border-[#2a3441] overflow-hidden">
-            <div class="p-4 bg-gray-50 dark:bg-[#232d38] border-b border-[#e5e7eb] dark:border-[#2a3441]">
-                <p class="text-[#111418] dark:text-white text-sm font-bold flex items-center gap-2">
-                    <span class="material-symbols-outlined text-primary">account_balance</span>
-                    Mock Bank 3D Secure
-                </p>
-            </div>
-            <div class="p-4 grid grid-cols-[30%_1fr] gap-x-4 gap-y-4">
-                <div class="contents">
-                    <p class="text-[#637588] dark:text-[#9dabb9] text-sm font-normal leading-normal self-center">Merchant</p>
-                    <p class="text-[#111418] dark:text-white text-sm font-medium leading-normal text-right">Hotel Luxe</p>
-                </div>
-                <div class="col-span-2 h-px bg-[#e5e7eb] dark:bg-[#2a3441]"></div>
-                <div class="contents">
-                    <p class="text-[#637588] dark:text-[#9dabb9] text-sm font-normal leading-normal self-center">Amount</p>
-                    <p class="text-[#111418] dark:text-white text-lg font-bold leading-normal text-right">$450.00</p>
-                </div>
-                <div class="col-span-2 h-px bg-[#e5e7eb] dark:bg-[#2a3441]"></div>
-                <div class="contents">
-                    <p class="text-[#637588] dark:text-[#9dabb9] text-sm font-normal leading-normal self-center">Card</p>
-                    <p class="text-[#111418] dark:text-white text-sm font-medium leading-normal text-right flex justify-end items-center gap-2">
-                        •••• 8902 
-                        <span class="material-symbols-outlined text-sm" style="font-size: 18px;">credit_card</span>
-                    </p>
+    <div class="flex flex-col flex-1 px-4 gap-6 max-w-md mx-auto w-full">
+        <div class="flex flex-col items-center justify-center pt-2">
+            <div class="relative flex items-center justify-center size-20 rounded-full bg-primary/20 mb-6 ring-4 ring-primary/10">
+                <div class="flex items-center justify-center size-14 rounded-full bg-primary shadow-lg shadow-primary/40">
+                    <span class="material-symbols-outlined text-white text-3xl font-bold">check</span>
                 </div>
             </div>
-        </div>
-        <div class="mb-6 px-2">
-            <h3 class="text-[#111418] dark:text-white text-xl font-bold text-center mb-2">Authentication Required</h3>
-            <p class="text-[#637588] dark:text-[#9dabb9] text-sm font-normal leading-relaxed text-center">
-                Please enter the 6-digit verification code sent via SMS to your registered mobile number <span class="whitespace-nowrap font-medium text-[#111418] dark:text-white">+1 (***) ***-8902</span>
+            <h1 class="text-3xl font-extrabold leading-tight text-center tracking-tight text-[#111418] dark:text-white">Booking Confirmed!</h1>
+            <p class="text-[#637588] dark:text-[#9dabb9] text-sm text-center mt-2 max-w-xs mx-auto">
+                We've sent a confirmation email to <span class="font-medium text-[#111418] dark:text-white">alex.morgan@email.com</span>
             </p>
         </div>
-        <div class="flex justify-center w-full mb-8">
-            <fieldset class="flex gap-2 sm:gap-3">
-                <input class="flex h-12 w-10 sm:h-14 sm:w-12 text-center rounded-lg bg-gray-50 dark:bg-[#1C2630] text-[#111418] dark:text-white border border-[#e5e7eb] dark:border-[#3b4754] focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none text-xl font-bold transition-all placeholder-gray-400" inputmode="numeric" maxlength="1" type="text"/>
-                <input class="flex h-12 w-10 sm:h-14 sm:w-12 text-center rounded-lg bg-gray-50 dark:bg-[#1C2630] text-[#111418] dark:text-white border border-[#e5e7eb] dark:border-[#3b4754] focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none text-xl font-bold transition-all placeholder-gray-400" inputmode="numeric" maxlength="1" type="text"/>
-                <input class="flex h-12 w-10 sm:h-14 sm:w-12 text-center rounded-lg bg-gray-50 dark:bg-[#1C2630] text-[#111418] dark:text-white border border-[#e5e7eb] dark:border-[#3b4754] focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none text-xl font-bold transition-all placeholder-gray-400" inputmode="numeric" maxlength="1" type="text"/>
-                <input class="flex h-12 w-10 sm:h-14 sm:w-12 text-center rounded-lg bg-gray-50 dark:bg-[#1C2630] text-[#111418] dark:text-white border border-[#e5e7eb] dark:border-[#3b4754] focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none text-xl font-bold transition-all placeholder-gray-400" inputmode="numeric" maxlength="1" type="text"/>
-                <input class="flex h-12 w-10 sm:h-14 sm:w-12 text-center rounded-lg bg-gray-50 dark:bg-[#1C2630] text-[#111418] dark:text-white border border-[#e5e7eb] dark:border-[#3b4754] focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none text-xl font-bold transition-all placeholder-gray-400" inputmode="numeric" maxlength="1" type="text"/>
-                <input class="flex h-12 w-10 sm:h-14 sm:w-12 text-center rounded-lg bg-gray-50 dark:bg-[#1C2630] text-[#111418] dark:text-white border border-[#e5e7eb] dark:border-[#3b4754] focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none text-xl font-bold transition-all placeholder-gray-400" inputmode="numeric" maxlength="1" type="text"/>
-            </fieldset>
-        </div>
-        <div class="flex flex-col items-center gap-4 mb-8">
-            <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-                <span class="material-symbols-outlined text-primary text-sm">timer</span>
-                <p class="text-primary text-sm font-medium">Code expires in <span class="font-bold">02:45</span></p>
+        <div class="flex flex-col items-start justify-between gap-4 rounded-xl border border-[#dce0e5] dark:border-[#2a3441] bg-surface-light dark:bg-surface-dark p-4 shadow-sm">
+            <div class="flex w-full items-center justify-between">
+                <div class="flex flex-col">
+                    <span class="text-xs font-medium text-[#637588] dark:text-[#9dabb9] uppercase tracking-wider">Booking ID</span>
+                    <p class="text-lg font-bold font-mono tracking-wide mt-0.5">#GBO-82914</p>
+                </div>
+                <button class="group flex items-center justify-center gap-2 h-9 px-4 rounded-full bg-primary/10 hover:bg-primary/20 active:bg-primary/30 transition-colors text-primary text-sm font-bold">
+                    <span class="material-symbols-outlined text-[18px]">content_copy</span>
+                    <span>Copy</span>
+                </button>
             </div>
-            <button class="text-primary text-sm font-bold hover:text-primary/80 transition-colors underline decoration-2 underline-offset-4">
-                Resend Code
+        </div>
+        <div class="flex gap-4 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border border-transparent dark:border-[#2a3441] shadow-sm">
+            <div class="w-20 h-20 shrink-0 rounded-lg bg-center bg-cover bg-no-repeat relative overflow-hidden" data-alt="Luxury hotel exterior with swimming pool and ocean view at dusk" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAfLXghjny3vR_QwDWGNWOw643New78ZV_wiPL2181LxthNRqYz711b4neODDtHz9eTMjI-5yQYiiF7L1BPoGx49fL2zv7K1CPDPDGD34h_Aij4XYV807HJU8PcYbVKtvfZrEubbmfnFAhfJQ3qsm1uQHPAyjs3dl0fOh9Vr4NA9e5n4z568Do_TX5Qi8Nv9M9tF6K-Eahy5WT7sUy2OCEvEAOA1Vc2nIEXPfCQuOfZae7_K7U1rIl2sxBTi4RC6Iltz2V3GReTTegh");'>
+                <div class="absolute inset-0 bg-black/10"></div>
+            </div>
+            <div class="flex flex-col justify-center flex-1 min-w-0">
+                <h3 class="font-bold text-lg leading-tight truncate pr-2">Grand Blue Ocean Resort</h3>
+                <div class="flex items-center gap-1 mt-1 text-primary">
+                    <span class="material-symbols-outlined text-sm filled icon-filled">star</span>
+                    <span class="material-symbols-outlined text-sm filled icon-filled">star</span>
+                    <span class="material-symbols-outlined text-sm filled icon-filled">star</span>
+                    <span class="material-symbols-outlined text-sm filled icon-filled">star</span>
+                    <span class="material-symbols-outlined text-sm filled icon-filled">star_half</span>
+                    <span class="text-xs font-semibold text-[#637588] dark:text-[#9dabb9] ml-1">(4.8)</span>
+                </div>
+                <p class="text-sm text-[#637588] dark:text-[#9dabb9] mt-1 truncate">Malibu, California</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+            <div class="flex flex-col p-4 rounded-xl bg-surface-light dark:bg-surface-dark border border-[#dce0e5] dark:border-[#2a3441]">
+                <span class="text-[#637588] dark:text-[#9dabb9] text-xs font-medium mb-1">Check-in</span>
+                <p class="font-bold text-base">Mon, 12 Oct</p>
+                <p class="text-xs text-[#637588] dark:text-[#9dabb9] mt-0.5">14:00 PM</p>
+            </div>
+            <div class="flex flex-col p-4 rounded-xl bg-surface-light dark:bg-surface-dark border border-[#dce0e5] dark:border-[#2a3441]">
+                <span class="text-[#637588] dark:text-[#9dabb9] text-xs font-medium mb-1">Check-out</span>
+                <p class="font-bold text-base">Fri, 16 Oct</p>
+                <p class="text-xs text-[#637588] dark:text-[#9dabb9] mt-0.5">11:00 AM</p>
+            </div>
+            <div class="col-span-2 flex flex-col p-4 rounded-xl bg-surface-light dark:bg-surface-dark border border-[#dce0e5] dark:border-[#2a3441] gap-4">
+                <div class="flex items-start gap-3">
+                    <div class="size-8 rounded-full bg-background-light dark:bg-background-dark flex items-center justify-center shrink-0 text-[#637588] dark:text-[#9dabb9]">
+                        <span class="material-symbols-outlined text-[20px]">bed</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-[#637588] dark:text-[#9dabb9] text-xs font-medium">Room Type</span>
+                        <p class="font-bold text-sm mt-0.5">Deluxe Ocean View Suite</p>
+                    </div>
+                </div>
+                <div class="h-px w-full bg-[#dce0e5] dark:bg-[#2a3441]"></div>
+                <div class="flex items-start gap-3">
+                    <div class="size-8 rounded-full bg-background-light dark:bg-background-dark flex items-center justify-center shrink-0 text-[#637588] dark:text-[#9dabb9]">
+                        <span class="material-symbols-outlined text-[20px]">group</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-[#637588] dark:text-[#9dabb9] text-xs font-medium">Guests</span>
+                        <p class="font-bold text-sm mt-0.5">2 Adults, 1 Child</p>
+                    </div>
+                </div>
+                <div class="h-px w-full bg-[#dce0e5] dark:bg-[#2a3441]"></div>
+                <div class="flex items-start gap-3">
+                    <div class="size-8 rounded-full bg-background-light dark:bg-background-dark flex items-center justify-center shrink-0 text-[#637588] dark:text-[#9dabb9]">
+                        <span class="material-symbols-outlined text-[20px]">location_on</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-[#637588] dark:text-[#9dabb9] text-xs font-medium">Location</span>
+                        <p class="font-bold text-sm mt-0.5">123 Coastal Way, Malibu, CA</p>
+                        <a class="text-primary text-xs font-bold mt-1" href="#">Get Directions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center justify-between p-5 rounded-xl bg-gradient-to-r from-[#1c2630] to-[#101922] dark:from-[#1e2a38] dark:to-[#16202c] border border-[#dce0e5] dark:border-[#2a3441] shadow-lg">
+            <div class="flex flex-col">
+                <span class="text-[#9dabb9] text-xs font-medium">Total Paid</span>
+                <span class="text-xs text-[#637588] dark:text-[#9dabb9]">Via Apple Pay **** 4242</span>
+            </div>
+            <span class="text-2xl font-bold text-white tracking-tight">$1,240.00</span>
+        </div>
+        <div class="flex items-center justify-between gap-3 mt-2">
+            <button class="flex flex-col items-center justify-center gap-2 flex-1 p-3 rounded-2xl bg-surface-light dark:bg-surface-dark border border-[#dce0e5] dark:border-[#2a3441] hover:bg-[#f0f2f5] dark:hover:bg-[#253240] transition-colors">
+                <div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[20px]">receipt_long</span>
+                </div>
+                <span class="text-xs font-bold text-[#637588] dark:text-[#9dabb9]">Voucher</span>
+            </button>
+            <button class="flex flex-col items-center justify-center gap-2 flex-1 p-3 rounded-2xl bg-surface-light dark:bg-surface-dark border border-[#dce0e5] dark:border-[#2a3441] hover:bg-[#f0f2f5] dark:hover:bg-[#253240] transition-colors">
+                <div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[20px]">calendar_today</span>
+                </div>
+                <span class="text-xs font-bold text-[#637588] dark:text-[#9dabb9]">Calendar</span>
+            </button>
+            <button class="flex flex-col items-center justify-center gap-2 flex-1 p-3 rounded-2xl bg-surface-light dark:bg-surface-dark border border-[#dce0e5] dark:border-[#2a3441] hover:bg-[#f0f2f5] dark:hover:bg-[#253240] transition-colors">
+                <div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[20px]">ios_share</span>
+                </div>
+                <span class="text-xs font-bold text-[#637588] dark:text-[#9dabb9]">Share</span>
             </button>
         </div>
-        <div class="mt-auto pb-6">
-            <button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 bg-primary text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] hover:bg-blue-600 transition-colors shadow-lg shadow-blue-900/20">
-                VERIFY NOW
+        <div class="mt-4 mb-4">
+            <button class="w-full flex items-center justify-center rounded-full h-14 bg-primary text-white text-base font-bold leading-normal shadow-lg shadow-primary/30 hover:bg-primary/90 active:scale-[0.98] transition-all">
+                Back to Home
             </button>
-            <div class="mt-6 flex justify-center items-center gap-1 opacity-50">
-                <span class="material-symbols-outlined text-[#9dabb9] text-xs">lock</span>
-                <p class="text-[#9dabb9] text-xs font-medium">Powered by 3D Secure</p>
-            </div>
         </div>
     </div>
 </div>
