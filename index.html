@@ -3,124 +3,131 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Payment Failed - Light Mode</title>
+    <title>Payment Screen - Light Mode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
+            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#256af4",
-                        "background-light": "#f5f6f8",
-                        "surface-white": "#ffffff",
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
                     },
                     fontFamily: {
-                        "display": ["Spline Sans", "sans-serif"]
+                        "display": ["Inter", "sans-serif"]
                     },
-                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
                 },
             },
         }
     </script>
     <style>
         body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar hide for cleaner mobile look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+    <style>
+        body {
             min-height: max(884px, 100dvh);
         }
     </style>
 </head>
-<body class="bg-background-light font-display antialiased overflow-hidden text-gray-900">
-    <div class="relative flex h-full min-h-screen w-full flex-col bg-background-light">
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white">
+    <div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden pb-24">
         
-        <div aria-hidden="true" class="relative flex h-full w-full flex-col opacity-40 pointer-events-none select-none filter blur-[2px]">
-            <div class="flex items-center justify-between p-4 pt-6">
-                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm border border-gray-100">
-                    <span class="material-symbols-outlined text-gray-600">arrow_back</span>
-                </div>
-                <h1 class="text-lg font-bold text-gray-900">Payment</h1>
-                <div class="w-10"></div>
+        <div class="sticky top-0 z-10 flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between border-b border-slate-200 dark:border-slate-800/50">
+            <div class="text-slate-900 dark:text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+                <span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
             </div>
+            <h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Confirm & Pay</h2>
+        </div>
 
-            <div class="flex-1 px-4 space-y-6">
-                <div class="flex gap-4 p-3 bg-white rounded-2xl items-center shadow-sm border border-gray-100">
-                    <div class="h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-gray-200">
-                        <div class="h-full w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=200&auto=format&fit=crop');"></div>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-sm font-semibold text-gray-900">Oceanview Resort</span>
-                        <span class="text-xs text-gray-500 mt-1">1 Night, Superior King</span>
-                        <span class="text-sm font-bold text-primary mt-2">$240.00</span>
-                    </div>
-                </div>
+        <div class="mt-4">
+            <h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Cancellation Policy</h3>
+        </div>
 
-                <div class="space-y-3">
-                    <h3 class="text-sm font-bold text-gray-600">Payment Method</h3>
-                    <div class="flex items-center justify-between p-4 border border-primary bg-primary/5 rounded-2xl">
-                        <div class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-primary">credit_card</span>
-                            <span class="text-sm font-medium text-gray-900">•••• 4242</span>
+        <div class="p-4">
+            <div class="relative bg-cover bg-center flex flex-col items-stretch justify-end rounded-xl pt-[160px] shadow-lg overflow-hidden group" data-alt="Luxury hotel room interior with warm lighting" style='background-image: linear-gradient(180deg, rgba(16, 22, 34, 0) 0%, rgba(16, 22, 34, 0.8) 40%, rgba(16, 22, 34, 1) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuD7SuE50JgWEB5eO5J-4dtZvj0F0Mb7Y4gi7nC6Z2EyPLp-OtA7fqpYJHtndUfUjhQnYqbZUG5L1_pUIaCl7H2auqviWIn77IWgMJqZn1Fp2HEiH2kqAo5bI_OOgNIZNHLsJgncjcELwT1TSNxyVf_nyehVkpYvOEa2gj_Zqbtg3mi6a2Eqfx8EH08QF9Ktbjh9_aPpjnHUj3fe4hs6E4JoaH5oGBiemvtGgTgwL6k5PGT3a4rGAgqU3Azw3hjzdaoy84g1nFcLzpje");'>
+                <div class="relative z-10 flex w-full flex-col gap-3 p-5">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-primary mt-1">event_available</span>
+                        <div>
+                            <p class="text-white tracking-tight text-xl font-bold leading-tight">Free cancellation until 2:00 PM on Dec 10</p>
+                            <p class="text-slate-300 text-sm font-medium leading-normal mt-1">After this time, the reservation is non-refundable.</p>
                         </div>
-                        <span class="material-symbols-outlined text-primary">check_circle</span>
+                    </div>
+                    <div class="h-px bg-slate-700/50 my-1 w-full"></div>
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-slate-400 text-sm">smoke_free</span>
+                            <p class="text-slate-300 text-sm">No smoking allowed</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-slate-400 text-sm">pets</span>
+                            <p class="text-slate-300 text-sm">No pets allowed</p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="space-y-3 pt-4">
-                    <div class="flex justify-between text-sm text-gray-500">
-                        <span>Subtotal</span>
-                        <span>$240.00</span>
-                    </div>
-                    <div class="flex justify-between text-sm text-gray-500">
-                        <span>Taxes</span>
-                        <span>$45.00</span>
-                    </div>
-                    <div class="h-px w-full bg-gray-200"></div>
-                    <div class="flex justify-between text-base font-bold text-gray-900">
-                        <span>Total</span>
-                        <span>$285.00</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="p-4 bg-background-light">
-                <div class="h-12 w-full rounded-full bg-primary flex items-center justify-center font-bold text-white shadow-lg shadow-primary/20">Pay Now</div>
             </div>
         </div>
 
-        <div class="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-gray-900/40 backdrop-blur-sm transition-opacity duration-300">
-            <div class="relative w-full max-w-[360px] bg-white rounded-[2rem] p-6 shadow-2xl flex flex-col items-center animate-in slide-in-from-bottom-10 fade-in zoom-in-95 duration-300 ease-out">
-                
-                <div class="mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-red-50 ring-1 ring-inset ring-red-100 mt-2">
-                    <span class="material-symbols-outlined text-[40px] text-red-500">close</span>
-                </div>
+        <div class="h-px bg-slate-200 dark:bg-slate-800 mx-4 my-2"></div>
 
-                <div class="flex w-full flex-col text-center">
-                    <h2 class="text-gray-900 tracking-tight text-[26px] font-bold leading-tight pb-3">
-                        Payment Failed
-                    </h2>
-                    <p class="text-gray-500 text-[15px] font-normal leading-relaxed px-2 pb-8">
-                        We couldn't process your payment. Your bank declined the transaction.
-                    </p>
+        <div class="px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="h-10 w-14 rounded bg-white flex items-center justify-center border border-slate-200">
+                    <img alt="Mastercard" class="h-6" data-alt="Mastercard logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP2BVH4sxaHoGgD_CRzN9Eo9B5p0sKm0A4ZYxfyau4Er23zPHQHFmKCKYvNYo_jDkfMbD4tzoxdIQfEEPi70ssx6_m2Vxy9vy6Ys6GgXgF-MjbOiQWU91tHGuecSnn1piC45VDUlwCWPz1aujJQ5Nt2EvM-wbmiaNN7qg1JA0MxEpHa9bDIKvr4n2fxbSjHN7zWLgd-0G9PdMUuNtoF41K_A7YluY6S_tu9rPiGmqqT3s9nlfGoSk7FtEy53T-MRJj2I0R3ngxMeTv"/>
                 </div>
-
-                <div class="flex w-full flex-col gap-3">
-                    <button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-[52px] px-6 bg-primary text-white text-base font-bold leading-normal tracking-wide shadow-lg shadow-primary/25 hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200">
-                        <span class="truncate">TRY AGAIN</span>
-                    </button>
-                    <button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-[52px] px-6 bg-transparent border border-gray-200 text-gray-700 text-base font-bold leading-normal tracking-wide hover:bg-gray-50 hover:border-gray-300 active:scale-[0.98] transition-all duration-200">
-                        <span class="truncate">USE DIFFERENT CARD</span>
-                    </button>
+                <div class="flex flex-col">
+                    <p class="text-slate-900 dark:text-white text-sm font-semibold">Mastercard ending in 8842</p>
+                    <p class="text-slate-500 text-xs">Expires 12/26</p>
                 </div>
-
-                <div class="mt-6 mb-2">
-                    <p class="text-[13px] text-gray-400 font-medium">
-                        Having trouble? 
-                        <a class="text-primary hover:text-primary/80 transition-colors ml-1 font-semibold" href="#">Contact Support</a>
-                    </p>
-                </div>
-
             </div>
+            <button class="text-primary text-sm font-semibold">Change</button>
         </div>
+
+        <div class="flex items-start gap-3 px-4 py-4 mt-2">
+            <div class="flex size-6 shrink-0 items-center justify-center pt-1">
+                <input checked="" class="h-5 w-5 rounded border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-primary checked:bg-primary focus:ring-primary focus:ring-offset-background-light cursor-pointer" id="terms-checkbox" type="checkbox"/>
+            </div>
+            <label class="text-slate-600 dark:text-slate-300 text-sm font-normal leading-relaxed cursor-pointer select-none" for="terms-checkbox">
+                I agree to the <a class="text-primary font-medium hover:underline" href="#">Terms of Service</a>, <a class="text-primary font-medium hover:underline" href="#">Booking Conditions</a>, and <a class="text-primary font-medium hover:underline" href="#">Privacy Policy</a>.
+            </label>
+        </div>
+
+        <div class="flex flex-col items-center justify-center pb-6 pt-4 px-4 gap-2">
+            <div class="flex items-center gap-1.5 opacity-60">
+                <span class="material-symbols-outlined text-slate-500 dark:text-slate-400 text-lg">lock</span>
+                <p class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">Secured by Stripe</p>
+            </div>
+            <p class="text-slate-400 dark:text-slate-600 text-[10px] text-center max-w-xs leading-normal">
+                Your payment information is encrypted and processed securely. We do not store your credit card details.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="fixed bottom-0 left-0 right-0 z-20 bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 p-4 pb-8 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+        <div class="flex items-center justify-between mb-3 px-1">
+            <span class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Price</span>
+            <span class="text-slate-900 dark:text-white text-xl font-bold">$428.00</span>
+        </div>
+        <button class="flex w-full items-center justify-center gap-2 rounded-full bg-primary py-4 px-6 text-white shadow-lg shadow-primary/30 transition-transform active:scale-[0.98] hover:bg-primary/90">
+            <span class="material-symbols-outlined text-[20px]">lock</span>
+            <span class="text-base font-bold tracking-wide">PAY SECURELY</span>
+        </button>
     </div>
 </body>
 </html>
