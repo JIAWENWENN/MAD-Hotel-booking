@@ -13,16 +13,16 @@
                 extend: {
                     colors: {
                         primary: "#0d0d87", 
-                        background: "#ffffff",         // Changed to White
-                        surface: "#f1f5f9",            // Changed to Slate-100
-                        "surface-hover": "#e2e8f0",    // Changed to Slate-200
-                        "background-light": "#ffffff", 
-                        "background-dark": "#0f172a"
-                    },
+                        background: "#ffffff", 
+                        surface: "#f3f4f6", 
+                        "surface-hover": "#e5e7eb", 
+                        "text-main": "#111827",
+                        "text-muted": "#6b7280"
+                    }, 
                     fontFamily: {
                         display: "Spline Sans", 
                         sans: ["Plus Jakarta Sans", "sans-serif"]
-                    },
+                    }, 
                     borderRadius: {
                         DEFAULT: "1rem", 
                         lg: "2rem", 
@@ -46,15 +46,15 @@
         }
     </style>
 </head>
-<body class="bg-background text-slate-900 font-display antialiased selection:bg-primary selection:text-white">
+<body class="bg-background text-text-main font-display antialiased selection:bg-primary selection:text-white">
     <div class="relative flex h-screen w-full flex-col overflow-hidden">
         
-        <header class="flex items-center justify-between p-4 z-20 bg-background/90 backdrop-blur-md sticky top-0">
-            <button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 transition-colors">
+        <header class="flex items-center justify-between p-4 z-20 bg-background/90 backdrop-blur-md sticky top-0 border-b border-gray-100">
+            <button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 text-text-main transition-colors">
                 <span class="material-symbols-outlined" style="font-size: 24px;">close</span>
             </button>
-            <h2 class="text-lg font-bold tracking-tight">Photo Gallery</h2>
-            <button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 transition-colors">
+            <h2 class="text-lg font-bold tracking-tight text-text-main">Photo Gallery</h2>
+            <button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 text-text-main transition-colors">
                 <span class="material-symbols-outlined" style="font-size: 24px;">ios_share</span>
             </button>
         </header>
@@ -62,22 +62,20 @@
         <main class="flex-1 flex flex-col justify-between overflow-hidden relative w-full max-w-md mx-auto h-full">
             
             <div class="relative flex-1 w-full flex items-center justify-center px-4 py-2 group">
-                <div class="relative w-full h-full max-h-[65vh] rounded-xl overflow-hidden shadow-md bg-surface border border-black/5">
-                    <div class="w-full h-full bg-cover bg-center transition-transform duration-500 hover:scale-105" 
-                         data-alt="Modern luxury hotel bedroom with large window and city view" 
-                         style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCxyTC3LDyBLBoCqlyrSWZXJryWQKCQuaFq6HTJd5GInL_ricVgKkaMgLldqRkdsThzZuDuUQ1v5sNjl-fJp_iwGNDYmpJLjY9_9N7DUFJLBH-XPdYf0I9cLqAeKDQSbwlJPc4znLGS4TEGurkRsX2RtV9kzOHI595nIbBOpOWDjQVFpZdwulBwjNYc75no_Dd2wfsca2is4Tv646lEFjhAHJfd6pyobreGdPNvcHgYR6ZsnmR7Cf7ozPB46nvOr1Ywa35bBRcLQ0ge");'>
+                <div class="relative w-full h-full max-h-[65vh] rounded-xl overflow-hidden shadow-lg bg-surface ring-1 ring-black/5">
+                    <div class="w-full h-full bg-cover bg-center transition-transform duration-500 hover:scale-105" data-alt="Modern luxury hotel bedroom with large window and city view" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCxyTC3LDyBLBoCqlyrSWZXJryWQKCQuaFq6HTJd5GInL_ricVgKkaMgLldqRkdsThzZuDuUQ1v5sNjl-fJp_iwGNDYmpJLjY9_9N7DUFJLBH-XPdYf0I9cLqAeKDQSbwlJPc4znLGS4TEGurkRsX2RtV9kzOHI595nIbBOpOWDjQVFpZdwulBwjNYc75no_Dd2wfsca2is4Tv646lEFjhAHJfd6pyobreGdPNvcHgYR6ZsnmR7Cf7ozPB46nvOr1Ywa35bBRcLQ0ge");'>
                     </div>
                     
                     <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-transparent to-black/20 pointer-events-none"></div>
                     
-                    <div class="absolute top-4 right-4 bg-black/40 backdrop-blur-md text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/10">
+                    <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/10 shadow-sm">
                         1 / 24
                     </div>
-                    
-                    <button class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white size-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-0">
+
+                    <button class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-md text-white size-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-0 shadow-sm">
                         <span class="material-symbols-outlined">chevron_left</span>
                     </button>
-                    <button class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white size-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-md text-white size-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
                         <span class="material-symbols-outlined">chevron_right</span>
                     </button>
                 </div>
@@ -87,23 +85,22 @@
                 
                 <div class="w-full overflow-x-auto no-scrollbar px-4">
                     <div class="flex gap-3 min-w-max">
-                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-primary text-white transition-transform active:scale-95 shadow-lg shadow-primary/20">
+                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-primary text-white transition-transform active:scale-95 shadow-md shadow-primary/20">
                             <span class="text-sm font-semibold">All</span>
                         </button>
-                        
-                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-surface hover:bg-surface-hover border border-black/5 text-slate-600 transition-colors active:scale-95">
+                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-surface hover:bg-surface-hover border border-gray-200 text-text-muted transition-colors active:scale-95">
                             <span class="text-sm font-medium">Rooms</span>
                         </button>
-                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-surface hover:bg-surface-hover border border-black/5 text-slate-600 transition-colors active:scale-95">
+                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-surface hover:bg-surface-hover border border-gray-200 text-text-muted transition-colors active:scale-95">
                             <span class="text-sm font-medium">Restaurant</span>
                         </button>
-                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-surface hover:bg-surface-hover border border-black/5 text-slate-600 transition-colors active:scale-95">
+                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-surface hover:bg-surface-hover border border-gray-200 text-text-muted transition-colors active:scale-95">
                             <span class="text-sm font-medium">Pool</span>
                         </button>
-                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-surface hover:bg-surface-hover border border-black/5 text-slate-600 transition-colors active:scale-95">
+                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-surface hover:bg-surface-hover border border-gray-200 text-text-muted transition-colors active:scale-95">
                             <span class="text-sm font-medium">Lobby</span>
                         </button>
-                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-surface hover:bg-surface-hover border border-black/5 text-slate-600 transition-colors active:scale-95">
+                        <button class="flex h-9 items-center justify-center px-5 rounded-full bg-surface hover:bg-surface-hover border border-gray-200 text-text-muted transition-colors active:scale-95">
                             <span class="text-sm font-medium">Exterior</span>
                         </button>
                     </div>
@@ -111,28 +108,27 @@
 
                 <div class="w-full overflow-x-auto no-scrollbar px-4">
                     <div class="flex gap-3 min-w-max">
-                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden ring-2 ring-primary ring-offset-2 ring-offset-background cursor-pointer shadow-sm">
+                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden ring-2 ring-primary ring-offset-2 ring-offset-background shadow-sm cursor-pointer">
                             <div class="w-full h-full bg-cover bg-center" data-alt="Detail of luxury hotel bed linen and pillows" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDE85CzNMtWRePFcZt4RCJywyPsD2-xCk8bf_xwG14Qs_M4MqjmV83NA7p0EHrCeVTjC0W1VvUWcjmoJ85NjKtWBZd97-6w7EvD-dkBMASLskKj0p3XMRHMGt4Ti3TjuF2pQxTvkBPXaUrIihtNENsegyhy99BCXkowMyiFApnEsCSQbeG5XcRH4uwgR0lBQrweudB54dEWMBhQDqUvQho-TeLHRPixpqHuiu-be6DpGbF082YgHqhGGr0v2cR3cQ5up-aDfmOqke_n");'>
                             </div>
                         </div>
-                        
-                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden opacity-70 hover:opacity-100 transition-opacity cursor-pointer border border-black/5">
+                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden opacity-70 hover:opacity-100 transition-opacity cursor-pointer shadow-sm">
                             <div class="w-full h-full bg-cover bg-center" data-alt="Elegant bathroom with marble sink and mirror" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAGiZtoHRaDDiEt8FIVFLwsZnV_q-sgnKvh-myAF6avvVyOF_u5LZqq9OOJrMcu82XSK7CXx4lkpjofEfIPLSm1V6EVN1fEDDZTW8ZNjVoxLySPWXydG1cjXia_VdbDeRkogKYfr1rup6ns7CR7m9uGsYrcxkhBMjWOiq9alfzu8WzUvHR3n9avQU7enMuB9aGj0jX9EF3I_SCdZSLuuVdQZ24nqkO0fvKGRdhmZQKhHWt2bEOqhVukZny5VBjlLi82xNSVhtQ5ahjj");'>
                             </div>
                         </div>
-                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden opacity-70 hover:opacity-100 transition-opacity cursor-pointer border border-black/5">
+                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden opacity-70 hover:opacity-100 transition-opacity cursor-pointer shadow-sm">
                             <div class="w-full h-full bg-cover bg-center" data-alt="Wide shot of hotel exterior with palm trees" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDaz6pmV8WClh56BPNfpyaLNsP8VVFcj8JdMAUsKGb4VcGWuNHBlx3lVEFOd6ih4CLiMfrcoB_fwfAOVt6PQFWpZg0o9DPDtf6TxSRAvx6PeSxa9rn-f6XltV8Jy3gJYmEoitrswWZPddi55fHQ_RhY6CaPXJhCxlcgT8S_PaIZ3fqie6gqiMPPphd8j8zngAro5GPKeOCPPkb91o3sIW38t3JUt5hnLzbZpKuJTJlVXLYEJPZ_LY268rWMbguVoXFLqmtS53levCsS");'>
                             </div>
                         </div>
-                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden opacity-70 hover:opacity-100 transition-opacity cursor-pointer border border-black/5">
+                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden opacity-70 hover:opacity-100 transition-opacity cursor-pointer shadow-sm">
                             <div class="w-full h-full bg-cover bg-center" data-alt="Cozy hotel lounge area with armchairs" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD33Nfyl-5yQm8a-L8nkr5inCgV6HlMHeNMEDFzFtVFhbtU_rX7Y5CMTVJCfCr1S5yEecA6ay0WO-_fqDqiZP_tgOlHU8Gr8gO0l-9L7TO10lfL989hQp9d2VtxBjdi3pSTeH6G_7KJ8qAHVIpC44tf2hDPqC2dSjpZCr1ZfxQgXlXOzero_XPeZXxH0ZNKRN3lUHbv3mAPcvwElea-j3r6HMfGhPUB7gM7g9lT-tVgu09iBCUz3aIk67yp6PtVHFx8u9lRkOrARi3b");'>
                             </div>
                         </div>
-                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden opacity-70 hover:opacity-100 transition-opacity cursor-pointer border border-black/5">
+                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden opacity-70 hover:opacity-100 transition-opacity cursor-pointer shadow-sm">
                             <div class="w-full h-full bg-cover bg-center" data-alt="Refreshing outdoor swimming pool with lounge chairs" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCJNZqSZ8TVkHgvAoyZXTC4utUBgvmtZo2QRx_NizQfLiJTP0oTRt_euhrUxuwyOZqWqa9bXYah143Do24rBV5MkWESwQ9mmRY4O2dw8z9dBDF0g4c6KOvrsJgV1nh3TYOxm4Cq2cZlu7ca9PdREO56Z6k5jTZvlyLCvbJFKTmlXereRlHZ8-FfUZU8a0FNHfTX1hPGwgVOrLlfa5iWzV0r-veuJLnhiBEDh4bDSoykz7MDKu_dCYPkBaVnNkFvLF1v-NpU-mIiSE4v");'>
                             </div>
                         </div>
-                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden opacity-70 hover:opacity-100 transition-opacity cursor-pointer border border-black/5">
+                        <div class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden opacity-70 hover:opacity-100 transition-opacity cursor-pointer shadow-sm">
                             <div class="w-full h-full bg-cover bg-center" data-alt="Hotel balcony view overlooking the ocean" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCEUC2IyZcGxvh-1B7aC05-B-QRFJ7BBn_pZoex0Lm8MoQD2mOZ6z9Z6pDMxNwJoX5jZnIQDBKl-1W0XvkQE2kH79NM_lnEkZjfg2xkVgnoR_hiyo8fyGzTxndhhrlwu-EiZD7NDxx6OH0ohQGR-jXSP2RRLPSnNi8JZdqlrUJkg568Vrg_d-LA-7YKJhvLZ070WPc6-7F1bcWu6N0oiZhD1KjYojm0_Aj4Mg206S5VIng0WKIo216gt-g4L5ExQRLWm-V82v7epGzz");'>
                             </div>
                         </div>
