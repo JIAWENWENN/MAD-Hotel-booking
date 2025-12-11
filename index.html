@@ -3,122 +3,233 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Refund Confirmation Popup - Light Mode</title>
+    <title>Process Refund Screen</title>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#0E3286", // Updated Blue
-                        "background-light": "#f3f4f6",
-                        "text-main": "#1e293b",
-                        "text-muted": "#64748b",
-                        "border-light": "#e2e8f0"
-                    },
-                    fontFamily: {
-                        "display": ["Spline Sans", "sans-serif"]
-                    },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-                },
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#0E3286", 
+                "primary-dark": "#0a2666", 
+                "background-light": "#f6f6f8",
+                "background-dark": "#101022",
+                "surface-dark": "#191933",
+                "surface-input": "#222244",
+                "border-color": "#323267",
+                "text-muted": "#9292c9",
+              },
+              fontFamily: {
+                "display": ["Spline Sans", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
             },
+          },
         }
     </script>
     <style>
-        body {
-            min-height: max(884px, 100dvh);
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f6f6f8; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0E3286; 
+        }
+        /* Hide scrollbar for clean mobile look but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
+    <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
 </head>
-<body class="font-display bg-background-light text-text-main antialiased overflow-hidden h-screen w-full relative">
-    
-    <div aria-hidden="true" class="absolute inset-0 z-0 opacity-100 pointer-events-none">
-        <div class="grid grid-cols-12 gap-4 p-6 h-full">
-            <div class="col-span-2 bg-white border border-slate-200 rounded-xl h-full shadow-sm"></div>
-            <div class="col-span-10 flex flex-col gap-4">
-                <div class="h-16 bg-white border border-slate-200 rounded-xl w-full shadow-sm"></div>
-                <div class="grid grid-cols-3 gap-4 h-32">
-                    <div class="bg-white border border-slate-200 rounded-xl shadow-sm"></div>
-                    <div class="bg-white border border-slate-200 rounded-xl shadow-sm"></div>
-                    <div class="bg-white border border-slate-200 rounded-xl shadow-sm"></div>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased overflow-hidden h-screen flex flex-col">
+    <header class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between shrink-0 z-20">
+        <button class="text-slate-900 dark:text-white flex size-12 shrink-0 items-center justify-center rounded-full active:bg-slate-200 dark:active:bg-surface-dark transition-colors">
+            <span class="material-symbols-outlined" style="font-size: 24px;">arrow_back_ios_new</span>
+        </button>
+        <h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Process Refund</h2>
+    </header>
+
+    <main class="flex-1 overflow-y-auto no-scrollbar pb-24">
+        <div class="px-4 py-2">
+            <div class="flex items-stretch justify-between gap-4 rounded-xl bg-white dark:bg-surface-dark p-4 shadow-sm dark:shadow-[0_0_4px_rgba(0,0,0,0.1)] border border-slate-200 dark:border-transparent">
+                <div class="flex flex-col justify-center gap-1 flex-[2_2_0px]">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-orange-500/20 text-orange-400">Pending Review</span>
+                    </div>
+                    <p class="text-slate-900 dark:text-white text-base font-bold leading-tight">Request #REF-9928</p>
+                    <p class="text-slate-500 dark:text-text-muted text-xs font-normal leading-normal">Submitted 2 hours ago</p>
                 </div>
-                <div class="bg-white border border-slate-200 rounded-xl flex-1 shadow-sm"></div>
+                <div class="w-24 bg-center bg-no-repeat bg-cover rounded-lg shrink-0 border border-slate-200 dark:border-border-color" data-alt="Modern hotel building facade at night with blue ambient lighting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAG3wYFSMGq8SDbRjA0S10yoI1EE_wVDbxqY-qAWho0e7MY-5AEu45v-6fET6BZSzeVjBkeENGxKdR5DdmVgDSVZRNY_D8s2_NJYubxcG-cMV_7NBKU1-4W1KOK1OpeYzZ8oQZF4H3-4H9Nawu0s9aQJVueRkRSH9AFBSZv0x14lh-1jzJ53z4LE4opAIFA54Hw0FqBjxjF1iOc7Mxh4bboSapEUSeLznFa9UhVM-6gJmrn9YDZxEF8N8qx-SCC-9yA8YYxy7YhPBqz");'>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/20 backdrop-blur-sm transition-all duration-300">
-        
-        <div class="relative w-full max-w-[400px] flex flex-col gap-0 rounded-2xl border border-border-light bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] overflow-hidden">
+        <div class="mt-2">
+            <h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Booking Details</h3>
+            <div class="px-4">
+                <div class="grid grid-cols-[30%_1fr] gap-x-4 bg-white dark:bg-surface-dark rounded-xl p-4 border border-slate-200 dark:border-transparent">
+                    <div class="col-span-2 grid grid-cols-subgrid border-b border-slate-100 dark:border-border-color pb-3 mb-3">
+                        <p class="text-slate-500 dark:text-text-muted text-sm font-normal">Booking ID</p>
+                        <p class="text-slate-900 dark:text-white text-sm font-medium text-right">BK-2023-882</p>
+                    </div>
+                    <div class="col-span-2 grid grid-cols-subgrid border-b border-slate-100 dark:border-border-color pb-3 mb-3">
+                        <p class="text-slate-500 dark:text-text-muted text-sm font-normal">Customer</p>
+                        <p class="text-slate-900 dark:text-white text-sm font-medium text-right">Sarah Jenkins</p>
+                    </div>
+                    <div class="col-span-2 grid grid-cols-subgrid border-b border-slate-100 dark:border-border-color pb-3 mb-3">
+                        <p class="text-slate-500 dark:text-text-muted text-sm font-normal">Hotel</p>
+                        <p class="text-slate-900 dark:text-white text-sm font-medium text-right">Grand Hyatt Tokyo</p>
+                    </div>
+                    <div class="col-span-2 grid grid-cols-subgrid border-b border-slate-100 dark:border-border-color pb-3 mb-3">
+                        <p class="text-slate-500 dark:text-text-muted text-sm font-normal">Dates</p>
+                        <p class="text-slate-900 dark:text-white text-sm font-medium text-right">Oct 12 - Oct 15</p>
+                    </div>
+                    <div class="col-span-2 grid grid-cols-subgrid">
+                        <p class="text-slate-500 dark:text-text-muted text-sm font-normal">Reason</p>
+                        <p class="text-slate-900 dark:text-white text-sm font-medium text-right">Flight cancelled due to weather conditions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-2">
+            <h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Refund Calculation</h3>
             
-            <div class="p-6 pb-2 flex flex-col items-center text-center">
-                <div class="h-14 w-14 mb-4 rounded-full bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
-                    <span class="material-symbols-outlined text-3xl">currency_exchange</span>
+            <div class="px-4 mb-4">
+                <div class="bg-primary/10 border border-primary/30 rounded-lg p-3 flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary shrink-0" style="font-size: 20px;">verified_user</span>
+                    <div>
+                        <p class="text-primary text-xs font-bold uppercase tracking-wide mb-0.5">Policy Applied</p>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm">Flexible: Full refund available if cancelled 24h prior to check-in.</p>
+                    </div>
                 </div>
-                <h2 class="text-xl font-bold text-slate-900 tracking-tight mb-2">Confirm Refund</h2>
-                <p class="text-slate-500 text-sm leading-relaxed px-2">
-                    You are about to process a refund for <strong class="text-slate-900">$245.00</strong> to <strong class="text-slate-900">John Doe</strong>.
-                </p>
             </div>
 
-            <div class="px-6 py-4">
-                <div class="flex items-center gap-2 mb-3">
-                    <span class="material-symbols-outlined text-slate-400 text-sm">info</span>
-                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Automated Actions</span>
+            <div class="px-4 space-y-4">
+                <div class="space-y-2">
+                    <label class="text-slate-500 dark:text-text-muted text-sm font-medium">Refund Type</label>
+                    <div class="relative">
+                        <select class="w-full bg-slate-50 dark:bg-surface-input text-slate-900 dark:text-white border border-slate-200 dark:border-border-color rounded-lg p-3 pr-10 appearance-none focus:outline-none focus:border-primary transition-colors">
+                            <option>Full Refund</option>
+                            <option>Partial Refund</option>
+                            <option>Custom Amount</option>
+                        </select>
+                        <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-text-muted pointer-events-none">expand_more</span>
+                    </div>
                 </div>
 
-                <div class="flex flex-col gap-3">
-                    <div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-200">
-                        <div class="mt-0.5 min-w-[20px] h-5 rounded-full bg-emerald-500/10 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-emerald-600 text-sm font-bold">check</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-slate-800 text-sm font-medium leading-none mb-1">Refund via Stripe</span>
-                            <span class="text-slate-500 text-xs leading-tight">Process payment return to card ending •••• 4242</span>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="text-slate-500 dark:text-text-muted text-sm font-medium">Refund Amount</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-text-muted">$</span>
+                            <input class="w-full bg-slate-50 dark:bg-surface-input text-slate-900 dark:text-white border border-slate-200 dark:border-border-color rounded-lg p-3 pl-7 focus:outline-none focus:border-primary transition-colors font-mono font-medium" type="text" value="1,200.00"/>
                         </div>
                     </div>
-
-                    <div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-200">
-                        <div class="mt-0.5 min-w-[20px] h-5 rounded-full bg-emerald-500/10 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-emerald-600 text-sm font-bold">check</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-slate-800 text-sm font-medium leading-none mb-1">Cancel Amadeus</span>
-                            <span class="text-slate-500 text-xs leading-tight">Remove booking record #GH782K</span>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-200">
-                        <div class="mt-0.5 min-w-[20px] h-5 rounded-full bg-emerald-500/10 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-emerald-600 text-sm font-bold">check</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-slate-800 text-sm font-medium leading-none mb-1">Notify Guest</span>
-                            <span class="text-slate-500 text-xs leading-tight">Send cancellation email to john.doe@example.com</span>
+                    <div class="space-y-2">
+                        <label class="text-slate-500 dark:text-text-muted text-sm font-medium">Cancellation Fee</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-text-muted">$</span>
+                            <input class="w-full bg-slate-50 dark:bg-surface-input text-red-400 border border-slate-200 dark:border-border-color rounded-lg p-3 pl-7 focus:outline-none focus:border-primary transition-colors font-mono font-medium" type="text" value="0.00"/>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-4 flex gap-2 items-start bg-red-50 p-3 rounded-lg border border-red-200">
-                    <span class="material-symbols-outlined text-red-600 text-lg shrink-0">warning</span>
-                    <p class="text-red-800 text-xs leading-normal">This action is irreversible. The funds will be deducted from your account balance immediately.</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="text-slate-500 dark:text-text-muted text-sm font-medium">Refund To</label>
+                        <div class="flex items-center gap-2 p-3 bg-slate-50 dark:bg-surface-dark border border-slate-200 dark:border-transparent rounded-lg">
+                            <span class="material-symbols-outlined text-slate-400" style="font-size: 20px;">credit_card</span>
+                            <span class="text-slate-900 dark:text-white text-sm truncate">Visa •••• 4242</span>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-slate-500 dark:text-text-muted text-sm font-medium">Processing Time</label>
+                        <div class="flex items-center gap-2 p-3 bg-slate-50 dark:bg-surface-dark border border-slate-200 dark:border-transparent rounded-lg">
+                            <span class="material-symbols-outlined text-slate-400" style="font-size: 20px;">schedule</span>
+                            <span class="text-slate-900 dark:text-white text-sm truncate">5-7 Days</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="p-6 pt-2 grid grid-cols-2 gap-3">
-                <button class="flex items-center justify-center rounded-lg h-11 px-4 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-colors text-sm font-bold tracking-wide">
-                    CANCEL
-                </button>
-                <button class="flex items-center justify-center rounded-lg h-11 px-4 bg-primary hover:bg-[#0b286d] transition-colors text-white shadow-[0_4px_12px_rgba(14,50,134,0.25)] text-sm font-bold tracking-wide">
-                    CONFIRM REFUND
-                </button>
-            </div>
-
         </div>
-    </div>
+
+        <div class="px-4 mt-6">
+            <div class="rounded-xl bg-gradient-to-br from-surface-dark to-[#1e1e38] dark:from-[#1e1e38] dark:to-[#15152a] p-5 border border-slate-200 dark:border-border-color relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+                
+                <h4 class="text-white text-sm font-medium mb-4 relative z-10">Financial Summary</h4>
+                <div class="space-y-2 relative z-10">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-text-muted">Original Amount</span>
+                        <span class="text-white">$1,200.00</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-text-muted">Less Cancellation Fee</span>
+                        <span class="text-red-400">- $0.00</span>
+                    </div>
+                    <div class="h-px bg-border-color my-2"></div>
+                    <div class="flex justify-between items-end">
+                        <span class="text-white font-medium">Net Refund Amount</span>
+                        <span class="text-2xl font-bold text-white">$1,200.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="px-4 mt-6 mb-6">
+            <label class="text-slate-500 dark:text-text-muted text-sm font-medium block mb-2">Admin Notes (Internal)</label>
+            <textarea class="w-full bg-white dark:bg-surface-input text-slate-900 dark:text-white border border-slate-200 dark:border-border-color rounded-lg p-3 min-h-[100px] focus:outline-none focus:border-primary transition-colors text-sm resize-none" placeholder="Add any notes about this refund decision..."></textarea>
+        </div>
+
+        <div class="px-4 pb-8 flex gap-4">
+            <button class="flex-1 py-3 px-4 rounded-lg border border-slate-300 dark:border-border-color text-slate-700 dark:text-white font-bold text-sm bg-white dark:bg-transparent hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                REJECT REFUND
+            </button>
+            <button class="flex-1 py-3 px-4 rounded-lg bg-primary text-white font-bold text-sm shadow-[0_0_15px_rgba(14,50,134,0.3)] hover:bg-primary-dark transition-colors">
+                APPROVE REFUND
+            </button>
+        </div>
+    </main>
+
+    <nav class="flex shrink-0 items-center justify-around bg-white dark:bg-background-dark border-t border-slate-200 dark:border-border-color h-20 pb-4 z-20">
+        <a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors group" href="#">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">dashboard</span>
+            <span class="text-[10px] font-medium">Dashboard</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 p-2 text-primary" href="#">
+            <span class="material-symbols-outlined scale-110">currency_exchange</span>
+            <span class="text-[10px] font-medium">Refunds</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors group" href="#">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">calendar_month</span>
+            <span class="text-[10px] font-medium">Bookings</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors group" href="#">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">settings</span>
+            <span class="text-[10px] font-medium">Settings</span>
+        </a>
+    </nav>
 </body>
 </html>
