@@ -3,303 +3,233 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Finance Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <title>Process Refund Screen</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#0E3286", // Updated Color
-                        "background-light": "#f6f6f8",
-                        "surface-light": "#ffffff",
-                    },
-                    fontFamily: {
-                        "display": ["Manrope", "sans-serif"]
-                    },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-                },
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#0E3286", 
+                "primary-dark": "#0a2666", 
+                "background-light": "#f6f6f8",
+                "background-dark": "#101022",
+                "surface-dark": "#191933",
+                "surface-input": "#222244",
+                "border-color": "#323267",
+                "text-muted": "#9292c9",
+              },
+              fontFamily: {
+                "display": ["Spline Sans", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
             },
+          },
         }
     </script>
     <style>
-        /* Hide scrollbar for Chrome, Safari and Opera */
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f6f6f8; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0E3286; 
+        }
+        /* Hide scrollbar for clean mobile look but keep functionality */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
-        /* Hide scrollbar for IE, Edge and Firefox */
         .no-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
-        body {
-            min-height: max(884px, 100dvh);
-        }
-        /* Material Symbols settings */
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .material-symbols-outlined.filled {
-            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
+    <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
 </head>
-<body class="bg-background-light text-slate-900 font-display antialiased overflow-x-hidden pb-24">
-    <div class="relative flex flex-col w-full min-h-screen max-w-md mx-auto shadow-2xl overflow-hidden bg-background-light">
-        
-        <div class="flex items-center justify-between p-4 bg-background-light sticky top-0 z-20 backdrop-blur-md bg-opacity-90">
-            <div class="flex items-center justify-center size-10 rounded-full hover:bg-slate-200 transition cursor-pointer">
-                <span class="material-symbols-outlined text-slate-900 text-2xl">menu</span>
-            </div>
-            <h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center">Finance Dashboard</h2>
-            <div class="flex items-center gap-3">
-                <button class="relative flex items-center justify-center size-10 rounded-full hover:bg-slate-200 transition">
-                    <span class="material-symbols-outlined text-slate-900 text-2xl">notifications</span>
-                    <span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border border-white"></span>
-                </button>
-                <div class="size-9 rounded-full overflow-hidden border border-slate-200">
-                    <img alt="Profile of admin user" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgiN4vRuzMFtmEkcvBL_xT-PatU5hmjUXQqn3sXK7tI9t7k1SzCNUBGH-p2n95S-NfXPd2kZMULOaYY4TK1SR2ox79hHLgM0ffWJs6MCZIh9QbTZqHF7DYKvrxybAsHCQ1IW18Ktj3Yz90TDGaSsuHwipDW0SkUmvQuLhIQ4Nnn8zQjy5ENrtBYdc-0UE3vMfnFbvzVxZETOjgqam_KnXe8o47LJEYv62DHjnrnbO3NdiYmhVof5NiK_raYhS-fUCNxVSyvJfDTeYv"/>
-                </div>
-            </div>
-        </div>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased overflow-hidden h-screen flex flex-col">
+    <header class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between shrink-0 z-20">
+        <button class="text-slate-900 dark:text-white flex size-12 shrink-0 items-center justify-center rounded-full active:bg-slate-200 dark:active:bg-surface-dark transition-colors">
+            <span class="material-symbols-outlined" style="font-size: 24px;">arrow_back_ios_new</span>
+        </button>
+        <h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Process Refund</h2>
+    </header>
 
+    <main class="flex-1 overflow-y-auto no-scrollbar pb-24">
         <div class="px-4 py-2">
-            <div class="grid grid-cols-2 gap-3">
-                <div class="flex flex-col gap-2 rounded-xl p-4 bg-surface-light shadow-sm border border-slate-200">
-                    <div class="flex items-center gap-2">
-                        <div class="p-1.5 rounded-lg bg-[#0E3286]/10 text-[#0E3286]">
-                            <span class="material-symbols-outlined text-xl">payments</span>
-                        </div>
-                        <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider">Gross</p>
+            <div class="flex items-stretch justify-between gap-4 rounded-xl bg-white dark:bg-surface-dark p-4 shadow-sm dark:shadow-[0_0_4px_rgba(0,0,0,0.1)] border border-slate-200 dark:border-transparent">
+                <div class="flex flex-col justify-center gap-1 flex-[2_2_0px]">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-orange-500/20 text-orange-400">Pending Review</span>
                     </div>
+                    <p class="text-slate-900 dark:text-white text-base font-bold leading-tight">Request #REF-9928</p>
+                    <p class="text-slate-500 dark:text-text-muted text-xs font-normal leading-normal">Submitted 2 hours ago</p>
+                </div>
+                <div class="w-24 bg-center bg-no-repeat bg-cover rounded-lg shrink-0 border border-slate-200 dark:border-border-color" data-alt="Modern hotel building facade at night with blue ambient lighting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAG3wYFSMGq8SDbRjA0S10yoI1EE_wVDbxqY-qAWho0e7MY-5AEu45v-6fET6BZSzeVjBkeENGxKdR5DdmVgDSVZRNY_D8s2_NJYubxcG-cMV_7NBKU1-4W1KOK1OpeYzZ8oQZF4H3-4H9Nawu0s9aQJVueRkRSH9AFBSZv0x14lh-1jzJ53z4LE4opAIFA54Hw0FqBjxjF1iOc7Mxh4bboSapEUSeLznFa9UhVM-6gJmrn9YDZxEF8N8qx-SCC-9yA8YYxy7YhPBqz");'>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-2">
+            <h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Booking Details</h3>
+            <div class="px-4">
+                <div class="grid grid-cols-[30%_1fr] gap-x-4 bg-white dark:bg-surface-dark rounded-xl p-4 border border-slate-200 dark:border-transparent">
+                    <div class="col-span-2 grid grid-cols-subgrid border-b border-slate-100 dark:border-border-color pb-3 mb-3">
+                        <p class="text-slate-500 dark:text-text-muted text-sm font-normal">Booking ID</p>
+                        <p class="text-slate-900 dark:text-white text-sm font-medium text-right">BK-2023-882</p>
+                    </div>
+                    <div class="col-span-2 grid grid-cols-subgrid border-b border-slate-100 dark:border-border-color pb-3 mb-3">
+                        <p class="text-slate-500 dark:text-text-muted text-sm font-normal">Customer</p>
+                        <p class="text-slate-900 dark:text-white text-sm font-medium text-right">Sarah Jenkins</p>
+                    </div>
+                    <div class="col-span-2 grid grid-cols-subgrid border-b border-slate-100 dark:border-border-color pb-3 mb-3">
+                        <p class="text-slate-500 dark:text-text-muted text-sm font-normal">Hotel</p>
+                        <p class="text-slate-900 dark:text-white text-sm font-medium text-right">Grand Hyatt Tokyo</p>
+                    </div>
+                    <div class="col-span-2 grid grid-cols-subgrid border-b border-slate-100 dark:border-border-color pb-3 mb-3">
+                        <p class="text-slate-500 dark:text-text-muted text-sm font-normal">Dates</p>
+                        <p class="text-slate-900 dark:text-white text-sm font-medium text-right">Oct 12 - Oct 15</p>
+                    </div>
+                    <div class="col-span-2 grid grid-cols-subgrid">
+                        <p class="text-slate-500 dark:text-text-muted text-sm font-normal">Reason</p>
+                        <p class="text-slate-900 dark:text-white text-sm font-medium text-right">Flight cancelled due to weather conditions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-2">
+            <h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Refund Calculation</h3>
+            
+            <div class="px-4 mb-4">
+                <div class="bg-primary/10 border border-primary/30 rounded-lg p-3 flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary shrink-0" style="font-size: 20px;">verified_user</span>
                     <div>
-                        <p class="text-xl font-bold tracking-tight text-slate-900">$124,500</p>
-                        <p class="text-emerald-500 text-xs font-bold mt-1 flex items-center">
-                            <span class="material-symbols-outlined text-sm mr-0.5">trending_up</span> +12%
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-2 rounded-xl p-4 bg-primary shadow-lg shadow-[#0E3286]/20 text-white relative overflow-hidden group">
-                    <div class="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-all duration-500"></div>
-                    <div class="flex items-center gap-2 relative z-10">
-                        <div class="p-1.5 rounded-lg bg-white/20 text-white">
-                            <span class="material-symbols-outlined text-xl">account_balance_wallet</span>
-                        </div>
-                        <p class="text-white/80 text-xs font-semibold uppercase tracking-wider">Revenue</p>
-                    </div>
-                    <div class="relative z-10">
-                        <p class="text-xl font-bold tracking-tight text-white">$45,231</p>
-                        <p class="text-white/90 text-xs font-bold mt-1 flex items-center">
-                            <span class="material-symbols-outlined text-sm mr-0.5">trending_up</span> +8%
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-2 rounded-xl p-4 bg-surface-light shadow-sm border border-slate-200">
-                    <div class="flex items-center gap-2">
-                        <div class="p-1.5 rounded-lg bg-orange-50 text-orange-600">
-                            <span class="material-symbols-outlined text-xl">api</span>
-                        </div>
-                        <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider">Amadeus Cost</p>
-                    </div>
-                    <div>
-                        <p class="text-xl font-bold tracking-tight text-slate-900">$12,400</p>
-                        <p class="text-orange-500 text-xs font-bold mt-1 flex items-center">
-                            <span class="material-symbols-outlined text-sm mr-0.5">trending_down</span> -2%
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-2 rounded-xl p-4 bg-surface-light shadow-sm border border-slate-200">
-                    <div class="flex items-center gap-2">
-                        <div class="p-1.5 rounded-lg bg-purple-50 text-purple-600">
-                            <span class="material-symbols-outlined text-xl">pending_actions</span>
-                        </div>
-                        <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider">Refunds</p>
-                    </div>
-                    <div>
-                        <p class="text-xl font-bold tracking-tight text-slate-900">8</p>
-                        <p class="text-emerald-500 text-xs font-bold mt-1 flex items-center">
-                            <span class="material-symbols-outlined text-sm mr-0.5">info</span> Pending
-                        </p>
+                        <p class="text-primary text-xs font-bold uppercase tracking-wide mb-0.5">Policy Applied</p>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm">Flexible: Full refund available if cancelled 24h prior to check-in.</p>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="px-4 py-4">
-            <div class="bg-surface-light rounded-xl p-5 shadow-sm border border-slate-200">
-                <div class="flex items-center justify-between mb-4">
-                    <div>
-                        <h3 class="text-base font-bold text-slate-900">Revenue Breakdown</h3>
-                        <p class="text-xs text-slate-500">Income trends this month</p>
-                    </div>
-                    <div class="flex bg-slate-100 rounded-lg p-0.5">
-                        <button class="px-3 py-1 text-xs font-bold rounded-md bg-white text-slate-900 shadow-sm">M</button>
-                        <button class="px-3 py-1 text-xs font-bold rounded-md text-slate-500">W</button>
+            <div class="px-4 space-y-4">
+                <div class="space-y-2">
+                    <label class="text-slate-500 dark:text-text-muted text-sm font-medium">Refund Type</label>
+                    <div class="relative">
+                        <select class="w-full bg-slate-50 dark:bg-surface-input text-slate-900 dark:text-white border border-slate-200 dark:border-border-color rounded-lg p-3 pr-10 appearance-none focus:outline-none focus:border-primary transition-colors">
+                            <option>Full Refund</option>
+                            <option>Partial Refund</option>
+                            <option>Custom Amount</option>
+                        </select>
+                        <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-text-muted pointer-events-none">expand_more</span>
                     </div>
                 </div>
-                <div class="relative h-40 w-full">
-                    <svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 350 150">
-                        <defs>
-                            <lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
-                                <stop offset="0%" stop-color="#0E3286" stop-opacity="0.2"></stop>
-                                <stop offset="100%" stop-color="#0E3286" stop-opacity="0"></stop>
-                            </lineargradient>
-                        </defs>
-                        <line class="text-slate-500" stroke="currentColor" stroke-opacity="0.05" stroke-width="1" x1="0" x2="350" y1="0" y2="0"></line>
-                        <line class="text-slate-500" stroke="currentColor" stroke-opacity="0.05" stroke-width="1" x1="0" x2="350" y1="50" y2="50"></line>
-                        <line class="text-slate-500" stroke="currentColor" stroke-opacity="0.05" stroke-width="1" x1="0" x2="350" y1="100" y2="100"></line>
-                        <path d="M0,100 C50,100 80,60 120,70 C160,80 190,30 240,40 C290,50 320,10 350,20 V150 H0 Z" fill="url(#chartGradient)"></path>
-                        <path d="M0,100 C50,100 80,60 120,70 C160,80 190,30 240,40 C290,50 320,10 350,20" fill="none" stroke="#0E3286" stroke-linecap="round" stroke-width="3"></path>
-                        <circle class="fill-white stroke-primary" cx="120" cy="70" r="4" stroke-width="2"></circle>
-                        <circle class="fill-white stroke-primary" cx="240" cy="40" r="4" stroke-width="2"></circle>
-                        <circle class="fill-white stroke-primary" cx="350" cy="20" r="4" stroke-width="2"></circle>
-                    </svg>
-                </div>
-                <div class="flex justify-between mt-2 text-xs font-medium text-slate-400">
-                    <span>Week 1</span>
-                    <span>Week 2</span>
-                    <span>Week 3</span>
-                    <span>Week 4</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="mb-4">
-            <h3 class="px-4 pb-3 pt-2 text-base font-bold text-slate-900">Quick Actions</h3>
-            <div class="flex gap-4 overflow-x-auto px-4 pb-2 no-scrollbar">
-                <button class="flex flex-col items-center gap-2 min-w-[80px]">
-                    <div class="flex items-center justify-center size-14 rounded-2xl bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors duration-300">
-                        <span class="material-symbols-outlined text-2xl">receipt_long</span>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="text-slate-500 dark:text-text-muted text-sm font-medium">Refund Amount</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-text-muted">$</span>
+                            <input class="w-full bg-slate-50 dark:bg-surface-input text-slate-900 dark:text-white border border-slate-200 dark:border-border-color rounded-lg p-3 pl-7 focus:outline-none focus:border-primary transition-colors font-mono font-medium" type="text" value="1,200.00"/>
+                        </div>
                     </div>
-                    <span class="text-xs font-semibold text-slate-700">Invoices</span>
-                </button>
-                <button class="flex flex-col items-center gap-2 min-w-[80px]">
-                    <div class="flex items-center justify-center size-14 rounded-2xl bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors duration-300">
-                        <span class="material-symbols-outlined text-2xl">currency_exchange</span>
-                    </div>
-                    <span class="text-xs font-semibold text-slate-700">Refund</span>
-                </button>
-                <button class="flex flex-col items-center gap-2 min-w-[80px]">
-                    <div class="flex items-center justify-center size-14 rounded-2xl bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors duration-300">
-                        <span class="material-symbols-outlined text-2xl">download</span>
-                    </div>
-                    <span class="text-xs font-semibold text-slate-700">Report</span>
-                </button>
-                <button class="flex flex-col items-center gap-2 min-w-[80px]">
-                    <div class="flex items-center justify-center size-14 rounded-2xl bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors duration-300">
-                        <span class="material-symbols-outlined text-2xl">add_card</span>
-                    </div>
-                    <span class="text-xs font-semibold text-slate-700">Top Up</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="px-4 mb-2">
-            <div class="flex items-center justify-between mb-3">
-                <h3 class="text-base font-bold text-slate-900">Pending Requests</h3>
-                <a class="text-xs font-bold text-primary hover:text-primary/80" href="#">View All</a>
-            </div>
-            <div class="flex flex-col gap-3">
-                <div class="flex items-center gap-3 p-3 rounded-xl bg-surface-light border border-slate-200">
-                    <div class="size-10 rounded-full bg-slate-100 flex items-center justify-center shrink-0">
-                        <span class="material-symbols-outlined text-slate-600">person</span>
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-bold text-slate-900 truncate">Guest Refund - #4023</p>
-                        <p class="text-xs text-slate-500 truncate">Requested by John Doe</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-sm font-bold text-slate-900">$120.00</p>
-                        <div class="flex gap-2 mt-1">
-                            <button class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded">Approve</button>
+                    <div class="space-y-2">
+                        <label class="text-slate-500 dark:text-text-muted text-sm font-medium">Cancellation Fee</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-text-muted">$</span>
+                            <input class="w-full bg-slate-50 dark:bg-surface-input text-red-400 border border-slate-200 dark:border-border-color rounded-lg p-3 pl-7 focus:outline-none focus:border-primary transition-colors font-mono font-medium" type="text" value="0.00"/>
                         </div>
                     </div>
                 </div>
-                <div class="flex items-center gap-3 p-3 rounded-xl bg-surface-light border border-slate-200">
-                    <div class="size-10 rounded-full bg-slate-100 flex items-center justify-center shrink-0">
-                        <span class="material-symbols-outlined text-slate-600">apartment</span>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="text-slate-500 dark:text-text-muted text-sm font-medium">Refund To</label>
+                        <div class="flex items-center gap-2 p-3 bg-slate-50 dark:bg-surface-dark border border-slate-200 dark:border-transparent rounded-lg">
+                            <span class="material-symbols-outlined text-slate-400" style="font-size: 20px;">credit_card</span>
+                            <span class="text-slate-900 dark:text-white text-sm truncate">Visa •••• 4242</span>
+                        </div>
                     </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-bold text-slate-900 truncate">Vendor Payment</p>
-                        <p class="text-xs text-slate-500 truncate">Cleaning Services Ltd.</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-sm font-bold text-slate-900">$450.00</p>
-                        <div class="flex gap-2 mt-1">
-                            <button class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded">Approve</button>
+                    <div class="space-y-2">
+                        <label class="text-slate-500 dark:text-text-muted text-sm font-medium">Processing Time</label>
+                        <div class="flex items-center gap-2 p-3 bg-slate-50 dark:bg-surface-dark border border-slate-200 dark:border-transparent rounded-lg">
+                            <span class="material-symbols-outlined text-slate-400" style="font-size: 20px;">schedule</span>
+                            <span class="text-slate-900 dark:text-white text-sm truncate">5-7 Days</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="px-4 pb-6 mt-4">
-            <h3 class="text-base font-bold text-slate-900 mb-3">Recent Transactions</h3>
-            <div class="flex flex-col gap-0 bg-surface-light rounded-xl overflow-hidden border border-slate-200">
-                <div class="flex items-center justify-between p-4 border-b border-slate-200 hover:bg-slate-50 transition">
-                    <div class="flex items-center gap-3">
-                        <div class="size-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
-                            <span class="material-symbols-outlined text-xl">arrow_downward</span>
-                        </div>
-                        <div>
-                            <p class="text-sm font-bold text-slate-900">Booking #8821</p>
-                            <p class="text-xs text-slate-500">Stripe • Today, 10:23 AM</p>
-                        </div>
+        <div class="px-4 mt-6">
+            <div class="rounded-xl bg-gradient-to-br from-surface-dark to-[#1e1e38] dark:from-[#1e1e38] dark:to-[#15152a] p-5 border border-slate-200 dark:border-border-color relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+                
+                <h4 class="text-white text-sm font-medium mb-4 relative z-10">Financial Summary</h4>
+                <div class="space-y-2 relative z-10">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-text-muted">Original Amount</span>
+                        <span class="text-white">$1,200.00</span>
                     </div>
-                    <p class="text-sm font-bold text-emerald-500">+$1,200.00</p>
-                </div>
-                <div class="flex items-center justify-between p-4 border-b border-slate-200 hover:bg-slate-50 transition">
-                    <div class="flex items-center gap-3">
-                        <div class="size-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600">
-                            <span class="material-symbols-outlined text-xl">arrow_upward</span>
-                        </div>
-                        <div>
-                            <p class="text-sm font-bold text-slate-900">Refund #992</p>
-                            <p class="text-xs text-slate-500">PayPal • Yesterday</p>
-                        </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-text-muted">Less Cancellation Fee</span>
+                        <span class="text-red-400">- $0.00</span>
                     </div>
-                    <p class="text-sm font-bold text-slate-900">-$85.00</p>
-                </div>
-                <div class="flex items-center justify-between p-4 hover:bg-slate-50 transition">
-                    <div class="flex items-center gap-3">
-                        <div class="size-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
-                            <span class="material-symbols-outlined text-xl">arrow_downward</span>
-                        </div>
-                        <div>
-                            <p class="text-sm font-bold text-slate-900">Booking #8820</p>
-                            <p class="text-xs text-slate-500">Credit Card • Oct 24</p>
-                        </div>
+                    <div class="h-px bg-border-color my-2"></div>
+                    <div class="flex justify-between items-end">
+                        <span class="text-white font-medium">Net Refund Amount</span>
+                        <span class="text-2xl font-bold text-white">$1,200.00</span>
                     </div>
-                    <p class="text-sm font-bold text-emerald-500">+$340.50</p>
                 </div>
             </div>
         </div>
 
-        <div class="fixed bottom-0 w-full max-w-md z-30 bg-background-light border-t border-slate-200 pb-safe">
-            <div class="flex items-center justify-around h-16 px-2">
-                <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-primary">
-                    <span class="material-symbols-outlined filled text-[26px]">dashboard</span>
-                    <span class="text-[10px] font-bold">Dashboard</span>
-                </button>
-                <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-slate-400 hover:text-slate-600 transition">
-                    <span class="material-symbols-outlined text-[26px]">calendar_month</span>
-                    <span class="text-[10px] font-medium">Bookings</span>
-                </button>
-                <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-slate-400 hover:text-slate-600 transition">
-                    <span class="material-symbols-outlined text-[26px]">group</span>
-                    <span class="text-[10px] font-medium">Users</span>
-                </button>
-                <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-slate-400 hover:text-slate-600 transition">
-                    <span class="material-symbols-outlined text-[26px]">settings</span>
-                    <span class="text-[10px] font-medium">Settings</span>
-                </button>
-            </div>
+        <div class="px-4 mt-6 mb-6">
+            <label class="text-slate-500 dark:text-text-muted text-sm font-medium block mb-2">Admin Notes (Internal)</label>
+            <textarea class="w-full bg-white dark:bg-surface-input text-slate-900 dark:text-white border border-slate-200 dark:border-border-color rounded-lg p-3 min-h-[100px] focus:outline-none focus:border-primary transition-colors text-sm resize-none" placeholder="Add any notes about this refund decision..."></textarea>
         </div>
-    </div>
+
+        <div class="px-4 pb-8 flex gap-4">
+            <button class="flex-1 py-3 px-4 rounded-lg border border-slate-300 dark:border-border-color text-slate-700 dark:text-white font-bold text-sm bg-white dark:bg-transparent hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                REJECT REFUND
+            </button>
+            <button class="flex-1 py-3 px-4 rounded-lg bg-primary text-white font-bold text-sm shadow-[0_0_15px_rgba(14,50,134,0.3)] hover:bg-primary-dark transition-colors">
+                APPROVE REFUND
+            </button>
+        </div>
+    </main>
+
+    <nav class="flex shrink-0 items-center justify-around bg-white dark:bg-background-dark border-t border-slate-200 dark:border-border-color h-20 pb-4 z-20">
+        <a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors group" href="#">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">dashboard</span>
+            <span class="text-[10px] font-medium">Dashboard</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 p-2 text-primary" href="#">
+            <span class="material-symbols-outlined scale-110">currency_exchange</span>
+            <span class="text-[10px] font-medium">Refunds</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors group" href="#">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">calendar_month</span>
+            <span class="text-[10px] font-medium">Bookings</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors group" href="#">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">settings</span>
+            <span class="text-[10px] font-medium">Settings</span>
+        </a>
+    </nav>
 </body>
 </html>
