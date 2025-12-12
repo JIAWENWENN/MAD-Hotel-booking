@@ -1,213 +1,267 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Admin Settings Screen</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#0E3286",
-                        "background-light": "#f1f5f9",
-                        "surface-white": "#ffffff",
-                        "border-light": "#e2e8f0",
-                        "text-main": "#0f172a",
-                        "text-secondary": "#64748b",
-                    },
-                    fontFamily: {
-                        "display": ["Plus Jakarta Sans", "Spline Sans", "sans-serif"],
-                        "body": ["Plus Jakarta Sans", "sans-serif"],
-                    },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
-                },
-            },
+
+<html class="" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Search Results Screen</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#0e3286", "primary-light": "#eef2ff", "background-light": "#f6f6f8", "background-dark": "#111621", "card-light": "#ffffff", "card-dark": "#1C2230"}, fontFamily: {display: "Manrope"}, borderRadius: {DEFAULT: "1rem", lg: "2rem", xl: "3rem", full: "9999px"}}}};</script>
+<style>::-webkit-scrollbar {
+            width: 0px;background: transparent;
         }
-    </script>
-    <style>
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .toggle-checkbox:checked { right: 0; border-color: #0E3286; }
-        .toggle-checkbox:checked + .toggle-label { background-color: #0E3286; }
-        body { min-height: 100dvh; }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
-</head>
-<body class="bg-background-light font-display antialiased text-text-main selection:bg-primary/20">
-    <div class="relative flex h-full min-h-screen w-full flex-col max-w-md mx-auto bg-background-light overflow-x-hidden shadow-2xl border-x border-slate-200">
-        <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-border-light">
-            <div class="flex items-center px-4 py-3 justify-between">
-                <button class="text-text-main flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-slate-100 active:bg-slate-200 transition-colors">
-                    <span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100 min-h-screen pb-24">
+<header class="sticky top-0 z-40 bg-card-light dark:bg-card-dark shadow-sm border-b border-gray-200 dark:border-gray-800 transition-colors">
+<div class="px-4 py-3 flex items-center justify-between">
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<div class="flex flex-col items-center">
+<h1 class="text-base font-bold text-gray-900 dark:text-white leading-tight">Kuala Lumpur</h1>
+<p class="text-xs font-medium text-gray-500 dark:text-gray-400">Dec 15-18 • 2 Adults, 1 Room</p>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-primary hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined fill-1">map</span>
+</button>
+</div>
+<div class="px-4 pb-3 flex gap-3">
+<div class="flex-1 relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-gray-400 text-[20px]">search</span>
+<input class="w-full bg-gray-100 dark:bg-gray-800/50 border-transparent focus:border-primary focus:bg-white dark:focus:bg-gray-800 focus:ring-0 rounded-xl pl-10 pr-4 py-2.5 text-sm font-medium placeholder-gray-500 transition-all" placeholder="Search hotels..." type="text"/>
+</div>
+<button class="flex items-center justify-center w-11 h-11 bg-gray-100 dark:bg-gray-800/50 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors border border-transparent">
+<span class="material-symbols-outlined text-[22px]">tune</span>
+</button>
+</div>
+<div class="flex overflow-x-auto px-4 pb-3 gap-2 hide-scrollbar">
+<button class="flex items-center gap-1 px-3.5 py-1.5 bg-white dark:bg-card-dark border border-gray-200 dark:border-gray-700 rounded-full text-xs font-semibold whitespace-nowrap active:scale-95 transition-transform">
+                Sort <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<button class="flex items-center gap-1 px-3.5 py-1.5 bg-white dark:bg-card-dark border border-gray-200 dark:border-gray-700 rounded-full text-xs font-semibold whitespace-nowrap active:scale-95 transition-transform">
+                Price <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<button class="flex items-center gap-1 px-3.5 py-1.5 bg-white dark:bg-card-dark border border-gray-200 dark:border-gray-700 rounded-full text-xs font-semibold whitespace-nowrap active:scale-95 transition-transform">
+                Stars <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<button class="flex items-center gap-1 px-3.5 py-1.5 bg-white dark:bg-card-dark border border-gray-200 dark:border-gray-700 rounded-full text-xs font-semibold whitespace-nowrap active:scale-95 transition-transform">
+                More <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+</header>
+<main class="px-4 pt-4 space-y-5">
+<div class="flex flex-col gap-4">
+<div class="bg-gray-200 dark:bg-gray-800 p-1 rounded-xl flex relative">
+<div class="w-1/2 h-full absolute left-0 top-0 p-1 transition-all duration-300 ease-out transform translate-x-0">
+<div class="w-full h-full bg-white dark:bg-card-dark shadow-sm rounded-lg"></div>
+</div>
+<button class="flex-1 relative z-10 py-2 text-sm font-bold text-primary dark:text-white flex items-center justify-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[18px]">loyalty</span> Partner Hotels
                 </button>
-                <h2 class="text-text-main text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-10">Settings</h2>
-            </div>
-            <div class="w-full overflow-x-auto no-scrollbar">
-                <div class="flex border-b border-border-light px-4 min-w-max">
-                    <button class="flex flex-col items-center justify-center border-b-[3px] border-b-primary text-primary pb-3 pt-2 px-4 min-w-[80px]">
-                        <p class="text-sm font-bold leading-normal tracking-[0.015em]">General</p>
-                    </button>
-                    <button class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-text-secondary hover:text-text-main hover:border-b-border-light pb-3 pt-2 px-4 min-w-[80px] transition-colors">
-                        <p class="text-sm font-bold leading-normal tracking-[0.015em]">Pricing</p>
-                    </button>
-                    <button class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-text-secondary hover:text-text-main hover:border-b-border-light pb-3 pt-2 px-4 min-w-[80px] transition-colors">
-                        <p class="text-sm font-bold leading-normal tracking-[0.015em]">API</p>
-                    </button>
-                    <button class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-text-secondary hover:text-text-main hover:border-b-border-light pb-3 pt-2 px-4 min-w-[80px] transition-colors">
-                        <p class="text-sm font-bold leading-normal tracking-[0.015em]">Email</p>
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <main class="flex-1 flex flex-col pb-40">
-            <div class="mt-6">
-                <h3 class="text-text-main text-base font-bold leading-tight tracking-tight px-5 pb-3">App Details</h3>
-                <div class="flex flex-col gap-4 px-4">
-                    <label class="flex flex-col w-full group">
-                        <span class="text-text-secondary text-xs font-semibold uppercase tracking-wider mb-2 ml-1">App Name</span>
-                        <div class="relative">
-                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary material-symbols-outlined text-[20px]">smartphone</span>
-                            <input class="form-input w-full rounded-xl text-text-main placeholder:text-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary border border-border-light bg-white h-12 pl-12 pr-4 text-sm font-medium transition-all shadow-sm" placeholder="Enter app name" type="text" value="Hotelify Admin"/>
-                        </div>
-                    </label>
-                    <label class="flex flex-col w-full group">
-                        <span class="text-text-secondary text-xs font-semibold uppercase tracking-wider mb-2 ml-1">Support Email</span>
-                        <div class="relative">
-                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary material-symbols-outlined text-[20px]">mail</span>
-                            <input class="form-input w-full rounded-xl text-text-main placeholder:text-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary border border-border-light bg-white h-12 pl-12 pr-4 text-sm font-medium transition-all shadow-sm" placeholder="admin@example.com" type="email" value="support@hotelify.com"/>
-                        </div>
-                    </label>
-                </div>
-            </div>
-
-            <div class="h-px bg-border-light w-[90%] mx-auto my-6"></div>
-
-            <div>
-                <h3 class="text-text-main text-base font-bold leading-tight tracking-tight px-5 pb-3">Localization</h3>
-                <div class="grid grid-cols-2 gap-4 px-4">
-                    <label class="flex flex-col w-full">
-                        <span class="text-text-secondary text-xs font-semibold uppercase tracking-wider mb-2 ml-1">Currency</span>
-                        <div class="relative">
-                            <select class="form-select w-full rounded-xl text-text-main focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary border border-border-light bg-white h-12 pl-4 pr-10 text-sm font-medium appearance-none cursor-pointer shadow-sm">
-                                <option value="USD">USD ($)</option>
-                                <option value="EUR">EUR (€)</option>
-                                <option value="GBP">GBP (£)</option>
-                            </select>
-                            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-text-secondary pointer-events-none material-symbols-outlined">expand_more</span>
-                        </div>
-                    </label>
-                    <label class="flex flex-col w-full">
-                        <span class="text-text-secondary text-xs font-semibold uppercase tracking-wider mb-2 ml-1">Language</span>
-                        <div class="relative">
-                            <select class="form-select w-full rounded-xl text-text-main focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary border border-border-light bg-white h-12 pl-4 pr-10 text-sm font-medium appearance-none cursor-pointer shadow-sm">
-                                <option value="en">English</option>
-                                <option value="es">Spanish</option>
-                                <option value="fr">French</option>
-                            </select>
-                            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-text-secondary pointer-events-none material-symbols-outlined">expand_more</span>
-                        </div>
-                    </label>
-                </div>
-            </div>
-
-            <div class="h-px bg-border-light w-[90%] mx-auto my-6"></div>
-
-            <div>
-                <h3 class="text-text-main text-base font-bold leading-tight tracking-tight px-5 pb-3">Booking Rules</h3>
-                <div class="flex flex-col px-4 gap-3">
-                    <div class="bg-white rounded-xl p-4 border border-border-light flex items-center justify-between shadow-sm">
-                        <div class="flex flex-col">
-                            <span class="text-text-main font-medium text-sm">Min Advance Days</span>
-                            <span class="text-text-secondary text-xs">Minimum days before booking</span>
-                        </div>
-                        <div class="flex items-center bg-slate-100 rounded-lg border border-border-light h-10">
-                            <button class="w-10 h-full flex items-center justify-center text-text-secondary hover:text-text-main active:bg-slate-200 rounded-l-lg transition-colors">
-                                <span class="material-symbols-outlined text-[18px]">remove</span>
-                            </button>
-                            <input class="w-12 bg-transparent text-center text-text-main text-sm font-bold border-none focus:ring-0 p-0 appearance-none m-0" type="number" value="1"/>
-                            <button class="w-10 h-full flex items-center justify-center text-text-secondary hover:text-text-main active:bg-slate-200 rounded-r-lg transition-colors">
-                                <span class="material-symbols-outlined text-[18px]">add</span>
-                            </button>
-                        </div>
+<button class="flex-1 relative z-10 py-2 text-sm font-semibold text-gray-500 dark:text-gray-400 flex items-center justify-center gap-1.5 hover:text-gray-700 dark:hover:text-gray-200 transition-colors">
+<span class="material-symbols-outlined text-[18px]">language</span> All
+                </button>
+</div>
+<p class="text-sm font-semibold text-gray-500 dark:text-gray-400">245 hotels found</p>
+</div>
+<div class="space-y-5">
+<div class="bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden shadow-md border border-gray-100 dark:border-gray-800/60 flex flex-col group active:scale-[0.99] transition-transform">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Hotel Image" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMp4go8nzFfzwC8fJAFNbQUXTOhP2Hfwjzym6ZFP6LdMYQ42RGaFqH04j7i_2q_HMfSn2CZcfL3eCd-GXBY9g0xTCyHSKNmgS6hl2huqioHvtSVznS3qgEQeJFP_f8o2JBR-Yc05opnKkjLU8ng5yq_kGtck57JvBgmqVGBZgxz38a1PjLXmn9PWmPU2lOKi_ZLNvSP-gi9oy1r4EbtfUrbwv6ZpALRUwAN98-KMIPunBUSPaXx5ZHJFmgAFreMMSati7r0-7X3IM"/>
+<div class="absolute top-0 inset-x-0 h-16 bg-gradient-to-b from-black/50 to-transparent"></div>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-red-500/80 hover:scale-110 transition-all">
+<span class="material-symbols-outlined text-[20px]">favorite_border</span>
+</button>
+<div class="absolute top-3 left-3 bg-blue-600/90 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[12px]">loyalty</span> PARTNER
                     </div>
-                    <div class="bg-white rounded-xl p-4 border border-border-light flex items-center justify-between shadow-sm">
-                        <div class="flex flex-col">
-                            <span class="text-text-main font-medium text-sm">Max Advance Days</span>
-                            <span class="text-text-secondary text-xs">Maximum window for booking</span>
-                        </div>
-                        <div class="flex items-center bg-slate-100 rounded-lg border border-border-light h-10">
-                            <button class="w-10 h-full flex items-center justify-center text-text-secondary hover:text-text-main active:bg-slate-200 rounded-l-lg transition-colors">
-                                <span class="material-symbols-outlined text-[18px]">remove</span>
-                            </button>
-                            <input class="w-12 bg-transparent text-center text-text-main text-sm font-bold border-none focus:ring-0 p-0 appearance-none m-0" type="number" value="365"/>
-                            <button class="w-10 h-full flex items-center justify-center text-text-secondary hover:text-text-main active:bg-slate-200 rounded-r-lg transition-colors">
-                                <span class="material-symbols-outlined text-[18px]">add</span>
-                            </button>
-                        </div>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-gray-900 dark:text-white line-clamp-1">Grand Hyatt Kuala Lumpur</h3>
+<div class="flex items-center gap-1 bg-green-50 dark:bg-green-900/20 px-1.5 py-0.5 rounded text-green-700 dark:text-green-400">
+<span class="text-xs font-bold">4.8</span>
+<span class="material-symbols-outlined text-[10px] fill-1">star</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 mt-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span>City Centre, Kuala Lumpur • 0.5 km to center</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-gray-50 dark:bg-gray-800 rounded text-[10px] font-medium text-gray-600 dark:text-gray-300 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">wifi</span> Free WiFi
+                        </span>
+<span class="px-2 py-1 bg-gray-50 dark:bg-gray-800 rounded text-[10px] font-medium text-gray-600 dark:text-gray-300 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">pool</span> Pool
+                        </span>
+<span class="px-2 py-1 bg-gray-50 dark:bg-gray-800 rounded text-[10px] font-medium text-gray-600 dark:text-gray-300 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">spa</span> Spa
+                        </span>
+</div>
+<div class="h-px bg-gray-100 dark:bg-gray-800 w-full"></div>
+<div class="flex items-end justify-between">
+<div class="flex flex-col">
+<span class="inline-flex items-center gap-1 text-[10px] font-bold text-red-500 bg-red-50 dark:bg-red-900/20 px-1.5 py-0.5 rounded w-fit mb-1">
+<span class="material-symbols-outlined text-[12px]">local_fire_department</span> 20% OFF
+                            </span>
+<span class="text-[10px] text-gray-400 line-through">RM 450</span>
+</div>
+<div class="text-right">
+<div class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-1">
+<span class="text-sm font-semibold text-primary">RM</span> 360 <span class="text-xs font-normal text-gray-500">/ night</span>
+</div>
+<p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">Total: RM 1,080 (3 nights)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden shadow-md border border-gray-100 dark:border-gray-800/60 flex flex-col group active:scale-[0.99] transition-transform">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Hotel Image" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD16wKXPBqfJuT51WY1sHcwIyVG_KItP4GdUfg-RVNyBePlstGSvPUTuzLPNV9V8tzL1m2Q-bScyDHKVE90nhBXr_ZTriXgjdzng6i_nYSSlwLY4PvII049lqoAGYqrsdHWLz0cy7ae789F79lpi9DQm3wCKS6FGrDtbaLEJtrSO6MhW2VF6xs6VZkaY4fy36smBhl1gOvtMiLF3FnLDvxf4sEn2WxWJ8c1viiZJTsJWOzF2Y_b7KP41v6ArpbXdOX94VyVciWohY8"/>
+<div class="absolute top-0 inset-x-0 h-16 bg-gradient-to-b from-black/50 to-transparent"></div>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-red-500/80 hover:scale-110 transition-all">
+<span class="material-symbols-outlined text-[20px] fill-1 text-red-500">favorite</span>
+</button>
+<div class="absolute top-3 left-3 bg-gray-800/90 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[12px]">language</span> AMADEUS
                     </div>
-                </div>
-            </div>
-
-            <div class="h-px bg-border-light w-[90%] mx-auto my-6"></div>
-
-            <div class="mb-6">
-                <h3 class="text-text-main text-base font-bold leading-tight tracking-tight px-5 pb-3">App Maintenance</h3>
-                <div class="px-4 space-y-4">
-                    <div class="flex items-center justify-between bg-white border border-border-light p-4 rounded-xl shadow-sm">
-                        <div class="flex items-center gap-3">
-                            <div class="bg-orange-500/10 text-orange-600 p-2 rounded-full flex items-center justify-center">
-                                <span class="material-symbols-outlined text-[20px]">build</span>
-                            </div>
-                            <div class="flex flex-col">
-                                <span class="text-text-main font-medium text-sm">Maintenance Mode</span>
-                                <span class="text-text-secondary text-xs">Temporarily disable app access</span>
-                            </div>
-                        </div>
-                        <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
-                            <input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-slate-300 outline-none transition-all duration-300 left-0 top-0" id="maintenance-toggle" name="toggle" type="checkbox"/>
-                            <label class="toggle-label block overflow-hidden h-6 rounded-full bg-slate-300 cursor-pointer border border-slate-300" for="maintenance-toggle"></label>
-                        </div>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-gray-900 dark:text-white line-clamp-1">EQ Kuala Lumpur</h3>
+<div class="flex items-center gap-1 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-gray-700 dark:text-gray-400">
+<span class="text-xs font-bold">4.5</span>
+<span class="material-symbols-outlined text-[10px] fill-1">star</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 mt-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span>Golden Triangle, Kuala Lumpur</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-gray-50 dark:bg-gray-800 rounded text-[10px] font-medium text-gray-600 dark:text-gray-300 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">wifi</span> Free WiFi
+                        </span>
+<span class="px-2 py-1 bg-gray-50 dark:bg-gray-800 rounded text-[10px] font-medium text-gray-600 dark:text-gray-300 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">fitness_center</span> Gym
+                        </span>
+</div>
+<div class="h-px bg-gray-100 dark:bg-gray-800 w-full"></div>
+<div class="flex items-end justify-between">
+<div class="flex flex-col">
+<div class="h-4"></div>
+</div>
+<div class="text-right">
+<div class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-1">
+<span class="text-sm font-semibold text-primary">RM</span> 520 <span class="text-xs font-normal text-gray-500">/ night</span>
+</div>
+<p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">Total: RM 1,560 (3 nights)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden shadow-md border border-gray-100 dark:border-gray-800/60 flex flex-col group active:scale-[0.99] transition-transform">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Hotel Image" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1ydNBIOSXTtqjWhqQYETeNV2DmNF2OZU4ONAkJE-pPqwvvWhnwPBEaJFGlHJK1_IdbYiDWW7rg5A6enxG7aChb8e4lwTgEYiyIdAwI65xjS9E4cLtgSkOgClPmtJbUYtbNFhxuANnaNbaNk4jjBiGaus0SvROzX74vu9Muq8BqUbmPuBhhBS8gkvvuy9uG_rn9L6D_6f0UQxhGteWyG1_yClFxSTO3Sr6Tx8CemnVM-S9MRbBEs3SJj1JxScToDCPkJrG7u-uAIs"/>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-red-500/80 hover:scale-110 transition-all">
+<span class="material-symbols-outlined text-[20px]">favorite_border</span>
+</button>
+<div class="absolute top-3 left-3 bg-blue-600/90 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[12px]">loyalty</span> PARTNER
                     </div>
-                    <label class="flex flex-col w-full">
-                        <span class="text-text-secondary text-xs font-semibold uppercase tracking-wider mb-2 ml-1">Maintenance Message</span>
-                        <textarea class="form-textarea w-full rounded-xl text-text-main placeholder:text-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary border border-border-light bg-white min-h-[100px] p-4 text-sm font-medium resize-none shadow-sm" placeholder="We are currently performing scheduled maintenance. Please check back later."></textarea>
-                    </label>
-                </div>
-            </div>
-        </main>
-
-        <div class="fixed bottom-0 left-0 w-full z-50 bg-white border-t border-border-light max-w-md mx-auto h-16">
-            <div class="flex justify-around items-center h-full px-2">
-                <a class="flex flex-col items-center justify-center w-full h-full text-text-secondary hover:text-text-main group" href="#">
-                    <span class="material-symbols-outlined text-[24px] mb-1 group-hover:scale-110 transition-transform">dashboard</span>
-                    <span class="text-[10px] font-medium">Home</span>
-                </a>
-                <a class="flex flex-col items-center justify-center w-full h-full text-text-secondary hover:text-text-main group" href="#">
-                    <span class="material-symbols-outlined text-[24px] mb-1 group-hover:scale-110 transition-transform">calendar_month</span>
-                    <span class="text-[10px] font-medium">Bookings</span>
-                </a>
-                <a class="flex flex-col items-center justify-center w-full h-full text-primary group" href="#">
-                    <span class="material-symbols-outlined text-[24px] mb-1 group-hover:scale-110 transition-transform">settings</span>
-                    <span class="text-[10px] font-medium">Settings</span>
-                </a>
-                <a class="flex flex-col items-center justify-center w-full h-full text-text-secondary hover:text-text-main group" href="#">
-                    <span class="material-symbols-outlined text-[24px] mb-1 group-hover:scale-110 transition-transform">account_circle</span>
-                    <span class="text-[10px] font-medium">Profile</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="fixed bottom-16 left-0 right-0 max-w-md mx-auto z-40 p-4 pointer-events-none">
-            <button class="w-full pointer-events-auto bg-primary hover:bg-[#0b2970] text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-blue-900/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
-                <span class="material-symbols-outlined text-[20px]">save</span>
-                SAVE CHANGES
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-gray-900 dark:text-white line-clamp-1">Pavilion Hotel Kuala Lumpur</h3>
+<div class="flex items-center gap-1 bg-green-50 dark:bg-green-900/20 px-1.5 py-0.5 rounded text-green-700 dark:text-green-400">
+<span class="text-xs font-bold">4.7</span>
+<span class="material-symbols-outlined text-[10px] fill-1">star</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 mt-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span>Bukit Bintang, Kuala Lumpur</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-gray-50 dark:bg-gray-800 rounded text-[10px] font-medium text-gray-600 dark:text-gray-300 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">pool</span> Pool
+                        </span>
+<span class="px-2 py-1 bg-gray-50 dark:bg-gray-800 rounded text-[10px] font-medium text-gray-600 dark:text-gray-300 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">restaurant</span> Dining
+                        </span>
+</div>
+<div class="h-px bg-gray-100 dark:bg-gray-800 w-full"></div>
+<div class="flex items-end justify-between">
+<div class="flex flex-col">
+<span class="inline-flex items-center gap-1 text-[10px] font-bold text-red-500 bg-red-50 dark:bg-red-900/20 px-1.5 py-0.5 rounded w-fit mb-1">
+<span class="material-symbols-outlined text-[12px]">local_fire_department</span> 15% OFF
+                            </span>
+<span class="text-[10px] text-gray-400 line-through">RM 550</span>
+</div>
+<div class="text-right">
+<div class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-1">
+<span class="text-sm font-semibold text-primary">RM</span> 467 <span class="text-xs font-normal text-gray-500">/ night</span>
+</div>
+<p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">Total: RM 1,401</p>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full py-3 bg-white dark:bg-card-dark border border-gray-200 dark:border-gray-800 rounded-xl text-primary font-bold text-sm shadow-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors mb-6">
+                Load More Results
             </button>
-        </div>
-    </div>
-</body>
-</html>
+</div>
+</main>
+<nav class="fixed bottom-0 w-full bg-card-light dark:bg-card-dark border-t border-gray-200 dark:border-gray-800 pb-safe pt-2 z-50 shadow-[0_-5px_10px_rgba(0,0,0,0.02)]">
+<div class="flex justify-around items-center px-2 pb-3">
+<a class="flex flex-col items-center gap-1 p-2 text-primary" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300" href="#">
+<span class="material-symbols-outlined text-[24px]">explore</span>
+<span class="text-[10px] font-medium">Explore</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300" href="#">
+<span class="material-symbols-outlined text-[24px]">bookmark</span>
+<span class="text-[10px] font-medium">Saved</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300" href="#">
+<span class="material-symbols-outlined text-[24px]">calendar_month</span>
+<span class="text-[10px] font-medium">Bookings</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300" href="#">
+<span class="material-symbols-outlined text-[24px]">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>
