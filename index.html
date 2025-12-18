@@ -1,182 +1,11 @@
 <!DOCTYPE html>
-
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Change Password</title>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Tailwind Configuration -->
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#320e86",
-                        "primary-hover": "#260a66",
-                        "background-light": "#FFFFFF",
-                        "background-dark": "#161121",
-                        "text-main": "#120e1b",
-                        "text-subtle": "#64748b",
-                        "input-bg": "#F3F4F6",
-                        "border-subtle": "#e2e8f0",
-                        "success": "#10b981",
-                    },
-                    fontFamily: {
-                        "display": ["Spline Sans", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.375rem", // rounded-md roughly
-                        "md": "0.375rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "2xl": "1rem",
-                        "full": "9999px"
-                    },
-                },
-            },
-        }
-    </script>
-<style>
-        body {
-            font-family: 'Spline Sans', sans-serif;
-        }
-        .material-symbols-outlined {
-            font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 24
-        }
-        /* Hide scrollbar for cleaner mobile look */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-    </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="bg-background-light text-text-main antialiased min-h-screen flex flex-col">
-<!-- Header -->
-<header class="sticky top-0 z-10 bg-background-light/95 backdrop-blur-sm border-b border-border-subtle/50">
-<div class="flex items-center px-4 py-3 justify-between max-w-lg mx-auto w-full">
-<button class="flex items-center justify-center p-2 -ml-2 text-text-main hover:bg-gray-100 rounded-full transition-colors">
-<span class="material-symbols-outlined">arrow_back_ios_new</span>
-</button>
-<h1 class="text-lg font-bold text-center flex-1 pr-8">Change Password</h1>
-</div>
-</header>
-<!-- Main Content -->
-<main class="flex-1 w-full max-w-lg mx-auto flex flex-col p-5 overflow-y-auto no-scrollbar pb-24">
-<!-- Info Note -->
-<div class="mb-6 bg-blue-50 border border-blue-100 rounded-lg p-4 flex gap-3 items-start">
-<span class="material-symbols-outlined text-primary text-xl mt-0.5">info</span>
-<p class="text-sm text-primary/80 leading-snug">
-                Updating your password will automatically sign you out of all other active sessions on other devices.
-            </p>
-</div>
-<form class="flex flex-col gap-6" onsubmit="event.preventDefault();">
-<!-- Current Password -->
-<div class="flex flex-col gap-2">
-<div class="flex justify-between items-baseline">
-<label class="text-sm font-semibold text-text-main" for="current-password">Current Password</label>
-<a class="text-xs font-medium text-primary hover:underline hover:text-primary-hover transition-colors" href="#">Forgot your password?</a>
-</div>
-<div class="relative group">
-<input class="w-full bg-input-bg border-transparent focus:border-primary focus:bg-white focus:ring-0 rounded-lg px-4 py-3.5 text-base text-text-main placeholder-gray-400 transition-all outline-none" id="current-password" placeholder="Enter current password" type="password"/>
-<button class="absolute right-3 top-1/2 -translate-y-1/2 text-text-subtle hover:text-primary p-1" type="button">
-<span class="material-symbols-outlined text-xl">visibility_off</span>
-</button>
-</div>
-</div>
-<hr class="border-border-subtle/60"/>
-<!-- New Password Section -->
-<div class="flex flex-col gap-4">
-<!-- New Password Field -->
-<div class="flex flex-col gap-2">
-<label class="text-sm font-semibold text-text-main" for="new-password">New Password</label>
-<div class="relative group">
-<input class="w-full bg-input-bg border-transparent focus:border-primary focus:bg-white focus:ring-0 rounded-lg px-4 py-3.5 text-base text-text-main placeholder-gray-400 transition-all outline-none" id="new-password" placeholder="Enter new password" type="password" value="Hotel123"/> <!-- Pre-filled for demo of strength meter -->
-<button class="absolute right-3 top-1/2 -translate-y-1/2 text-text-subtle hover:text-primary p-1" type="button">
-<span class="material-symbols-outlined text-xl">visibility_off</span>
-</button>
-</div>
-</div>
-<!-- Password Strength Meter -->
-<div class="flex flex-col gap-2">
-<div class="flex justify-between items-end">
-<span class="text-xs font-medium text-text-subtle">Strength</span>
-<span class="text-xs font-bold text-[#EAB308]">Medium</span>
-</div>
-<div class="flex gap-1.5 h-1.5 w-full">
-<div class="h-full flex-1 rounded-full bg-success"></div>
-<div class="h-full flex-1 rounded-full bg-[#EAB308]"></div>
-<div class="h-full flex-1 rounded-full bg-gray-200"></div>
-<div class="h-full flex-1 rounded-full bg-gray-200"></div>
-</div>
-</div>
-<!-- Requirements Checklist -->
-<div class="bg-gray-50 rounded-lg p-3 space-y-2 border border-border-subtle/50">
-<p class="text-xs font-semibold text-text-subtle uppercase tracking-wider mb-2">Requirements</p>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-success text-[18px]" style="font-variation-settings: 'wght' 600;">check</span>
-<span class="text-xs text-text-main font-medium">At least 8 characters</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-success text-[18px]" style="font-variation-settings: 'wght' 600;">check</span>
-<span class="text-xs text-text-main font-medium">One uppercase letter</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-success text-[18px]" style="font-variation-settings: 'wght' 600;">check</span>
-<span class="text-xs text-text-main font-medium">One number</span>
-</div>
-<div class="flex items-center gap-2">
-<div class="w-[18px] h-[18px] flex items-center justify-center">
-<div class="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
-</div>
-<span class="text-xs text-text-subtle">One special character</span>
-</div>
-</div>
-<!-- Confirm Password Field -->
-<div class="flex flex-col gap-2 mt-2">
-<label class="text-sm font-semibold text-text-main" for="confirm-password">Confirm New Password</label>
-<div class="relative group">
-<input class="w-full bg-input-bg border-transparent focus:border-primary focus:bg-white focus:ring-0 rounded-lg px-4 py-3.5 text-base text-text-main placeholder-gray-400 transition-all outline-none" id="confirm-password" placeholder="Re-enter new password" type="password"/>
-<button class="absolute right-3 top-1/2 -translate-y-1/2 text-text-subtle hover:text-primary p-1" type="button">
-<span class="material-symbols-outlined text-xl">visibility_off</span>
-</button>
-</div>
-</div>
-</div>
-</form>
-</main>
-<!-- Bottom Action Bar -->
-<div class="sticky bottom-0 bg-background-light p-5 pt-2 border-t border-border-subtle max-w-lg mx-auto w-full z-20">
-<!-- Button Disabled state simulated with opacity-90, for demo it looks active but user requested logic mentions disabled state until valid -->
-<button class="w-full bg-primary hover:bg-primary-hover active:scale-[0.99] text-white font-bold text-base py-4 rounded-lg shadow-lg shadow-primary/20 transition-all duration-200 flex items-center justify-center gap-2">
-            UPDATE PASSWORD
-        </button>
-</div>
-</body></html><!DOCTYPE html>
-
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Password Changed Popup</title>
-<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<title>Feedback Thank You Popup</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
@@ -190,49 +19,66 @@
                         "background-dark": "#111621",
                     },
                     fontFamily: {
-                        "display": ["Spline Sans", "Noto Sans", "sans-serif"]
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
                     },
                     borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
                 },
             },
         }
     </script>
+<style>.select-chevron {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBunznkFfD0KkKpstUe_aNHWUmE3G9yv7cgbPTprTpyQ-PCDkzOzueuGlUGydvppNi6kxN1kzR66J9RYRRva0yU4-AvIJDvRgwCI0Jc8OnSdE9nnTLoheJsEtBcw3B0dmLtgRyGOWicAYSblbNb9bjswrMcfOlitN2tkwazr0oi0zNjhOV7luI5vShrHEWekhk1Hu1no2hUC1FSX5lMmRtaoxrwpiDcxo-GXInmGwLEJO6Eood4ojvu144R9dFQRWz7HxAxqw6KYyDx);
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
 <style>
     body {
       min-height: max(884px, 100dvh);
     }
   </style>
   </head>
-<body class="bg-gray-100 font-display">
-<!-- Main Container simulating the screen behind the modal -->
-<div class="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[url('https://placeholder.pics/svg/300/ededed/ededed')] bg-cover bg-center" data-alt="blurred background pattern">
-<!-- Overlay Backdrop -->
-<div class="absolute inset-0 z-0 bg-black/60 backdrop-blur-sm"></div>
-<!-- Modal Card -->
-<div class="relative z-10 mx-4 flex w-full max-w-[340px] flex-col items-center overflow-hidden rounded-xl bg-white p-6 shadow-2xl ring-1 ring-black/5 dark:bg-background-dark dark:ring-white/10">
-<!-- Success Illustration Area -->
-<div class="mb-5 flex h-24 w-24 items-center justify-center rounded-full bg-primary/10 p-4">
-<!-- Using a checkmark icon as the primary success indicator, styled large and modern -->
-<span class="material-symbols-outlined text-5xl text-primary font-bold" style="font-size: 48px;">check_circle</span>
+<body class="bg-gray-800/50 flex flex-col justify-end min-h-screen font-display antialiased overflow-hidden">
+<div class="relative w-full max-w-md mx-auto bg-white dark:bg-background-dark rounded-t-[32px] shadow-2xl flex flex-col overflow-hidden animate-slide-up">
+<div class="flex items-center justify-center pt-3 pb-1 w-full flex-shrink-0 bg-white dark:bg-background-dark">
+<div class="h-1.5 w-12 rounded-full bg-gray-300 dark:bg-gray-600"></div>
 </div>
-<!-- Headline Text -->
-<div class="flex flex-col items-center px-2">
-<h2 class="text-[#0e121b] text-center text-[22px] font-bold leading-tight tracking-tight dark:text-white">
-                    Password Changed!
-                </h2>
-</div>
-<!-- Body Text -->
-<div class="mt-3 flex flex-col items-center px-1">
-<p class="text-[#0e121b]/70 text-center text-[15px] font-normal leading-relaxed dark:text-gray-300">
-                    Your password has been successfully updated. For security, you have been signed out of all other devices.
-                </p>
-</div>
-<!-- Action Button -->
-<div class="mt-8 flex w-full">
-<button class="flex h-12 w-full cursor-pointer items-center justify-center rounded-lg bg-primary px-5 text-base font-bold tracking-[0.015em] text-white shadow-sm transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
-<span class="truncate">DONE</span>
+<div class="flex items-center justify-between px-6 py-4 flex-shrink-0 bg-white dark:bg-background-dark border-b border-gray-50 dark:border-gray-800">
+<div class="w-10"></div>
+<h2 class="text-[#0e121b] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] text-center">Feedback Sent</h2>
+<div class="w-10 flex justify-end">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#0e121b] dark:text-white">
+<span class="material-symbols-outlined text-2xl">close</span>
 </button>
 </div>
+</div>
+<div class="flex-1 overflow-y-auto px-6 pt-10 pb-8 flex flex-col items-center justify-center text-center">
+<div class="w-24 h-24 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center mb-6 group">
+<span class="material-symbols-outlined text-5xl text-primary dark:text-blue-400">thumb_up</span>
+</div>
+<h3 class="text-2xl font-bold text-[#0e121b] dark:text-white mb-3">Thank You!</h3>
+<p class="text-gray-500 dark:text-gray-400 text-base leading-relaxed max-w-[300px]">
+    We appreciate your feedback. It helps us improve our services and provide you with a better experience.
+</p>
+</div>
+<div class="flex-shrink-0 p-6 bg-white dark:bg-background-dark border-t border-gray-100 dark:border-gray-800 pb-8">
+<button class="w-full h-14 bg-primary hover:bg-[#0b286d] text-white text-base font-bold rounded-xl shadow-lg shadow-blue-900/10 flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+<span>DONE</span>
+</button>
 </div>
 </div>
 </body></html>
