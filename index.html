@@ -2,40 +2,48 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Request Submitted Popup</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<title>Login &amp; Security</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#0e3286",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#111621",
-                    },
-                    fontFamily: {
-                        "display": ["Plus Jakarta Sans", "sans-serif"]
-                    },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-                },
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0e3286",
+              "background-light": "#f6f6f8",
+              "background-dark": "#111621",
             },
-        }
+            fontFamily: {
+              "display": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
     </script>
-<style>.select-chevron {
-    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBunznkFfD0KkKpstUe_aNHWUmE3G9yv7cgbPTprTpyQ-PCDkzOzueuGlUGydvppNi6kxN1kzR66J9RYRRva0yU4-AvIJDvRgwCI0Jc8OnSdE9nnTLoheJsEtBcw3B0dmLtgRyGOWicAYSblbNb9bjswrMcfOlitN2tkwazr0oi0zNjhOV7luI5vShrHEWekhk1Hu1no2hUC1FSX5lMmRtaoxrwpiDcxo-GXInmGwLEJO6Eood4ojvu144R9dFQRWz7HxAxqw6KYyDx);
-    background-position: right 0.5rem center;
-    background-repeat: no-repeat;
-    background-size: 1.5em 1.5em;
-    padding-right: 2.5rem;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none
-    }</style>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }.no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
 <style>
     body {
       min-height: max(884px, 100dvh);
@@ -47,43 +55,81 @@
     }
   </style>
   </head>
-<body class="bg-gray-800/50 flex flex-col justify-end min-h-screen font-display antialiased overflow-hidden">
-<div class="relative w-full max-w-md mx-auto bg-white dark:bg-background-dark rounded-t-[32px] shadow-2xl flex flex-col overflow-hidden animate-slide-up">
-<div class="flex items-center justify-center pt-3 pb-1 w-full flex-shrink-0 bg-white dark:bg-background-dark">
-<div class="h-1.5 w-12 rounded-full bg-gray-300 dark:bg-gray-600"></div>
-</div>
-<div class="flex items-center justify-between px-6 py-4 flex-shrink-0 bg-white dark:bg-background-dark border-b border-gray-50 dark:border-gray-800">
-<div class="w-10"></div>
-<h2 class="text-[#0e121b] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] text-center">Request Submitted</h2>
-<div class="w-10 flex justify-end">
-<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#0e121b] dark:text-white">
-<span class="material-symbols-outlined text-2xl">close</span>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased pb-24">
+<div class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between px-4 py-3 pt-12 md:pt-4">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-slate-800 dark:text-white">arrow_back</span>
 </button>
+<h2 class="text-lg font-bold leading-tight tracking-tight text-center text-slate-900 dark:text-white flex-1 pr-10">
+                Login &amp; Security
+            </h2>
 </div>
 </div>
-<div class="flex-1 overflow-y-auto px-6 pt-8 pb-8 flex flex-col items-center justify-start text-center">
-<div class="w-24 h-24 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center mb-6 group">
-<span class="material-symbols-outlined text-5xl text-primary dark:text-blue-400">mark_email_read</span>
+<div class="max-w-md mx-auto w-full px-4 pt-6 space-y-6">
+<section>
+<h3 class="px-1 pb-2 text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Login Details</h3>
+<div class="overflow-hidden rounded-xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
+<div class="flex items-center justify-between gap-4 p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500">
+<span class="material-symbols-outlined">mail</span>
 </div>
-<h3 class="text-2xl font-bold text-[#0e121b] dark:text-white mb-3">Request Received</h3>
-<p class="text-gray-500 dark:text-gray-400 text-base leading-relaxed max-w-[320px] mb-8">
-    Thank you for contacting us. We have received your request and our support team will get back to you shortly.
-</p>
-<div class="w-full bg-background-light dark:bg-gray-800/50 rounded-2xl p-5 border border-gray-100 dark:border-gray-700">
-<div class="flex items-center justify-between mb-4 pb-4 border-b border-dashed border-gray-200 dark:border-gray-600">
-<span class="text-sm font-medium text-gray-500 dark:text-gray-400">Ticket Number</span>
-<span class="text-base font-bold text-[#0e121b] dark:text-white font-mono tracking-wide">#REQ-8294</span>
-</div>
-<div class="flex items-center justify-between">
-<span class="text-sm font-medium text-gray-500 dark:text-gray-400">Est. Response Time</span>
-<span class="text-sm font-bold text-primary dark:text-blue-400 bg-blue-100/50 dark:bg-blue-900/30 px-3 py-1 rounded-lg">~ 2 hours</span>
+<div class="flex flex-col truncate">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-500">Email</span>
+<span class="truncate text-base font-medium text-slate-500 dark:text-slate-400">alex.morgan@example.com</span>
 </div>
 </div>
 </div>
-<div class="flex-shrink-0 p-6 bg-white dark:bg-background-dark border-t border-gray-100 dark:border-gray-800 pb-8">
-<button class="w-full h-14 bg-primary hover:bg-[#0b286d] text-white text-base font-bold rounded-xl shadow-lg shadow-blue-900/10 flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
-<span>DONE</span>
-</button>
+<div class="flex items-center justify-between gap-4 p-4">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-900/20 text-primary dark:text-blue-400">
+<span class="material-symbols-outlined">lock</span>
 </div>
+<div class="flex flex-col">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">Password</span>
+<span class="text-base font-medium text-slate-900 dark:text-white tracking-widest">••••••••••••</span>
+</div>
+</div>
+<button class="shrink-0 rounded-lg bg-slate-100 dark:bg-slate-800 px-4 py-1.5 text-sm font-semibold text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                        Change
+                    </button>
+</div>
+</div>
+</section>
+<section class="pb-8">
+<h3 class="px-1 pb-2 text-sm font-bold uppercase tracking-wider text-red-600 dark:text-red-400">Danger Zone</h3>
+<div class="rounded-xl bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/20 p-4">
+<div class="flex flex-col gap-3">
+<p class="text-sm text-slate-600 dark:text-slate-300">
+                        Permanently delete your account and all of your content. This action cannot be undone.
+                    </p>
+<button class="w-full rounded-lg border border-red-200 bg-white dark:bg-transparent dark:border-red-800 py-3 text-sm font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+                        Delete Account
+                    </button>
+</div>
+</div>
+</section>
+</div>
+<div class="fixed bottom-0 left-0 right-0 z-50 border-t border-slate-200 bg-white dark:bg-background-dark dark:border-slate-800 pb-safe">
+<div class="flex justify-around items-center h-16 max-w-md mx-auto">
+<a class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 gap-1 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 gap-1 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">search</span>
+<span class="text-[10px] font-medium">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 gap-1 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">calendar_month</span>
+<span class="text-[10px] font-medium">Bookings</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-primary dark:text-blue-400 gap-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</a>
+</div>
+<div class="h-5 w-full bg-white dark:bg-background-dark"></div>
 </div>
 </body></html>
