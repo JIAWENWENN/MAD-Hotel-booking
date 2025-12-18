@@ -3,10 +3,15 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Phone OTP Screen</title>
-<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<title>Contact Us</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
         tailwind.config = {
@@ -14,27 +19,38 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#0e0e86",
+                        "primary": "#0e3286",
                         "background-light": "#f6f6f8",
-                        "background-dark": "#111121",
+                        "background-dark": "#111621",
+                        "surface": "#ffffff",
                     },
                     fontFamily: {
-                        "display": ["Spline Sans", "sans-serif"]
+                        "display": ["Inter", "sans-serif"]
                     },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "soft": "0 2px 8px rgba(0, 0, 0, 0.04)",
+                        "card": "0 4px 12px rgba(14, 50, 134, 0.08)",
+                    }
                 },
             },
         }
     </script>
 <style>
-        /* Custom styles for removing spinners from number inputs */
-        input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { 
-            -webkit-appearance: none; 
-            margin: 0; 
+        body {
+            font-family: 'Inter', sans-serif;
         }
-        input[type=number] {
-            -moz-appearance: textfield;
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
     </style>
 <style>
@@ -43,82 +59,139 @@
     }
   </style>
   </head>
-<body>
-<div class="relative flex h-full min-h-screen w-full flex-col bg-white dark:bg-background-dark font-display overflow-x-hidden group/design-root">
-<!-- Header/Navigation -->
-<div class="flex items-center w-full p-4 sticky top-0 z-10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
-<button class="flex items-center justify-center size-10 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors text-slate-800 dark:text-white">
-<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back_ios_new</span>
+<body class="bg-background-light dark:bg-background-dark text-[#0e121b] antialiased">
+<!-- Main Container -->
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden pb-24 group/design-root">
+<!-- Top App Bar -->
+<div class="sticky top-0 z-20 flex items-center bg-background-light/95 backdrop-blur-md p-4 pb-2 justify-between border-b border-gray-100 dark:border-gray-800 dark:bg-background-dark/95">
+<button class="text-[#0e121b] hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 flex size-10 shrink-0 items-center justify-center rounded-full transition-colors">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<h2 class="text-[#0e121b] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-10">Contact Us</h2>
+</div>
+<!-- Header Section -->
+<div class="px-5 pt-6 pb-2">
+<h1 class="text-[#0e121b] dark:text-white text-3xl font-bold leading-tight tracking-tight mb-2">We are here to help.</h1>
+<p class="text-gray-500 dark:text-gray-400 text-base font-normal leading-relaxed">Select a method below or fill out the form for general inquiries.</p>
+</div>
+<!-- Quick Action Grid -->
+<div class="grid grid-cols-3 gap-3 p-5">
+<!-- Chat Card -->
+<button class="flex flex-col items-center justify-center gap-2 rounded-2xl border border-transparent bg-white dark:bg-gray-800 p-4 shadow-soft hover:shadow-card hover:border-primary/20 transition-all active:scale-95">
+<div class="flex size-10 items-center justify-center rounded-full bg-blue-50 text-primary dark:bg-primary/20 dark:text-blue-300">
+<span class="material-symbols-outlined">chat_bubble</span>
+</div>
+<div class="text-center">
+<h3 class="text-[#0e121b] dark:text-white text-sm font-bold leading-tight">Live Chat</h3>
+<p class="text-xs text-primary font-medium mt-1">Wait: 2m</p>
+</div>
+</button>
+<!-- Email Card -->
+<button class="flex flex-col items-center justify-center gap-2 rounded-2xl border border-transparent bg-white dark:bg-gray-800 p-4 shadow-soft hover:shadow-card hover:border-primary/20 transition-all active:scale-95">
+<div class="flex size-10 items-center justify-center rounded-full bg-blue-50 text-primary dark:bg-primary/20 dark:text-blue-300">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div class="text-center">
+<h3 class="text-[#0e121b] dark:text-white text-sm font-bold leading-tight">Email Us</h3>
+<p class="text-xs text-gray-400 dark:text-gray-500 font-medium mt-1">~24h reply</p>
+</div>
+</button>
+<!-- Call Card -->
+<button class="flex flex-col items-center justify-center gap-2 rounded-2xl border border-transparent bg-white dark:bg-gray-800 p-4 shadow-soft hover:shadow-card hover:border-primary/20 transition-all active:scale-95">
+<div class="flex size-10 items-center justify-center rounded-full bg-blue-50 text-primary dark:bg-primary/20 dark:text-blue-300">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div class="text-center">
+<h3 class="text-[#0e121b] dark:text-white text-sm font-bold leading-tight">Call Us</h3>
+<p class="text-xs text-gray-400 dark:text-gray-500 font-medium mt-1">24/7</p>
+</div>
 </button>
 </div>
-<!-- Main Content -->
-<main class="flex-1 flex flex-col items-center px-6 pt-4 pb-8 max-w-md mx-auto w-full">
-<!-- Hero Visual -->
-<div class="mb-8 relative group">
-<div class="absolute inset-0 bg-primary/20 blur-xl rounded-full transform scale-150 opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
-<div class="relative w-24 h-24 bg-blue-50 dark:bg-primary/10 rounded-full flex items-center justify-center text-primary border border-blue-100 dark:border-primary/20">
-<span class="material-symbols-outlined" style="font-size: 40px; font-variation-settings: 'FILL' 1;">lock_open</span>
+<!-- Contact Form Section -->
+<div class="px-5 pt-4">
+<h3 class="text-[#0e121b] dark:text-white text-xl font-bold leading-tight mb-4">Send us a message</h3>
+<form class="flex flex-col gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300 ml-1">Full Name</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 material-symbols-outlined text-[20px]">person</span>
+<input class="w-full rounded-xl border-none bg-white dark:bg-gray-800 p-3 pl-10 text-[#0e121b] dark:text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-primary focus:outline-none" placeholder="John Doe" type="text"/>
 </div>
 </div>
-<!-- Headlines -->
-<div class="text-center mb-10 w-full">
-<h1 class="text-slate-900 dark:text-white tracking-tight text-[28px] font-bold leading-tight mb-3">
-                    Enter Verification Code
-                </h1>
-<p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-relaxed px-2">
-                    Please enter the 6-digit code sent to<br/>
-<span class="font-semibold text-slate-900 dark:text-white">+1 (555) 019-8901</span>
-</p>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300 ml-1">Email Address</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 material-symbols-outlined text-[20px]">alternate_email</span>
+<input class="w-full rounded-xl border-none bg-white dark:bg-gray-800 p-3 pl-10 text-[#0e121b] dark:text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-primary focus:outline-none" placeholder="john@example.com" type="email"/>
 </div>
-<!-- OTP Input Fields -->
-<div class="w-full mb-8">
-<fieldset class="flex justify-between gap-2 sm:gap-3">
-<!-- Input 1 -->
-<input autocomplete="one-time-code" autofocus="" class="flex-1 h-14 w-full min-w-0 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-center text-2xl font-semibold text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white dark:focus:bg-white/10 transition-all shadow-sm placeholder-transparent" inputmode="numeric" maxlength="1" pattern="\d*" placeholder="-" type="text"/>
-<!-- Input 2 -->
-<input class="flex-1 h-14 w-full min-w-0 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-center text-2xl font-semibold text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white dark:focus:bg-white/10 transition-all shadow-sm placeholder-transparent" inputmode="numeric" maxlength="1" pattern="\d*" placeholder="-" type="text"/>
-<!-- Input 3 -->
-<input class="flex-1 h-14 w-full min-w-0 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-center text-2xl font-semibold text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white dark:focus:bg-white/10 transition-all shadow-sm placeholder-transparent" inputmode="numeric" maxlength="1" pattern="\d*" placeholder="-" type="text"/>
-<!-- Input 4 -->
-<input class="flex-1 h-14 w-full min-w-0 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-center text-2xl font-semibold text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white dark:focus:bg-white/10 transition-all shadow-sm placeholder-transparent" inputmode="numeric" maxlength="1" pattern="\d*" placeholder="-" type="text"/>
-<!-- Input 5 -->
-<input class="flex-1 h-14 w-full min-w-0 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-center text-2xl font-semibold text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white dark:focus:bg-white/10 transition-all shadow-sm placeholder-transparent" inputmode="numeric" maxlength="1" pattern="\d*" placeholder="-" type="text"/>
-<!-- Input 6 -->
-<input class="flex-1 h-14 w-full min-w-0 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-center text-2xl font-semibold text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white dark:focus:bg-white/10 transition-all shadow-sm placeholder-transparent" inputmode="numeric" maxlength="1" pattern="\d*" placeholder="-" type="text"/>
-</fieldset>
 </div>
-<!-- Resend Timer -->
-<div class="mb-8 flex items-center justify-center gap-1 text-sm">
-<span class="text-slate-500 dark:text-slate-400">Didn't receive code?</span>
-<button class="font-medium text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
-                    Resend <span class="tabular-nums font-bold">00:30</span>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300 ml-1">Subject</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 material-symbols-outlined text-[20px]">help</span>
+<input class="w-full rounded-xl border-none bg-white dark:bg-gray-800 p-3 pl-10 text-[#0e121b] dark:text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Booking inquiry" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300 ml-1">Message</label>
+<textarea class="w-full rounded-xl border-none bg-white dark:bg-gray-800 p-3 text-[#0e121b] dark:text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-primary focus:outline-none resize-none" placeholder="How can we help you?" rows="4"></textarea>
+</div>
+<button class="mt-2 w-full rounded-xl bg-primary py-4 text-center text-white shadow-lg shadow-primary/30 transition-transform active:scale-[0.98] font-bold text-base" type="button">
+                    Submit Request
+                </button>
+</form>
+</div>
+<div class="h-8"></div>
+<!-- Footer Info -->
+<div class="mx-5 mb-6 rounded-2xl bg-white dark:bg-gray-800 p-5 shadow-sm">
+<h4 class="font-bold text-[#0e121b] dark:text-white mb-3">Our Office</h4>
+<!-- Map Placeholder -->
+<div class="relative mb-4 h-32 w-full overflow-hidden rounded-xl bg-gray-100">
+<img alt="Abstract map view background pattern with blue tint" class="h-full w-full object-cover opacity-80 mix-blend-multiply" data-alt="Abstract map view background pattern with blue tint" data-location="New York City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjgOXAwdw4jL5Ot8pM39qJL458BQGS5Td6389f3DAQ8vHBZrcMHRe-6LX1EV3EpIY80d4plJ3HFT-PUrvyMNBy-wjOcBB9n_4cDwinG93QtWpxek1IdPPI9SAkRMfyoRl1nw4lz2iMno5ADijAbNWsn_chfUgqHrQFcWlk89hm_yqrgaaPHXDw1gSeBpv4sey3Bo4ZNW4YMGg2RyDaL5O3sM5APUmmATUKbjzegb2jgn1gK9cgYbUuWBnLk8qjcjFCYzL9RtEOGS-i"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="flex size-10 items-center justify-center rounded-full bg-primary text-white shadow-lg">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-3 mb-4">
+<span class="material-symbols-outlined text-primary mt-0.5">storefront</span>
+<div>
+<p class="text-sm font-medium text-[#0e121b] dark:text-white">Hotel HQ International</p>
+<p class="text-sm text-gray-500 leading-relaxed">123 Hotel Ave, Suite 100,<br/>New York, NY 10001</p>
+</div>
+</div>
+<div class="flex gap-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+<p class="text-sm font-medium text-gray-500 my-auto flex-1">Follow us</p>
+<button class="flex size-8 items-center justify-center rounded-full bg-gray-50 text-primary dark:bg-gray-700 dark:text-white hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">public</span> <!-- Generic Web -->
+</button>
+<button class="flex size-8 items-center justify-center rounded-full bg-gray-50 text-primary dark:bg-gray-700 dark:text-white hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">share</span> <!-- Generic Social -->
+</button>
+<button class="flex size-8 items-center justify-center rounded-full bg-gray-50 text-primary dark:bg-gray-700 dark:text-white hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">thumb_up</span> <!-- Generic Like -->
 </button>
 </div>
-<!-- Spacer to push button down -->
-<div class="flex-grow"></div>
-<!-- Verify Button -->
-<button class="w-full h-14 bg-primary hover:bg-primary/90 active:scale-[0.98] text-white text-[17px] font-bold rounded-xl shadow-lg shadow-primary/25 transition-all flex items-center justify-center gap-2">
-                VERIFY
-            </button>
-<!-- Keyboard spacer simulation for mobile view -->
-<div class="h-6 w-full"></div>
-</main>
 </div>
-<!-- Simple script for auto-focus interaction simulation (Purely visual/UX, no logic backend) -->
-<script>
-        const inputs = document.querySelectorAll('input[type="text"]');
-        inputs.forEach((input, index) => {
-            input.addEventListener('input', (e) => {
-                if(e.target.value.length === 1 && index < inputs.length - 1) {
-                    inputs[index + 1].focus();
-                }
-            });
-            
-            input.addEventListener('keydown', (e) => {
-                if(e.key === 'Backspace' && e.target.value === '' && index > 0) {
-                    inputs[index - 1].focus();
-                }
-            });
-        });
-    </script>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around bg-white/90 dark:bg-background-dark/95 backdrop-blur-lg border-t border-gray-100 dark:border-gray-800 px-2 pb-6 pt-3">
+<div class="flex flex-1 flex-col items-center gap-1 cursor-pointer group">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">home</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">Home</span>
+</div>
+<div class="flex flex-1 flex-col items-center gap-1 cursor-pointer group">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">search</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">Search</span>
+</div>
+<div class="flex flex-1 flex-col items-center gap-1 cursor-pointer group">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">calendar_month</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">Bookings</span>
+</div>
+<div class="flex flex-1 flex-col items-center gap-1 cursor-pointer group">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">person</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">Profile</span>
+</div>
+</div>
 </body></html>
