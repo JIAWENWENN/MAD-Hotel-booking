@@ -3,7 +3,7 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Change Phone Number</title>
+<title>Phone OTP Screen</title>
 <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -14,87 +14,111 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#0e3286",
+                        "primary": "#0e0e86",
                         "background-light": "#f6f6f8",
-                        "background-dark": "#111621",
-                        "text-primary": "#0e121b",
-                        "text-secondary": "#4e6497",
+                        "background-dark": "#111121",
                     },
                     fontFamily: {
                         "display": ["Spline Sans", "sans-serif"]
                     },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
                 },
             },
         }
     </script>
+<style>
+        /* Custom styles for removing spinners from number inputs */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
 <style>
     body {
       min-height: max(884px, 100dvh);
     }
   </style>
   </head>
-<body class="bg-background-light dark:bg-background-dark font-display antialiased">
-<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto bg-white shadow-sm border-x border-gray-100 dark:border-gray-800 dark:bg-background-dark">
-<!-- Top App Bar -->
-<div class="sticky top-0 z-10 flex items-center bg-white dark:bg-background-dark p-4 pb-2 justify-between border-b border-gray-100 dark:border-gray-800">
-<button class="text-text-primary dark:text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-<span class="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
-</button>
-<h2 class="text-text-primary dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Change Number</h2>
-</div>
-<div class="flex flex-col flex-1 p-4 pt-6 gap-6">
-<!-- Current Phone Number (Locked) -->
-<div class="flex flex-col gap-2">
-<label class="text-text-primary dark:text-white text-sm font-semibold leading-normal ml-1">Current Phone Number</label>
-<div class="relative flex w-full items-center rounded-xl bg-gray-100 dark:bg-gray-800 border border-transparent dark:border-gray-700">
-<div class="pl-4 pr-2 py-3 flex items-center justify-center text-text-secondary">
-<span class="material-symbols-outlined text-[20px]">phone_iphone</span>
-</div>
-<input class="form-input flex w-full flex-1 bg-transparent border-none focus:ring-0 text-text-secondary font-medium h-12 p-0 text-base" disabled="" readonly="" type="text" value="+1 (555) 123-4567"/>
-<div class="pr-4 pl-2 py-3 flex items-center justify-center text-text-secondary">
-<span class="material-symbols-outlined text-[20px]">lock</span>
-</div>
-</div>
-</div>
-<hr class="border-gray-200 dark:border-gray-700 my-1"/>
-<!-- New Phone Number Input -->
-<div class="flex flex-col gap-4">
-<div class="flex flex-col gap-2">
-<label class="text-text-primary dark:text-white text-sm font-semibold leading-normal ml-1">New Phone Number</label>
-<div class="flex gap-3">
-<!-- Country Code -->
-<div class="relative w-[110px]">
-<select class="form-select w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark text-text-primary dark:text-white h-[56px] pl-3 pr-8 focus:border-primary focus:ring-1 focus:ring-primary appearance-none text-base font-medium">
-<option value="US">🇺🇸 +1</option>
-<option value="UK">🇬🇧 +44</option>
-<option value="CA">🇨🇦 +1</option>
-<option value="FR">🇫🇷 +33</option>
-</select>
-</div>
-<!-- Phone Number -->
-<div class="relative flex-1">
-<input class="form-input w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-background-dark text-text-primary dark:text-white h-[56px] px-4 focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-gray-400 text-lg font-medium tracking-wide" placeholder="555-000-0000" type="tel"/>
-</div>
-</div>
-</div>
-</div>
-<!-- Helper Text -->
-<div class="flex gap-3 px-1 items-start">
-<span class="material-symbols-outlined text-primary text-xl mt-0.5 shrink-0">info</span>
-<p class="text-text-secondary text-sm font-normal leading-relaxed">
-                    We will send a 6-digit verification code to this new number. Standard message rates may apply.
-                </p>
-</div>
-<!-- Spacer to push button to bottom on small screens if needed, or just fill space -->
-<div class="flex-1"></div>
-<!-- Action Button -->
-<div class="mt-auto pb-6">
-<button class="group relative flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-[56px] px-5 bg-primary hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 active:scale-[0.98]">
-<span class="relative z-10 text-white text-base font-bold tracking-wide uppercase">Send Verification</span>
-<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-10 transition-opacity bg-white"></div>
+<body>
+<div class="relative flex h-full min-h-screen w-full flex-col bg-white dark:bg-background-dark font-display overflow-x-hidden group/design-root">
+<!-- Header/Navigation -->
+<div class="flex items-center w-full p-4 sticky top-0 z-10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors text-slate-800 dark:text-white">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back_ios_new</span>
 </button>
 </div>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col items-center px-6 pt-4 pb-8 max-w-md mx-auto w-full">
+<!-- Hero Visual -->
+<div class="mb-8 relative group">
+<div class="absolute inset-0 bg-primary/20 blur-xl rounded-full transform scale-150 opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+<div class="relative w-24 h-24 bg-blue-50 dark:bg-primary/10 rounded-full flex items-center justify-center text-primary border border-blue-100 dark:border-primary/20">
+<span class="material-symbols-outlined" style="font-size: 40px; font-variation-settings: 'FILL' 1;">lock_open</span>
 </div>
 </div>
+<!-- Headlines -->
+<div class="text-center mb-10 w-full">
+<h1 class="text-slate-900 dark:text-white tracking-tight text-[28px] font-bold leading-tight mb-3">
+                    Enter Verification Code
+                </h1>
+<p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-relaxed px-2">
+                    Please enter the 6-digit code sent to<br/>
+<span class="font-semibold text-slate-900 dark:text-white">+1 (555) 019-8901</span>
+</p>
+</div>
+<!-- OTP Input Fields -->
+<div class="w-full mb-8">
+<fieldset class="flex justify-between gap-2 sm:gap-3">
+<!-- Input 1 -->
+<input autocomplete="one-time-code" autofocus="" class="flex-1 h-14 w-full min-w-0 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-center text-2xl font-semibold text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white dark:focus:bg-white/10 transition-all shadow-sm placeholder-transparent" inputmode="numeric" maxlength="1" pattern="\d*" placeholder="-" type="text"/>
+<!-- Input 2 -->
+<input class="flex-1 h-14 w-full min-w-0 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-center text-2xl font-semibold text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white dark:focus:bg-white/10 transition-all shadow-sm placeholder-transparent" inputmode="numeric" maxlength="1" pattern="\d*" placeholder="-" type="text"/>
+<!-- Input 3 -->
+<input class="flex-1 h-14 w-full min-w-0 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-center text-2xl font-semibold text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white dark:focus:bg-white/10 transition-all shadow-sm placeholder-transparent" inputmode="numeric" maxlength="1" pattern="\d*" placeholder="-" type="text"/>
+<!-- Input 4 -->
+<input class="flex-1 h-14 w-full min-w-0 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-center text-2xl font-semibold text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white dark:focus:bg-white/10 transition-all shadow-sm placeholder-transparent" inputmode="numeric" maxlength="1" pattern="\d*" placeholder="-" type="text"/>
+<!-- Input 5 -->
+<input class="flex-1 h-14 w-full min-w-0 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-center text-2xl font-semibold text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white dark:focus:bg-white/10 transition-all shadow-sm placeholder-transparent" inputmode="numeric" maxlength="1" pattern="\d*" placeholder="-" type="text"/>
+<!-- Input 6 -->
+<input class="flex-1 h-14 w-full min-w-0 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-center text-2xl font-semibold text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white dark:focus:bg-white/10 transition-all shadow-sm placeholder-transparent" inputmode="numeric" maxlength="1" pattern="\d*" placeholder="-" type="text"/>
+</fieldset>
+</div>
+<!-- Resend Timer -->
+<div class="mb-8 flex items-center justify-center gap-1 text-sm">
+<span class="text-slate-500 dark:text-slate-400">Didn't receive code?</span>
+<button class="font-medium text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
+                    Resend <span class="tabular-nums font-bold">00:30</span>
+</button>
+</div>
+<!-- Spacer to push button down -->
+<div class="flex-grow"></div>
+<!-- Verify Button -->
+<button class="w-full h-14 bg-primary hover:bg-primary/90 active:scale-[0.98] text-white text-[17px] font-bold rounded-xl shadow-lg shadow-primary/25 transition-all flex items-center justify-center gap-2">
+                VERIFY
+            </button>
+<!-- Keyboard spacer simulation for mobile view -->
+<div class="h-6 w-full"></div>
+</main>
+</div>
+<!-- Simple script for auto-focus interaction simulation (Purely visual/UX, no logic backend) -->
+<script>
+        const inputs = document.querySelectorAll('input[type="text"]');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if(e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+            
+            input.addEventListener('keydown', (e) => {
+                if(e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+    </script>
 </body></html>
