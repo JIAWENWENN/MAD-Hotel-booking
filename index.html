@@ -14,28 +14,54 @@
         /* Custom Font Configuration */
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         
-        /* Smooth Scroll */
-        html { scroll-behavior: smooth; }
-
         /* A4 Sizing & Print Logic */
+        @page { size: A4; margin: 0; }
+        
         .a4-container {
-            width: 210mm; /* Standard A4 Width */
+            width: 210mm;
+            height: 297mm;
             margin: 0 auto;
             background: white;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
 
         @media print {
-            body { background: white; }
+            body { background: white; margin: 0; }
             .a4-container {
                 width: 100%;
+                height: 100%;
                 box-shadow: none;
                 margin: 0;
             }
         }
 
-        /* Cloud Animation for Hero */
+        /* Scaled Phone Mockup for Poster */
+        .phone-mockup-sm {
+            border: 4px solid #1f2937;
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+            background: white;
+            z-index: 20;
+        }
+        .phone-notch-sm {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 10px;
+            background: #1f2937;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+            z-index: 30;
+        }
+
+        /* Cloud Animation (Subtler) */
         .cloud {
             position: absolute;
             opacity: 0.8;
@@ -43,69 +69,17 @@
         }
         @keyframes cloud-move {
             0% { transform: translateX(-100%); }
-            100% { transform: translateX(100vw); }
-        }
-
-        /* Phone Mockup Styling */
-        .phone-mockup {
-            box-shadow: 0 20px 50px -12px rgba(14, 50, 134, 0.4);
-            border: 10px solid #1f2937;
-            border-radius: 2rem;
-            overflow: hidden;
-            position: relative;
-            background: white;
-            z-index: 20;
-        }
-        .phone-notch {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40%;
-            height: 20px;
-            background: #1f2937;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            z-index: 30;
-        }
-
-        /* Abstract Hand CSS */
-        .hand-container {
-            position: absolute;
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 250px;
-            height: 180px;
-            z-index: 30;
-            pointer-events: none;
-        }
-        .hand-thumb {
-            position: absolute;
-            right: -15px;
-            top: 90px;
-            width: 70px;
-            height: 110px;
-            background: #e0ac69; /* Skin tone */
-            border-radius: 40px;
-            transform: rotate(-30deg);
-            box-shadow: -5px 5px 10px rgba(0,0,0,0.1);
-        }
-        .hand-fingers {
-            position: absolute;
-            left: -15px;
-            top: 130px;
-            width: 280px;
-            height: 130px;
-            background: #e0ac69;
-            border-radius: 60px;
-            box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+            100% { transform: translateX(210mm); }
         }
 
         /* Gradient Backgrounds */
         .hero-bg {
             background: linear-gradient(135deg, #0E3286 0%, #1010A2 100%);
         }
+
+        /* Scrollbar Hide */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
     <script>
         tailwind.config = {
@@ -113,11 +87,11 @@
                 extend: {
                     colors: {
                         brand: {
-                            blue: '#0E3286',    /* Deep Blue - Trust */
-                            accent: '#1010A2',  /* Indigo - Primary Action */
-                            bg: '#F6F6F8',      /* Light Gray - Background */
-                            textGray: '#64748B',/* Slate - Secondary Text */
-                            textDark: '#0F172A',/* Dark Navy - Main Text */
+                            blue: '#0E3286',
+                            accent: '#1010A2',
+                            bg: '#F6F6F8',
+                            textGray: '#64748B',
+                            textDark: '#0F172A',
                             white: '#FFFFFF'
                         }
                     }
@@ -126,606 +100,318 @@
         }
     </script>
 </head>
-<body class="bg-gray-100 py-10 print:py-0">
+<body class="bg-white py-4 md:py-10 print:py-0">
 
-    <!-- POSTER CONTAINER (A4 Width) -->
-    <main class="a4-container relative">
+    <!-- POSTER CONTAINER (A4 Fixed) -->
+    <main class="a4-container">
         
-        <!-- 1. HERO SECTION -->
-        <section class="relative hero-bg text-white pt-16 pb-0 overflow-hidden text-center h-[700px]">
-            <!-- Decorative Elements -->
-            <div class="cloud text-white/10" style="top: 10%; animation-duration: 40s; font-size: 3rem;">☁️</div>
-            <div class="cloud text-white/5" style="top: 30%; animation-duration: 60s; font-size: 5rem; animation-delay: -20s;">☁️</div>
+        <!-- 1. HEADER / HERO (Compact) -->
+        <header class="relative hero-bg text-white h-[13%] flex items-center px-8 overflow-hidden shrink-0">
+            <!-- Deco -->
+            <div class="cloud text-white/10" style="top: 10%; animation-duration: 30s; font-size: 2rem;">☁️</div>
             
-            <div class="relative z-10 px-6 h-full flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center justify-center gap-4 mb-4 text-white/50 text-xs tracking-[0.2em] uppercase">
-                        <span>✈️</span>
-                        <span class="border-b border-white/30 px-4 pb-1">Case Study 2026</span>
-                        <span>🌍</span>
-                    </div>
-                    <h1 class="text-6xl font-extrabold mb-3 tracking-tight">BookNStay</h1>
-                    <p class="text-lg text-white/80 max-w-sm mx-auto font-light">"Your Perfect Stay Awaits"</p>
-                    <div class="mt-4 flex justify-center gap-3 text-[10px] font-semibold uppercase tracking-widest text-white/60">
-                        <span>Paris</span> • <span>Bangkok</span> • <span>Tokyo</span> • <span>Dubai</span>
-                    </div>
+            <div class="flex-1 z-10">
+                <div class="flex items-center gap-2 mb-1 text-white/60 text-[8px] tracking-[0.2em] uppercase">
+                    <span>✈️</span> Case Study 2026 <span>🌍</span>
                 </div>
-                
-                <!-- Phone Mockup being "held" -->
-                <div class="relative w-64 mx-auto mt-8">
-                    <div class="phone-mockup w-64 h-[480px] bg-brand-bg mx-auto">
-                        <div class="phone-notch"></div>
-                        <div class="h-full w-full flex flex-col relative overflow-hidden bg-brand-bg">
-                            <!-- Header Image -->
-                            <div class="h-2/5 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');">
-                                <div class="absolute inset-0 bg-brand-blue/30"></div>
-                                <div class="absolute bottom-4 left-4 text-white">
-                                    <h3 class="font-bold text-xl">Discover</h3>
-                                    <p class="text-[10px] opacity-90">Luxury Hotels</p>
-                                </div>
-                            </div>
-                            <!-- App Content -->
-                            <div class="p-4 flex-1">
-                                <div class="bg-white p-3 rounded-xl shadow-sm mb-3 flex items-center gap-3">
-                                    <div class="bg-brand-bg p-2 rounded-lg"><i data-lucide="search" class="w-3 h-3 text-brand-textGray"></i></div>
-                                    <div class="flex-1 text-left">
-                                        <div class="text-[10px] font-bold text-brand-textDark">Where to?</div>
-                                        <div class="text-[8px] text-brand-textGray">Anywhere • Any week</div>
-                                    </div>
-                                </div>
-                                <div class="flex gap-2 overflow-x-hidden opacity-50">
-                                    <div class="w-20 h-28 bg-gray-200 rounded-lg flex-shrink-0"></div>
-                                    <div class="w-20 h-28 bg-gray-200 rounded-lg flex-shrink-0"></div>
-                                    <div class="w-20 h-28 bg-gray-200 rounded-lg flex-shrink-0"></div>
-                                </div>
-                            </div>
-                            <!-- Bottom Nav -->
-                             <div class="h-12 bg-white border-t flex justify-around items-center text-gray-400">
-                                <i data-lucide="home" class="w-4 h-4 text-brand-blue fill-current"></i>
-                                <i data-lucide="heart" class="w-4 h-4"></i>
-                                <i data-lucide="user" class="w-4 h-4"></i>
+                <h1 class="text-5xl font-extrabold tracking-tight mb-1">BookNStay</h1>
+                <p class="text-sm text-white/80 font-light">"Your Perfect Stay Awaits"</p>
+                <div class="mt-2 flex gap-2 text-[8px] font-semibold uppercase tracking-widest text-white/60">
+                    Paris • Bangkok • Tokyo • Dubai
+                </div>
+            </div>
+
+            <!-- Hero Image (Cropped Phone) -->
+            <div class="w-24 h-full relative z-10 flex items-end justify-center -mb-8">
+                 <div class="phone-mockup-sm w-20 h-32 bg-brand-bg shadow-2xl rotate-6 transform translate-y-2">
+                    <div class="phone-notch-sm"></div>
+                    <div class="h-full w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
+                        <div class="absolute inset-0 bg-brand-blue/30 flex items-end p-2">
+                             <div class="text-white">
+                                <h3 class="font-bold text-[8px]">Discover</h3>
                             </div>
                         </div>
                     </div>
-                    <!-- Abstract Hand overlay -->
-                    <div class="hand-container">
-                        <div class="hand-fingers bg-[#e0ac69]"></div>
-                        <div class="hand-thumb bg-[#e0ac69]"></div>
-                    </div>
-                </div>
+                 </div>
             </div>
-        </section>
+        </header>
 
-        <!-- 2. PROJECT OVERVIEW (Redesigned with Avatar) -->
-        <section class="py-16 px-6 bg-white text-center border-b border-gray-100 overflow-hidden relative">
-            <h2 class="text-2xl font-bold text-brand-textDark mb-12">PROJECT OVERVIEW</h2>
+        <!-- MAIN GRID CONTENT -->
+        <div class="flex-1 p-4 grid grid-cols-12 gap-4 overflow-hidden">
             
-            <div class="relative max-w-xl mx-auto">
-                <!-- Avatar Character (Behind) -->
-                <div class="absolute top-0 right-[-20px] w-48 h-48 z-0 opacity-100 transform translate-x-4 -translate-y-8 hidden md:block">
-                     <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=JiaWen&clothing=blazerAndShirt&skinColor=f5d0c5&accessories=sunglasses" alt="Traveler Avatar" class="w-full h-full object-contain">
-                </div>
+            <!-- LEFT COLUMN (Col Span 4) -->
+            <div class="col-span-4 flex flex-col gap-3">
+                
+                <!-- 2. OVERVIEW -->
+                <section class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                    <h2 class="text-xs font-bold text-brand-textDark mb-2 uppercase tracking-wider">PROJECT OVERVIEW</h2>
+                    <div class="space-y-2">
+                        <div class="bg-white p-2 rounded border-l-2 border-red-500 shadow-sm">
+                            <h3 class="font-bold text-[8px] text-brand-textDark flex gap-1 mb-1"><i data-lucide="frown" class="w-3 h-3 text-red-500"></i> The Problem</h3>
+                            <p class="text-[8px] text-gray-500 leading-tight">Traditional hotel booking is complex, has hidden fees, and language barriers.</p>
+                        </div>
+                        <div class="bg-brand-blue p-2 rounded border-l-2 border-brand-accent shadow-sm">
+                            <h3 class="font-bold text-[8px] text-white flex gap-1 mb-1"><i data-lucide="smile" class="w-3 h-3 text-white"></i> The Solution</h3>
+                            <p class="text-[8px] text-blue-100 leading-tight">Simplified booking with real-time transparency and multi-language support.</p>
+                        </div>
+                    </div>
+                </section>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10">
+                <!-- 3. TECH STACK (Moved here, Replacing Timeline) -->
+                <section class="bg-white border border-gray-100 rounded-lg p-2 shadow-sm">
+                    <h2 class="text-xs font-bold text-brand-textDark mb-2 uppercase tracking-wider">TECH STACK</h2>
+                    <div class="flex flex-wrap justify-between gap-2 opacity-60 grayscale hover:grayscale-0 transition-all duration-500 px-1">
+                        <div class="flex flex-col items-center gap-1"><i data-lucide="smartphone" class="w-3 h-3 text-blue-500"></i><span class="text-[6px] font-bold">Flutter</span></div>
+                        <div class="flex flex-col items-center gap-1"><i data-lucide="flame" class="w-3 h-3 text-orange-500"></i><span class="text-[6px] font-bold">Firebase</span></div>
+                        <div class="flex flex-col items-center gap-1"><i data-lucide="globe" class="w-3 h-3 text-green-500"></i><span class="text-[6px] font-bold">Amadeus</span></div>
+                        <div class="flex flex-col items-center gap-1"><i data-lucide="credit-card" class="w-3 h-3 text-purple-500"></i><span class="text-[6px] font-bold">Stripe</span></div>
+                        <div class="flex flex-col items-center gap-1"><i data-lucide="figma" class="w-3 h-3 text-pink-500"></i><span class="text-[6px] font-bold">Figma</span></div>
+                    </div>
+                </section>
+
+                <!-- 4. USER FLOW (Updated Design) -->
+                <section class="bg-white p-2 rounded-lg border border-gray-100 flex-1">
+                    <h2 class="text-xs font-bold text-brand-textDark mb-2 uppercase tracking-wider">USER FLOW</h2>
+                    <div class="bg-brand-bg p-3 rounded-xl border border-gray-200 flex flex-col items-center gap-2">
+                        <div class="w-full py-1.5 bg-white border border-gray-200 rounded shadow-sm font-bold text-[8px] text-brand-textDark text-center">Splash Screen</div>
+                        <i data-lucide="arrow-down" class="text-gray-300 h-3"></i>
+                        <div class="flex gap-2 w-full">
+                            <div class="flex-1 py-1.5 bg-white border border-gray-200 rounded shadow-sm font-bold text-[8px] text-gray-500 text-center">Login</div>
+                            <div class="flex-1 py-1.5 bg-white border border-gray-200 rounded shadow-sm font-bold text-[8px] text-gray-500 text-center">Register</div>
+                        </div>
+                        <i data-lucide="arrow-down" class="text-gray-300 h-3"></i>
+                        <div class="w-full py-2 bg-brand-blue text-white rounded shadow-md font-bold text-[8px] text-center uppercase">HOME SCREEN</div>
+                        <i data-lucide="arrow-down" class="text-gray-300 h-3"></i>
+                        <div class="flex gap-2 w-full justify-center">
+                            <div class="w-full py-1.5 bg-white border border-gray-200 rounded text-[6px] font-semibold text-center">Search</div>
+                            <div class="w-full py-1.5 bg-white border border-gray-200 rounded text-[6px] font-semibold text-center">Wishlist</div>
+                            <div class="w-full py-1.5 bg-white border border-gray-200 rounded text-[6px] font-semibold text-center">Profile</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. TYPOGRAPHY & COLOR -->
+                <section class="bg-white p-3 rounded-lg border border-gray-100">
+                    <h2 class="text-xs font-bold text-brand-textDark mb-2 uppercase tracking-wider">DESIGN SYS</h2>
+                    <div class="flex justify-between items-end mb-3 border-b pb-2">
+                        <div>
+                            <span class="text-2xl font-bold">Aa</span>
+                            <span class="text-[10px] block font-bold">Plus Jakarta</span>
+                        </div>
+                        <div class="text-right space-y-0.5">
+                            <div class="text-[8px] font-bold">Bold Title</div>
+                            <div class="text-[8px] font-medium">Medium</div>
+                            <div class="text-[8px]">Regular</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <div class="flex-1">
+                            <div class="h-8 bg-brand-blue rounded shadow mb-1"></div>
+                            <div class="text-[8px] font-bold">Blue</div>
+                            <div class="text-[6px] text-gray-500">#0E3286</div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="h-8 bg-brand-accent rounded shadow mb-1"></div>
+                            <div class="text-[8px] font-bold">Indigo</div>
+                            <div class="text-[6px] text-gray-500">#1010A2</div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="h-8 bg-gray-100 rounded shadow mb-1"></div>
+                            <div class="text-[8px] font-bold">Surface</div>
+                            <div class="text-[6px] text-gray-500">#F6F6F8</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- CENTER COLUMN (Col Span 4) - VISUAL ANCHOR -->
+            <div class="col-span-4 flex flex-col gap-3">
+                
+                <!-- 6. VISUAL IDENTITY (Updated Design) -->
+                <section class="bg-brand-bg rounded-lg p-3 relative overflow-hidden text-center border border-gray-100">
+                    <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#0E3286 1px, transparent 1px); background-size: 12px 12px;"></div>
+                    <h2 class="text-xs font-bold text-brand-textDark mb-3 uppercase tracking-wider relative z-10">VISUAL IDENTITY</h2>
                     
-                    <!-- Left: Problem & Solution Text -->
-                    <div class="text-left flex flex-col gap-6">
-                        <!-- Problem Card -->
-                        <div class="bg-gray-50 p-5 rounded-2xl shadow-md border-l-4 border-red-500 relative">
-                            <h3 class="font-bold text-brand-textDark text-sm mb-2 flex items-center gap-2">
-                                <span class="bg-red-100 p-1 rounded text-red-600"><i data-lucide="frown" class="w-3 h-3"></i></span>
-                                The Problem
-                            </h3>
-                            <p class="text-[10px] text-brand-textGray leading-relaxed">Traditional hotel booking is frustrating. Complex processes, hidden fees, and language barriers make travel planning stressful.</p>
-                        </div>
-                        
-                        <!-- Solution Card -->
-                        <div class="bg-brand-blue text-white p-5 rounded-2xl shadow-lg border-l-4 border-brand-accent relative">
-                            <h3 class="font-bold text-white text-sm mb-2 flex items-center gap-2">
-                                <span class="bg-white/20 p-1 rounded text-white"><i data-lucide="smile" class="w-3 h-3"></i></span>
-                                The Solution
-                            </h3>
-                            <p class="text-[10px] text-blue-100 leading-relaxed">BookNStay simplifies booking with real-time transparent pricing, multi-language support, and secure payments in one app.</p>
-                        </div>
+                    <!-- Logo -->
+                    <div class="w-16 h-16 bg-brand-blue rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-2 relative z-10">
+                         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 12h4c2 0 4-2 4-4V4"/>
+                            <path d="M22 12h-4c-2 0-4 2-4 4v4"/>
+                            <path d="M12 12v.01"/>
+                        </svg>
                     </div>
+                    <h4 class="font-bold text-[10px] text-brand-textDark relative z-10">The Mark</h4>
+                    <p class="text-[6px] text-brand-textGray mb-4 relative z-10">"S" as a pathway/door</p>
 
-                    <!-- Right: Avatar Holding Phone Mockup -->
-                    <div class="relative flex justify-center mt-4 md:mt-0">
-                         <!-- The Phone -->
-                         <div class="phone-mockup w-40 h-[320px] bg-brand-bg mx-auto border-[6px] border-gray-800 shadow-2xl rotate-2 relative z-10">
-                             <div class="phone-notch"></div>
-                             <!-- Screen Content -->
-                             <div class="h-full bg-brand-blue flex flex-col items-center justify-center p-4 text-white relative overflow-hidden">
-                                 <!-- Decorative BG Circles -->
-                                 <div class="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full transform translate-x-10 -translate-y-10"></div>
-                                 
-                                 <i data-lucide="check-circle" class="w-10 h-10 mb-3 text-green-400"></i>
-                                 <h4 class="font-bold text-sm">Booking<br>Confirmed!</h4>
-                                 <div class="mt-4 bg-white/10 p-2 rounded w-full text-center">
-                                     <p class="text-[8px] opacity-80 uppercase">Reservation ID</p>
-                                     <p class="text-[10px] font-mono font-bold">#BNS-8821</p>
-                                 </div>
-                             </div>
-                         </div>
-                         
-                         <!-- The Hand Holding Phone -->
-                         <div class="hand-container" style="bottom: -20px; transform: translateX(-50%) scale(0.65);">
-                             <div class="hand-fingers bg-[#f5d0c5]"></div> <!-- Matches avatar skin -->
-                             <div class="hand-thumb bg-[#f5d0c5]"></div>
-                         </div>
-                         
-                         <!-- Mobile Avatar (Visible only on small screens behind phone) -->
-                         <div class="absolute top-[-40px] left-1/2 transform -translate-x-1/2 w-32 h-32 md:hidden -z-10">
-                              <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=JiaWen&clothing=blazerAndShirt&skinColor=f5d0c5&accessories=sunglasses" alt="Traveler Avatar" class="w-full h-full object-contain opacity-50">
-                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tech Stack -->
-            <div class="mt-12 bg-white border border-gray-100 rounded-xl p-4 shadow-sm inline-block mx-auto">
-                <div class="flex flex-wrap justify-center gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                    <div class="flex flex-col items-center gap-1"><i data-lucide="smartphone" class="w-4 h-4 text-blue-500"></i><span class="text-[8px] font-bold">Flutter</span></div>
-                    <div class="flex flex-col items-center gap-1"><i data-lucide="flame" class="w-4 h-4 text-orange-500"></i><span class="text-[8px] font-bold">Firebase</span></div>
-                    <div class="flex flex-col items-center gap-1"><i data-lucide="globe" class="w-4 h-4 text-green-500"></i><span class="text-[8px] font-bold">Amadeus</span></div>
-                    <div class="flex flex-col items-center gap-1"><i data-lucide="credit-card" class="w-4 h-4 text-purple-500"></i><span class="text-[8px] font-bold">Stripe</span></div>
-                    <div class="flex flex-col items-center gap-1"><i data-lucide="figma" class="w-4 h-4 text-pink-500"></i><span class="text-[8px] font-bold">Figma</span></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. LOGO BRANDING -->
-        <section class="py-16 bg-brand-bg relative overflow-hidden">
-            <!-- Background Pattern -->
-            <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#0E3286 1px, transparent 1px); background-size: 24px 24px;"></div>
-            
-            <div class="relative z-10 text-center px-8">
-                <h2 class="text-2xl font-bold text-brand-textDark mb-12">VISUAL IDENTITY</h2>
-
-                <div class="flex flex-col items-center justify-center gap-12">
-                    <!-- Logo Mark -->
-                    <div class="text-center group">
-                        <div class="w-32 h-32 bg-brand-blue rounded-[2rem] shadow-2xl flex items-center justify-center mx-auto mb-4 transform group-hover:scale-105 transition-all duration-300 relative overflow-hidden">
-                            <!-- The "S" Pathway Concept -->
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M2 12h4c2 0 4-2 4-4V4"/>
-                                    <path d="M22 12h-4c-2 0-4 2-4 4v4"/>
-                                    <path d="M12 12v.01"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <h4 class="font-bold text-lg text-brand-textDark">The Mark</h4>
-                        <p class="text-xs text-brand-textGray mt-1">"S" as a pathway/door</p>
-                    </div>
-
-                    <!-- Brand Values Grid -->
-                    <div class="grid grid-cols-2 gap-x-12 gap-y-6 text-left w-full max-w-sm">
+                    <!-- Values Grid -->
+                    <div class="grid grid-cols-2 gap-2 text-left relative z-10 bg-white/50 p-2 rounded-lg">
                         <div>
-                            <div class="font-bold text-brand-textDark text-sm mb-1">🎯 Simplicity</div>
-                            <div class="text-[10px] text-brand-textGray">Easy to use interface</div>
+                            <div class="font-bold text-brand-textDark text-[8px]">🎯 Simplicity</div>
+                            <div class="text-[6px] text-brand-textGray">Easy to use interface</div>
                         </div>
                         <div>
-                            <div class="font-bold text-brand-textDark text-sm mb-1">🔒 Trust</div>
-                            <div class="text-[10px] text-brand-textGray">Secure & reliable</div>
+                            <div class="font-bold text-brand-textDark text-[8px]">🔒 Trust</div>
+                            <div class="text-[6px] text-brand-textGray">Secure & reliable</div>
                         </div>
                         <div>
-                            <div class="font-bold text-brand-textDark text-sm mb-1">🌍 Global</div>
-                            <div class="text-[10px] text-brand-textGray">For everyone</div>
+                            <div class="font-bold text-brand-textDark text-[8px]">🌍 Global</div>
+                            <div class="text-[6px] text-brand-textGray">For everyone</div>
                         </div>
                         <div>
-                            <div class="font-bold text-brand-textDark text-sm mb-1">✨ Quality</div>
-                            <div class="text-[10px] text-brand-textGray">Premium experience</div>
+                            <div class="font-bold text-brand-textDark text-[8px]">✨ Quality</div>
+                            <div class="text-[6px] text-brand-textGray">Premium experience</div>
                         </div>
                     </div>
+                </section>
 
-                    <!-- Login Mockup -->
-                    <div class="phone-mockup w-40 h-64 bg-white shadow-xl border-[6px] border-gray-800">
-                        <div class="phone-notch" style="width: 30%;"></div>
-                        <div class="h-full flex flex-col justify-center px-4 bg-white relative">
-                            <div class="w-10 h-10 bg-brand-blue rounded-xl mb-4 flex items-center justify-center self-center shadow-lg">
-                                <span class="text-white font-bold text-lg">S</span>
-                            </div>
-                            <div class="space-y-2">
-                                <div class="h-6 bg-gray-50 border border-gray-100 rounded px-2 flex items-center text-[6px] text-gray-400">Email</div>
-                                <div class="h-6 bg-gray-50 border border-gray-100 rounded px-2 flex items-center text-[6px] text-gray-400">Password</div>
-                                <div class="h-6 bg-brand-blue rounded shadow-md flex items-center justify-center text-white text-[8px] font-bold">Log In</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. FONT & COLOR -->
-        <section class="py-16 px-8 bg-white">
-            <div class="grid grid-cols-1 gap-12 items-start">
-                
-                <!-- Typography -->
-                <div>
-                    <h3 class="text-[10px] font-bold text-brand-textGray uppercase tracking-widest mb-6 pb-2 border-b">Typography</h3>
-                    <div class="mb-6 flex items-end justify-between">
-                        <div>
-                            <h1 class="text-4xl font-bold text-brand-textDark mb-2">Aa</h1>
-                            <h4 class="text-lg font-bold text-brand-textDark">Plus Jakarta Sans</h4>
-                        </div>
-                        <p class="text-[10px] text-brand-textGray max-w-[150px] text-right">Geometric sans serif. Legible & modern.</p>
-                    </div>
-                    <div class="space-y-2 text-brand-textDark text-xs">
-                        <div class="flex items-center gap-4"><span class="w-16 font-bold">Bold</span> <span class="text-[10px] text-gray-400">Headlines</span></div>
-                        <div class="flex items-center gap-4"><span class="w-16 font-medium">Medium</span> <span class="text-[10px] text-gray-400">Buttons</span></div>
-                        <div class="flex items-center gap-4"><span class="w-16 font-normal">Regular</span> <span class="text-[10px] text-gray-400">Body</span></div>
-                    </div>
-                </div>
-
-                <!-- Color Palette -->
-                <div>
-                    <h3 class="text-[10px] font-bold text-brand-textGray uppercase tracking-widest mb-6 pb-2 border-b">Color Palette</h3>
-                    <div class="space-y-4">
-                        <!-- Primary -->
-                        <div class="flex items-center group">
-                            <div class="w-16 h-16 rounded-xl bg-brand-blue shadow-lg mr-4 group-hover:scale-110 transition-transform"></div>
-                            <div>
-                                <p class="font-bold text-brand-textDark text-sm">Deep Blue</p>
-                                <p class="text-[10px] text-brand-textGray font-mono mb-0.5">#0E3286</p>
-                                <p class="text-[9px] text-brand-textGray">Trust, Professionalism</p>
-                            </div>
-                        </div>
-                        <!-- Accent -->
-                        <div class="flex items-center group">
-                            <div class="w-16 h-16 rounded-xl bg-brand-accent shadow-lg mr-4 group-hover:scale-110 transition-transform"></div>
-                            <div>
-                                <p class="font-bold text-brand-textDark text-sm">Indigo Accent</p>
-                                <p class="text-[10px] text-brand-textGray font-mono mb-0.5">#1010A2</p>
-                                <p class="text-[9px] text-brand-textGray">Primary Actions</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. PROJECT TIMELINE -->
-        <section class="py-16 bg-brand-textDark text-white px-8">
-            <h2 class="text-2xl font-bold text-center mb-12">PROJECT TIMELINE</h2>
-            
-            <div class="grid grid-cols-2 gap-8 relative">
-                
-                <!-- Steps -->
-                <div class="relative z-10 text-center">
-                    <div class="w-10 h-10 mx-auto bg-brand-blue rounded-full flex items-center justify-center mb-3 shadow-lg border-2 border-gray-800">
-                        <span class="text-lg">📋</span>
-                    </div>
-                    <h4 class="font-bold mb-1 text-sm">Research</h4>
-                    <p class="text-[10px] text-gray-400">Week 1-2</p>
-                </div>
-
-                <div class="relative z-10 text-center">
-                    <div class="w-10 h-10 mx-auto bg-brand-textDark border-2 border-brand-blue rounded-full flex items-center justify-center mb-3 shadow-lg">
-                        <span class="text-lg">✏️</span>
-                    </div>
-                    <h4 class="font-bold mb-1 text-sm">Design</h4>
-                    <p class="text-[10px] text-gray-400">Week 3-4</p>
-                </div>
-
-                <div class="relative z-10 text-center">
-                    <div class="w-10 h-10 mx-auto bg-brand-textDark border-2 border-brand-blue rounded-full flex items-center justify-center mb-3 shadow-lg">
-                        <span class="text-lg">💻</span>
-                    </div>
-                    <h4 class="font-bold mb-1 text-sm">Develop</h4>
-                    <p class="text-[10px] text-gray-400">Week 5-8</p>
-                </div>
-
-                <div class="relative z-10 text-center">
-                    <div class="w-10 h-10 mx-auto bg-brand-textDark border-2 border-brand-blue rounded-full flex items-center justify-center mb-3 shadow-lg">
-                        <span class="text-lg">🚀</span>
-                    </div>
-                    <h4 class="font-bold mb-1 text-sm">Deploy</h4>
-                    <p class="text-[10px] text-gray-400">Week 9-10</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. USER FLOW -->
-        <section class="py-16 px-8 bg-white text-center">
-            <h2 class="text-2xl font-bold text-brand-textDark mb-12">USER FLOW</h2>
-
-            <div class="inline-flex flex-col items-center bg-brand-bg p-8 rounded-2xl border border-gray-200 w-full">
-                <!-- Start -->
-                <div class="w-28 py-2 bg-white border border-gray-200 rounded-lg shadow-sm font-bold text-xs text-brand-textDark mb-4">Splash Screen</div>
-                <i data-lucide="arrow-down" class="text-gray-300 mb-4 h-4"></i>
-                
-                <!-- Split -->
-                <div class="flex gap-4 mb-4">
-                    <div class="w-24 py-2 bg-white border border-gray-200 rounded-lg shadow-sm font-bold text-xs text-gray-500">Login</div>
-                    <div class="w-24 py-2 bg-white border border-gray-200 rounded-lg shadow-sm font-bold text-xs text-gray-500">Register</div>
-                </div>
-                <i data-lucide="arrow-down" class="text-gray-300 mb-4 h-4"></i>
-
-                <!-- Home -->
-                <div class="w-32 py-3 bg-brand-blue text-white rounded-lg shadow-lg font-bold text-xs mb-6">HOME SCREEN</div>
-                
-                <!-- Main Actions -->
-                <div class="flex justify-center gap-4 relative">
-                    <div class="flex flex-col items-center">
-                        <div class="w-20 py-2 bg-white border border-gray-200 rounded-lg text-[10px] font-semibold">Search</div>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div class="w-20 py-2 bg-white border border-gray-200 rounded-lg text-[10px] font-semibold">Wishlist</div>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div class="w-20 py-2 bg-white border border-gray-200 rounded-lg text-[10px] font-semibold">Profile</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. HOME SCREEN MOCKUP -->
-        <section class="py-16 bg-brand-bg text-center relative overflow-hidden">
-            <div class="absolute inset-0 bg-white/50 skew-y-3 transform origin-top-left"></div>
-            
-            <div class="relative z-10">
-                <h2 class="text-2xl font-bold text-brand-textDark mb-10">HOME SCREEN UI</h2>
-                
-                <div class="flex flex-col justify-center items-center gap-8">
+                <!-- 7. HOME SCREEN UI (Heading Added) -->
+                <section class="flex-1 relative flex flex-col items-center justify-center py-2">
+                    <h2 class="text-xs font-bold text-brand-textDark mb-4 uppercase tracking-wider z-10">HOME SCREEN UI</h2>
+                    <div class="absolute inset-0 bg-brand-bg rounded-xl -skew-y-6 scale-90 -z-10 mt-6"></div>
                     
                     <!-- The Phone -->
-                    <div class="phone-mockup w-[260px] h-[520px] bg-white shadow-2xl border-gray-800">
-                        <div class="phone-notch"></div>
-                        <!-- UI Content -->
-                        <div class="h-full flex flex-col bg-brand-bg text-left">
-                            <!-- Top Bar -->
-                            <div class="bg-white p-5 pb-4 shadow-sm z-10">
-                                <div class="flex justify-between items-center mb-4 mt-4">
+                    <div class="phone-mockup-sm w-44 h-80 bg-white shadow-2xl">
+                        <div class="phone-notch-sm"></div>
+                        <div class="h-full flex flex-col bg-brand-bg text-left overflow-hidden">
+                            <!-- App Header -->
+                            <div class="bg-white p-3 pt-6 shadow-sm z-10">
+                                <div class="flex justify-between items-center mb-2">
                                     <div>
-                                        <p class="text-[10px] text-gray-400">Good Morning,</p>
-                                        <h3 class="font-bold text-brand-textDark text-sm">Sarah! 👋</h3>
+                                        <p class="text-[6px] text-gray-400">Good Morning,</p>
+                                        <h3 class="font-bold text-brand-textDark text-[10px]">Sarah! 👋</h3>
                                     </div>
-                                    <div class="w-6 h-6 bg-gray-200 rounded-full bg-cover" style="background-image: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah');"></div>
+                                    <div class="w-5 h-5 bg-gray-200 rounded-full bg-cover" style="background-image: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah');"></div>
                                 </div>
-                                <!-- Search Box -->
-                                <div class="bg-white border border-gray-100 shadow-lg rounded-xl p-3 mt-2">
-                                    <div class="flex items-center gap-2 border-b border-gray-100 pb-2 mb-2">
-                                        <i data-lucide="search" class="w-3 h-3 text-brand-blue"></i>
-                                        <span class="text-xs text-gray-400">Where to?</span>
+                                <div class="bg-white border border-gray-100 shadow rounded-lg p-2">
+                                    <div class="flex items-center gap-1 border-b border-gray-100 pb-1 mb-1">
+                                        <i data-lucide="search" class="w-2 h-2 text-brand-blue"></i>
+                                        <span class="text-[6px] text-gray-400">Where to?</span>
                                     </div>
-                                    <div class="flex gap-2">
-                                        <div class="bg-brand-bg px-2 py-1.5 rounded-lg flex-1">
-                                            <p class="text-[6px] text-gray-400 uppercase">Check-in</p>
-                                            <p class="text-[10px] font-bold text-brand-textDark">Jan 20</p>
-                                        </div>
-                                        <div class="bg-brand-bg px-2 py-1.5 rounded-lg flex-1">
-                                            <p class="text-[6px] text-gray-400 uppercase">Check-out</p>
-                                            <p class="text-[10px] font-bold text-brand-textDark">Jan 23</p>
-                                        </div>
-                                    </div>
-                                    <button class="w-full bg-brand-blue text-white text-[10px] font-bold py-2 rounded-lg mt-2">Search Hotels</button>
+                                    <button class="w-full bg-brand-blue text-white text-[6px] font-bold py-1 rounded">Search</button>
                                 </div>
                             </div>
-
-                            <!-- Scroll Content -->
-                            <div class="flex-1 overflow-y-auto p-5 space-y-4">
-                                <div>
-                                    <div class="flex justify-between items-end mb-2">
-                                        <h4 class="font-bold text-xs text-brand-textDark">Popular</h4>
-                                        <span class="text-[8px] text-brand-blue font-bold">See All</span>
-                                    </div>
-                                    <div class="flex gap-3 overflow-x-auto pb-2 -mx-5 px-5 no-scrollbar">
-                                        <div class="w-24 flex-shrink-0">
-                                            <div class="h-24 bg-gray-300 rounded-lg mb-1 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=200');"></div>
-                                            <p class="font-bold text-[10px] text-brand-textDark">Paris</p>
-                                            <p class="text-[8px] text-gray-400">France</p>
-                                        </div>
-                                        <div class="w-24 flex-shrink-0">
-                                            <div class="h-24 bg-gray-300 rounded-lg mb-1 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&q=80&w=200');"></div>
-                                            <p class="font-bold text-[10px] text-brand-textDark">Tokyo</p>
-                                            <p class="text-[8px] text-gray-400">Japan</p>
-                                        </div>
-                                    </div>
+                            <!-- App Body -->
+                            <div class="p-3 space-y-2">
+                                <div class="h-20 bg-gray-300 rounded-lg bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=200');">
+                                    <div class="absolute bottom-1 left-1 bg-white/90 px-1 rounded text-[6px] font-bold">Paris</div>
                                 </div>
+                                <div class="h-20 bg-gray-300 rounded-lg bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&q=80&w=200');">
+                                    <div class="absolute bottom-1 left-1 bg-white/90 px-1 rounded text-[6px] font-bold">Tokyo</div>
+                                </div>
+                            </div>
+                            <!-- App Nav -->
+                            <div class="mt-auto h-8 bg-white border-t flex justify-around items-center">
+                                <i data-lucide="home" class="w-3 h-3 text-brand-blue fill-current"></i>
+                                <i data-lucide="heart" class="w-3 h-3 text-gray-300"></i>
+                                <i data-lucide="user" class="w-3 h-3 text-gray-300"></i>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
+                </section>
 
-        <!-- 8. FEEDBACK & METRICS -->
-        <section class="py-16 px-8 bg-white">
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-brand-blue rounded-2xl p-8 text-white text-center relative overflow-hidden mb-12 shadow-xl">
-                    <div class="absolute top-0 right-0 p-8 opacity-10"><i data-lucide="quote" class="w-16 h-16"></i></div>
-                    <h3 class="text-lg font-medium italic mb-6 relative z-10">"The cleanest hotel booking app I've used. The multi-currency feature saved us from so much confusion. Highly recommend!"</h3>
-                    <div class="flex flex-col items-center gap-1">
-                        <div class="flex text-yellow-400 gap-1">
-                            <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                            <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                            <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                            <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                            <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                <!-- 8. FEEDBACK -->
+                <section class="bg-brand-blue rounded-lg p-3 text-white text-center relative overflow-hidden">
+                    <h2 class="text-xs font-bold text-white mb-2 uppercase tracking-wider relative z-10 opacity-70">FEEDBACK</h2>
+                    <i data-lucide="quote" class="absolute top-1 right-1 w-6 h-6 opacity-20"></i>
+                    <p class="text-[8px] italic mb-2 relative z-10">"The cleanest hotel booking app I've used. The multi-currency feature saved us!"</p>
+                    <div class="flex justify-center gap-0.5 mb-1 text-yellow-400">
+                        <i data-lucide="star" class="w-2 h-2 fill-current"></i><i data-lucide="star" class="w-2 h-2 fill-current"></i><i data-lucide="star" class="w-2 h-2 fill-current"></i><i data-lucide="star" class="w-2 h-2 fill-current"></i><i data-lucide="star" class="w-2 h-2 fill-current"></i>
+                    </div>
+                    <div class="font-bold text-[8px]">- Sarah M.</div>
+                </section>
+            </div>
+
+            <!-- RIGHT COLUMN (Col Span 4) -->
+            <div class="col-span-4 flex flex-col gap-3 h-full">
+                
+                <!-- 9. USER PERSONA (Updated Design) -->
+                <section class="bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden shrink-0">
+                    <div class="bg-brand-bg p-2 text-center border-b border-gray-100">
+                        <h2 class="text-xs font-bold text-brand-textDark mb-2 uppercase tracking-wider">PERSONA</h2>
+                        <div class="w-10 h-10 rounded-full overflow-hidden mx-auto mb-1 border-2 border-white shadow-lg">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=SarahChen" alt="Persona" class="w-full h-full bg-white">
                         </div>
-                        <div class="font-bold text-sm">Sarah M., Traveler</div>
+                        <h3 class="text-[10px] font-bold text-brand-textDark">Sarah Chen</h3>
+                        <p class="text-brand-textGray text-[8px]">Marketing • 28</p>
                     </div>
-                </div>
+                    <div class="p-2 grid grid-cols-2 gap-2">
+                        <div>
+                            <h4 class="text-[6px] font-bold text-brand-blue uppercase tracking-widest mb-1">Goals</h4>
+                            <ul class="space-y-0.5 text-[6px] text-brand-textDark">
+                                <li class="flex items-start gap-1"><i data-lucide="check" class="w-2 h-2 text-green-500"></i> Quick booking</li>
+                                <li class="flex items-start gap-1"><i data-lucide="check" class="w-2 h-2 text-green-500"></i> Compare prices</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-[6px] font-bold text-red-500 uppercase tracking-widest mb-1">Pains</h4>
+                             <ul class="space-y-0.5 text-[6px] text-brand-textDark">
+                                <li class="flex items-start gap-1"><i data-lucide="x" class="w-2 h-2 text-red-500"></i> Hidden fees</li>
+                                <li class="flex items-start gap-1"><i data-lucide="x" class="w-2 h-2 text-red-500"></i> Bad UI</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
 
-                <!-- Metrics -->
-                <div class="grid grid-cols-2 gap-6 text-center">
-                    <div>
-                        <div class="text-2xl font-extrabold text-brand-textDark mb-0.5">10k+</div>
-                        <div class="text-[10px] font-bold text-brand-textGray uppercase tracking-wider">Hotels</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-extrabold text-brand-textDark mb-0.5">195+</div>
-                        <div class="text-[10px] font-bold text-brand-textGray uppercase tracking-wider">Countries</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-extrabold text-brand-textDark mb-0.5">20</div>
-                        <div class="text-[10px] font-bold text-brand-textGray uppercase tracking-wider">Currencies</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-extrabold text-brand-textDark mb-0.5">50+</div>
-                        <div class="text-[10px] font-bold text-brand-textGray uppercase tracking-wider">Screens</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 9. SCREEN SHOWCASE -->
-        <section class="py-16 bg-brand-textDark text-white text-center overflow-hidden">
-             <div class="mb-8">
-                 <h2 class="text-2xl font-bold mb-2">50+ SCREENS</h2>
-                 <p class="text-white/50 text-xs">Auth • Home • Search • Booking • Profile • Admin</p>
-             </div>
-             
-             <!-- Scrolling Grid -->
-             <div class="flex gap-4 justify-center opacity-70 scale-90 -rotate-2 hover:rotate-0 transition-transform duration-700">
-                 <!-- Col 1 -->
-                 <div class="space-y-4 mt-8">
-                     <div class="w-32 h-64 bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-[10px] text-gray-500">Splash</div>
-                     <div class="w-32 h-64 bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-[10px] text-gray-500">Login</div>
-                 </div>
-                 <!-- Col 2 -->
-                 <div class="space-y-4">
-                     <div class="w-32 h-64 bg-gray-800 rounded-xl border-2 border-brand-blue bg-white overflow-hidden relative">
-                         <!-- Mini Hotel Details UI -->
-                         <div class="h-1/2 bg-gray-300"></div>
-                         <div class="p-2">
-                             <div class="h-2 w-3/4 bg-gray-200 rounded mb-1"></div>
-                             <div class="flex gap-1 mb-2"><div class="w-2 h-2 bg-yellow-400 rounded-full"></div><div class="w-2 h-2 bg-yellow-400 rounded-full"></div></div>
-                             <div class="h-6 w-full bg-brand-blue rounded"></div>
-                         </div>
+                <!-- 10. 50+ SCREENS (Expanded) -->
+                <section class="bg-brand-textDark text-white p-3 rounded-lg text-center overflow-hidden flex-1 flex flex-col justify-center">
+                    <h2 class="text-xs font-bold mb-1 uppercase tracking-wider">UI KIT</h2>
+                     <p class="text-white/50 text-[6px] mb-4">50+ SCREENS • Auth • Home • Search • Booking</p>
+                     
+                     <!-- Expanded Placeholder Grid for Screens -->
+                     <div class="flex gap-2 justify-center opacity-70 scale-90 -rotate-1 flex-wrap content-center h-full">
+                        <div class="space-y-2 mt-4">
+                             <div class="w-10 h-16 bg-gray-800 rounded border border-gray-700"></div>
+                             <div class="w-10 h-16 bg-gray-800 rounded border border-gray-700"></div>
+                             <div class="w-10 h-16 bg-gray-800 rounded border border-gray-700"></div>
+                        </div>
+                        <div class="space-y-2">
+                             <div class="w-10 h-16 bg-white rounded border-2 border-brand-blue">
+                                <div class="h-1/2 bg-gray-300 rounded-t-sm"></div>
+                                <div class="p-0.5">
+                                    <div class="h-1 w-3/4 bg-gray-200 rounded mb-0.5"></div>
+                                    <div class="h-2 w-full bg-brand-blue rounded"></div>
+                                </div>
+                             </div>
+                             <div class="w-10 h-16 bg-gray-800 rounded border border-gray-700"></div>
+                             <div class="w-10 h-16 bg-gray-800 rounded border border-gray-700"></div>
+                        </div>
+                        <div class="space-y-2 mt-8">
+                             <div class="w-10 h-16 bg-gray-800 rounded border border-gray-700"></div>
+                             <div class="w-10 h-16 bg-gray-800 rounded border border-gray-700"></div>
+                             <div class="w-10 h-16 bg-gray-800 rounded border border-gray-700"></div>
+                        </div>
                      </div>
-                     <div class="w-32 h-64 bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-[10px] text-gray-500">Search</div>
-                 </div>
-                 <!-- Col 3 -->
-                 <div class="space-y-4 mt-16">
-                     <div class="w-32 h-64 bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-[10px] text-gray-500">Booking</div>
-                     <div class="w-32 h-64 bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-[10px] text-gray-500">Profile</div>
-                 </div>
-             </div>
-        </section>
+                </section>
 
-        <!-- 10. USER PROFILE -->
-        <section class="py-16 px-8 bg-white flex justify-center">
-            <div class="bg-white shadow-xl rounded-2xl overflow-hidden w-full border border-gray-100 flex flex-col">
-                <!-- Header -->
-                <div class="bg-brand-bg p-6 text-center border-b border-gray-100">
-                    <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4 border-2 border-white shadow-lg">
-                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=SarahChen" alt="Persona" class="w-full h-full bg-white">
-                    </div>
-                    <h3 class="text-lg font-bold text-brand-textDark">Sarah Chen</h3>
-                    <p class="text-brand-textGray text-xs mb-3">Marketing Manager • 28</p>
-                    <p class="text-[10px] italic text-gray-500">"I want to book hotels quickly."</p>
-                </div>
-                
-                <!-- Content -->
-                <div class="p-6">
-                    <div class="grid grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <h4 class="text-[10px] font-bold text-brand-blue uppercase tracking-widest mb-2">Goals</h4>
-                            <ul class="space-y-1 text-xs text-brand-textDark">
-                                <li class="flex items-start gap-1"><i data-lucide="check" class="w-3 h-3 text-green-500 mt-0.5"></i> Quick booking</li>
-                                <li class="flex items-start gap-1"><i data-lucide="check" class="w-3 h-3 text-green-500 mt-0.5"></i> Compare prices</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="text-[10px] font-bold text-red-500 uppercase tracking-widest mb-2">Pains</h4>
-                            <ul class="space-y-1 text-xs text-brand-textDark">
-                                <li class="flex items-start gap-1"><i data-lucide="x" class="w-3 h-3 text-red-500 mt-0.5"></i> Hidden fees</li>
-                                <li class="flex items-start gap-1"><i data-lucide="x" class="w-3 h-3 text-red-500 mt-0.5"></i> Bad UI</li>
-                            </ul>
+                <!-- 12. SOCIAL MARKETING -->
+                <section class="flex gap-2 shrink-0">
+                    <div class="w-full bg-brand-blue rounded-lg h-32 relative overflow-hidden group border-2 border-gray-800">
+                         <h2 class="absolute top-2 left-0 w-full text-center text-[6px] font-bold text-white z-20 uppercase tracking-wider">MARKETING</h2>
+                         <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&q=80&w=200" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                         <div class="absolute bottom-2 left-0 w-full text-center text-white">
+                            <h3 class="text-[10px] font-bold leading-tight mb-1">Dream<br>Vacation</h3>
+                            <div class="inline-block bg-white text-brand-blue px-2 py-0.5 rounded text-[6px] font-bold">Swipe</div>
                         </div>
                     </div>
-                </div>
+                </section>
+
+                <!-- 13. CONTACT / FOOTER -->
+                <section class="mt-auto bg-brand-textDark text-white p-3 rounded-lg text-center shrink-0">
+                    <h2 class="text-sm font-bold mb-1">THANK YOU!</h2>
+                    <div class="flex items-center justify-center gap-2 mb-2">
+                        <div class="bg-white p-1 rounded">
+                            <i data-lucide="qr-code" class="w-6 h-6 text-brand-textDark"></i>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-[8px] text-gray-300">Developed By</div>
+                            <div class="text-[8px] font-bold">Jia Wen Kee</div>
+                        </div>
+                    </div>
+                    <div class="text-[6px] text-gray-500">© 2026 BookNStay.</div>
+                </section>
+
             </div>
-        </section>
-
-        <!-- 11. BILLBOARD MOCKUP -->
-        <section class="py-16 bg-gray-50 px-4">
-            <h2 class="text-center text-[10px] font-bold tracking-widest text-brand-textGray mb-8 uppercase">Real World Application</h2>
-            
-            <div class="max-w-md mx-auto h-48 bg-gray-900 rounded-lg shadow-2xl relative overflow-hidden flex items-center justify-center border-b-[10px] border-gray-800">
-                <!-- Street Scene BG -->
-                <div class="absolute inset-0 bg-cover bg-center opacity-30 grayscale" style="background-image: url('https://images.unsplash.com/photo-1449824913929-2b3a641cc530?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');"></div>
-                
-                <!-- Billboard Content -->
-                <div class="relative z-10 w-[95%] h-[80%] bg-gradient-to-r from-brand-blue to-brand-accent flex items-center justify-between px-6 shadow-inner">
-                    <div class="text-white">
-                        <div class="text-[8px] font-bold tracking-widest uppercase mb-1 opacity-70">BookNStay</div>
-                        <h1 class="text-2xl font-extrabold mb-2 leading-tight">Your Perfect<br>Stay Awaits.</h1>
-                    </div>
-                    <!-- 3D Phone on Billboard -->
-                    <div class="w-20 h-32 bg-white rounded shadow-2xl transform rotate-12 border-2 border-gray-900 overflow-hidden relative">
-                         <div class="absolute inset-0 bg-brand-bg flex items-center justify-center">
-                             <span class="font-bold text-brand-blue text-[8px]">App</span>
-                         </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Stand -->
-            <div class="w-2 h-10 bg-gray-800 mx-auto"></div>
-        </section>
-
-        <!-- 12. SOCIAL MEDIA -->
-        <section class="py-16 px-8 bg-white text-center">
-            <h2 class="text-2xl font-bold text-brand-textDark mb-10">MARKETING</h2>
-            
-            <div class="flex flex-col items-center gap-8">
-                <!-- Instagram Story -->
-                <div class="w-40 h-72 bg-brand-blue rounded-xl shadow-2xl border-4 border-gray-900 relative overflow-hidden group">
-                    <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&q=80&w=400" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80"></div>
-                    
-                    <div class="absolute top-3 left-0 w-full flex gap-1 px-2">
-                        <div class="h-0.5 bg-white/50 flex-1 rounded"></div>
-                        <div class="h-0.5 bg-white/50 flex-1 rounded"></div>
-                    </div>
-
-                    <div class="absolute bottom-6 left-0 w-full text-center text-white">
-                        <h3 class="text-lg font-bold mb-2">Dream<br>Vacation</h3>
-                        <div class="inline-block bg-white text-brand-blue px-3 py-1 rounded-full text-[10px] font-bold mt-1 animate-bounce">Swipe Up</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 13. FULL UI GRID -->
-        <section class="py-16 bg-brand-bg text-center">
-             <h2 class="text-2xl font-bold text-brand-textDark mb-10">UI KIT</h2>
-             
-             <!-- Dense Grid -->
-             <div class="grid grid-cols-4 gap-2 px-4 opacity-50">
-                 <script>
-                     for(let i=0; i<12; i++) {
-                         document.write(`<div class="aspect-[9/16] bg-white border border-gray-200 rounded shadow-sm hover:scale-110 hover:opacity-100 hover:border-brand-blue transition-all duration-200 cursor-pointer"></div>`);
-                     }
-                 </script>
-             </div>
-        </section>
-
-        <!-- 14. THANK YOU + CONTACT -->
-        <section class="py-16 bg-brand-textDark text-white text-center">
-            <h1 class="text-4xl font-extrabold mb-6">THANK YOU!</h1>
-            <p class="text-gray-400 mb-10 font-light text-sm">Designed with ❤️ for travelers.</p>
-            
-            <div class="flex flex-col justify-center items-center gap-8 border-t border-gray-800 pt-10 px-8">
-                <div class="text-center">
-                    <h4 class="font-bold text-white mb-1 text-sm">Developed By</h4>
-                    <p class="text-gray-400 text-xs">Jia Wen Kee</p>
-                    <p class="text-gray-400 text-xs">jiawenkee60@gmail.com</p>
-                </div>
-                
-                <!-- QR Code -->
-                <div class="p-3 bg-white rounded-xl shadow-xl">
-                    <div class="w-20 h-20 bg-brand-textDark flex items-center justify-center">
-                        <i data-lucide="qr-code" class="w-10 h-10 text-white"></i>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-10 text-gray-600 text-[10px]">© 2026 BookNStay. All Rights Reserved.</div>
-        </section>
-
+        </div>
     </main>
     
     <script>
