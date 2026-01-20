@@ -1,958 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookNStay App Case Study Poster</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-    <!-- Material Icons - Crucial for Icons to Load -->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        /* Custom Font Configuration */
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        
-        /* A4 Sizing & Print Logic */
-        @page { size: A4; margin: 0; }
-        
-        .a4-container {
-            width: 210mm;
-            height: 297mm;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
 
-        @media print {
-            body { background: white; margin: 0; }
-            .a4-container {
-                width: 100%;
-                height: 100%;
-                box-shadow: none;
-                margin: 0;
-            }
-        }
+    /* Container for the whole mock to center it nicely */
+    .mock-container {
+      /* match width of the card + borders if strictly needed, 
+         but here we just wrap the top bar and card */
+      width: 206px; 
+    }
 
-        /* Scaled Phone Mockup for Poster */
-        .phone-mockup-sm {
-            border: 4px solid #1f2937;
-            border-radius: 1rem;
-            overflow: hidden;
-            position: relative;
-            background: white;
-            z-index: 20;
-        }
-        .phone-notch-sm {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40%;
-            height: 10px;
-            background: #1f2937;
-            border-bottom-left-radius: 6px;
-            border-bottom-right-radius: 6px;
-            z-index: 30;
-        }
-
-        /* Mini Screen Scaling Logic */
-        .mini-screen-wrapper {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background: white;
-            position: relative;
-        }
-        
-        /* Fixed definition for Material Symbols to prevent text rendering */
-        .material-symbols-outlined {
-            font-family: 'Material Symbols Outlined' !important;
-            font-weight: normal;
-            font-style: normal;
-            font-size: 24px;
-            line-height: 1;
-            letter-spacing: normal;
-            text-transform: none;
-            display: inline-block;
-            white-space: nowrap;
-            word-wrap: normal;
-            direction: ltr;
-            -webkit-font-feature-settings: 'liga';
-            -webkit-font-smoothing: antialiased;
-            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-
-        /* Cloud Animation (Subtler) */
-        .cloud {
-            position: absolute;
-            opacity: 0.8;
-            animation: cloud-move linear infinite;
-        }
-        @keyframes cloud-move {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(210mm); }
-        }
-
-        /* Gradient Backgrounds */
-        .hero-bg {
-            background: linear-gradient(135deg, #0E3286 0%, #1010A2 100%);
-        }
-
-        /* Scrollbar Hide */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        /* UI Kit Screen Styles */
-        .ui-kit-screen {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        /* Rate App Screen Styles */
-        .rate-app-screen {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #FFFFFF;
-            color: #120e1b;
-        }
-        .rate-app-screen .material-symbols-outlined {
-            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-        }
-        .rate-app-screen .star-filled {
-            color: #FBBF24;
-        }
-        .rate-app-screen .bg-primary {
-            background: #0E3286;
-        }
-        
-        /* Profile Screen Styles */
-        .profile-screen {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #ffffff;
-            color: #0F172A;
-        }
-        .profile-screen .bg-primary {
-            background: #0E3286;
-        }
-        .profile-screen .bg-surface-light {
-            background: #F8FAFC;
-        }
-        
-        /* My Bookings Screen Styles */
-        .bookings-screen {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #FFFFFF;
-            color: #0F172A;
-        }
-        .bookings-screen .bg-primary {
-            background: #0E3286;
-        }
-        
-        /* Admin Dashboard Screen Styles */
-        .admin-screen {
-            font-family: 'Segoe UI', sans-serif;
-            background: #f5f7fa;
-            color: #333;
-        }
-        .admin-screen .sidebar {
-            background: #2c3e50;
-        }
-        .admin-screen .bg-white {
-            background: white;
-        }
-        .admin-screen .text-primary {
-            color: #3498db;
-        }
-        
-        /* Onboarding Screen Styles */
-        .onboarding-screen {
-            font-family: 'Manrope', sans-serif;
-            background: #f8f9fc;
-            color: #333;
-        }
-        .onboarding-screen .bg-primary {
-            background: #0E3286;
-        }
-        
-        /* Help Center Screen Styles */
-        .help-screen {
-            font-family: 'Inter', sans-serif;
-            background: #f9fafa;
-            color: #131118;
-        }
-        .help-screen .bg-primary {
-            background: #0E3286;
-        }
-        .help-screen .bg-surface-dark {
-            background: #2a2a2a;
-        }
-    </style>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            blue: '#0E3286',
-                            accent: '#1010A2',
-                            bg: '#F6F6F8',
-                            textGray: '#64748B',
-                            textDark: '#0F172A',
-                            white: '#FFFFFF'
-                        },
-                        "primary": "#0E3286",
-                        "primary-light": "#7c93cb",
-                        "primary-dark": "#0a2460",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#161121",
-                        "surface-light": "#ffffff",
-                        "surface-dark": "#231b33",
-                        "text-main": "#131118",
-                        "text-secondary": "#6e6388",
-                        "border-light": "#dfdce5",
-                        "border-dark": "#3a3a3a",
-                        "star-filled": "#FFB800",
-                        "star-empty": "#E5E7EB",
-                    },
-                    fontFamily: {
-                        "display": ["Plus Jakarta Sans", "sans-serif"],
-                        "manrope": ["Manrope", "sans-serif"],
-                        "inter": ["Inter", "sans-serif"]
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-white py-4 md:py-10 print:py-0 text-slate-900">
-
-    <!-- POSTER CONTAINER (A4 Fixed) -->
-    <main class="a4-container">
-        
-        <!-- 1. HEADER / HERO (Compact) -->
-        <header class="relative hero-bg text-white h-[13%] flex items-center px-8 overflow-hidden shrink-0">
-            <!-- Deco -->
-            <div class="cloud text-white/10" style="top: 10%; animation-duration: 30s; font-size: 2rem;">☁️</div>
-            
-            <div class="flex-1 z-10">
-                <div class="flex items-center gap-2 mb-1 text-white/60 text-[8px] tracking-[0.2em] uppercase">
-                    <span>✈️</span> Case Study 2026 <span>🌍</span>
-                </div>
-                <h1 class="text-5xl font-extrabold tracking-tight mb-1">BookNStay</h1>
-                <p class="text-sm text-white/80 font-light">"Your Perfect Stay Awaits"</p>
-                <div class="mt-2 flex gap-2 text-[8px] font-semibold uppercase tracking-widest text-white/60">
-                    Paris • Bangkok • Tokyo • Dubai
-                </div>
-            </div>
-
-            <!-- Hero Image (Cropped Phone) -->
-            <div class="w-24 h-full relative z-10 flex items-end justify-center -mb-8">
-                 <div class="phone-mockup-sm w-20 h-32 bg-brand-bg shadow-2xl rotate-6 transform translate-y-2">
-                    <div class="phone-notch-sm"></div>
-                    <div class="h-full w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
-                        <div class="absolute inset-0 bg-brand-blue/30 flex items-end p-2">
-                             <div class="text-white">
-                                <h3 class="font-bold text-[8px]">Discover</h3>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-            </div>
-        </header>
-
-        <!-- MAIN GRID CONTENT -->
-        <div class="flex-1 p-4 grid grid-cols-12 gap-4 overflow-hidden">
-            
-            <!-- LEFT COLUMN (Col Span 4) -->
-            <div class="col-span-4 flex flex-col gap-3">
-                
-                <!-- 2. OVERVIEW -->
-                <section class="bg-gray-50 p-3 rounded-lg border border-gray-100">
-                    <h2 class="text-xs font-bold text-brand-textDark mb-2 uppercase tracking-wider">PROJECT OVERVIEW</h2>
-                    <div class="space-y-2">
-                        <div class="bg-white p-2 rounded border-l-2 border-red-500 shadow-sm">
-                            <h3 class="font-bold text-[8px] text-brand-textDark flex gap-1 mb-1"><i data-lucide="frown" class="w-3 h-3 text-red-500"></i> The Problem</h3>
-                            <p class="text-[8px] text-gray-500 leading-tight">Traditional hotel booking is complex, has hidden fees, and language barriers.</p>
-                        </div>
-                        <div class="bg-brand-blue p-2 rounded border-l-2 border-brand-accent shadow-sm">
-                            <h3 class="font-bold text-[8px] text-white flex gap-1 mb-1"><i data-lucide="smile" class="w-3 h-3 text-white"></i> The Solution</h3>
-                            <p class="text-[8px] text-blue-100 leading-tight">Simplified booking with real-time transparency and multi-language support.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 3. TECH STACK -->
-                <section class="bg-white border border-gray-100 rounded-lg p-2 shadow-sm">
-                    <h2 class="text-xs font-bold text-brand-textDark mb-2 uppercase tracking-wider">TECH STACK</h2>
-                    <div class="flex flex-wrap justify-between gap-2 opacity-60 grayscale hover:grayscale-0 transition-all duration-500 px-1">
-                        <div class="flex flex-col items-center gap-1"><i data-lucide="smartphone" class="w-3 h-3 text-blue-500"></i><span class="text-[6px] font-bold">Flutter</span></div>
-                        <div class="flex flex-col items-center gap-1"><i data-lucide="flame" class="w-3 h-3 text-orange-500"></i><span class="text-[6px] font-bold">Firebase</span></div>
-                        <div class="flex flex-col items-center gap-1"><i data-lucide="globe" class="w-3 h-3 text-green-500"></i><span class="text-[6px] font-bold">Amadeus</span></div>
-                        <div class="flex flex-col items-center gap-1"><i data-lucide="credit-card" class="w-3 h-3 text-purple-500"></i><span class="text-[6px] font-bold">Stripe</span></div>
-                        <div class="flex flex-col items-center gap-1"><i data-lucide="figma" class="w-3 h-3 text-pink-500"></i><span class="text-[6px] font-bold">Figma</span></div>
-                    </div>
-                </section>
-
-                <!-- 4. USER FLOW (Updated) -->
-                <section class="bg-white p-2 rounded-lg border border-gray-100 flex-1">
-                    <h2 class="text-xs font-bold text-brand-textDark mb-2 uppercase tracking-wider">USER FLOW</h2>
-                    <div class="bg-brand-bg p-3 rounded-xl border border-gray-200 flex flex-col items-center gap-2">
-                        <div class="w-full py-1.5 bg-white border border-gray-200 rounded shadow-sm font-bold text-[8px] text-brand-textDark text-center">Splash Screen</div>
-                        <i data-lucide="arrow-down" class="text-gray-300 h-3"></i>
-                        <div class="flex gap-2 w-full">
-                            <div class="flex-1 py-1.5 bg-white border border-gray-200 rounded shadow-sm font-bold text-[8px] text-gray-500 text-center">Login</div>
-                            <div class="flex-1 py-1.5 bg-white border border-gray-200 rounded shadow-sm font-bold text-[8px] text-gray-500 text-center">Register</div>
-                        </div>
-                        <i data-lucide="arrow-down" class="text-gray-300 h-3"></i>
-                        <div class="w-full py-2 bg-brand-blue text-white rounded shadow-md font-bold text-[8px] text-center uppercase">HOME SCREEN</div>
-                        <i data-lucide="arrow-down" class="text-gray-300 h-3"></i>
-                        <div class="grid grid-cols-2 gap-2 w-full justify-center">
-                            <div class="py-1.5 bg-white border border-gray-200 rounded text-[6px] font-semibold text-center">Search</div>
-                            <div class="py-1.5 bg-white border border-gray-200 rounded text-[6px] font-semibold text-center">Wishlist</div>
-                            <div class="py-1.5 bg-white border border-gray-200 rounded text-[6px] font-semibold text-center">Booking</div>
-                            <div class="py-1.5 bg-white border border-gray-200 rounded text-[6px] font-semibold text-center">Settings</div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 5. TYPOGRAPHY & COLOR -->
-                <section class="bg-white p-3 rounded-lg border border-gray-100">
-                    <h2 class="text-xs font-bold text-brand-textDark mb-2 uppercase tracking-wider">DESIGN SYS</h2>
-                    <div class="flex justify-between items-end mb-3 border-b pb-2">
-                        <div>
-                            <span class="text-2xl font-bold">Aa</span>
-                            <span class="text-[10px] block font-bold">Plus Jakarta</span>
-                        </div>
-                        <div class="text-right space-y-0.5">
-                            <div class="text-[8px] font-bold">Bold Title</div>
-                            <div class="text-[8px] font-medium">Medium</div>
-                            <div class="text-[8px]">Regular</div>
-                        </div>
-                    </div>
-                    <div class="flex gap-2">
-                        <div class="flex-1">
-                            <div class="h-8 bg-brand-blue rounded shadow mb-1"></div>
-                            <div class="text-[8px] font-bold">Blue</div>
-                            <div class="text-[6px] text-gray-500">#0E3286</div>
-                        </div>
-                        <div class="flex-1">
-                            <div class="h-8 bg-brand-accent rounded shadow mb-1"></div>
-                            <div class="text-[8px] font-bold">Indigo</div>
-                            <div class="text-[6px] text-gray-500">#1010A2</div>
-                        </div>
-                        <div class="flex-1">
-                            <div class="h-8 bg-gray-100 rounded shadow mb-1"></div>
-                            <div class="text-[8px] font-bold">Surface</div>
-                            <div class="text-[6px] text-gray-500">#F6F6F8</div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- CENTER COLUMN (Col Span 4) - VISUAL ANCHOR -->
-            <div class="col-span-4 flex flex-col gap-3">
-                
-                <!-- 6. VISUAL IDENTITY -->
-                <section class="bg-brand-bg rounded-lg p-3 relative overflow-hidden text-center border border-gray-100">
-                    <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#0E3286 1px, transparent 1px); background-size: 12px 12px;"></div>
-                    <h2 class="text-xs font-bold text-brand-textDark mb-3 uppercase tracking-wider relative z-10">VISUAL IDENTITY</h2>
-                    
-                    <!-- Logo -->
-                    <div class="w-16 h-16 bg-brand-blue rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-2 relative z-10">
-                         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M2 12h4c2 0 4-2 4-4V4"/>
-                            <path d="M22 12h-4c-2 0-4 2-4 4v4"/>
-                            <path d="M12 12v.01"/>
-                        </svg>
-                    </div>
-                    <h4 class="font-bold text-[10px] text-brand-textDark relative z-10">The Mark</h4>
-                    <p class="text-[6px] text-brand-textGray mb-4 relative z-10">"S" as a pathway/door</p>
-
-                    <!-- Values Grid -->
-                    <div class="grid grid-cols-2 gap-2 text-left relative z-10 bg-white/50 p-2 rounded-lg">
-                        <div>
-                            <div class="font-bold text-brand-textDark text-[8px]">🎯 Simplicity</div>
-                            <div class="text-[6px] text-brand-textGray">Easy to use interface</div>
-                        </div>
-                        <div>
-                            <div class="font-bold text-brand-textDark text-[8px]">🔒 Trust</div>
-                            <div class="text-[6px] text-brand-textGray">Secure & reliable</div>
-                        </div>
-                        <div>
-                            <div class="font-bold text-brand-textDark text-[8px]">🌍 Global</div>
-                            <div class="text-[6px] text-brand-textGray">For everyone</div>
-                        </div>
-                        <div>
-                            <div class="font-bold text-brand-textDark text-[8px]">✨ Quality</div>
-                            <div class="text-[6px] text-brand-textGray">Premium experience</div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 7. HOME SCREEN UI (Main Mockup) -->
-                <section class="flex-1 relative flex flex-col items-center justify-center py-2">
-                    <h2 class="text-xs font-bold text-brand-textDark mb-4 uppercase tracking-wider z-10">HOME SCREEN UI</h2>
-                    <div class="absolute inset-0 bg-brand-bg rounded-xl -skew-y-6 scale-90 -z-10 mt-6"></div>
-                    
-                    <!-- The Phone (Detailed Mockup) -->
-                    <div class="phone-mockup-sm w-44 h-80 bg-white shadow-2xl relative">
-                        <div class="phone-notch-sm z-50"></div>
-                        <!-- Screen Content Scaled Container -->
-                        <div class="w-full h-full bg-gray-50 overflow-hidden relative">
-                            <!-- Inner Scale Wrapper (320px / 0.46 = ~695px height) -->
-                            <div style="transform: scale(0.46); transform-origin: top left; width: 217.39%; height: 217.39%;" class="bg-gray-50 text-slate-900 pb-24 font-sans">
-                                
-                                <!-- HEADER -->
-                                <header class="sticky top-0 z-40 bg-gray-50/95 backdrop-blur-sm transition-colors duration-300">
-                                    <div class="px-5 pt-12 pb-4 flex items-center justify-between">
-                                        <div class="flex flex-col">
-                                            <span class="text-xs text-slate-500 font-medium ml-1">Current Location</span>
-                                            <div class="flex items-center gap-1 cursor-pointer group">
-                                                <span class="material-symbols-outlined text-brand-blue text-[20px]">location_on</span>
-                                                <h2 class="text-lg font-bold leading-tight tracking-tight text-slate-900">Kuala Lumpur, MY</h2>
-                                                <span class="material-symbols-outlined text-slate-400 text-[20px]">expand_more</span>
-                                            </div>
-                                        </div>
-                                        <div class="flex items-center gap-3">
-                                            <button class="relative p-2 rounded-full bg-white shadow-sm border border-slate-100">
-                                                <span class="material-symbols-outlined text-slate-700 text-[24px]">notifications</span>
-                                                <span class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
-                                            </button>
-                                            <div class="h-10 w-10 rounded-full border-2 border-white shadow-sm overflow-hidden bg-slate-200">
-                                                <img alt="User" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU0nOsflkeNp_LxX8rrdRg3KxzDH9HJW2BjBCdiooQJP6WoWtMfB0SGon1m4m1cYOah8AAOvnUHMo0EzBTRi5EH5vwgGXjHAFhWNcP2zqCdBpUEfIoqrQ8a0pe75v1YvYWWaQnlxHPWwhrGa4HfrebUdz05g_8riIU_WQaXeoe7dZ2iXQdlgOudCx_MhxFfHqJSl1v5zffih4VbGUTqOMDGRO2HNpXhLbZ5AZw-niXgd1lJAiIIbURZDH-JKlch2HaVowaH6kuqJ4"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </header>
-
-                                <!-- MAIN CONTENT -->
-                                <main class="w-full mx-auto relative flex flex-col gap-6">
-                                    <section class="px-5 pt-2 mb-4">
-                                        <h1 class="text-[28px] font-bold leading-[1.2] tracking-tight text-center text-slate-900">
-                                            Hi, John! 👋 <br/>
-                                            <span class="text-slate-500 text-2xl font-semibold">Where would you like to stay?</span>
-                                        </h1>
-                                    </section>
-                                    <section class="px-4">
-                                        <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-100">
-                                            <div class="mb-5">
-                                                <label class="block text-sm font-medium text-slate-700 mb-2 ml-1">Destination</label>
-                                                <div class="relative group">
-                                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                        <span class="material-symbols-outlined text-brand-blue text-[24px]">location_on</span>
-                                                    </div>
-                                                    <input class="block w-full pl-12 pr-4 py-4 bg-gray-50 border-transparent rounded-xl text-slate-900 placeholder-slate-400 font-medium text-base" placeholder="Enter city or hotel" type="text"/>
-                                                </div>
-                                            </div>
-                                            <div class="flex gap-4 mb-5">
-                                                <div class="flex-1">
-                                                    <label class="block text-sm font-medium text-slate-700 mb-2 ml-1">Check-in</label>
-                                                    <div class="relative">
-                                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                            <span class="material-symbols-outlined text-slate-400 text-[24px]">calendar_today</span>
-                                                        </div>
-                                                        <input class="block w-full pl-10 pr-2 py-4 bg-gray-50 border-transparent rounded-xl text-slate-900 font-medium text-base" readonly="" type="text" value="Dec 15"/>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-1">
-                                                    <label class="block text-sm font-medium text-slate-700 mb-2 ml-1">Check-out</label>
-                                                    <div class="relative">
-                                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                            <span class="material-symbols-outlined text-slate-400 text-[24px]">calendar_today</span>
-                                                        </div>
-                                                        <input class="block w-full pl-10 pr-2 py-4 bg-gray-50 border-transparent rounded-xl text-slate-900 font-medium text-base" readonly="" type="text" value="Dec 18"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <button class="w-full bg-brand-blue text-white font-bold py-4 rounded-full shadow-lg flex items-center justify-center gap-2 text-lg">
-                                                <span class="material-symbols-outlined">search</span>
-                                                SEARCH HOTELS
-                                            </button>
-                                        </div>
-                                    </section>
-                                    <section class="pl-5 pt-2">
-                                        <div class="flex items-center justify-between pr-5 mb-3">
-                                            <h3 class="text-base font-bold text-slate-900">Popular Destinations</h3>
-                                            <button class="text-xs font-semibold text-brand-blue">See All</button>
-                                        </div>
-                                        <div class="flex gap-3 overflow-x-auto no-scrollbar pb-3 pr-5">
-                                            <div class="flex-shrink-0 w-36 h-48 relative rounded-xl overflow-hidden group">
-                                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10"></div>
-                                                <img alt="Penang" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCpeMnf3wWEsYG20kT-1c6n2RAbpwMu5WRNXgwNnyvkMdUJYRQedFw5k4kkHD-CMp65mW1Cn9gnAyBqNHBn-ajEIvaG5EViWzpV0Hlpt-5HKiBCCtvnOLI07QFhKKwg7qGQdPNqLmGax878uoikdHs5hAMU261NjdmJtWdv7evmSIBMRnd2M1MLncQuyxBOPVn6LlmHL3HjweE8_EDIFy2dR0IRScRR5vfYUU7PKDV6FOGBl1liSIB2glKHNUWogZfAjOeZ8yCpAA"/>
-                                                <div class="absolute bottom-3 left-3 z-20">
-                                                    <h4 class="text-white font-bold text-base leading-tight">Penang</h4>
-                                                    <p class="text-white/80 text-[10px] font-medium">240+ Hotels</p>
-                                                </div>
-                                            </div>
-                                            <div class="flex-shrink-0 w-36 h-48 relative rounded-xl overflow-hidden group">
-                                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10"></div>
-                                                <img alt="Bali" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyxul0Mde81Nc66ZeDiBnGVVyk-4OzzKKkqMuUbJVAh2WbUnofmtrgfYs8m1kTUv4G5OH8gA_5IQHxi0U_gWw2Ol_vzbXFl5YaDF_ixJemtPPt5f2H3njq9FdJvRoL3jlq0PVra-riegrJQi7upxxVaU9IDwMmQne-Qy7WqIh--sF4Mx52O-ArJgZT2ZPoZ8MhGMGa6o9q3iO1Uskre3_gNCBSMYOrQcrDfooiN5f7VRIfoEqQOj6TvEG57H4XVOLjOURYFdJLpcs"/>
-                                                <div class="absolute bottom-3 left-3 z-20">
-                                                    <h4 class="text-white font-bold text-base leading-tight">Bali</h4>
-                                                    <p class="text-white/80 text-[10px] font-medium">450+ Hotels</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-                                </main>
-
-                                <!-- BOTTOM NAV (Settings Updated) -->
-                                <nav class="fixed bottom-0 w-full bg-white border-t border-slate-100 pb-4 pt-2 px-6 z-50 rounded-t-xl shadow-lg">
-                                    <div class="flex justify-between items-end pb-4 sm:pb-2">
-                                        <button class="flex flex-col items-center gap-1 min-w-[3.5rem] text-brand-blue group">
-                                            <span class="material-symbols-outlined text-[26px] bg-brand-blue/10 px-4 py-1 rounded-full transition-all group-hover:scale-105">home</span>
-                                            <span class="text-[11px] font-bold">Home</span>
-                                        </button>
-                                        <button class="flex flex-col items-center gap-1 min-w-[3.5rem] text-slate-400 hover:text-slate-600 transition-colors">
-                                            <span class="material-symbols-outlined text-[26px]">favorite</span>
-                                            <span class="text-[11px] font-medium">Saved</span>
-                                        </button>
-                                        <button class="flex flex-col items-center gap-1 min-w-[3.5rem] text-slate-400 hover:text-slate-600 transition-colors">
-                                            <span class="material-symbols-outlined text-[26px]">calendar_month</span>
-                                            <span class="text-[11px] font-medium">Bookings</span>
-                                        </button>
-                                        <button class="flex flex-col items-center gap-1 min-w-[3.5rem] text-slate-400 hover:text-slate-600 transition-colors">
-                                            <span class="material-symbols-outlined text-[26px]">settings</span>
-                                            <span class="text-[11px] font-medium">Settings</span>
-                                        </button>
-                                    </div>
-                                </nav>
-
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 8. FEEDBACK -->
-                <section class="bg-brand-blue rounded-lg p-3 text-white text-center relative overflow-hidden">
-                    <h2 class="text-xs font-bold text-white mb-2 uppercase tracking-wider relative z-10 opacity-70">FEEDBACK</h2>
-                    <i data-lucide="quote" class="absolute top-1 right-1 w-6 h-6 opacity-20"></i>
-                    <p class="text-[8px] italic mb-2 relative z-10">"The cleanest hotel booking app I've used. The multi-currency feature saved us!"</p>
-                    <div class="flex justify-center gap-0.5 mb-1 text-yellow-400">
-                        <i data-lucide="star" class="w-2 h-2 fill-current"></i><i data-lucide="star" class="w-2 h-2 fill-current"></i><i data-lucide="star" class="w-2 h-2 fill-current"></i><i data-lucide="star" class="w-2 h-2 fill-current"></i><i data-lucide="star" class="w-2 h-2 fill-current"></i>
-                    </div>
-                    <div class="font-bold text-[8px]">- Sarah M.</div>
-                </section>
-            </div>
-
-            <!-- RIGHT COLUMN (Col Span 4) -->
-            <div class="col-span-4 flex flex-col gap-3 h-full">
-                
-                <!-- 9. USER PERSONA (Updated) -->
-                <section class="bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden shrink-0">
-                    <div class="bg-brand-bg p-2 text-center border-b border-gray-100">
-                        <h2 class="text-xs font-bold text-brand-textDark mb-2 uppercase tracking-wider">PERSONA</h2>
-                        <div class="w-10 h-10 rounded-full overflow-hidden mx-auto mb-1 border-2 border-white shadow-lg">
-                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=SarahChen" alt="Persona" class="w-full h-full bg-white">
-                        </div>
-                        <h3 class="text-[10px] font-bold text-brand-textDark">Sarah Chen</h3>
-                        <p class="text-brand-textGray text-[8px]">Marketing • 28</p>
-                    </div>
-                    <div class="p-2 grid grid-cols-2 gap-2">
-                        <div>
-                            <h4 class="text-[6px] font-bold text-brand-blue uppercase tracking-widest mb-1">Goals</h4>
-                            <ul class="space-y-0.5 text-[6px] text-brand-textDark">
-                                <li class="flex items-start gap-1"><i data-lucide="check" class="w-2 h-2 text-green-500"></i> Quick booking</li>
-                                <li class="flex items-start gap-1"><i data-lucide="check" class="w-2 h-2 text-green-500"></i> Compare prices</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="text-[6px] font-bold text-red-500 uppercase tracking-widest mb-1">Pains</h4>
-                             <ul class="space-y-0.5 text-[6px] text-brand-textDark">
-                                <li class="flex items-start gap-1"><i data-lucide="x" class="w-2 h-2 text-red-500"></i> Hidden fees</li>
-                                <li class="flex items-start gap-1"><i data-lucide="x" class="w-2 h-2 text-red-500"></i> Bad UI</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 10. 50+ SCREENS (UI KIT - 6 SCREENS) -->
-                <section class="bg-brand-textDark text-white p-2 rounded-lg text-center overflow-hidden flex-1 flex flex-col">
-                    <h2 class="text-xs font-bold mb-1 uppercase tracking-wider">UI KIT</h2>
-                     <p class="text-white/50 text-[6px] mb-2">6 SCREENS • Rate • Profile • Bookings • Admin • Onboarding • Help</p>
-                     
-                     <!-- Staggered Grid for 6 Screens -->
-                     <div class="grid grid-cols-3 gap-2 px-1 flex-1 overflow-hidden items-start">
-                        
-                        <!-- COL 1 -->
-                        <div class="flex flex-col gap-2">
-                            <!-- 1. Rate App Screen -->
-                            <div class="aspect-[375/812] w-full rounded-xl overflow-hidden relative group hover:scale-110 hover:z-50 transition-all duration-300 shadow-lg">
-                                <div class="ui-kit-screen rate-app-screen w-full h-full">
-                                    <!-- Rate App Content -->
-                                    <div class="w-full h-full bg-white flex flex-col">
-                                        <header class="w-full p-3 flex justify-end">
-                                            <button class="p-1.5 rounded-full hover:bg-gray-100">
-                                                <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 0;">close</span>
-                                            </button>
-                                        </header>
-                                        <main class="flex-1 flex flex-col items-center justify-center px-4">
-                                            <div class="mb-3">
-                                                <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center">
-                                                    <span class="material-symbols-outlined text-primary text-[32px]">thumb_up</span>
-                                                </div>
-                                            </div>
-                                            <h1 class="text-lg font-extrabold text-text-main mb-1 text-center">Thank You!</h1>
-                                            <p class="text-[8px] text-text-subtle text-center mb-3">Your feedback helps us improve</p>
-                                            <div class="flex gap-0.5 justify-center mb-2">
-                                                <span class="material-symbols-outlined star-filled text-[18px]">star</span>
-                                                <span class="material-symbols-outlined star-filled text-[18px]">star</span>
-                                                <span class="material-symbols-outlined star-filled text-[18px]">star</span>
-                                                <span class="material-symbols-outlined star-filled text-[18px]">star</span>
-                                                <span class="material-symbols-outlined star-filled text-[18px]">star</span>
-                                            </div>
-                                            <span class="text-[10px] font-bold text-primary">Excellent!</span>
-                                        </main>
-                                        <div class="p-3">
-                                            <button class="w-full bg-primary text-white font-bold text-[10px] py-2 rounded-lg shadow">RATE ON APP STORE</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 4. Profile Screen -->
-                            <div class="aspect-[375/812] w-full rounded-xl overflow-hidden relative group hover:scale-110 hover:z-50 transition-all duration-300 shadow-lg">
-                                <div class="ui-kit-screen profile-screen w-full h-full">
-                                    <!-- Profile Content -->
-                                    <div class="w-full h-full bg-surface-light flex flex-col">
-                                        <header class="sticky top-0 bg-white/95 backdrop-blur-md p-3 pb-2 flex items-center justify-between border-b border-slate-100">
-                                            <button class="size-8 rounded-full flex items-center justify-center hover:bg-slate-100">
-                                                <span class="material-symbols-outlined text-[18px]">arrow_back</span>
-                                            </button>
-                                            <h2 class="text-sm font-bold flex-1 text-center pr-8">Profile</h2>
-                                        </header>
-                                        <main class="flex-1 flex flex-col gap-3 px-3 pt-2 pb-3 overflow-hidden">
-                                            <section class="flex flex-col items-center pt-1 pb-2">
-                                                <div class="relative mb-2">
-                                                    <div class="w-20 h-20 rounded-full bg-cover bg-center shadow-xl ring-4 ring-white" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFP6Ca87Ae14A8P92XA-5MeH1-11QGbv01eGUI0hIFKyP349OvIdtmYnk4fV3EDAfotwXLUV2GF1jEhbMAmslg242oNuc1_RGan-Kyupp5HL8xQCzuEiqnFH1Zl1mkng6Q_97hReLvLk0hJ7nPxNpeRJ0Lvm-BvAu52ZqLmck01oj3veV4UiHEdyYOQFD2GZ-XKsvqMKEEIQBM1h-qcZt7_LYGGsVlITlHwuIYX3Lr44TAwjN1hTC1kGOgpnD-ACyEyDjcs5ri9NL9");'></div>
-                                                    <div class="absolute bottom-0 right-0 bg-primary text-white rounded-full p-1 border-2 border-white flex items-center justify-center shadow">
-                                                        <span class="material-symbols-outlined text-[10px]">edit</span>
-                                                    </div>
-                                                </div>
-                                                <h1 class="text-base font-bold text-center">Alex Doe</h1>
-                                                <p class="text-[8px] text-slate-500 text-center">alex@example.com</p>
-                                            </section>
-                                            <section class="flex flex-col gap-1.5">
-                                                <div class="bg-white rounded-xl overflow-hidden border border-slate-100">
-                                                    <button class="w-full flex items-center gap-2 p-2.5 hover:bg-slate-50">
-                                                        <div class="flex items-center justify-center rounded-lg bg-white text-primary size-8 shadow-sm">
-                                                            <span class="material-symbols-outlined text-[16px]">person</span>
-                                                        </div>
-                                                        <p class="text-[10px] font-semibold flex-1 text-left">Personal Information</p>
-                                                        <span class="material-symbols-outlined text-slate-300 text-[14px]">chevron_right</span>
-                                                    </button>
-                                                    <div class="h-px bg-slate-100 mx-4"></div>
-                                                    <button class="w-full flex items-center gap-2 p-2.5 hover:bg-slate-50">
-                                                        <div class="flex items-center justify-center rounded-lg bg-white text-primary size-8 shadow-sm">
-                                                            <span class="material-symbols-outlined text-[16px]">lock</span>
-                                                        </div>
-                                                        <p class="text-[10px] font-semibold flex-1 text-left">Login & Security</p>
-                                                        <span class="material-symbols-outlined text-slate-300 text-[14px]">chevron_right</span>
-                                                    </button>
-                                                </div>
-                                            </section>
-                                            <section class="flex-1 flex flex-col items-center justify-center">
-                                                <button class="w-full bg-primary text-white font-bold py-2 rounded-full shadow-lg text-[10px]">Log Out</button>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- COL 2 (Staggered Down) -->
-                        <div class="flex flex-col gap-2 mt-3">
-                            <!-- 2. My Bookings Screen -->
-                            <div class="aspect-[375/812] w-full rounded-xl overflow-hidden relative group hover:scale-110 hover:z-50 transition-all duration-300 shadow-lg">
-                                <div class="ui-kit-screen bookings-screen w-full h-full">
-                                    <!-- My Bookings Content -->
-                                    <div class="w-full h-full bg-white flex flex-col">
-                                        <header class="sticky top-0 bg-white/95 backdrop-blur-md px-4 pt-10 pb-3">
-                                            <div class="flex items-center justify-between mb-3">
-                                                <button class="w-8 h-8 rounded-full bg-white border border-gray-100 shadow-sm flex items-center justify-center">
-                                                    <span class="material-symbols-outlined text-[16px]">arrow_back</span>
-                                                </button>
-                                                <h1 class="text-lg font-bold">My Bookings</h1>
-                                                <button class="w-8 h-8 rounded-full bg-white border border-gray-100 shadow-sm flex items-center justify-center relative">
-                                                    <span class="material-symbols-outlined text-[16px]">notifications</span>
-                                                    <span class="absolute top-2 right-2 w-1.5 h-1.5 bg-red-500 rounded-full border border-white"></span>
-                                                </button>
-                                            </div>
-                                            <div class="flex p-1 bg-gray-100 rounded-full">
-                                                <button class="flex-1 py-2 text-[10px] font-bold rounded-full bg-primary text-white">Upcoming</button>
-                                                <button class="flex-1 py-2 text-[10px] font-medium text-slate-500">Completed</button>
-                                                <button class="flex-1 py-2 text-[10px] font-medium text-slate-500">Cancelled</button>
-                                            </div>
-                                        </header>
-                                        <main class="flex-1 overflow-y-auto px-3 py-2">
-                                            <article class="flex flex-col gap-2 rounded-xl bg-white p-3 shadow border border-gray-100 mb-2">
-                                                <div class="flex items-center justify-between">
-                                                    <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-50 text-green-700 text-[8px] font-bold uppercase">
-                                                        <span class="material-symbols-outlined text-[10px]">check_circle</span>Confirmed
-                                                    </div>
-                                                    <span class="text-[8px] text-secondary-text">#GB-8821</span>
-                                                </div>
-                                                <div class="flex gap-2">
-                                                    <div class="w-16 h-16 rounded-lg bg-gray-200 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuATTmLRuVIy24PmCIZCAdSQMyn0odHJgvrFgdH3VVunbB2zzdIfn7MQdekPPCx1tMzYRXAxyz40oXUMkrjH11C3jSarGlo86vjUZzrAoM9_a79jQro5iuwANZQFyQ5VDhQ-a_EeXySDxRnbMLrR_01rjCcEdBnA9xFA0ZutdF0SxIceNq4g1K65oZO4VhsXbBU25W3WLYsshXWwbEYN3ujhPz-4-lC9lbwuogLPScIia6XK97TglHH08m3c8Uhn40Fi_C0ezh-hPXnS');"></div>
-                                                    <div class="flex flex-col flex-1 justify-center">
-                                                        <h3 class="text-xs font-bold leading-tight">Grand Blue Hotel & Spa</h3>
-                                                        <div class="flex items-center gap-0.5 text-yellow-500 text-[10px] font-semibold">
-                                                            <span class="material-symbols-outlined text-[10px] fill-current">star</span>4.8
-                                                        </div>
-                                                        <p class="text-[8px] text-secondary-text truncate">Deluxe Ocean Suite • 2 Guests</p>
-                                                    </div>
-                                                </div>
-                                                <div class="flex items-center gap-2 p-2 rounded-lg bg-gray-50 border border-gray-100">
-                                                    <div class="flex items-center justify-center w-8 h-8 rounded-full bg-white text-primary shadow-sm border border-gray-100">
-                                                        <span class="material-symbols-outlined text-[14px]">calendar_month</span>
-                                                    </div>
-                                                    <div class="flex flex-col">
-                                                        <span class="text-[7px] text-secondary-text font-bold uppercase">Check-in — Check-out</span>
-                                                        <span class="text-[10px] font-bold">Dec 24 - Dec 28, 2024</span>
-                                                    </div>
-                                                </div>
-                                                <div class="grid grid-cols-2 gap-2 pt-1">
-                                                    <button class="h-7 rounded-full border border-gray-200 text-[9px] font-bold text-slate-700">Manage</button>
-                                                    <button class="h-7 rounded-full bg-primary text-white text-[9px] font-bold shadow">View Ticket</button>
-                                                </div>
-                                            </article>
-                                        </main>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 5. Onboarding Screen -->
-                            <div class="aspect-[375/812] w-full rounded-xl overflow-hidden relative group hover:scale-110 hover:z-50 transition-all duration-300 shadow-lg">
-                                <div class="ui-kit-screen onboarding-screen w-full h-full">
-                                    <!-- Onboarding Content -->
-                                    <div class="w-full h-full bg-background-light flex flex-col justify-between overflow-hidden">
-                                        <header class="flex items-center justify-between p-4 pt-6">
-                                            <div class="w-10"></div>
-                                            <button class="px-2 py-1">
-                                                <span class="text-slate-500 text-xs font-bold">Skip</span>
-                                            </button>
-                                        </header>
-                                        <main class="flex-1 flex flex-col items-center justify-center px-4">
-                                            <div class="relative w-full aspect-square max-h-[140px] mb-3 flex items-center justify-center">
-                                                <div class="absolute inset-0 bg-primary/20 blur-[30px] rounded-full scale-75"></div>
-                                                <div class="relative w-24 h-24 rounded-xl overflow-hidden shadow-xl ring-1 ring-white/10">
-                                                    <div class="w-full h-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD6mNxwEAvHFnmUyGEaLEbyeO0Z3uy7jXPq-qbC5w09Zp8BCxiiSphrZG-30guLXtmNDqX7GFKZEY7JJU99m6V2ebygOkE2paIQ71VSK7O-dIaLy7WJu9PvaUqWpQZUPo1Sm6ZQgZo_ljVnjzdrz6dpLJ6dFMuhzCUstXh6k8mtXVenAFFtdBUnM_-vtBS-O_cp-OqPLF8YnomwmAf218ELQG6sPhuGYllzBUg8pYfOCM7BRLLZ5E4brWLU11V8q6MwIl07qHTIJHQ");'></div>
-                                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                                                </div>
-                                                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
-                                                    <div class="bg-white/10 backdrop-blur-md border border-white/20 p-2 rounded-full shadow-lg">
-                                                        <span class="material-symbols-outlined text-white text-[20px]" style="font-variation-settings: 'FILL' 1;">travel_explore</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="text-center space-y-1 w-full">
-                                                <h1 class="text-base font-extrabold leading-tight tracking-tight text-gray-900">Discover Amazing Hotels</h1>
-                                                <p class="text-[8px] text-gray-600 font-medium leading-relaxed px-2">Explore thousands of hotels across the globe.</p>
-                                            </div>
-                                        </main>
-                                        <footer class="px-4 pb-4 pt-2 flex flex-col items-center gap-3">
-                                            <div class="flex flex-row items-center justify-center gap-1.5">
-                                                <div class="h-1.5 w-6 rounded-full bg-primary"></div>
-                                                <div class="h-1.5 w-2 rounded-full bg-gray-300"></div>
-                                                <div class="h-1.5 w-2 rounded-full bg-gray-300"></div>
-                                            </div>
-                                            <button class="w-full bg-primary text-white font-bold text-xs h-10 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(14,51,134,0.3)]">NEXT</button>
-                                        </footer>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- COL 3 -->
-                        <div class="flex flex-col gap-2">
-                            <!-- 3. Admin Dashboard Screen -->
-                            <div class="aspect-[375/812] w-full rounded-xl overflow-hidden relative group hover:scale-110 hover:z-50 transition-all duration-300 shadow-lg">
-                                <div class="ui-kit-screen admin-screen w-full h-full">
-                                    <!-- Admin Dashboard Content -->
-                                    <div class="w-full h-full flex">
-                                        <aside class="w-[60px] bg-[#2c3e50] flex-shrink-0 h-full">
-                                            <div class="p-2 text-center border-b border-[#34495e]">
-                                                <h2 class="text-xs font-bold text-white">A</h2>
-                                            </div>
-                                            <nav class="py-2">
-                                                <div class="px-3 py-2 bg-[#34495e] border-l-2 border-[#3498db]">
-                                                    <span class="material-symbols-outlined text-white text-[14px]">dashboard</span>
-                                                </div>
-                                                <div class="px-3 py-2 text-gray-400">
-                                                    <span class="material-symbols-outlined text-[14px]">calendar_month</span>
-                                                </div>
-                                                <div class="px-3 py-2 text-gray-400">
-                                                    <span class="material-symbols-outlined text-[14px]">hotel</span>
-                                                </div>
-                                                <div class="px-3 py-2 text-gray-400">
-                                                    <span class="material-symbols-outlined text-[14px]">people</span>
-                                                </div>
-                                            </nav>
-                                        </aside>
-                                        <main class="flex-1 bg-[#f5f7fa] h-full overflow-hidden">
-                                            <header class="bg-white p-2 flex justify-between items-center shadow-sm">
-                                                <h1 class="text-xs font-bold text-[#2c3e50]">Dashboard</h1>
-                                                <span class="text-[8px] text-[#2c3e50]">Admin</span>
-                                            </header>
-                                            <div class="p-2 overflow-hidden">
-                                                <div class="grid grid-cols-2 gap-2 mb-2">
-                                                    <div class="bg-white p-2 rounded shadow-sm">
-                                                        <h3 class="text-[6px] text-gray-500 uppercase">Bookings</h3>
-                                                        <div class="text-lg font-bold text-[#2c3e50]">1,245</div>
-                                                    </div>
-                                                    <div class="bg-white p-2 rounded shadow-sm">
-                                                        <h3 class="text-[6px] text-gray-500 uppercase">Revenue</h3>
-                                                        <div class="text-lg font-bold text-[#2c3e50]">$45K</div>
-                                                    </div>
-                                                    <div class="bg-white p-2 rounded shadow-sm">
-                                                        <h3 class="text-[6px] text-gray-500 uppercase">Users</h3>
-                                                        <div class="text-lg font-bold text-[#2c3e50]">3,890</div>
-                                                    </div>
-                                                    <div class="bg-white p-2 rounded shadow-sm">
-                                                        <h3 class="text-[6px] text-gray-500 uppercase">Hotels</h3>
-                                                        <div class="text-lg font-bold text-[#2c3e50]">156</div>
-                                                    </div>
-                                                </div>
-                                                <div class="bg-white p-2 rounded shadow-sm">
-                                                    <h2 class="text-[8px] font-bold text-[#2c3e50] mb-1">Recent Activity</h2>
-                                                    <table class="w-full text-[6px]">
-                                                        <thead>
-                                                            <tr class="bg-gray-50 text-[#2c3e50]">
-                                                                <th class="p-1 text-left">ID</th>
-                                                                <th class="p-1 text-left">User</th>
-                                                                <th class="p-1 text-left">Status</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr class="border-b border-gray-100">
-                                                                <td class="p-1">#BK001</td>
-                                                                <td class="p-1">John Doe</td>
-                                                                <td class="p-1"><span class="px-1 py-0.5 bg-green-100 text-green-800 rounded-full">Confirmed</span></td>
-                                                            </tr>
-                                                            <tr class="border-b border-gray-100">
-                                                                <td class="p-1">#BK002</td>
-                                                                <td class="p-1">Jane Smith</td>
-                                                                <td class="p-1"><span class="px-1 py-0.5 bg-yellow-100 text-yellow-800 rounded-full">Pending</span></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </main>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 6. Help Center Screen -->
-                            <div class="aspect-[375/812] w-full rounded-xl overflow-hidden relative group hover:scale-110 hover:z-50 transition-all duration-300 shadow-lg">
-                                <div class="ui-kit-screen help-screen w-full h-full">
-                                    <!-- Help Center Content -->
-                                    <div class="w-full h-full bg-background-light flex flex-col">
-                                        <header class="sticky top-0 bg-background-light/95 backdrop-blur-md p-3 pb-2 border-b border-border-light/50">
-                                            <div class="flex items-center p-2 pt-8 justify-between">
-                                                <button class="size-8 rounded-full flex items-center justify-center hover:bg-gray-100">
-                                                    <span class="material-symbols-outlined text-[18px]">arrow_back</span>
-                                                </button>
-                                                <h2 class="text-sm font-bold flex-1 text-center pr-10">Help Center</h2>
-                                            </div>
-                                        </header>
-                                        <main class="flex-1 overflow-y-auto px-3 py-2">
-                                            <h1 class="text-base font-bold mb-1">How can we help?</h1>
-                                            <p class="text-[8px] text-text-secondary mb-3">Find guides, ask questions, or contact us.</p>
-                                            <div class="relative mb-3">
-                                                <div class="absolute inset-y-0 left-0 pl-2 flex items-center">
-                                                    <span class="material-symbols-outlined text-primary text-[18px]">search</span>
-                                                </div>
-                                                <input class="block w-full pl-9 pr-2 py-2 rounded-lg border-none bg-white shadow-sm ring-1 ring-border-light text-[10px]" placeholder="Search for help..." type="text"/>
-                                            </div>
-                                            <div class="grid grid-cols-2 gap-2 mb-3">
-                                                <button class="flex flex-col items-center gap-1 p-3 rounded-lg bg-white border border-border-light shadow-sm">
-                                                    <div class="size-8 rounded-full bg-primary/10 flex items-center justify-center">
-                                                        <span class="material-symbols-outlined text-primary text-[18px]">calendar_month</span>
-                                                    </div>
-                                                    <span class="text-[8px] font-semibold">Booking</span>
-                                                </button>
-                                                <button class="flex flex-col items-center gap-1 p-3 rounded-lg bg-white border border-border-light shadow-sm">
-                                                    <div class="size-8 rounded-full bg-primary/10 flex items-center justify-center">
-                                                        <span class="material-symbols-outlined text-primary text-[18px]">credit_card</span>
-                                                    </div>
-                                                    <span class="text-[8px] font-semibold">Payments</span>
-                                                </button>
-                                                <button class="flex flex-col items-center gap-1 p-3 rounded-lg bg-white border border-border-light shadow-sm">
-                                                    <div class="size-8 rounded-full bg-primary/10 flex items-center justify-center">
-                                                        <span class="material-symbols-outlined text-primary text-[18px]">currency_exchange</span>
-                                                    </div>
-                                                    <span class="text-[8px] font-semibold">Refunds</span>
-                                                </button>
-                                                <button class="flex flex-col items-center gap-1 p-3 rounded-lg bg-white border border-border-light shadow-sm">
-                                                    <div class="size-8 rounded-full bg-primary/10 flex items-center justify-center">
-                                                        <span class="material-symbols-outlined text-primary text-[18px]">person</span>
-                                                    </div>
-                                                    <span class="text-[8px] font-semibold">Account</span>
-                                                </button>
-                                            </div>
-                                            <div class="bg-[#0E3386] rounded-xl p-3 text-white flex flex-col items-center text-center">
-                                                <div class="bg-white/20 p-2 rounded-full w-fit mb-2">
-                                                    <span class="material-symbols-outlined text-[18px]">support_agent</span>
-                                                </div>
-                                                <h3 class="text-xs font-bold mb-1">Still need help?</h3>
-                                                <p class="text-[8px] text-white/80 mb-2">Our support team is available 24/7</p>
-                                                <button class="bg-white text-[#0E3386] w-full py-1.5 rounded-lg font-bold text-[9px]">Chat with Support</button>
-                                            </div>
-                                        </main>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                     </div>
-                </section>
-
-                <!-- 12. SOCIAL MARKETING -->
-                <section class="flex gap-2 shrink-0">
-                    <div class="w-full bg-brand-blue rounded-lg h-32 relative overflow-hidden group border-2 border-gray-800">
-                         <h2 class="absolute top-2 left-0 w-full text-center text-[6px] font-bold text-white z-20 uppercase tracking-wider">MARKETING</h2>
-                         <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&q=80&w=200" class="absolute inset-0 w-full h-full object-cover opacity-60">
-                         <div class="absolute bottom-2 left-0 w-full text-center text-white">
-                            <h3 class="text-[10px] font-bold leading-tight mb-1">Dream<br>Vacation</h3>
-                            <div class="inline-block bg-white text-brand-blue px-2 py-0.5 rounded text-[6px] font-bold">Swipe</div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 13. CONTACT / FOOTER -->
-                <section class="mt-auto bg-brand-textDark text-white p-3 rounded-lg text-center shrink-0">
-                    <h2 class="text-sm font-bold mb-1">THANK YOU!</h2>
-                    <div class="flex items-center justify-center gap-2 mb-2">
-                        <div class="bg-white p-1 rounded">
-                            <i data-lucide="qr-code" class="w-6 h-6 text-brand-textDark"></i>
-                        </div>
-                        <div class="text-left">
-                            <div class="text-[8px] text-gray-300">Developed By</div>
-                            <div class="text-[8px] font-bold">Jia Wen Kee</div>
-                        </div>
-                    </div>
-                    <div class="text-[6px] text-gray-500">© 2026 BookNStay.</div>
-                </section>
-
-            </div>
-        </div>
-    </main>
+    /* grey rounded blocks on very top */
+    .top-bar {
+      display: flex;
+      gap: 8px;
+      /* The padding/width logic in the original was slightly tricky 
+         because .card has a fixed width. I'll align them. */
+      padding: 0 8px;
+      background: transparent; /* Changed from white to blend or keep transparent */
+      margin-bottom: -1px; /* Overlap slightly if needed, or just gap */
+      padding-bottom: 0;
+    }
     
-    <script>
-        lucide.createIcons();
-    </script>
+    .top-pill {
+      flex: 1;
+      height: 20px;
+      background: #6f6f6f;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .card {
+      width: 206px;
+      min-height: 307px;
+      background: #ffffff;
+      margin: 0 auto;
+      /* subtle border radius for the bottom of the card usually looks good, 
+         but keeping strictly to your code's square look */
+      border: 1px solid #e0e0e0;
+      border-top: none; /* The pills sit on top */
+      box-sizing: border-box;
+      padding: 18px 14px;
+      position: relative;
+    }
+
+    /* To simulate the white background behind the pills connecting to the card */
+    .card::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: 0;
+        right: 0;
+        height: 20px;
+        background: #fff;
+        z-index: -1;
+        /* If the pills need a white background container specifically */
+    }
+
+    .small-number {
+      font-size: 11px;
+      color: #b3b3b3;
+      margin-bottom: 6px;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 24px;
+      color: #000;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #1010A2;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 12px;
+      margin-bottom: 10px;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.02);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="mock-container">
+  <!-- We need a wrapper background for the pills if they are supposed to look like tabs on paper -->
+  <div style="background: #fff; padding: 0 8px; border-radius: 12px 12px 0 0;"> 
+    <div class="top-bar" style="padding: 0;">
+      <div class="top-pill"></div>
+      <div class="top-pill"></div>
+      <div class="top-pill"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="small-number">01</div>
+    <div class="title">Target Users</div>
+
+    <div class="tag">Budget-Conscious Users</div><br>
+    <div class="tag">Business Travelers</div><br>
+    <div class="tag">Tourists</div><br>
+    <div class="tag">Luxury Seekers</div><br>
+    <div class="tag">Hotel Managers</div><br>
+    <div class="tag">Domestic & International Travelers</div>
+  </div>
+</div>
+
 </body>
 </html>
