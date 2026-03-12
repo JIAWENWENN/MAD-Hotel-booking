@@ -1,127 +1,163 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mock Card</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f5f5f5;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
 
-    /* Container for the whole mock to center it nicely */
-    .mock-container {
-      /* match width of the card + borders if strictly needed, 
-         but here we just wrap the top bar and card */
-      width: 206px; 
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Creditors Aging</title>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style data-purpose="custom-gradients">
+    .bg-app-gradient {
+      background: linear-gradient(180deg, #1645a2 0%, #1a2b56 100%);
     }
-
-    /* grey rounded blocks on very top */
-    .top-bar {
-      display: flex;
-      gap: 8px;
-      /* The padding/width logic in the original was slightly tricky 
-         because .card has a fixed width. I'll align them. */
-      padding: 0 8px;
-      background: transparent; /* Changed from white to blend or keep transparent */
-      margin-bottom: -1px; /* Overlap slightly if needed, or just gap */
-      padding-bottom: 0;
+    .header-card-gradient {
+      background: linear-gradient(180deg, #3262d6 0%, #1e40af 100%);
     }
-    
-    .top-pill {
-      flex: 1;
-      height: 20px;
-      background: #6f6f6f;
-      border-radius: 10px 10px 0 0;
-    }
-
-    .card {
-      width: 206px;
-      min-height: 307px;
-      background: #ffffff;
-      margin: 0 auto;
-      /* subtle border radius for the bottom of the card usually looks good, 
-         but keeping strictly to your code's square look */
-      border: 1px solid #e0e0e0;
-      border-top: none; /* The pills sit on top */
-      box-sizing: border-box;
-      padding: 18px 14px;
-      position: relative;
-    }
-
-    /* To simulate the white background behind the pills connecting to the card */
-    .card::before {
-        content: "";
-        position: absolute;
-        top: -20px;
-        left: 0;
-        right: 0;
-        height: 20px;
-        background: #fff;
-        z-index: -1;
-        /* If the pills need a white background container specifically */
-    }
-
-    .small-number {
-      font-size: 11px;
-      color: #b3b3b3;
-      margin-bottom: 6px;
-    }
-
-    .title {
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      margin-bottom: 24px;
-      color: #000;
-    }
-
-    .tag {
-      display: inline-block;
-      background: #1010A2;
-      border-radius: 6px;
-      padding: 6px 10px;
-      font-size: 12px;
-      margin-bottom: 10px;
-      box-shadow: 0 0 0 1px rgba(0,0,0,0.02);
-      color: #fff;
+    .text-shadow-sm {
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
   </style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 </head>
-<body>
-
-<div class="mock-container">
-  <!-- We need a wrapper background for the pills if they are supposed to look like tabs on paper -->
-  <div style="background: #fff; padding: 0 8px; border-radius: 12px 12px 0 0;"> 
-    <div class="top-bar" style="padding: 0;">
-      <div class="top-pill"></div>
-      <div class="top-pill"></div>
-      <div class="top-pill"></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="small-number">01</div>
-    <div class="title">Target Users</div>
-
-    <div class="tag">Budget-Conscious Users</div><br>
-    <div class="tag">Business Travelers</div><br>
-    <div class="tag">Tourists</div><br>
-    <div class="tag">Luxury Seekers</div><br>
-    <div class="tag">Hotel Managers</div><br>
-    <div class="tag">Domestic & International Travelers</div>
-  </div>
+<body class="bg-gray-100 font-['Inter',sans-serif]">
+<!-- BEGIN: MainContainer -->
+<main class="max-w-md mx-auto min-h-screen bg-app-gradient shadow-2xl overflow-hidden flex flex-col">
+<!-- BEGIN: TopNavigation -->
+<header class="header-card-gradient text-white pt-12 pb-8 px-6 rounded-b-[45px] shadow-2xl relative z-10" data-purpose="main-header">
+<div class="flex items-center justify-between mb-6">
+<!-- Back Arrow -->
+<button aria-label="Go back" class="p-2 hover:bg-white/10 rounded-full transition-colors">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<!-- Title -->
+<h1 class="text-xl font-bold tracking-wide">Creditors Aging</h1>
+<!-- Hamburger Menu -->
+<button aria-label="Menu" class="p-2 hover:bg-white/10 rounded-full transition-colors">
+<svg class="h-8 w-8" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
 </div>
-
-</body>
-</html>
+<!-- BEGIN: CompanySummary -->
+<div class="space-y-4 px-2 -mt-2" data-purpose="company-details">
+<h2 class="text-center font-bold text-lg leading-tight px-4">T001 - TJ Multi Vitamin Supply Sdn. Bhd.</h2>
+<div class="grid grid-cols-2 gap-y-2 text-sm opacity-90">
+<div class="flex justify-between pr-4">
+<span class="italic">Term</span>
+<span class="font-bold">30 day</span>
+</div>
+<div class="flex justify-between pl-4">
+<span class="italic">Limit</span>
+<span class="font-bold text-right">No Limit</span>
+</div>
+<div class="flex justify-between pr-4">
+<span class="italic text-xs">Amount</span>
+<span class="font-bold text-base">102,974.10</span>
+</div>
+<div class="flex justify-between pl-4 leading-tight">
+<span class="italic text-[10px] w-2/3">PD Cheque Amount</span>
+<span class="font-bold text-base">0.00</span>
+</div>
+</div>
+</div>
+<!-- END: CompanySummary -->
+<!-- Expand/Collapse Chevron -->
+<div class="flex justify-center mt-4">
+<svg class="h-6 w-6 opacity-80" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</header>
+<!-- END: TopNavigation -->
+<!-- BEGIN: ListContent -->
+<section class="flex-1 px-8 pt-4 pb-10 overflow-y-auto" data-purpose="aging-list">
+<!-- Sort Action -->
+<div class="flex justify-center mb-4">
+<button class="flex items-center text-white space-x-2 text-sm font-medium hover:text-blue-200 transition-colors">
+<svg class="h-5 w-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" fill-rule="evenodd"></path>
+</svg>
+<span class="tracking-widest text-base">Sort</span>
+</button>
+</div>
+<!-- Cards Container -->
+<div class="space-y-6">
+<!-- BEGIN: DataCard (Repeated Pattern) -->
+<article class="bg-white rounded-2xl p-5 shadow-xl" data-purpose="aging-entry">
+<div class="space-y-2 mb-4">
+<div class="flex text-sm">
+<span class="italic text-gray-500 w-32">Ref</span>
+<span class="font-bold text-gray-800">1033</span>
+</div>
+<div class="flex text-sm">
+<span class="italic text-gray-500 w-32">Accounting Date</span>
+<span class="font-bold text-gray-800">10/10/2022</span>
+</div>
+<div class="flex text-sm">
+<span class="italic text-gray-500 w-32">Outstanding</span>
+<span class="font-bold text-gray-800">102,974.10</span>
+</div>
+<div class="flex text-sm">
+<span class="italic text-gray-500 w-32">PDC Amount</span>
+<span class="font-bold text-gray-800">0.00</span>
+</div>
+</div>
+<button class="w-full bg-[#1c3061] text-white py-2 rounded-lg font-medium hover:opacity-90 transition-colors" data-purpose="view-button">
+            View
+          </button>
+</article>
+<!-- END: DataCard -->
+<!-- Card 2 -->
+<article class="bg-white rounded-2xl p-5 shadow-xl">
+<div class="space-y-2 mb-4">
+<div class="flex text-sm">
+<span class="italic text-gray-500 w-32">Ref</span>
+<span class="font-bold text-gray-800">1033</span>
+</div>
+<div class="flex text-sm">
+<span class="italic text-gray-500 w-32">Accounting Date</span>
+<span class="font-bold text-gray-800">10/10/2022</span>
+</div>
+<div class="flex text-sm">
+<span class="italic text-gray-500 w-32">Outstanding</span>
+<span class="font-bold text-gray-800">102,974.10</span>
+</div>
+<div class="flex text-sm">
+<span class="italic text-gray-500 w-32">PDC Amount</span>
+<span class="font-bold text-gray-800">0.00</span>
+</div>
+</div>
+<button class="w-full bg-[#1c3061] text-white py-2 rounded-lg font-medium hover:opacity-90 transition-colors">
+            View
+          </button>
+</article>
+<!-- Card 3 -->
+<article class="bg-white rounded-2xl p-5 shadow-xl">
+<div class="space-y-2 mb-4">
+<div class="flex text-sm">
+<span class="italic text-gray-500 w-32">Ref</span>
+<span class="font-bold text-gray-800">1033</span>
+</div>
+<div class="flex text-sm">
+<span class="italic text-gray-500 w-32">Accounting Date</span>
+<span class="font-bold text-gray-800">10/10/2022</span>
+</div>
+<div class="flex text-sm">
+<span class="italic text-gray-500 w-32">Outstanding</span>
+<span class="font-bold text-gray-800">102,974.10</span>
+</div>
+<div class="flex text-sm">
+<span class="italic text-gray-500 w-32">PDC Amount</span>
+<span class="font-bold text-gray-800">0.00</span>
+</div>
+</div>
+<button class="w-full bg-[#1c3061] text-white py-2 rounded-lg font-medium hover:opacity-90 transition-colors">
+            View
+          </button>
+</article>
+</div>
+</section>
+<!-- END: ListContent -->
+</main>
+<!-- END: MainContainer -->
+</body></html>
