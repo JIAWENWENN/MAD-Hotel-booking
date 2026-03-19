@@ -1,163 +1,263 @@
 <!DOCTYPE html>
-
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Creditors Aging</title>
-<!-- Tailwind CSS CDN with plugins -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<style data-purpose="custom-gradients">
-    .bg-app-gradient {
-      background: linear-gradient(180deg, #1645a2 0%, #1a2b56 100%);
-    }
-    .header-card-gradient {
-      background: linear-gradient(180deg, #3262d6 0%, #1e40af 100%);
-    }
-    .text-shadow-sm {
-      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    }
-  </style>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Creditors Aging</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'jakarta': ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand': {
+                            50: '#f0f4ff',
+                            100: '#e0e9ff',
+                            200: '#c7d6fe',
+                            300: '#a4bafc',
+                            400: '#7f93f8',
+                            500: '#5d6bf1',
+                            600: '#4a4de5',
+                            700: '#3d3dca',
+                            800: '#3335a3',
+                            900: '#2f3281',
+                            950: '#1c1c4b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #1c1c4b 0%, #2f3281 50%, #3d3dca 100%);
+        }
+        .mesh-bg {
+            background-color: #f8fafc;
+            background-image: 
+                radial-gradient(at 40% 20%, rgba(93, 107, 241, 0.1) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, rgba(74, 77, 229, 0.08) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, rgba(127, 147, 248, 0.1) 0px, transparent 50%);
+        }
+        .stat-pill {
+            background: linear-gradient(135deg, rgba(93, 107, 241, 0.1) 0%, rgba(74, 77, 229, 0.05) 100%);
+        }
+    </style>
 </head>
-<body class="bg-gray-100 font-['Inter',sans-serif]">
-<!-- BEGIN: MainContainer -->
-<main class="max-w-md mx-auto min-h-screen bg-app-gradient shadow-2xl overflow-hidden flex flex-col">
-<!-- BEGIN: TopNavigation -->
-<header class="header-card-gradient text-white pt-12 pb-8 px-6 rounded-b-[45px] shadow-2xl relative z-10" data-purpose="main-header">
-<div class="flex items-center justify-between mb-6">
-<!-- Back Arrow -->
-<button aria-label="Go back" class="p-2 hover:bg-white/10 rounded-full transition-colors">
-<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</button>
-<!-- Title -->
-<h1 class="text-xl font-bold tracking-wide">Creditors Aging</h1>
-<!-- Hamburger Menu -->
-<button aria-label="Menu" class="p-2 hover:bg-white/10 rounded-full transition-colors">
-<svg class="h-8 w-8" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-</div>
-<!-- BEGIN: CompanySummary -->
-<div class="space-y-4 px-2 -mt-2" data-purpose="company-details">
-<h2 class="text-center font-bold text-lg leading-tight px-4">T001 - TJ Multi Vitamin Supply Sdn. Bhd.</h2>
-<div class="grid grid-cols-2 gap-y-2 text-sm opacity-90">
-<div class="flex justify-between pr-4">
-<span class="italic">Term</span>
-<span class="font-bold">30 day</span>
-</div>
-<div class="flex justify-between pl-4">
-<span class="italic">Limit</span>
-<span class="font-bold text-right">No Limit</span>
-</div>
-<div class="flex justify-between pr-4">
-<span class="italic text-xs">Amount</span>
-<span class="font-bold text-base">102,974.10</span>
-</div>
-<div class="flex justify-between pl-4 leading-tight">
-<span class="italic text-[10px] w-2/3">PD Cheque Amount</span>
-<span class="font-bold text-base">0.00</span>
-</div>
-</div>
-</div>
-<!-- END: CompanySummary -->
-<!-- Expand/Collapse Chevron -->
-<div class="flex justify-center mt-4">
-<svg class="h-6 w-6 opacity-80" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</div>
-</header>
-<!-- END: TopNavigation -->
-<!-- BEGIN: ListContent -->
-<section class="flex-1 px-8 pt-4 pb-10 overflow-y-auto" data-purpose="aging-list">
-<!-- Sort Action -->
-<div class="flex justify-center mb-4">
-<button class="flex items-center text-white space-x-2 text-sm font-medium hover:text-blue-200 transition-colors">
-<svg class="h-5 w-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-<path clip-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" fill-rule="evenodd"></path>
-</svg>
-<span class="tracking-widest text-base">Sort</span>
-</button>
-</div>
-<!-- Cards Container -->
-<div class="space-y-6">
-<!-- BEGIN: DataCard (Repeated Pattern) -->
-<article class="bg-white rounded-2xl p-5 shadow-xl" data-purpose="aging-entry">
-<div class="space-y-2 mb-4">
-<div class="flex text-sm">
-<span class="italic text-gray-500 w-32">Ref</span>
-<span class="font-bold text-gray-800">1033</span>
-</div>
-<div class="flex text-sm">
-<span class="italic text-gray-500 w-32">Accounting Date</span>
-<span class="font-bold text-gray-800">10/10/2022</span>
-</div>
-<div class="flex text-sm">
-<span class="italic text-gray-500 w-32">Outstanding</span>
-<span class="font-bold text-gray-800">102,974.10</span>
-</div>
-<div class="flex text-sm">
-<span class="italic text-gray-500 w-32">PDC Amount</span>
-<span class="font-bold text-gray-800">0.00</span>
-</div>
-</div>
-<button class="w-full bg-[#1c3061] text-white py-2 rounded-lg font-medium hover:opacity-90 transition-colors" data-purpose="view-button">
-            View
-          </button>
-</article>
-<!-- END: DataCard -->
-<!-- Card 2 -->
-<article class="bg-white rounded-2xl p-5 shadow-xl">
-<div class="space-y-2 mb-4">
-<div class="flex text-sm">
-<span class="italic text-gray-500 w-32">Ref</span>
-<span class="font-bold text-gray-800">1033</span>
-</div>
-<div class="flex text-sm">
-<span class="italic text-gray-500 w-32">Accounting Date</span>
-<span class="font-bold text-gray-800">10/10/2022</span>
-</div>
-<div class="flex text-sm">
-<span class="italic text-gray-500 w-32">Outstanding</span>
-<span class="font-bold text-gray-800">102,974.10</span>
-</div>
-<div class="flex text-sm">
-<span class="italic text-gray-500 w-32">PDC Amount</span>
-<span class="font-bold text-gray-800">0.00</span>
-</div>
-</div>
-<button class="w-full bg-[#1c3061] text-white py-2 rounded-lg font-medium hover:opacity-90 transition-colors">
-            View
-          </button>
-</article>
-<!-- Card 3 -->
-<article class="bg-white rounded-2xl p-5 shadow-xl">
-<div class="space-y-2 mb-4">
-<div class="flex text-sm">
-<span class="italic text-gray-500 w-32">Ref</span>
-<span class="font-bold text-gray-800">1033</span>
-</div>
-<div class="flex text-sm">
-<span class="italic text-gray-500 w-32">Accounting Date</span>
-<span class="font-bold text-gray-800">10/10/2022</span>
-</div>
-<div class="flex text-sm">
-<span class="italic text-gray-500 w-32">Outstanding</span>
-<span class="font-bold text-gray-800">102,974.10</span>
-</div>
-<div class="flex text-sm">
-<span class="italic text-gray-500 w-32">PDC Amount</span>
-<span class="font-bold text-gray-800">0.00</span>
-</div>
-</div>
-<button class="w-full bg-[#1c3061] text-white py-2 rounded-lg font-medium hover:opacity-90 transition-colors">
-            View
-          </button>
-</article>
-</div>
-</section>
-<!-- END: ListContent -->
-</main>
-<!-- END: MainContainer -->
-</body></html>
+<body class="mesh-bg font-jakarta min-h-screen">
+    <!-- BEGIN: MainContainer -->
+    <main class="max-w-md mx-auto min-h-screen flex flex-col shadow-2xl bg-white/50">
+        
+        <!-- BEGIN: TopNavigation -->
+        <header class="header-gradient text-white relative overflow-hidden" data-purpose="main-header">
+            <!-- Decorative elements -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-32 translate-x-32"></div>
+            <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-24 -translate-x-24"></div>
+            
+            <div class="relative z-10 pt-12 pb-6 px-5">
+                <!-- Top Bar -->
+                <div class="flex items-center justify-between mb-8">
+                    <button aria-label="Go back" class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-xl transition-all duration-200">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                        </svg>
+                    </button>
+                    <h1 class="text-lg font-bold tracking-tight">Creditors Aging</h1>
+                    <button aria-label="Menu" class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-xl transition-all duration-200">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="6" r="1.5" fill="currentColor"/>
+                            <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+                            <circle cx="12" cy="18" r="1.5" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+                <!-- BEGIN: CompanySummary -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-5 border border-white/20" data-purpose="company-details">
+                    <div class="flex items-start gap-4 mb-5">
+                        <div class="w-12 h-12 bg-gradient-to-br from-brand-400 to-brand-600 rounded-xl flex items-center justify-center text-lg font-bold shrink-0">
+                            TJ
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-xs text-white/60 font-medium mb-1">T001</p>
+                            <h2 class="font-bold text-base leading-snug">TJ Multi Vitamin Supply Sdn. Bhd.</h2>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats Grid -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-white/10 rounded-xl p-3">
+                            <p class="text-[11px] text-white/60 uppercase tracking-wider mb-1">Term</p>
+                            <p class="font-bold text-sm">30 day</p>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-3">
+                            <p class="text-[11px] text-white/60 uppercase tracking-wider mb-1">Limit</p>
+                            <p class="font-bold text-sm">No Limit</p>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-3">
+                            <p class="text-[11px] text-white/60 uppercase tracking-wider mb-1">Amount</p>
+                            <p class="font-bold text-lg">102,974.10</p>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-3">
+                            <p class="text-[11px] text-white/60 uppercase tracking-wider mb-1">PD Cheque Amt</p>
+                            <p class="font-bold text-lg">0.00</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: CompanySummary -->
+                
+                <!-- Expand/Collapse Chevron -->
+                <div class="flex justify-center mt-4">
+                    <button class="w-8 h-8 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-200">
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+        <!-- END: TopNavigation -->
+        <!-- BEGIN: ListContent -->
+        <section class="flex-1 px-5 pt-6 pb-10 overflow-y-auto" data-purpose="aging-list">
+            
+            <!-- Sort Action Bar -->
+            <div class="flex items-center justify-between mb-5">
+                <p class="text-sm text-slate-500 font-medium">3 Records</p>
+                <button class="flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-sm border border-slate-200 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all duration-200">
+                    <svg class="h-4 w-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M3 4h13M3 8h9m-9 4h6m4 0l4 4m0 0l4-4m-4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    </svg>
+                    <span>Sort</span>
+                </button>
+            </div>
+            <!-- Cards Container -->
+            <div class="space-y-4">
+                
+                <!-- BEGIN: DataCard 1 -->
+                <article class="glass-card rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden" data-purpose="aging-entry">
+                    <!-- Card Header -->
+                    <div class="bg-gradient-to-r from-brand-950 to-brand-900 px-5 py-3 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                            </div>
+                            <span class="text-white font-bold">Ref #1033</span>
+                        </div>
+                        <span class="text-xs text-white/70 font-medium bg-white/10 px-3 py-1 rounded-full">10/10/2022</span>
+                    </div>
+                    
+                    <!-- Card Body -->
+                    <div class="p-5">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex-1">
+                                <p class="text-xs text-slate-400 uppercase tracking-wider font-medium mb-1">Outstanding</p>
+                                <p class="text-2xl font-extrabold text-slate-800">102,974.10</p>
+                            </div>
+                            <div class="w-px h-12 bg-slate-200"></div>
+                            <div class="flex-1 text-right">
+                                <p class="text-xs text-slate-400 uppercase tracking-wider font-medium mb-1">PDC Amount</p>
+                                <p class="text-2xl font-extrabold text-slate-400">0.00</p>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white py-3 rounded-xl font-semibold transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-brand-500/25" data-purpose="view-button">
+                            <span>View Details</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+                <!-- END: DataCard 1 -->
+                
+                <!-- BEGIN: DataCard 2 -->
+                <article class="glass-card rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden">
+                    <div class="bg-gradient-to-r from-brand-950 to-brand-900 px-5 py-3 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                            </div>
+                            <span class="text-white font-bold">Ref #1033</span>
+                        </div>
+                        <span class="text-xs text-white/70 font-medium bg-white/10 px-3 py-1 rounded-full">10/10/2022</span>
+                    </div>
+                    
+                    <div class="p-5">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex-1">
+                                <p class="text-xs text-slate-400 uppercase tracking-wider font-medium mb-1">Outstanding</p>
+                                <p class="text-2xl font-extrabold text-slate-800">102,974.10</p>
+                            </div>
+                            <div class="w-px h-12 bg-slate-200"></div>
+                            <div class="flex-1 text-right">
+                                <p class="text-xs text-slate-400 uppercase tracking-wider font-medium mb-1">PDC Amount</p>
+                                <p class="text-2xl font-extrabold text-slate-400">0.00</p>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white py-3 rounded-xl font-semibold transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-brand-500/25">
+                            <span>View Details</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+                <!-- END: DataCard 2 -->
+                
+                <!-- BEGIN: DataCard 3 -->
+                <article class="glass-card rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden">
+                    <div class="bg-gradient-to-r from-brand-950 to-brand-900 px-5 py-3 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                            </div>
+                            <span class="text-white font-bold">Ref #1033</span>
+                        </div>
+                        <span class="text-xs text-white/70 font-medium bg-white/10 px-3 py-1 rounded-full">10/10/2022</span>
+                    </div>
+                    
+                    <div class="p-5">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex-1">
+                                <p class="text-xs text-slate-400 uppercase tracking-wider font-medium mb-1">Outstanding</p>
+                                <p class="text-2xl font-extrabold text-slate-800">102,974.10</p>
+                            </div>
+                            <div class="w-px h-12 bg-slate-200"></div>
+                            <div class="flex-1 text-right">
+                                <p class="text-xs text-slate-400 uppercase tracking-wider font-medium mb-1">PDC Amount</p>
+                                <p class="text-2xl font-extrabold text-slate-400">0.00</p>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white py-3 rounded-xl font-semibold transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-brand-500/25">
+                            <span>View Details</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+                <!-- END: DataCard 3 -->
+                
+            </div>
+        </section>
+        <!-- END: ListContent -->
+        
+    </main>
+    <!-- END: MainContainer -->
+</body>
+</html>
